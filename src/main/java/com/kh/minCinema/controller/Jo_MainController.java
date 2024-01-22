@@ -15,7 +15,7 @@ public class Jo_MainController {
 	
 	@GetMapping("/jo_login")
 	public void login() {
-		
+		// jo_login.jsp
 	}
 	
 	@GetMapping("/jo_pwSearch")
