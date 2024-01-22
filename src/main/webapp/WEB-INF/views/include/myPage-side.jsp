@@ -42,11 +42,6 @@
 					<span style="position: absolute; right: 10px;">&raquo</span>
 				</a>
 			</li>
-			<li>
-				<a href="#">선물내역
-					<span style="position: absolute; right: 10px;">&raquo</span>
-				</a>
-			</li>
 		</ul>
 	</div>
 </div>

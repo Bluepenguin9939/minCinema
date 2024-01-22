@@ -30,7 +30,7 @@
 					<!-- Tab panes -->
 					<div class="tab-content">
 						<div id="point" class="container tab-pane active point-tab"><br>
-							<div style="height: 250px; border-radius: 10px; background-color: #eee;">
+							<div style="height: 250px; border-radius: 20px; background-color: #eee;">
 								
 							</div>
 						</div>
