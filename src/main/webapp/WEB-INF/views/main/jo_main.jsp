@@ -4,7 +4,7 @@
 
 <%@ include file="/WEB-INF/views/include/top.jsp" %>
 
-<link href="/resources/css/main.css" rel="stylesheet">
+<link href="/resources/css/main.css?after" rel="stylesheet">
 
 <script>
 $(function() {
