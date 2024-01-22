@@ -38,4 +38,6 @@ public class Jo_MainController {
 	public void myPage() {
 		
 	}
+	
+	
 }
