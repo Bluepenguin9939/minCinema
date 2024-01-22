@@ -160,9 +160,11 @@ $(function(){
 		        	<div>영화 : 토이스토리4</div>
 		        	<div>날짜 : 2024.02.01</div>
 		        	<div>시간 : 11:00(am)</div>
-		        	<div>?????원 X ?명</div>
+		        	<div>?????원 X ?명 </div>
+		        	<div>?????원</div>
+		        	<div>포인트:</div>
 		        	<div>==================</div>
-		        	<div>합계: 12000원</div>
+		        	<div style="width: 100%; background-color: silver;">결제할 금액합계: 12000원</div>
 		        </div><!-- count -->
 		        
 	        </div>
