@@ -1,0 +1,52 @@
+@charset "UTF-8";
+
+#myMenu {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+}
+
+#myMenu li a {
+	padding: 12px;
+	text-decoration: none;
+	color: black;
+	display: block
+}
+
+#myMenu li a:hover {
+	background-color: #eee;
+}
+
+#profile-image {
+	width: 75px; 
+	height: 75px;
+}
+
+.profile-pc {
+	height: 30px;
+	background-color: #f6c7ba;
+}
+
+#point-i {
+	color: #aca1f2;
+	font-size: 20px;
+	margin-left: 10px;
+	margin-right: 20px;
+}
+
+#coupon-i {
+	color: #aca1f2;
+	font-size: 20px;
+	margin-left: 10px;
+	margin-right: 20px;
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+a:hover {
+	text-decoration: none;
+	color: inherit;
+}

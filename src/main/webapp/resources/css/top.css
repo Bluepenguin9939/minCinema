@@ -1,0 +1,52 @@
+@charset "UTF-8";
+
+.row {
+	background-color: #999999;
+}
+
+#logo {
+	color: #999999;
+	font-size: 40px;
+	text-decoration: none;
+}
+
+.topbar-dropdown {
+	color: #999999;
+	font-size: 20px;
+}
+
+.topbar-dropdown:hover {
+	color: #9999fa;
+	text-decoration: none;
+}
+
+.dropdown-menu {
+	display: none;
+}
+
+.top-hover-dropdown:hover .dropdown-menu {
+	display: block;
+}
+
+.navbar-search {
+	margin-right: 100px;
+}
+
+#login {
+	color: #999999;
+}
+
+#login:hover {
+	color: #9999fa;
+	text-decoration: none;
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+a:hover {
+	text-decoration: none;
+	color: inherit;
+}

@@ -1,0 +1,6 @@
+@charset "UTF-8";
+
+.table-header {
+	width: 30%;
+	border-right: 1px solid #fafafa;
+}
