@@ -156,15 +156,21 @@ $(function(){
 		        	<div style="text-align: center; 
 		        				background-color: red;
 		        				font-size:40px">좌석 예매 결제</div>
+		        	<ul style="font-size: 22px">
+		        		<li>영화 : 토이스토리4</li>
+		        		<li>날짜 : 2024.02.01</li>
+		        		<li>시간 : 11:00(am)</li>
+		        	</ul>
 		        	
-		        	<div>영화 : 토이스토리4</div>
-		        	<div>날짜 : 2024.02.01</div>
-		        	<div>시간 : 11:00(am)</div>
+		        	
 		        	<div>?????원 X ?명 </div>
 		        	<div>?????원</div>
 		        	<div>포인트:</div>
 		        	<div>==================</div>
-		        	<div style="width: 100%; background-color: silver;">결제할 금액합계: 12000원</div>
+		        	<div style="width: 100%; background-color: silver;">
+		        		
+		        		결제할 금액합계: 12000원
+		        	</div>
 		        </div><!-- count -->
 		        
 	        </div>
