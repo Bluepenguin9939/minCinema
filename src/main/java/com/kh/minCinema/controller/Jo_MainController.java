@@ -13,8 +13,28 @@ public class Jo_MainController {
 		
 	}
 	
-	@GetMapping("/heo_details")
-	public void details() {
+	@GetMapping("/jo_login")
+	public void login() {
+		
+	}
+	
+	@GetMapping("/jo_pwSearch")
+	public void pwSearch() {
+		
+	}
+	
+	@GetMapping("/jo_register")
+	public void register() {
+		
+	}
+	
+	@GetMapping("/jo_loadMap")
+	public void loadMap() {
+		
+	}
+	
+	@GetMapping("/jo_myPage")
+	public void myPage() {
 		
 	}
 }

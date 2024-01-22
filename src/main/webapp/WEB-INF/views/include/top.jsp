@@ -31,7 +31,11 @@
 	integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
 	crossorigin="anonymous">
 	
-<link href="/resources/css/main.css" rel="stylesheet">
+<!-- 구글 글리피콘 -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+	
+<link href="/resources/css/top.css?after" rel="stylesheet">
+<link href="/resources/css/bottom.css?after" rel="stylesheet">
 
 <%@ include file="/WEB-INF/views/include/bs.jsp" %>
 <!-- Bootstrap core JavaScript-->
@@ -61,7 +65,7 @@ $(function() {
 
 			<!-- Main Content -->
 			<div id="content">
-
+				
 				<!-- Topbar -->
 				<nav class="navbar navbar-expand-sm bg-dark navbar-dark"
 					style="padding: 20px;">
@@ -70,15 +74,7 @@ $(function() {
 							<span>Min<i><sub>cinema</sub></i></span>
 						</a>
 					</div>
-					<div class="d-flex justify-content-around" style="width: 30%;">
-						<div class="dropdown top-hover-dropdown">
-				        	<a class="dropdown topbar-dropdown" data-toggle="dropdown">메인</a>
-				        	<div class="dropdown-menu">
-						   		<a class="dropdown-item" href="#">Link 1</a>
-							    <a class="dropdown-item" href="#">Link 2</a>
-							    <a class="dropdown-item" href="#">Link 3</a>
-						  	</div>
-					  	</div>  
+					<div class="d-flex justify-content-around" style="width: 40%;">
 						<div class="dropdown top-hover-dropdown">
 				        	<a class="dropdown topbar-dropdown" data-toggle="dropdown">영화목록</a>
 				        	<div class="dropdown-menu">
@@ -86,6 +82,7 @@ $(function() {
 							    <a class="dropdown-item" href="#">로맨스</a>
 							    <a class="dropdown-item" href="#">공포</a>
 							    <a class="dropdown-item" href="#">액션</a>
+							    <a class="dropdown-item" href="#">코미디</a>
 						  	</div>
 					  	</div>  
 						<div class="dropdown top-hover-dropdown">
@@ -96,23 +93,30 @@ $(function() {
 							    <a class="dropdown-item" href="#">게시판</a>
 						  	</div>
 					  	</div>
+						<div class="top-hover-dropdown">
+				        	<a href="/main/jo_loadMap" class="topbar-dropdown">오시는길</a>
+					  	</div>  
 				  	</div>
-				  	<form class="d-none d-sm-inline-block form-inline navbar-search">
-                        <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" 
-                            	placeholder="검색어를 입력해주세요" name="movie-search"
-                                aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-secondary" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                    <a href="#" id="login">
-                    	<span>로그인</span>
-                    	<i class="fa fa-door-closed"></i>
-                    	<i class="fa fa-door-open" style="display: none"></i>
-                    </a>
+				  	<div class="d-flex justify-content-center" style="width: 20%;">
+					  	<form class="d-none d-sm-inline-block form-inline navbar-search" style="margin: 0px;">
+	                        <div class="input-group">
+	                            <input type="text" class="form-control bg-light border-0 small" 
+	                            	placeholder="검색어를 입력해주세요" name="movie-search"
+	                                aria-label="Search" aria-describedby="basic-addon2">
+	                            <div class="input-group-append">
+	                                <button class="btn btn-secondary" type="button">
+	                                    <i class="fas fa-search fa-sm"></i>
+	                                </button>
+	                            </div>
+	                        </div>
+	                    </form>
+                    </div>
+                    <div class="d-flex justify-content-center" style="width: 15%;">
+	                    <a href="/main/jo_login" id="login">
+	                    	<span>로그인</span>
+	                    	<i class="fa fa-door-closed"></i>
+	                    	<i class="fa fa-door-open" style="display: none"></i>
+	                    </a>
+                    </div>
 				</nav>
 				<!-- End of Topbar -->
