@@ -1,29 +1,7 @@
 @charset "UTF-8";
-#logo {
-	color: #999999;
-	font-size: 40px;
-/* 	margin-right: 150px; */
-/* 	margin-left: 350px; */
-	text-decoration: none;
-}
-
-.topbar-dropdown {
-	color: #999999;
-/* 	margin-right: 100px; */
-	font-size: 20px;
-}
-
-.topbar-dropdown:hover {
-	color: #9999fa;
-	text-decoration: none;
-}
 
 .dropdown-menu {
 	display: none;
-}
-
-.top-hover-dropdown:hover .dropdown-menu {
-	display: block;
 }
 
 .main-dropdown:hover .dropdown-menu {
@@ -39,12 +17,7 @@
 	text-decoration: none;
 }
 
-.navbar-search {
-	margin-right: 100px;
-}
-
 .main-movie {
-	margin-right: 15px;
 	border-radius: 10px;
 }
 
@@ -53,17 +26,18 @@
 	margin-bottom: 10px;
 }
 
-#login {
-	color: #999999;
-}
-
-#login:hover {
-	color: #9999fa;
-	text-decoration: none;
-}
-
 .slide-movie-image {
 	margin-right: 30px;
+}
+
+.slide-movie-image:hover {
+	transition: 0.4s;
+	opacity: 0.5;
+}
+
+.slide-movie-image:not(:hover) {
+	transition: 0.4s;
+	opacity: 1; 
 }
 
 #slide-movie {
@@ -71,41 +45,25 @@
 	background-color: #666666;
 }
 
-.row {
-	background-color: #999999;
-}
-
-.sticky-footer{
-	background-color: #777777;
-}
-
 .main-movie-list {
 	margin-bottom: 10px;
+	width: auto;
+	display: flex;
+	justify-content: space-between;
 }
 
-.scroll-to-top {
-  position: fixed;
-  right: 1rem;
-  bottom: 1rem;
-/*   display: none; */
-  width: 2.75rem;
-  height: 2.75rem;
-  text-align: center;
-  color: #fff;
-  background: rgba(90, 92, 105, 0.5);
-  line-height: 46px;
+.card-movie-image:hover {
+	transition: 0.4s;
+	opacity: 0.5;
 }
 
-.scroll-to-top:focus, .scroll-to-top:hover {
-  color: white;
+.card-movie-image:hover {
+	display: block;
 }
 
-.scroll-to-top:hover {
-  background: #5a5c69;
-}
-
-.scroll-to-top i {
-  font-weight: 800;
+.card-movie-image:not(:hover) {
+	transition: 0.4s;
+	opacity: 1; 
 }
 
 .test-div {
@@ -116,18 +74,19 @@
 	position: absolute;
 	top: 2%;
 	left: 5%;
-	display: none;
 	color: white;
+	display: none;
 	background-color: #999999;
 	border-radius: 10px;
 	width: 25%;
 	text-align: center;
 }
 
+
 .bookmark {
 	position: absolute;
 	top: 1%;
-	right: 12%;
+	right: 4.5%;
 	display: none;
 	color: white;
 	background-color: #999999;
