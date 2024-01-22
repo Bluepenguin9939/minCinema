@@ -11,6 +11,7 @@ public class Jo_MainController {
 	@GetMapping("/jo_main")
 	public void main() {
 		// jo_main.jsp
+		// jo_main2.jsp
 	}
 	
 	@GetMapping("/jo_login")
