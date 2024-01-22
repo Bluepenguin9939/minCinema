@@ -9,7 +9,7 @@
 <script>
 $(function() {
 	$(".slide-movie-image").click(function() {
-		console.log("click");
+		location.href="/main/heo_details";
 	});
 	
 	$(".test-div").hover(function() {
