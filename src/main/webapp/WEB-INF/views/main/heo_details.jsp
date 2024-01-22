@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/include/top.jsp"%>
+<link href="/resources/css/details/heo_details.css?after"
+	rel="stylesheet">
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-3"></div>
@@ -16,7 +18,9 @@
 						<li class="mov-details-info-age">전체관람가</li>
 					</ul>
 					<div class="mov-details-info-div">
-						<textarea class="form-control mov-details-info" readonly>앤디의 집을 떠나 새로운 공간에서 살게 된 우디는 장난감 친구 포키의 돌발행동으로 인해 홀로 모험 길에 오르게 된다. 그러던 중 보핍을 오랜만에 만나고 그녀에게 도움을 청한다.</textarea>
+						<textarea class="form-control mov-details-info"
+							style="font-size: 20px; width: 350px; height: 200px; background-color: #999999;"
+							readonly>앤디의 집을 떠나 새로운 공간에서 살게 된 우디는 장난감 친구 포키의 돌발행동으로 인해 홀로 모험 길에 오르게 된다. 그러던 중 보핍을 오랜만에 만나고 그녀에게 도움을 청한다.</textarea>
 					</div>
 					<br>
 					<div class="mov-details-btn-div">
@@ -34,18 +38,19 @@
 					<li class="nav-item mov-details-info-li"><a href="#tab1"
 						data-toggle="tab" class="nav-link active mov-details-info-a">상세
 							정보</a></li>
-					<li class="nav-item mov-details-reviews"><a
-						href="#tab2" data-toggle="tab" class="nav-link mov-details-reviews-a">리뷰</a></li>
+					<li class="nav-item mov-details-reviews"><a href="#tab2"
+						data-toggle="tab" class="nav-link mov-details-reviews-a">리뷰</a></li>
 				</ul>
 				<div class="tab-content py-3">
 					<div class="tab-pane active" id="tab1">
 						<h3>영화정보</h3>
 						<ul>
-							<li>장르<a class="mov-info-a">애니메이션/가족</a></li>
-							<li>감독<a class="mov-info-director-actor">조시
+							<li>장르<a style="padding-left: 10px;">애니메이션/가족</a></li>
+							<li>감독<a
+								style="padding-left: 10px; text-decoration: underline;">조시
 									쿨리</a></li>
-							<li>출연<a class="mov-info-director-actor">톰
-									행크스, 팀 알렌, 애니 포츠</a></li>
+							<li>출연<a style="padding-left: 10px; text-decoration: underline;">톰 행크스, 팀 알렌, 애니
+									포츠</a></li>
 						</ul>
 						<br>
 						<h3>트레일러</h3>

@@ -255,7 +255,7 @@ $(function() {
 					<span class="info">2014 | 판타지, 모험, 액션 | 144분</span>
 				</div>
 			</div>
-			<div class="d-flex justify-content-around main-movie-list">
+			<div class="main-movie-list">
 				<div>
 					<div class="test-div">
 						<a href="#">
@@ -263,7 +263,9 @@ $(function() {
 								<img src="/resources/img/mov01.jpg" alt="영화1"
 									class="main-movie">
 							</div>
-							<div class="user-rate"><span><i class="fa fa-star"></i>9.6</span></div>
+							<div class="user-rate">
+								<span><i class="fa fa-star"></i>9.6</span>
+							</div>
 						</a>
 						<button type="button" class="bookmark"><i class="fa fa-bookmark"></i></button>
 					</div>
