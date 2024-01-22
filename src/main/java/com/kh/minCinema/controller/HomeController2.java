@@ -9,7 +9,7 @@ public class HomeController2 {
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home() {
-		return "redirect:/main/jo_main3";
+		return "redirect:/main/jo_main4";
 	}
 	
 }
