@@ -1,0 +1,34 @@
+@charset "UTF-8";
+section a{
+	background-color: black;	
+}
+section div{
+	background-color: black;	
+}
+section span{
+	background-color: black;	
+}
+li.nav-item{
+	background-color: black;
+}
+.sidebar-heading{
+	background-color: black;	
+}
+div#wrapper{
+	background-color: black;
+}
+nav.navbar{
+	background-color: black;
+}
+.navbar-nav{
+	background-color: black;
+}
+.sidebar-brand{
+	background-color: black;
+}
+[title="ak"]{
+	background-color: black;
+}
+ul#Sidebar{
+	background-color: black;	
+}
