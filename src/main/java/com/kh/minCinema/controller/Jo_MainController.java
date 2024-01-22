@@ -10,7 +10,7 @@ public class Jo_MainController {
 	
 	@GetMapping("/jo_main")
 	public void main() {
-		
+		// jo_main.jsp
 	}
 	
 	@GetMapping("/jo_login")
