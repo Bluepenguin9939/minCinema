@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/include/top.jsp"%>
+
+<!-- 결제창모달.jsp -->
+<%@ include file="/WEB-INF/views/include/heo_pointChargeModal.jsp"%>
+
 <link href="/resources/css/details/heo_details.css?after"
 	rel="stylesheet">
 <div class="container-fluid">

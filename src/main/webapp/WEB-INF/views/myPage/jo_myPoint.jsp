@@ -4,7 +4,19 @@
 <%@ include file="/WEB-INF/views/include/top.jsp" %>
 
 <link href="/resources/css/myPage/mySide.css?after" rel="stylesheet">
-<link href="/resources/css/myPage/myPoint.css?after" rel="stylesheet">
+<link href="/resources/css/myPage/myPoint.css" rel="stylesheet">
+
+<script>
+$(function() {
+	$(".use-point").click(function() {
+		$(".point-ul > li > a").removeClass("active");
+		$(".point-ul > li:last > a").addClass("active");
+		$("#point-tab").removeClass("active");
+		$("#point-history-tab").addClass("active");
+		$("#point-history-tab").addClass("show");
+	});
+});
+</script>
 
 <div class="container-fluid">
 	<div class="row">
@@ -18,25 +30,61 @@
 						<h4>포인트</h4>
 					</div>
 					<!-- Nav tabs -->
-					<ul class="nav nav-tabs nav-justified" role="tablist">
+					<ul class="nav nav-tabs nav-justified point-ul" role="tablist">
 						<li class="nav-item">
-							<a class="nav-link active" data-toggle="tab" href="#point">포인트</a>
+							<a class="nav-link active" data-toggle="tab" href="#point-tab">포인트</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" data-toggle="tab" href="#menu1">이용내역</a>
+							<a class="nav-link" data-toggle="tab" href="#point-history-tab">이용내역</a>
 						</li>
 					</ul>
 					
 					<!-- Tab panes -->
 					<div class="tab-content">
-						<div id="point" class="container tab-pane active point-tab"><br>
-							<div style="height: 250px; border-radius: 20px; background-color: #eee;">
-								
+						<div id="point-tab" class="container tab-pane active point-tab"><br>
+							<div style="height: 220px; border-radius: 20px; background-color: #eee;
+								display: flex; justify-content: flex-start; margin-bottom: 20px;">
+								<div class="point-box" style="width: 60%;">
+									<h5>내 보유 포인트</h5>
+									<h2>닉네임님의 보유 포인트는<br>0포인트 입니다.</h2>
+									<a class="use-point" data-toggle="tab" href="#point-history-tab">이용내역 보러가기 &raquo</a>
+								</div>
+								<div class="point-box" style="width: 40%;">
+<!-- 									<img src="/resources/img/page-point.png" id="point-img"> -->
+									<i class="fab fa-product-hunt align-self-center" id="rotate-point-i"></i>
+								</div>
+							</div>
+							<div style="background-color: #eee; display: flex; 
+								height: 60px; border-radius: 15px;">
+								<div style="width: 10%; display: flex; justify-content: center;">
+									<i class="fab fa-product-hunt align-self-center" id="charge-point-i"></i>
+								</div>
+								<div style="width: 80%; display: flex; justify-content: center;">
+									<span style="align-self: center; font-size: 20px;">포인트 충전하러 가기</span>
+								</div>
+								<div style="width: 10%; display: flex; justify-content: center;">
+									<button class="btn btn-sm btn-secondary" type="button"
+										style=" align-self: center">충전</button>
+								</div>
 							</div>
 						</div>
-						<div id="menu1" class="container tab-pane fade point-tab"><br>
-							<h3>Menu 1</h3>
-							<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+						<div id="point-history-tab" class="container tab-pane fade point-tab"><br>
+							<h5>이용내역</h5>
+							<table class="table table-borderless">
+								<tbody style="border-bottom: 1px solid #999999;">
+									<tr class="point-history-tr">
+										<td>
+											<i class="fab fa-product-hunt align-self-center
+												table-point-i"></i>
+										</td>
+										<td>
+											2024/01/23 12:19
+										</td>
+										<td>포인트 충전</td>
+										<td>10,000</td>
+									</tr>
+								</tbody>
+							</table>
 						</div>
 					</div>
 				</div>
