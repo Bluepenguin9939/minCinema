@@ -24,7 +24,7 @@ $(function() {
 			<div class="d-flex justify-content-center info-div">
 				<h2 id="info">회 원 가 입</h2>
 			</div>
-			<form class="user">
+			<form class="user" action="/main/register" method="post">
 				<div class="form-group d-flex" style="position: relative;">
 					<input type="text" class="form-control form-control-user"
 						id="u-id" name="u-id" placeholder="아이디" required>
@@ -56,9 +56,9 @@ $(function() {
 			            id="u-tel" name="u-tel" placeholder="전화번호"
 			            pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
 			    </div>
-			    <a href="/main/jo_login" class="btn btn-dark btn-block">
+			    <button type="submit" class="btn btn-dark btn-block">
 			        회원가입
-			    </a>
+			    </button>
 			    <hr style="border-bottom: 2px solid #333333;">
 			    <div class="d-flex justify-content-center">
 				    <a href="/main/jo_login" id="goLogin">
