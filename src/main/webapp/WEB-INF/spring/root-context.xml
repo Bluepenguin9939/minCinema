@@ -20,6 +20,7 @@
 	<bean id="dataSource"
 		class="com.zaxxer.hikari.HikariDataSource">
 		<constructor-arg name="configuration" ref="hikariConfig"></constructor-arg>
+	</bean>
 
 	<!-- <bean id="dataSource" -->
 	<!-- class="com.zaxxer.hikari.HikariDataSource"> -->
