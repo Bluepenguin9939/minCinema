@@ -3,7 +3,7 @@
  */
 $(function() {
 	$("#payment").click(function() {
-		var point = $("#point").val();
+		var point = $("#chargePoint").val();
 		let pg = "";
     	let payMethod = "";
     	pg = "kakaopay";
@@ -15,13 +15,18 @@ $(function() {
             pay_method : payMethod,
             merchant_uid : orderNumber,
             name : "포인트 충전",
-            amount: point, // 결제 가격
+            amount: point,
             buyer_name : "허성민",
             buyer_tel : "010-1234-5678",
             buyer_addr : "서울시"
         }, function(rsp) {
-			if (rsp) {
-				console.log("ss");
+			if (rsp.success) {
+				//결제 성공시 데이터 테이블 추가 문구 작성해야함
+				alert(point + "원 충전 완료.");
+				$("#modal-payment").modal("hide");
+			} else {
+				alert(point + "원 충전 실패.");				
+				$("#modal-payment").modal("hide");
 			}
 		});
 	});
