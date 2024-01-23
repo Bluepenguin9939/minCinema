@@ -88,9 +88,9 @@ $(function() {
 						<div class="dropdown top-hover-dropdown">
 				        	<a class="dropdown topbar-dropdown" data-toggle="dropdown">게시판</a>
 				        	<div class="dropdown-menu">
-						   		<a class="dropdown-item" href="#">자유 게시판</a>
-							    <a class="dropdown-item" href="#">리뷰 게시판</a>
-							    <a class="dropdown-item" href="#">게시판</a>
+						   		<a class="dropdown-item" href="#">공지사항</a>
+							    <a class="dropdown-item" href="#">자주 묻는 질문</a>
+							    <a class="dropdown-item" href="#">1:1 문의</a>
 						  	</div>
 					  	</div>
 						<div class="top-hover-dropdown">

@@ -3,3 +3,51 @@
 .point-tab {
 	padding: 0px;
 }
+
+.point-box {
+	align-self: center;
+	text-align: center;
+}
+
+#rotate-point-i {
+	font-size: 120px;
+	color: #aca1f2;
+	animation: rotate_image 2s linear infinite;
+    transform-origin: 50% 50%;
+}
+
+@keyframes rotate_image{
+	0% {
+    	transform: scaleX(1);
+    }
+    
+    50% {
+    	transform: scaleX(-1);
+    }
+    
+    100% {
+    	transform: scaleX(1);
+    }
+}
+
+#charge-point-i {
+	font-size: 50px;
+	color: #aca1f2;
+}
+
+.point-history-tr {
+	border-top: 1px solid #999999;
+}
+
+.point-history-tr > td {
+	padding: 0px;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	text-align: center;
+	vertical-align: middle;
+}
+
+.table-point-i {
+	color: #aca1f2;
+	font-size: 50px;
+}
