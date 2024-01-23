@@ -54,7 +54,7 @@ $(function() {
 			    <div class="form-group">
 			        <input type="tel" class="form-control form-control-user"
 			            id="u-tel" name="u-tel" placeholder="전화번호"
-			            pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
+			            pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}">
 			    </div>
 			    <button type="submit" class="btn btn-dark btn-block">
 			        회원가입
