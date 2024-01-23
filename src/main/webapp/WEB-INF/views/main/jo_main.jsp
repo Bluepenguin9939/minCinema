@@ -149,20 +149,6 @@ $(function() {
 						  	</div>
 					  	</div>
 					</div>
-					<!-- Links -->
-					<div class="d-flex justify-content-end">
-						<ul class="navbar-nav">
-							<li class="nav-item">
-								<a class="nav-link" href="#">Link 1</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="#">Link 2</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="#">Link 3</a>
-							</li>
-						</ul>
-					</div>
 				</div>
 			</nav>
 			
