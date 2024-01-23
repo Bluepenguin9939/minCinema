@@ -27,33 +27,33 @@ $(function() {
 			<form class="user" action="/main/register" method="post">
 				<div class="form-group d-flex" style="position: relative;">
 					<input type="text" class="form-control form-control-user"
-						id="u-id" name="u-id" placeholder="아이디" required>
+						id="u-id" name="mid" placeholder="아이디" required>
 					<button type="button" class="btn btn-sm btn-dark" id="btnDupId">중복확인</button>
 			    </div>
 			    <div class="form-group">
 			        <input type="password" class="form-control form-control-user"
-			            id="u-pw" name="u-pw" placeholder="패스워드" required>
+			            id="u-pw" name="mpw" placeholder="패스워드" required>
 			    </div>
 			    <div class="form-group">
 			        <input type="password" class="form-control form-control-user"
-			            id="u-pw2" name="u-pw2" placeholder="패스워드 확인" required>
+			            id="u-pw2" name="mpw2" placeholder="패스워드 확인" required>
 			    </div>
 			    <div class="form-group">
 			        <input type="email" class="form-control form-control-user"
-			            id="u-email" name="u-email" placeholder="이메일" 
+			            id="u-email" name="memail" placeholder="이메일" 
 			            aria-describedby="emailHelp" required>
 			    </div>
 			    <div class="form-group">
 			        <input type="text" class="form-control form-control-user"
-			            id="u-name" name="u-name" placeholder="이름">
+			            id="u-name" name="mname" placeholder="이름">
 			    </div>
 			    <div class="form-group">
 			        <input type="text" class="form-control form-control-user"
-			            id="u-nick-name" name="u-nick-name" placeholder="별명">
+			            id="u-nick-name" name="mnick" placeholder="별명">
 			    </div>
 			    <div class="form-group">
 			        <input type="tel" class="form-control form-control-user"
-			            id="u-tel" name="u-tel" placeholder="전화번호"
+			            id="u-tel" name="mtel" placeholder="전화번호"
 			            pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
 			    </div>
 			    <button type="submit" class="btn btn-dark btn-block">
