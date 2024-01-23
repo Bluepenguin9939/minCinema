@@ -25,10 +25,11 @@
 								<td>아이디 내용</td>
 							</tr>
 							<tr class="table-dark text-dark">
-								<th class="table-header">비밀번호</th>
+								<th class="table-header" style="vertical-align: middle;">비밀번호</th>
 								<td>
 									●●●●●●●●●●
-									<button class="btn btn-secondary btn-sm"type="button">변경</button>
+									<button class="btn btn-secondary btn-sm"type="button"
+										id="btnPwMod">변경</button>
 								</td>
 							</tr>
 							<tr class="table-dark text-dark">
@@ -36,10 +37,19 @@
 								<td>OOO</td>
 							</tr>
 							<tr class="table-dark text-dark">
-								<th class="table-header">닉네임</th>
+								<th class="table-header" style="vertical-align: middle;">닉네임</th>
 								<td>
 									블루펭귄
-									<button class="btn btn-secondary btn-sm"type="button">변경</button>
+									<button class="btn btn-secondary btn-sm"type="button"
+										id="btnNickNameMod">변경</button>
+								</td>
+							</tr>
+							<tr class="table-dark text-dark">
+								<th class="table-header" style="vertical-align: middle;">전화번호</th>
+								<td>
+									010-1234-5678
+									<button class="btn btn-secondary btn-sm"type="button"
+										id="btnTelMod">변경</button>
 								</td>
 							</tr>
 						</tbody>

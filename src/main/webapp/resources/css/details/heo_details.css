@@ -1,8 +1,6 @@
 @charset "UTF-8";
 
 .movie-details {
-	width: 400px;
-	height: 400px;
 	border-radius: 20px;
 }
 
@@ -56,6 +54,7 @@
 .mov-details-btn-div {
 	width: 100%; 
 	padding-left: 30px;
+	padding-top: 40px;
 }
 
 .mov-details-btn-payment {
@@ -96,4 +95,8 @@
 
 .mov-details-reviews-div {
 	text-align: center;
+}
+
+.mov-details-info-divs {
+	background-color: #666666;
 }
