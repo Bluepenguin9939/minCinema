@@ -17,8 +17,7 @@ $(function() {
             name : "포인트 충전",
             amount: point,
             buyer_name : "허성민",
-            buyer_tel : "010-1234-5678",
-            buyer_addr : "서울시"
+            buyer_tel : "010-1234-5678"
         }, function(rsp) {
 			if (rsp.success) {
 				//결제 성공시 데이터 테이블 추가 문구 작성해야함
