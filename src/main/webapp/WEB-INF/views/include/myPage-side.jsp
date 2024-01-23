@@ -4,7 +4,7 @@
 	<div class="card" style="border: 0px; border-radius: 0px; background-color: #eee;">
 		<div class="d-flex justify-content-center" style="height: 150px;">
 			<a href="#" class="align-self-center">
-				<img class="card-img-top" src="/resources/img/default-profile.png" 
+				<img class="card-img-top rounded-circle" src="/resources/img/default-profile.png" 
 					alt="프로필" id="profile-image">
 			</a>
 		</div>
