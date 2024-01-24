@@ -33,8 +33,8 @@
 	
 <!-- 구글 글리피콘 -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-	
-<link href="/resources/css/top.css" rel="stylesheet">
+
+<link href="/resources/css/top.css?after" rel="stylesheet">
 <link href="/resources/css/bottom.css?after" rel="stylesheet">
 
 <%@ include file="/WEB-INF/views/include/bs.jsp" %>
@@ -68,10 +68,10 @@ $(function() {
 				
 				<!-- Topbar -->
 				
-				<nav class="navbar navbar-expand-sm bg-dark navbar-dark"
+				<nav class="navbar navbar-expand-sm bg-dark navbar-dark d-flex justify-content-between"
 					style="padding: 20px;">
 					<!-- 로고 -->
-					<div class="d-flex justify-content-center" style="width: 25%;">
+					<div class="d-flex justify-content-center" style="width: 20%;">
 						<a href="/main/jo_main" class="header__logo" id="logo">
 							<span>Min<i><sub>cinema</sub></i></span>
 						</a>
@@ -79,19 +79,16 @@ $(function() {
 					<!-- // 로고 -->
 					
 					<!-- 드롭다운 -->
-					<div class="d-flex justify-content-around" style="width: 40%;">
-						<div class="dropdown top-hover-dropdown">
-				        	<a class="dropdown topbar-dropdown" data-toggle="dropdown">영화목록</a>
-				        	<div class="dropdown-menu">
-						   		<a class="dropdown-item" href="#">전체보기</a>
-							    <a class="dropdown-item" href="#">로맨스</a>
-							    <a class="dropdown-item" href="#">공포</a>
-							    <a class="dropdown-item" href="#">액션</a>
-							    <a class="dropdown-item" href="#">코미디</a>
-						  	</div>
+					<div class="d-flex justify-content-between" style="width: 40%;">
+						<div class="top-hover-dropdown">
+				        	<a href="#" class="topbar-dropdown" style="vertical-align: middle;">
+				        		<i class="fa fa-film"></i> 영화관 정보
+				        	</a>
 					  	</div>  
 						<div class="dropdown top-hover-dropdown">
-				        	<a class="dropdown topbar-dropdown" data-toggle="dropdown">게시판</a>
+				        	<a class="dropdown topbar-dropdown" data-toggle="dropdown" href="#">
+				        		<i class="fa fa-chalkboard"></i> 게시판
+			        		</a>
 				        	<div class="dropdown-menu">
 						   		<a class="dropdown-item" href="/notice/ham_notice">공지사항</a>
 							    <a class="dropdown-item" href="#">자주 묻는 질문</a>
@@ -99,30 +96,32 @@ $(function() {
 						  	</div>
 					  	</div>
 						<div class="top-hover-dropdown">
-				        	<a href="/main/jo_loadMap" class="topbar-dropdown">오시는길</a>
+				        	<a href="/main/jo_loadMap" class="topbar-dropdown">
+				        		<i class="fa fa-map-marked-alt"></i> 오시는길
+				        	</a>
 					  	</div>  
 				  	</div>
 				  	<!-- // 드롭다운 -->
 				  	
 				  	<!-- 검색 -->
-				  	<div class="d-flex justify-content-center" style="width: 20%;">
-					  	<form class="d-none d-sm-inline-block form-inline navbar-search" style="margin: 0px;">
-	                        <div class="input-group">
-	                            <input type="text" class="form-control bg-light border-0 small" 
-	                            	placeholder="검색어를 입력해주세요" name="movie-search"
-	                                aria-label="Search" aria-describedby="basic-addon2">
-	                            <div class="input-group-append">
-	                                <button class="btn btn-secondary" type="button">
-	                                    <i class="fas fa-search fa-sm"></i>
-	                                </button>
-	                            </div>
-	                        </div>
-	                    </form>
-                    </div>
+<!-- 				  	<div class="d-flex justify-content-center" style="width: 20%;"> -->
+<!-- 					  	<form class="d-none d-sm-inline-block form-inline navbar-search" style="margin: 0px;"> -->
+<!-- 	                        <div class="input-group"> -->
+<!-- 	                            <input type="text" class="form-control bg-light border-0 small"  -->
+<!-- 	                            	placeholder="검색어를 입력해주세요" name="movie-search" -->
+<!-- 	                                aria-label="Search" aria-describedby="basic-addon2"> -->
+<!-- 	                            <div class="input-group-append"> -->
+<!-- 	                                <button class="btn btn-secondary" type="button"> -->
+<!-- 	                                    <i class="fas fa-search fa-sm"></i> -->
+<!-- 	                                </button> -->
+<!-- 	                            </div> -->
+<!-- 	                        </div> -->
+<!-- 	                    </form> -->
+<!--                     </div> -->
                     <!-- // 검색 -->
                     
                     <!-- 로그인 -->
-                    <div class="d-flex justify-content-center" style="width: 15%;">
+                    <div class="d-flex justify-content-center" style="width: 25%;">
 <%-- 	                   	<c:if test="${empty loginInfo}"> --%>
 <!-- 							<a href="/member/jo_login" id="login"> -->
 <!-- 		                    	<span>로그인</span> -->
