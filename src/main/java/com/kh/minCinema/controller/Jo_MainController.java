@@ -25,8 +25,8 @@ public class Jo_MainController {
 		
 	}
 	
-	@GetMapping("/jo_myPage")
-	public void myPage() {
+	@GetMapping("/jo_event")
+	public void event() {
 		
 	}
 }
