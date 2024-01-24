@@ -14,4 +14,10 @@
 		where mid = #{mid}
 	</update>
 	
+	<select id="login" resultType="com.kh.minCinema.domain.Heo_MemberVO">
+		select * from MC_MEMBER
+		where mid = #{mid}
+		and mpw = #{mpw}
+	</select>
+	
 </mapper>

@@ -9,6 +9,7 @@
 <link href="/resources/css/login.css" rel="stylesheet">
 </head>
 <body>
+<%@ include file="/WEB-INF/views/include/heo_resultModal.jsp"%>
 	<div class="row d-flex justify-content-center align-content-center" style="height: 100vh; margin: 0px;">
 		<div id="login-main-div">
 			<div class="text-center" id="logo-div">
@@ -19,23 +20,23 @@
 			<form class="user" action="/member/login" method="post">
 				<div class="form-group">
 					<input type="text" class="form-control form-control-user"
-						id="uid" name="uid" placeholder="아이디">
+						id="uid" name="mid" placeholder="아이디">
 			    </div>
 			    <div class="form-group">
 			        <input type="password" class="form-control form-control-user"
-			            id="upw" name="upw" placeholder="패스워드">
+			            id="upw" name="mpw" placeholder="패스워드">
 			    </div>
 			    <div class="form-group">
 			        <div class="custom-control custom-checkbox small">
 			            <input type="checkbox" class="custom-control-input"  
-			            	id="customCheck">
+			            	id="customCheck" name="useCookie">
 			            <label class="custom-control-label" for="customCheck" 
 			            	style="color: #999999;">아이디 저장</label>
 			        </div>
 			    </div>
-			    <a href="/" class="btn btn-dark btn-block">
+			    <button type="submit" class="btn btn-dark btn-block">
 			        로그인
-			    </a>
+			    </button>
 			    <hr style="border-bottom: 2px solid #333333;">
 			    <div class="d-flex justify-content-between">
 				    <a href="/member/jo_pwSearch" id="pwSearch">
