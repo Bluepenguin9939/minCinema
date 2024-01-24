@@ -14,10 +14,7 @@ import com.kh.minCinema.service.Heo_MemberService;
 
 @Controller
 @RequestMapping("/main")
-public class HeoController {
-	
-	@Autowired
-	private Heo_MemberService heo_MemberService;
+public class Heo_MainController {
 
 	@GetMapping("/heo_details")
 	public void details() {
@@ -28,12 +25,4 @@ public class HeoController {
 	public void pointCharge() {
 		
 	}
-	
-	@PostMapping("/register")
-	@ResponseBody
-	public String register(Heo_MemberVO vo) {
-		heo_MemberService.register(vo);
-		return "redirect/main/jo_login";
-	}
-	
 }
