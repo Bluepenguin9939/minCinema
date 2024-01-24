@@ -23,4 +23,24 @@
 	
 	<context:component-scan base-package="com.kh.minCinema" />
 	
+	<!-- 인터셉터 -->
+	<beans:bean id="loginInterceptor"
+		class="com.kh.minCinema.interceptor.Heo_LoginInterceptor"/>
+	<beans:bean id="authInterceptor"
+		class="com.kh.minCinema.interceptor.Heo_AuthInterceptor"/>
+		
+	<interceptors>
+		<interceptor>
+			<mapping path="/member/login"/>
+			<beans:ref bean="loginInterceptor"/>
+		</interceptor>
+		<interceptor>
+			<mapping path="/myPage/**/*"/>
+			<mapping path="/admin/**/*"/>
+			<mapping path="/ticketing/**/*"/>
+			<exclude-mapping path="/main/**/*"/>
+			<beans:ref bean="authInterceptor"/>
+		</interceptor>
+	</interceptors>
+	
 </beans:beans>
