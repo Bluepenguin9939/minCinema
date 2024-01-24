@@ -50,7 +50,3 @@ margin-top: 50px;
 }
 
 
-/* 차트 */
-.circle{min-width:200px; display:inline-block;}
-.chart {float: left; width: 33.33%; height: 230px; text-align: center;}
-.chart span.title{position: relative; display: block; width: 100%; text-align: center; top: 110px;}

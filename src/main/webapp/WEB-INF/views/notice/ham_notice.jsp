@@ -67,6 +67,7 @@
 					<select name="target" title="검색선택">
 						<option value="">전체</option>
 						<option value="title">제목</option>
+						<option value="">닉네임</option>
 						<option value="content">내용</option>
 						<option value="member_display">작성자</option>
 					</select> 
@@ -80,9 +81,8 @@
 				<!-- 관리자용과 게시판 공용 사용하되 이름(컬럼명은 변경해야함)  -->
 					<tr>
 						<th>#</th>
-						<th>제목</th> <!--  -->
-						<th>NICKNAME</th>
-						<th>제목</th> <!--  -->
+						<th>관리자</th> <!--  -->
+						<th>제목</th>
 						<th>작성일</th>
 						<th>조회수</th>
 					</tr>
@@ -92,34 +92,30 @@
 				
 					<tr>
 						<td>1</td>
-						<td>BBQ</td>
-						<td>황금올리브</td>
-						<td>TITLE</td>
-						<td>2024-01-19</td>
+						<td>관리자</td>
+						<td><a href="#"> 리뷰만 작성했는데 포인트가 가득...</a></td>
+						<td>2024.01.24</td>
 						<td>5</td>
 					</tr>
 					<tr>
 						<td>1</td>
-						<td>BBQ</td>
-						<td>황금올리브</td>
-						<td>TITLE</td>
-						<td>2024-01-19</td>
+						<td>관리자</td>
+						<td><a href="#"> 포인트를 충전하면 무려 포인트를 드립니다...</a></td>
+						<td>2024.01.24</td>
 						<td>5</td>
 					</tr>
 					<tr>
 						<td>1</td>
-						<td>BBQ</td>
-						<td>황금올리브</td>
-						<td>TITLE</td>
-						<td>2024-01-19</td>
+						<td>관리자</td>
+						<td><a href="#"> 포인트를 충전하면 무려 포인트를 드립니다...</a></td>
+						<td>2024.01.24</td>
 						<td>5</td>
 					</tr>
 					<tr>
 						<td>1</td>
-						<td>BBQ</td>
-						<td>황금올리브</td>
-						<td>TITLE</td>
-						<td>2024-01-19</td>
+						<td>관리자</td>
+						<td><a href="#"> 포인트를 충전하면 무려 포인트를 드립니다...</a></td>
+						<td>2024.01.24</td>
 						<td>5</td>
 					</tr>
 					

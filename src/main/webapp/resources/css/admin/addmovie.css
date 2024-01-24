@@ -1,0 +1,21 @@
+@charset "UTF-8";
+.si>div{
+	margin-top: 10px;
+}
+.cardV{
+	margin-right: 10px;
+	float : left; 
+	width: 198px; 
+	height: 288px; 
+	background-color: black;
+}
+.movieText{
+	margin-left: 15px;
+}
+.qurtar>input{
+	size:20;
+}
+[title="사진규격"]{
+	cursor: pointer;
+	color: white;
+}

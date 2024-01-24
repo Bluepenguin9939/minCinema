@@ -19,5 +19,17 @@ public class Ham_AdminController {
 	public void movieadd() {
 		
 	}
+	@GetMapping("/ham_addpoint")
+	public void addpoint() {
+		
+	}
+	@GetMapping("/ham_oneonone")
+	public void oneonone() {
+		
+	}
+	@GetMapping("/ham_addevent")
+	public void addevent() {
+		
+	}
 	
 }
