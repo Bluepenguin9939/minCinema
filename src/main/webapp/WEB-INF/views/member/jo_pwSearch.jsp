@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>패스워드 찾기</title>
 <%@ include file="/WEB-INF/views/include/bs.jsp" %>
-<link href="/resources/css/pwSearch.css" rel="stylesheet">
+<link href="/resources/css/member/pwSearch.css" rel="stylesheet">
 </head>
 <body>
 	<div class="row d-flex justify-content-center align-content-center" style="height: 100vh; margin: 0px;">
@@ -34,10 +34,10 @@
 			    </a>
 			    <hr style="border-bottom: 2px solid #333333;">
 			    <div class="d-flex justify-content-between">
-				    <a href="/main/jo_login" id="goLogin">
+				    <a href="/member/jo_login" id="goLogin">
 				    	로그인창으로
 				    </a>
-				    <a href="/main/jo_register" id="register">
+				    <a href="/member/jo_register" id="register">
 				    	회원가입
 				    </a>
 			    </div>

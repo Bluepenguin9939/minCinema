@@ -4,7 +4,7 @@
 
 <!-- 결제창모달.jsp -->
 <%@ include file="/WEB-INF/views/include/heo_pointChargeModal.jsp"%>
-
+<script src="/resources/js/details/heo_details.js"></script>
 <link href="/resources/css/details/heo_details.css?after"
 	rel="stylesheet">
 <div class="container-fluid">

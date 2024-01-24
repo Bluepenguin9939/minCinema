@@ -7,4 +7,17 @@
 		insert into MC_MEMBER(mid, mpw, memail, mname, mnick, mtel)
 		values (#{mid}, #{mpw}, #{memail}, #{mname}, #{mnick}, #{mtel})
 	</insert>
+	
+	<update id="updateActive">
+		update MC_MEMBER set
+		mactive = #{ben}
+		where mid = #{mid}
+	</update>
+	
+	<select id="login" resultType="com.kh.minCinema.domain.Heo_MemberVO">
+		select * from MC_MEMBER
+		where mid = #{mid}
+		and mpw = #{mpw}
+	</select>
+	
 </mapper>
