@@ -19,7 +19,7 @@
 <body>
 	<div class="notice d-flex justify-content-center" > 
 		<div class="admin-top" >
-			<h2 class="admin-body" title="" >회원 관리</h2>
+			<h2 class="admin-body" title="" >고객센터 관리</h2>
 			<div class="search">
             <div class="search-field">
 					<select name="target" title="검색선택">
@@ -40,12 +40,11 @@
 				<!-- 관리자용과 게시판 공용 사용하되 이름(컬럼명은 변경해야함)  -->
 					<tr>
 						<th>#</th>
-						<th>아이디</th> <!--  -->
-						<th>닉네임</th>
+						<th>보낸 유저</th> <!--  -->
+						<th>문의 제목</th>
 						<th>이름</th>
-						<th>이메일</th> <!--  -->
-						<th>전화번호</th>
-						<th>관리</th>
+						<th>작성일자</th> <!--  -->
+						<th>읽은(확인)날짜</th>
 					</tr>
 				</thead>
 				<!-- 임시 -->
@@ -54,46 +53,34 @@
 					<tr>
 						<td>1</td>
 						<td>apple</td>
-						<td>황금올리브</td>
+						<td><a href="#">팝콘값이 너무 비쌈</a></td>
 						<td>감감감</td>
-						<td>apple@naver.com</td>
-						<td>010-1111-1111</td>
-						<td>
-							<i class="fa fa-user-alt-slash" title="벤"></i> <i class="fa fa-trash" title="del"></i> 
-						</td>
+						<td>2024.01.23</td>
+						<td>2024.01.24</td>
 					</tr>
 					<tr>
 						<td>1</td>
 						<td>apple</td>
-						<td>황금올리브</td>
+						<td><a href="#">티켓 관련...</a></td>
 						<td>감감감</td>
-						<td>apple@naver.com</td>
-						<td>010-1111-1111</td>
-						<td>
-							<i class="fa fa-user-alt-slash" title="벤"></i> <i class="fa fa-trash" title="del"></i> 
-						</td>
+						<td>2024.01.23</td>
+						<td>2024.01.24</td>
 					</tr>
 					<tr>
 						<td>1</td>
 						<td>apple</td>
-						<td>황금올리브</td>
+						<td><a href="#">티켓값 관련..</a></td>
 						<td>감감감</td>
-						<td>apple@naver.com</td>
-						<td>010-1111-1111</td>
-						<td>
-							<i class="fa fa-user-alt-slash" title="벤"></i> <i class="fa fa-trash" title="del"></i> 
-						</td>
+						<td>2024.01.23</td>
+						<td>2024.01.24</td>
 					</tr>
 					<tr>
 						<td>1</td>
 						<td>apple</td>
-						<td>황금올리브</td>
+						<td><a href="#">애완동물 동반 여부</a></td>
 						<td>감감감</td>
-						<td>apple@naver.com</td>
-						<td>010-1111-1111</td>
-						<td>
-							<i class="fa fa-user-alt-slash" title="벤"></i> <i class="fa fa-trash" title="del"></i> 
-						</td>
+						<td>2024.01.23</td>
+						<td>2024.01.24</td>
 					</tr>
 					
 				</tbody>
