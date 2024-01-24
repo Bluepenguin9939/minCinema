@@ -124,7 +124,7 @@ $(function() {
                     <!-- 로그인 -->
                     <div class="d-flex justify-content-center" style="width: 15%;">
 <%-- 	                   	<c:if test="${empty loginInfo}"> --%>
-<!-- 							<a href="/main/jo_login" id="login"> -->
+<!-- 							<a href="/member/jo_login" id="login"> -->
 <!-- 		                    	<span>로그인</span> -->
 <!-- 		                    	<i class="fa fa-door-closed"></i> -->
 <!-- 		                    	<i class="fa fa-door-open" style="display: none"></i> -->

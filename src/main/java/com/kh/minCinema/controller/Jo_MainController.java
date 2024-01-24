@@ -8,25 +8,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/main")
 public class Jo_MainController {
 	
-	@GetMapping("/jo_main")
-	public void main() {
+	@GetMapping("/test")
+	public void test() {
 		// jo_main.jsp
 		// jo_main2.jsp
 	}
 	
-	@GetMapping("/jo_login")
-	public void login() {
-		// jo_login.jsp
-	}
-	
-	@GetMapping("/jo_pwSearch")
-	public void pwSearch() {
-		
-	}
-	
-	@GetMapping("/jo_register")
-	public void register() {
-		
+	@GetMapping("/jo_main")
+	public void main() {
+		// jo_main.jsp
+		// jo_main2.jsp
 	}
 	
 	@GetMapping("/jo_loadMap")
@@ -38,6 +29,4 @@ public class Jo_MainController {
 	public void myPage() {
 		
 	}
-	
-	
 }
