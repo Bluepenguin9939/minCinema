@@ -26,6 +26,11 @@
 	margin-bottom: 10px;
 }
 
+#search {
+	margin-right: 10px;
+	border-radius: 10px;
+}
+
 .slide-movie-image {
 	margin-right: 30px;
 }
@@ -71,16 +76,6 @@
 	transition: 0.4s;
 	opacity: 1;
 }
-
-/* .card-movie-image:hover { */
-/* 	transition: 0.4s; */
-/* 	opacity: 0.5; */
-/* } */
-
-/* .card-movie-image:not(:hover) { */
-/* 	transition: 0.4s; */
-/* 	opacity: 1;  */
-/* } */
 
 .test-div {
 	position: relative;
