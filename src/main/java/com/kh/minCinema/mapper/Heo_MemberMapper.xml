@@ -7,4 +7,11 @@
 		insert into MC_MEMBER(mid, mpw, memail, mname, mnick, mtel)
 		values (#{mid}, #{mpw}, #{memail}, #{mname}, #{mnick}, #{mtel})
 	</insert>
+	
+	<update id="updateActive">
+		update MC_MEMBER set
+		mactive = #{ben}
+		where mid = #{mid}
+	</update>
+	
 </mapper>

@@ -17,4 +17,9 @@ public class Heo_MemberServiceImpl implements Heo_MemberService {
 		heo_MemberMapper.insert(vo);
 	}
 
+	@Override
+	public void updateBen(Heo_MemberVO vo) {
+		heo_MemberMapper.updateActive(vo);
+	}
+
 }
