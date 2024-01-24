@@ -34,10 +34,10 @@
 			    </a>
 			    <hr style="border-bottom: 2px solid #333333;">
 			    <div class="d-flex justify-content-between">
-				    <a href="/main/jo_login" id="goLogin">
+				    <a href="/member/jo_login" id="goLogin">
 				    	로그인창으로
 				    </a>
-				    <a href="/main/jo_register" id="register">
+				    <a href="/member/jo_register" id="register">
 				    	회원가입
 				    </a>
 			    </div>
