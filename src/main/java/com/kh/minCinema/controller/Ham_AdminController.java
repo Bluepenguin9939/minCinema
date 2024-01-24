@@ -7,17 +7,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/admin")
 public class Ham_AdminController {
-	
 	@GetMapping("/ham_admins")
 	public void admins() {
 		
 	}
-	@GetMapping("/test")
-	public void test() {
+	@GetMapping("/ham_cmanagement")
+	public void management() {
 		
 	}
-	@GetMapping("/test2")
-	public void test2() {
+	@GetMapping("/ham_movieadd")
+	public void movieadd() {
 		
 	}
+	
 }

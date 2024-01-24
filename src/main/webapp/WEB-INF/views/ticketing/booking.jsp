@@ -6,10 +6,7 @@
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@40,600,0,0" />
 
-<script>
-	
-	
-</script>
+
 <style>
 .reserve-container {
     /*margin-top: 20px; /*마진달기*/
@@ -35,7 +32,7 @@
 
 #go{
 	height: 97px; 
-	width: 1016px; 
+	width: 848px; 
 	display: flex; 
 }
 
@@ -56,7 +53,7 @@
 }
 
 .movie-part {
-    width: 284px; /*영화파트 너비*/
+    width: 300px; /*영화파트 너비*/
 }
 
 .theater-part {
@@ -65,11 +62,11 @@
 
 .day-part {
    /* width: 91px; /*날짜파트*/
-    width: 350px; /*날짜파트*/
+    width: 200px; /*날짜파트*/
 }
 
 .time-part {
-    width: 384px; /*영화 시작시간*/
+    width: 350px; /*영화 시작시간*/
 }
 
 .sort-wrapper { /* 예매율순/가나다순 부분*/
@@ -110,8 +107,9 @@
 }
 
 .movie-list{
+	font-weight: bold;
 	/*justify-content: center;*/
-	font-size: 20px;
+	font-size: 22px;
 	text-align: center;
 }
 
@@ -120,6 +118,7 @@
 	background-color: #444444;
 	
     color: #dddddd;/*글자 색*/
+    cursor: pointer;
 }
 
 
@@ -134,9 +133,11 @@
 }
 
 .day{
-	font-size:18px;
+	font-weight: bold;
+	font-size:32px;
 	text-align: center;
-
+	
+	cursor: pointer;
 }
 
 .day:hover{
@@ -149,7 +150,9 @@
 .times{
 	/*justify-content: center;*/
 	font-size: 30px;
+	font-weight: bold;
 	text-align: center;
+	cursor: pointer;
 }
 
 .times:hover{
@@ -164,8 +167,89 @@
 	width: 100px;
 }
 
-
 </style>
+
+<script>
+$(function(){
+	
+	$(".movie-list").click(function(){
+		
+		var that = $(this);
+		//기존선택사항 삭제
+		var find = that.parent().find("[data-select='select']");
+		
+		find.removeAttr("data-select");
+		find.css("background-color","#F2F5A9");
+		find.css("color","black");
+		
+		//신규 선택사항
+		console.log("find:", find);
+		
+		that.attr("data-select","select");
+		that.addClass("")
+		that.css("background-color","#444444");
+		that.css("color","#dddddd");
+		
+		//var seat = that.attr("data-seat");
+		var text = that.text();
+		
+		$("#movieName").text(text);
+		
+	});
+	
+	$(".day").click(function(){
+		var that = $(this);
+		
+		var find = that.parent().find("[data-select='select']");
+		
+		find.removeAttr("data-select");
+		find.css("background-color","#F2F5A9");
+		find.css("color","black");
+		
+		//신규 선택사항
+		console.log("find:", find);
+		
+		that.attr("data-select","select");
+		that.addClass("")
+		that.css("background-color","#444444");
+		that.css("color","#dddddd");
+		
+		/////////
+		var text1 = $("#date-month").text();
+		var text = that.text();
+		
+		$("#dateText").text(text1+"."+text);
+		
+	});
+	
+	$(".times").click(function(){
+		var that = $(this);
+		
+		var find = that.parent().find("[data-select='select']");
+		
+		find.removeAttr("data-select");
+		find.css("background-color","#F2F5A9");
+		find.css("color","black");
+		
+		//신규 선택사항
+		console.log("find:", find);
+		
+		that.attr("data-select","select");
+		that.addClass("")
+		that.css("background-color","#444444");
+		that.css("color","#dddddd");
+		
+		//////
+		var text = that.text();
+		var text2 = that.find("#time").text();
+		
+		$("#timesText").text(text2);
+		
+	});
+	
+});
+	
+</script>
 <div>
 	<div class="reserve-container">
 		
@@ -177,11 +261,11 @@
 	                <div class="sort-korean">가나다순</div>
 	            </div> -->
 	           
-	            <div class="movie-datas">
-	            	<div class="movie-list">토이스토리4</div>
-		            <div class="movie-list">캐래비안의 해적</div>
-		            <div class="movie-list">괴물</div>
-		            <div class="movie-list">인디아나 존스 1000</div>
+	            <div id="movie" class="movie-datas">
+	            	<div class="movie-list" data-select="select">토이스토리4</div>
+		            <div class="movie-list" >캐래비안의 해적</div>
+		            <div class="movie-list" >괴물</div>
+		            <div class="movie-list" >인디아나 존스 1000</div>
 	            </div>
 	            
 	            
@@ -192,61 +276,76 @@
 	        </div>-->
 	        <div class="day-part">
 	            <div class="reserve-title">날짜</div>
-	            <div style="font-weight: bold;
+	            <div id="date-month" class="rounded" 
+	            	 style="font-weight: bold;
 	            			background-color: #123499;
+	            			color: white;
 	            			font-size:25px;
 	            			text-align: center;">2024.02</div>
-	            <div class="reserve-date">
+	            <div id="date" class="reserve-date">
 	            	
-	            	<div class="day">01</div>
-	            	<div class="day">02</div>
-	            	<div class="day">03</div>
-	            	<div class="day">04</div>
-	            	<div class="day">05</div>
-	            	<div class="day">06</div>
-	            	<div class="day">07</div>
-	            	<div class="day">08</div>
-	            	<div class="day">09</div>
-	            	<div class="day">10</div>
+	            	<div class="day" >01</div>
+	            	<div class="day" >02</div>
+	            	<div class="day" >03</div>
+	            	<div class="day" >04</div>
+	            	<div class="day" >05</div>
+	            	<div class="day" >06</div>
+	            	<div class="day" >07</div>
+	            	<div class="day" >08</div>
+	            	<div class="day" >09</div>
+	            	<div class="day" >10</div>
+	            	<div class="day" >11</div>
+	            	<div class="day" >12</div>
+	            	<div class="day" >13</div>
+	            	<div class="day" >14</div>
+	            	<div class="day" >15</div>
+	            	<div class="day" >16</div>
+	            	<div class="day" >17</div>
 	            </div>
 	        </div>
 	        <div class="time-part">
 	            <div class="reserve-title">시간</div>
 	            
-	            <div class="times">
+	            <div class="times" data-select="unselect">
 	            	<span class="material-symbols-outlined">
 						clear_day
-					</span> 11:00(am)
+					</span>
+					<span id="time">11:00(am)</span>
 	            </div>
 	            
-	            <div class="times">
+	            <div class="times" data-select="unselect">
 	            	<span class="material-symbols-outlined">
 						clear_day
-					</span> 13:30(am)
+					</span>
+					<span id="time">13:30(pm)</span>
 	            </div>
 	           
-	           	<div class="times">
+	           	<div class="times" data-select="unselect">
 	            	<span class="material-symbols-outlined">
 						clear_day
-					</span> 17:30(am)
+					</span>
+					<span id="time">17:30(pm)</span>
 	            </div>
 	           	
-	            <div class="times">
+	            <div class="times" data-select="unselect">
 	            	<span class="material-symbols-outlined">
 						clear_night
-					</span> 20:30(pm)
+					</span>
+					<span id="time">20:30(pm)</span>
 				</div>
 				
-				<div class="times">
+				<div class="times" data-select="unselect">
 	            	<span class="material-symbols-outlined">
 						clear_night
-					</span> 24:00(am)
+					</span>
+					<span id="time">24:00(am)</span>
 				</div>
 	           
-	           	<div class="times">
+	           	<div class="times" data-select="unselect">
 	            	<span class="material-symbols-outlined">
 						clear_night
-					</span> 02:30(pm)
+					</span>
+					<span id="time">02:30(am)</span>
 				</div>
 
 	        </div>
@@ -256,10 +355,10 @@
     	<div class="d-flex justify-content-center">
 	    	<div class="next">
 				<form id="go" name="go" action="/ticketing/seat" method="get">
-					<div style="flex-grow: 1;">
-						<div style="font-size: 20px;">영화 : 12345</div>
-						<div style="font-size: 20px;">날짜 : </div>
-						<div style="font-size: 20px;">시간 : </div>
+					<div style="flex-grow: 1; font-weight: bold;">
+						<div style="font-size: 20px;">영화 : <span id="movieName"></span></div>
+						<div style="font-size: 20px;">날짜 : <span id="dateText"></span></div>
+						<div style="font-size: 20px;">시간 : <span id="timesText"></span> </div>
 					</div>
 						
 					<button class="btn btn-success" style="font-size:64px; 
