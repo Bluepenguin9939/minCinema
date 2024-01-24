@@ -104,6 +104,12 @@
 	padding:15px;
 }
 
+#first{
+	background-color:blue;
+	color: white;
+}
+
+
 .count{
 	width: 280px; 
 	background-color:#F2F5A9;
@@ -123,28 +129,219 @@
 
 </style>
 <script>
+
+function select_click(that,clicking){
+	
+}
+
+function mouseHover(that , pCount, bgColor, color , method){
+	
+	var thatNT = that.next();
+	var thatNT_text = that.next().text();
+	var thatNT_attr = that.next().attr("data-select");
+	
+	var thatNT2 = that.next().next();
+	var thatNT2_text = that.next().next().text();
+	var thatNT2_attr = that.next().next().attr("data-select");
+	
+	var thatPV = that.prev();
+	var thatPV2 = that.prev().prev();
+	
+	if(pCount >= 1){
+		
+		that.css("background-color",bgColor);
+		that.css("color",color);
+		if(method=="on-click"){ that.attr("data-select","select"); }
+		
+		if(pCount >= 2){
+		
+			if(thatNT_text == "" || thatNT_attr == "select"){
+				//console.log("적용테스트");
+					//console.log("끝")
+				thatPV.css("background-color",bgColor);
+				thatPV.css("color",color);
+				if(method=="on-click"){
+						thatPV.attr("data-select","select");
+				}
+					
+			}
+			else{
+				thatNT.css("background-color",bgColor);
+				thatNT.css("color",color);
+				if(method=="on-click"){thatNT.attr("data-select","select");}
+			}
+			
+			
+			if(pCount == 3){
+			
+				if(thatNT2_text == "" || thatNT2_attr == "select"){
+					//console.log("check1");
+					if(thatNT_text == "" || thatNT_attr=="select"){
+							//console.log("check1-2");
+						thatPV2.css("background-color",bgColor);
+						thatPV2.css("color",color);
+						if(method=="on-click"){thatPV2.attr("data-select","select");}
+					}
+					else{
+						//console.log("check1-3");
+						thatPV.css("background-color",bgColor);
+						thatPV.css("color",color);
+						if(method=="on-click"){thatPV.attr("data-select","select");}
+					}
+				
+				} 
+				else if(thatNT2_text != "" && thatNT2_attr == "unselect"){
+					//console.log("check2");	
+						
+						
+					if(thatNT_text=="" || thatNT_attr=="select"){
+						//console.log("check2-1");
+						thatPV2.css("background-color",bgColor);
+						thatPV2.css("color",color);
+						if(method=="on-click"){thatPV2.attr("data-select","select");}
+					}
+					else{
+						//console.log("check2-2");
+						thatNT2.css("background-color",bgColor);
+						thatNT2.css("color",color);
+						if(method=="on-click"){thatNT2.attr("data-select","select");}
+					}
+						
+				}
+					
+			}
+		}
+	}
+}
 	
 $(function(){
 	
-	var eng = ['A','B','C','D','E','F'];
-	
-	$(".pCount").click(function(){
-		$(this).css("background-color","blue");
-		$(this).css("color","white");
-		
-	});
 	
 	/*1,2,3인 선택*/
-	$(".seat").hover(function() {
+	$(".pCount").click(function(){
 		var that = $(this);
-		that.css("background-color","black");
+		
+		var pCount = that.attr("data-pCount");
+		var select = that.attr("data-select");
+		
+		//기존 체크된 요소 제거
+		var find = that.parent().find("[data-select='select']");
+		
+		find.attr("data-select","unselect");
+		find.css("background-color","red");
+		find.css("color","black");
+		//
+		
+		that.attr("data-select","select");
+		that.css("background-color","blue");
 		that.css("color","white");
+		
+		
+		$("#hid-pCount").val(pCount);
+		console.log("pCount:", $("#hid-pCount").val() );
+		
+	});//
+	
+	
+	
+	//*좌석위에 마우스 올리기*/
+	$(".seat").hover(
+		function() {//*마우스 in시*/
+		var that = $(this);
+		var select = that.attr("data-select");
+		var pCount = $("#hid-pCount").val();
+		
+		var thatNT = that.next();
+		var thatNT2 = that.next().next();
+		
+		var thatPV = that.prev();
+		var thatPV2 = that.prev().prev();
+		
+		/*if(select == "unselect"){
+			switch (pCount) {
+			case "1":
+				mouseHover(that,pCount,"black","white",null);
+				
+				break;
+			case "2":
+				
+				if( !( (thatNT.text() == "" || thatNT.attr("data-select") == "select") && (thatPV.text() == "" || thatPV.attr("data-select") == "select") ) )
+				{mouseHover(that,pCount,"black","white",null);}
+				
+				break;
+				
+			case "3":
+				if(!(that.text() == "11" || that.text() == "12") ){
+					if(
+						 !(	
+							((thatNT.text() == "" || thatNT.attr("data-select") == "select") && (thatPV.text() == "" || thatPV.attr("data-select") == "select") ) 
+							|| 
+						  	((thatNT.text() == "" || thatNT.attr("data-select") == "select") && (thatPV2.text() == "" || thatPV2.attr("data-select") == "select") )
+							||
+							((thatNT2.text() == "" || thatNT2.attr("data-select") == "select") && (thatPV.text() == "" || thatPV.attr("data-select") == "select") )
+						 )
+						){
+						mouseHover(that,pCount,"black","white",null);
+					}
+				}
+				break;
+	
+			default:
+				break;
+			}
+			
+		}*/
+		
 	},
 	function() {/*마우스 아웃시*/
 		var that = $(this);
-		that.css("background-color","white");
-		that.css("color","black");
+		var select = that.attr("data-select");
+		var pCount = $("#hid-pCount").val();
+		
+		var thatNT = that.next();
+		var thatNT2 = that.next().next();
+		
+		var thatPV = that.prev();
+		var thatPV2 = that.prev().prev();
+		
+		/*if(select == "unselect"){
+			switch (pCount) {
+			case "1":
+				mouseHover(that,pCount,"white","black",null);
+				break;
+				
+			case "2":
+				if(!( (thatNT.text() == "" || thatNT.attr("data-select") == "select") && (thatPV.text() == "" || thatPV.attr("data-select") == "select") ) )
+				{
+					mouseHover(that,pCount,"white","black",null);
+				}
+				break;
+				
+			case "3":
+				if(!(that.text() == "11" || that.text() == "12")){
+					if(
+						!(	
+							((thatNT.text() == "" || thatNT.attr("data-select")== "select") && (thatPV.text() == "" || thatPV.attr("data-select")== "select") ) 
+							|| 
+							((thatNT.text() == "" || thatNT.attr("data-select")== "select") && (thatPV2.text() == "" || thatPV2.attr("data-select")== "select") )
+							||
+							((thatNT2.text() == "" || thatNT2.attr("data-select")== "select") && (thatPV.text() == "" || thatPV.attr("data-select")== "select") )
+						 )
+					){
+						mouseHover(that,pCount,"white","black",null);
+					}
+
+				}
+				break;
+
+			default:
+				break;
+			}
+			
+		}*/
+
 	});
+	
 	
 	
 	
@@ -153,35 +350,117 @@ $(function(){
 		var seat = that.attr("data-seat");
 		var select = that.attr("data-select");
 		var ageCheck = $('input[name=age]:checked').val();
+		var pCount = $("#hid-pCount").val();
+
 		
+		var thatNT = that.next();
+		var thatNT2 = that.next().next();
 		
-		console.log("클릭seat:",seat);
-		console.log("클릭select:",select);
+		var thatPV = that.prev();
+		var thatPV2 = that.prev().prev();
 		
 		if(select=="unselect"){
-			//console.log("체크되지않음");
-			that.attr("data-select","select");
-			that.css("background-color","black");
-			that.css("color","white");
-			/*background-color:black;
-			color: white;*/
-			var appendId;
-			if(ageCheck=="성인"){appendId = "#adult";}
-			else if(ageCheck="청소년"){appendId = "#teen"; }
-			$("<div id="+seat+" class='pl-2'>"+seat+"("+ageCheck+")</div>").appendTo(appendId);
+			switch (pCount) {
+			case "1":
+				mouseHover(that,pCount,"black","white","on-click");
+				
+						
+				/*var appendId;
+				if(ageCheck=="성인"){appendId = "#adult";}
+				else if(ageCheck="청소년"){appendId = "#teen"; }
+				$("<div id="+seat+" class='pl-2'>"+seat+"("+ageCheck+")</div>").appendTo(appendId);
+				*/
+				break;
+			case "2":
+				if(!( (thatNT.text() == "" || thatNT.attr("data-select") == "select") && (thatPV.text() == "" || thatPV.attr("data-select") == "select") ) )
+				{
+					
+					mouseHover(that ,pCount, "black", "white","on-click");
+					
+					//that.attr("data-select","select");
+					
+					//that.next().attr("data-select","select");
+					
+				}
+				break;
+				
+			case "3":
+				if(!(that.text() == "11" || that.text() == "12")){
+					if(
+						!(	
+							((thatNT.text() == "" || thatNT.attr("data-select")== "select") && (thatPV.text() == "" || thatPV.attr("data-select")== "select") ) 
+							|| 
+							((thatNT.text() == "" || thatNT.attr("data-select")== "select") && (thatPV2.text() == "" || thatPV2.attr("data-select")== "select") )
+							||
+							((thatNT2.text() == "" || thatNT2.attr("data-select")== "select") && (thatPV.text() == "" || thatPV.attr("data-select")== "select") )
+						 )
+					){
+						mouseHover(that ,pCount, "black", "white","on-click");
+					}
+
+				}
+				break;
+
+			default:
+				break;
+			}
 			
 		}
 		
 		else if(select=="select"){
-			//console.log("체크되어있음");
-			that.attr("data-select","unselect");
-			that.css("background-color","white");
-			that.css("color","black");
-			var id = "#"+seat;
-			$(id).remove();
+			switch (pCount) {
+			case "1":
+				mouseHover(that, pCount,"white","black","off-click");
+				that.attr("data-select","unselect");
+				
+				/*var id = "#"+seat;
+				$(id).remove();*/
+				
+				break;
+			case "2":
+				if(!( (thatNT.text() == "" || thatNT.attr("data-select") == "select") && (thatPV.text() == "" || thatPV.attr("data-select") == "select") ) )
+				{
+					mouseHover(that ,pCount, "white", "black","off-click");
+					
+					//that.attr("data-select","unselect");
+					
+					//that.next().attr("data-select","unselect");
+				}
+				break;
+				
+			case "3":
+				if(!(that.text() == "11" || that.text() == "12")){
+					if(
+						!(	
+							((thatNT.text() == "" || thatNT.attr("data-select")== "select") && (thatPV.text() == "" || thatPV.attr("data-select")== "select") ) 
+							|| 
+							((thatNT.text() == "" || thatNT.attr("data-select")== "select") && (thatPV2.text() == "" || thatPV2.attr("data-select")== "select") )
+							||
+							((thatNT2.text() == "" || thatNT2.attr("data-select")== "select") && (thatPV.text() == "" || thatPV.attr("data-select")== "select") )
+						 )
+					){
+						
+					}
+
+				}
+				break;
+
+			default:
+				break;
+			}
 		}
 		
-	});
+		
+		
+
+			
+	//var find = that.parent().find("[data-select='select']");
+	//console.log("find:",find.attr("data-seat"));
+					
+		
+		
+		
+	});/////////// seat-click
 	
 });
 	
@@ -200,10 +479,10 @@ $(function(){
 	        				<div class="bg-danger text-center">이용자 선택</div>
 	        				
 	        				<div>
-	        					<span class="pCount rounded-circle m-2" data-pCount="1">1인</span>
-	        					<span class="pCount rounded-circle m-2" data-pCount="2">2인</span>
-	        					<span class="pCount rounded-circle m-2" data-pCount="3">3인</span>
-	        					
+	        					<span class="pCount rounded-circle m-2" id="first" data-select="select" data-pCount="1">1인</span>
+	        					<span class="pCount rounded-circle m-2" data-select="unselect" data-pCount="2">2인</span>
+	        					<span class="pCount rounded-circle m-2" data-select="unselect" data-pCount="3">3인</span>
+	        					<input type="hidden" id="hid-pCount" value="1">
 	        					<%-- 
 		        				<input type="radio" name="peopleCount" value="1" checked>1인 
 		        				<input type="radio" name="peopleCount" value="2" checked>2인 

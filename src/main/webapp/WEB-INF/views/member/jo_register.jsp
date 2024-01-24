@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>로그인</title>
 <%@ include file="/WEB-INF/views/include/bs.jsp" %>
-<link href="/resources/css/register.css?after" rel="stylesheet">
+<link href="/resources/css/member/register.css?after" rel="stylesheet">
 <script>
 $(function() {
 	
@@ -24,7 +24,7 @@ $(function() {
 			<div class="d-flex justify-content-center info-div">
 				<h2 id="info">회 원 가 입</h2>
 			</div>
-			<form class="user" action="/main/register" method="post">
+			<form class="user" action="/member/register" method="post">
 				<div class="form-group d-flex" style="position: relative;">
 					<input type="text" class="form-control form-control-user"
 						id="u-id" name="mid" placeholder="아이디" required>
@@ -62,7 +62,7 @@ $(function() {
 			    </button>
 			    <hr style="border-bottom: 2px solid #333333;">
 			    <div class="d-flex justify-content-center">
-				    <a href="/main/jo_login" id="goLogin">
+				    <a href="/member/jo_login" id="goLogin">
 				    	계정이 이미 있습니다.
 				    </a>
 			    </div>
