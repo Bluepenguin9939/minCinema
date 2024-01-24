@@ -34,7 +34,7 @@
 <!-- 구글 글리피콘 -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 	
-<link href="/resources/css/top.css?after" rel="stylesheet">
+<link href="/resources/css/top.css" rel="stylesheet">
 <link href="/resources/css/bottom.css?after" rel="stylesheet">
 
 <%@ include file="/WEB-INF/views/include/bs.jsp" %>
@@ -93,7 +93,7 @@ $(function() {
 						<div class="dropdown top-hover-dropdown">
 				        	<a class="dropdown topbar-dropdown" data-toggle="dropdown">게시판</a>
 				        	<div class="dropdown-menu">
-						   		<a class="dropdown-item" href="#">공지사항</a>
+						   		<a class="dropdown-item" href="/notice/ham_notice">공지사항</a>
 							    <a class="dropdown-item" href="#">자주 묻는 질문</a>
 							    <a class="dropdown-item" href="#">1:1 문의</a>
 						  	</div>
@@ -135,13 +135,13 @@ $(function() {
 								<a class="dropdown" href="#" id="myProfile" data-toggle="dropdown">
 		                    		<img class="rounded-circle" src="/resources/img/undraw_profile_1.svg"
 		                    			width="40" height="40">
-	                    			<span id="myNickName">닉네임</span>
+	                    			<span id="myNickName">${loginInfo.mnick}닉네임</span>
 								</a>
 								<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 									 <a class="dropdown-item disabled" href="#">포인트 0</a>
 									 <a class="dropdown-item" href="/myPage/jo_myInfo">마이페이지</a>
-									 <a class="dropdown-item" href="#">로그아웃</a>
 									 <a class="dropdown-item" href="#">예매내역</a>
+									 <a class="dropdown-item" href="#">로그아웃</a>
 								</div>
 							</div>
 <%--                     	</c:if> --%>

@@ -4,7 +4,7 @@
 
 <%@ include file="/WEB-INF/views/include/top.jsp" %>
 
-<link href="/resources/css/main.css?after" rel="stylesheet">
+<link href="/resources/css/main.css" rel="stylesheet">
 
 <script>
 $(function() {
@@ -161,9 +161,9 @@ $(function() {
 								<img src="/resources/img/mov01.jpg" alt="영화1"
 									class="main-movie">
 							</div>
-							<div class="user-rate">
-								<span><i class="fa fa-star"></i>9.6</span>
-							</div>
+<!-- 							<div class="user-rate"> -->
+<!-- 								<span><i class="fa fa-star"></i>9.6</span> -->
+<!-- 							</div> -->
 						</a>
 						<button type="button" class="bookmark"><i class="fa fa-bookmark"></i></button>
 					</div>
@@ -177,7 +177,7 @@ $(function() {
 							<img src="/resources/img/mov02.jpg" alt="영화1"
 								class="main-movie">
 						</div>
-						<div class="user-rate"><span><i class="fa fa-star"></i>9.6</span></div>
+<!-- 						<div class="user-rate"><span><i class="fa fa-star"></i>9.6</span></div> -->
 					</a>
 					<button type="button" class="bookmark"><i class="fa fa-bookmark"></i></button>
 					</div>
@@ -191,7 +191,7 @@ $(function() {
 							<img src="/resources/img/mov03.jpg" alt="영화1"
 								class="main-movie">
 						</div>
-						<div class="user-rate"><span><i class="fa fa-star"></i>9.6</span></div>
+<!-- 						<div class="user-rate"><span><i class="fa fa-star"></i>9.6</span></div> -->
 					</a>
 					<button type="button" class="bookmark"><i class="fa fa-bookmark"></i></button>
 					</div>
@@ -205,7 +205,7 @@ $(function() {
 							<img src="/resources/img/mov04.jpg" alt="영화1"
 								class="main-movie">
 						</div>
-						<div class="user-rate"><span><i class="fa fa-star"></i>9.6</span></div>
+<!-- 						<div class="user-rate"><span><i class="fa fa-star"></i>9.6</span></div> -->
 					</a>
 					<button type="button" class="bookmark"><i class="fa fa-bookmark"></i></button>
 					</div>
@@ -219,7 +219,7 @@ $(function() {
 							<img src="/resources/img/mov05.jpg" alt="영화1"
 								class="main-movie">
 						</div>
-						<div class="user-rate"><span><i class="fa fa-star"></i>9.6</span></div>
+<!-- 						<div class="user-rate"><span><i class="fa fa-star"></i>9.6</span></div> -->
 					</a>
 					<button type="button" class="bookmark"><i class="fa fa-bookmark"></i></button>
 					</div>
@@ -233,7 +233,7 @@ $(function() {
 							<img src="/resources/img/mov06.jpg" alt="영화1"
 								class="main-movie">
 						</div>
-						<div class="user-rate"><span><i class="fa fa-star"></i>9.6</span></div>
+<!-- 						<div class="user-rate"><span><i class="fa fa-star"></i>9.6</span></div> -->
 					</a>
 					<button type="button" class="bookmark"><i class="fa fa-bookmark"></i></button>
 					</div>
@@ -249,9 +249,9 @@ $(function() {
 								<img src="/resources/img/mov01.jpg" alt="영화1"
 									class="main-movie">
 							</div>
-							<div class="user-rate">
-								<span><i class="fa fa-star"></i>9.6</span>
-							</div>
+<!-- 							<div class="user-rate"> -->
+<!-- 								<span><i class="fa fa-star"></i>9.6</span> -->
+<!-- 							</div> -->
 						</a>
 						<button type="button" class="bookmark"><i class="fa fa-bookmark"></i></button>
 					</div>
@@ -265,7 +265,7 @@ $(function() {
 							<img src="/resources/img/mov02.jpg" alt="영화1"
 								class="main-movie">
 						</div>
-						<div class="user-rate"><span><i class="fa fa-star"></i>9.6</span></div>
+<!-- 						<div class="user-rate"><span><i class="fa fa-star"></i>9.6</span></div> -->
 					</a>
 					<button type="button" class="bookmark"><i class="fa fa-bookmark"></i></button>
 					</div>
@@ -279,7 +279,7 @@ $(function() {
 							<img src="/resources/img/mov03.jpg" alt="영화1"
 								class="main-movie">
 						</div>
-						<div class="user-rate"><span><i class="fa fa-star"></i>9.6</span></div>
+<!-- 						<div class="user-rate"><span><i class="fa fa-star"></i>9.6</span></div> -->
 					</a>
 					<button type="button" class="bookmark"><i class="fa fa-bookmark"></i></button>
 					</div>
@@ -293,7 +293,7 @@ $(function() {
 							<img src="/resources/img/mov04.jpg" alt="영화1"
 								class="main-movie">
 						</div>
-						<div class="user-rate"><span><i class="fa fa-star"></i>9.6</span></div>
+<!-- 						<div class="user-rate"><span><i class="fa fa-star"></i>9.6</span></div> -->
 					</a>
 					<button type="button" class="bookmark"><i class="fa fa-bookmark"></i></button>
 					</div>
@@ -307,7 +307,7 @@ $(function() {
 							<img src="/resources/img/mov05.jpg" alt="영화1"
 								class="main-movie">
 						</div>
-						<div class="user-rate"><span><i class="fa fa-star"></i>9.6</span></div>
+<!-- 						<div class="user-rate"><span><i class="fa fa-star"></i>9.6</span></div> -->
 					</a>
 					<button type="button" class="bookmark"><i class="fa fa-bookmark"></i></button>
 					</div>
@@ -321,7 +321,7 @@ $(function() {
 							<img src="/resources/img/mov06.jpg" alt="영화1"
 								class="main-movie">
 						</div>
-						<div class="user-rate"><span><i class="fa fa-star"></i>9.6</span></div>
+<!-- 						<div class="user-rate"><span><i class="fa fa-star"></i>9.6</span></div> -->
 					</a>
 					<button type="button" class="bookmark"><i class="fa fa-bookmark"></i></button>
 					</div>
