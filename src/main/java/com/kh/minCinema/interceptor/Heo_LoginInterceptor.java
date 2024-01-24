@@ -18,7 +18,6 @@ public class Heo_LoginInterceptor extends HandlerInterceptorAdapter {
 			throws Exception {
 		HttpSession session = request.getSession();
 		Heo_MemberVO heo_MemberVO = (Heo_MemberVO)session.getAttribute("loginInfo");
-		System.out.println("login pre inter" + heo_MemberVO);
 		if(heo_MemberVO != null) {
 			session.removeAttribute("loginInfo");
 		}
@@ -30,9 +29,7 @@ public class Heo_LoginInterceptor extends HandlerInterceptorAdapter {
 			ModelAndView modelAndView) throws Exception {
 		ModelMap map = (ModelMap)modelAndView.getModel();
 		Heo_MemberVO heo_MemberVO = (Heo_MemberVO)map.get("loginInfo");
-		System.out.println("login post inter" + heo_MemberVO);
 		Boolean useCookie = (Boolean)map.get("useCookie");
-		System.out.println("쿠키"+useCookie);
 		if(heo_MemberVO == null) {
 			modelAndView.setViewName("redirect:/member/jo_login");
 		} else {

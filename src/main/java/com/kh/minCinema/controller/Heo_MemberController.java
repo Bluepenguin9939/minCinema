@@ -33,7 +33,6 @@ public class Heo_MemberController {
 	@PostMapping("/login")
 	public void login(Model model, Heo_LoginDTO heo_LoginDTO,RedirectAttributes rttr) {
 		Heo_MemberVO heo_MemberVO = heo_MemberService.memberLogin(heo_LoginDTO);
-		System.out.println("로그인" + heo_MemberVO);
 		if (heo_MemberVO == null) {
 			return;
 		}
