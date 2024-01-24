@@ -185,77 +185,77 @@ $(function() {
 <!-- 								<span><i class="fa fa-star"></i>9.6</span> -->
 <!-- 							</div> -->
 						</a>
-						<button type="button" class="bookmark"><i class="fa fa-bookmark"></i></button>
+						<button type="button" class="bookmark"><i class="far fa-heart"></i></button>
 					</div>
 					<span class="movie-name">토이스토리</span><br>
 					<span class="info">2014 | 애니메이션, 가족 | 100분</span>
 				</div>
 				<div>
 					<div class="test-div">
-					<a href="#">
-						<div class="card-movie-image">
-							<img src="/resources/img/mov02.jpg" alt="영화1"
-								class="main-movie">
-						</div>
-<!-- 						<div class="user-rate"><span><i class="fa fa-star"></i>9.6</span></div> -->
-					</a>
-					<button type="button" class="bookmark"><i class="fa fa-bookmark"></i></button>
+						<a href="#">
+							<div class="card-movie-image">
+								<img src="/resources/img/mov02.jpg" alt="영화1"
+									class="main-movie">
+							</div>
+	<!-- 						<div class="user-rate"><span><i class="fa fa-star"></i>9.6</span></div> -->
+						</a>
+						<button type="button" class="bookmark"><i class="far fa-heart"></i></button>
 					</div>
 					<span class="movie-name">호빗</span><br>
 					<span class="info">2014 | 판타지, 모험, 액션 | 144분</span>
 				</div>
 				<div>
 					<div class="test-div">
-					<a href="#">
-						<div class="card-movie-image">
-							<img src="/resources/img/mov03.jpg" alt="영화1"
-								class="main-movie">
-						</div>
-<!-- 						<div class="user-rate"><span><i class="fa fa-star"></i>9.6</span></div> -->
-					</a>
-					<button type="button" class="bookmark"><i class="fa fa-bookmark"></i></button>
+						<a href="#">
+							<div class="card-movie-image">
+								<img src="/resources/img/mov03.jpg" alt="영화1"
+									class="main-movie">
+							</div>
+	<!-- 						<div class="user-rate"><span><i class="fa fa-star"></i>9.6</span></div> -->
+						</a>
+						<button type="button" class="bookmark"><i class="far fa-heart"></i></button>
 					</div>
 					<span class="movie-name">토이스토리</span><br>
 					<span class="info">2014 | 애니메이션, 가족 | 100분</span>
 				</div>
 				<div>
 					<div class="test-div">
-					<a href="#">
-						<div class="card-movie-image">
-							<img src="/resources/img/mov04.jpg" alt="영화1"
-								class="main-movie">
-						</div>
-<!-- 						<div class="user-rate"><span><i class="fa fa-star"></i>9.6</span></div> -->
-					</a>
-					<button type="button" class="bookmark"><i class="fa fa-bookmark"></i></button>
+						<a href="#">
+							<div class="card-movie-image">
+								<img src="/resources/img/mov04.jpg" alt="영화1"
+									class="main-movie">
+							</div>
+	<!-- 						<div class="user-rate"><span><i class="fa fa-star"></i>9.6</span></div> -->
+						</a>
+						<button type="button" class="bookmark"><i class="far fa-heart"></i></button>
 					</div>
 					<span class="movie-name">호빗</span><br>
 					<span class="info">2014 | 판타지, 모험, 액션 | 144분</span>
 				</div>
 				<div>
 					<div class="test-div">
-					<a href="#">
-						<div class="card-movie-image">
-							<img src="/resources/img/mov05.jpg" alt="영화1"
-								class="main-movie">
-						</div>
-<!-- 						<div class="user-rate"><span><i class="fa fa-star"></i>9.6</span></div> -->
-					</a>
-					<button type="button" class="bookmark"><i class="fa fa-bookmark"></i></button>
+						<a href="#">
+							<div class="card-movie-image">
+								<img src="/resources/img/mov05.jpg" alt="영화1"
+									class="main-movie">
+							</div>
+	<!-- 						<div class="user-rate"><span><i class="fa fa-star"></i>9.6</span></div> -->
+						</a>
+						<button type="button" class="bookmark"><i class="far fa-heart"></i></button>
 					</div>
 					<span class="movie-name">토이스토리</span><br>
 					<span class="info">2014 | 애니메이션, 가족 | 100분</span>
 				</div>
 				<div>
 					<div class="test-div">
-					<a href="#">
-						<div class="card-movie-image">
-							<img src="/resources/img/mov06.jpg" alt="영화1"
-								class="main-movie">
-						</div>
-<!-- 						<div class="user-rate"><span><i class="fa fa-star"></i>9.6</span></div> -->
-					</a>
-					<button type="button" class="bookmark"><i class="fa fa-bookmark"></i></button>
+						<a href="#">
+							<div class="card-movie-image">
+								<img src="/resources/img/mov06.jpg" alt="영화1"
+									class="main-movie">
+							</div>
+	<!-- 						<div class="user-rate"><span><i class="fa fa-star"></i>9.6</span></div> -->
+						</a>
+						<button type="button" class="bookmark"><i class="far fa-heart"></i></button>
 					</div>
 					<span class="movie-name">호빗</span><br>
 					<span class="info">2014 | 판타지, 모험, 액션 | 144분</span>
@@ -273,63 +273,63 @@ $(function() {
 <!-- 								<span><i class="fa fa-star"></i>9.6</span> -->
 <!-- 							</div> -->
 						</a>
-						<button type="button" class="bookmark"><i class="fa fa-bookmark"></i></button>
+						<button type="button" class="bookmark"><i class="far fa-heart"></i></button>
 					</div>
 					<span class="movie-name">토이스토리</span><br>
 					<span class="info">2014 | 애니메이션, 가족 | 100분</span>
 				</div>
 				<div>
 					<div class="test-div">
-					<a href="#">
-						<div class="card-movie-image">
-							<img src="/resources/img/mov02.jpg" alt="영화1"
-								class="main-movie">
-						</div>
-<!-- 						<div class="user-rate"><span><i class="fa fa-star"></i>9.6</span></div> -->
-					</a>
-					<button type="button" class="bookmark"><i class="fa fa-bookmark"></i></button>
+						<a href="#">
+							<div class="card-movie-image">
+								<img src="/resources/img/mov02.jpg" alt="영화1"
+									class="main-movie">
+							</div>
+	<!-- 						<div class="user-rate"><span><i class="fa fa-star"></i>9.6</span></div> -->
+						</a>
+						<button type="button" class="bookmark"><i class="far fa-heart"></i></button>
 					</div>
 					<span class="movie-name">호빗</span><br>
 					<span class="info">2014 | 판타지, 모험, 액션 | 144분</span>
 				</div>
 				<div>
 					<div class="test-div">
-					<a href="#">
-						<div class="card-movie-image">
-							<img src="/resources/img/mov03.jpg" alt="영화1"
-								class="main-movie">
-						</div>
-<!-- 						<div class="user-rate"><span><i class="fa fa-star"></i>9.6</span></div> -->
-					</a>
-					<button type="button" class="bookmark"><i class="fa fa-bookmark"></i></button>
+						<a href="#">
+							<div class="card-movie-image">
+								<img src="/resources/img/mov03.jpg" alt="영화1"
+									class="main-movie">
+							</div>
+	<!-- 						<div class="user-rate"><span><i class="fa fa-star"></i>9.6</span></div> -->
+						</a>
+						<button type="button" class="bookmark"><i class="far fa-heart"></i></button>
 					</div>
 					<span class="movie-name">토이스토리</span><br>
 					<span class="info">2014 | 애니메이션, 가족 | 100분</span>
 				</div>
 				<div>
 					<div class="test-div">
-					<a href="#">
-						<div class="card-movie-image">
-							<img src="/resources/img/mov04.jpg" alt="영화1"
-								class="main-movie">
-						</div>
-<!-- 						<div class="user-rate"><span><i class="fa fa-star"></i>9.6</span></div> -->
-					</a>
-					<button type="button" class="bookmark"><i class="fa fa-bookmark"></i></button>
+						<a href="#">
+							<div class="card-movie-image">
+								<img src="/resources/img/mov04.jpg" alt="영화1"
+									class="main-movie">
+							</div>
+	<!-- 						<div class="user-rate"><span><i class="fa fa-star"></i>9.6</span></div> -->
+						</a>
+						<button type="button" class="bookmark"><i class="far fa-heart"></i></button>
 					</div>
 					<span class="movie-name">호빗</span><br>
 					<span class="info">2014 | 판타지, 모험, 액션 | 144분</span>
 				</div>
 				<div>
 					<div class="test-div">
-					<a href="#">
-						<div class="card-movie-image">
-							<img src="/resources/img/mov05.jpg" alt="영화1"
-								class="main-movie">
-						</div>
-<!-- 						<div class="user-rate"><span><i class="fa fa-star"></i>9.6</span></div> -->
-					</a>
-					<button type="button" class="bookmark"><i class="fa fa-bookmark"></i></button>
+						<a href="#">
+							<div class="card-movie-image">
+								<img src="/resources/img/mov05.jpg" alt="영화1"
+									class="main-movie">
+							</div>
+	<!-- 						<div class="user-rate"><span><i class="fa fa-star"></i>9.6</span></div> -->
+						</a>
+						<button type="button" class="bookmark"><i class="far fa-heart"></i></button>
 					</div>
 					<span class="movie-name">토이스토리</span><br>
 					<span class="info">2014 | 애니메이션, 가족 | 100분</span>
@@ -343,7 +343,7 @@ $(function() {
 						</div>
 <!-- 						<div class="user-rate"><span><i class="fa fa-star"></i>9.6</span></div> -->
 					</a>
-					<button type="button" class="bookmark"><i class="fa fa-bookmark"></i></button>
+						<button type="button" class="bookmark"><i class="far fa-heart"></i></button>
 					</div>
 					<span class="movie-name">호빗</span><br>
 					<span class="info">2014 | 판타지, 모험, 액션 | 144분</span>
@@ -358,7 +358,7 @@ $(function() {
 			<div>
 				<div>
 					<a href="#">
-					<img src="/resources/img/default.png" alt="사진"
+						<img src="/resources/img/default.png" alt="사진"
 						 style="width: 300px; height: 300px; border: 3px solid #000000"> 
 				 	</a>
 				</div>
