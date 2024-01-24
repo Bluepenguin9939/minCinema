@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>패스워드 찾기</title>
 <%@ include file="/WEB-INF/views/include/bs.jsp" %>
-<link href="/resources/css/pwSearch.css" rel="stylesheet">
+<link href="/resources/css/member/pwSearch.css" rel="stylesheet">
 </head>
 <body>
 	<div class="row d-flex justify-content-center align-content-center" style="height: 100vh; margin: 0px;">

@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>로그인</title>
 <%@ include file="/WEB-INF/views/include/bs.jsp" %>
-<link href="/resources/css/login.css" rel="stylesheet">
+<link href="/resources/css/member/login.css" rel="stylesheet">
 </head>
 <body>
 <%@ include file="/WEB-INF/views/include/heo_resultModal.jsp"%>
