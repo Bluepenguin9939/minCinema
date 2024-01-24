@@ -103,47 +103,37 @@ $(function() {
 				  	</div>
 				  	<!-- // 드롭다운 -->
 				  	
-				  	<!-- 검색 -->
-<!-- 				  	<div class="d-flex justify-content-center" style="width: 20%;"> -->
-<!-- 					  	<form class="d-none d-sm-inline-block form-inline navbar-search" style="margin: 0px;"> -->
-<!-- 	                        <div class="input-group"> -->
-<!-- 	                            <input type="text" class="form-control bg-light border-0 small"  -->
-<!-- 	                            	placeholder="검색어를 입력해주세요" name="movie-search" -->
-<!-- 	                                aria-label="Search" aria-describedby="basic-addon2"> -->
-<!-- 	                            <div class="input-group-append"> -->
-<!-- 	                                <button class="btn btn-secondary" type="button"> -->
-<!-- 	                                    <i class="fas fa-search fa-sm"></i> -->
-<!-- 	                                </button> -->
-<!-- 	                            </div> -->
-<!-- 	                        </div> -->
-<!-- 	                    </form> -->
-<!--                     </div> -->
-                    <!-- // 검색 -->
-                    
                     <!-- 로그인 -->
                     <div class="d-flex justify-content-center" style="width: 25%;">
-<%-- 	                   	<c:if test="${empty loginInfo}"> --%>
-<!-- 							<a href="/member/jo_login" id="login"> -->
-<!-- 		                    	<span>로그인</span> -->
-<!-- 		                    	<i class="fa fa-door-closed"></i> -->
-<!-- 		                    	<i class="fa fa-door-open" style="display: none"></i> -->
-<!-- 		                    </a> -->
-<%--                     	</c:if> --%>
-<%--                     	<c:if test="${not empty loginInfo}"> --%>
+	                   	<c:if test="${empty loginInfo}">
+							<a href="/member/jo_login" id="login">
+		                    	<span>로그인</span>
+		                    	<i class="fa fa-door-closed"></i>
+		                    	<i class="fa fa-door-open" style="display: none"></i>
+		                    </a>
+                    	</c:if>
+                    	<c:if test="${not empty loginInfo}">
 							<div class="dropdown">
 								<a class="dropdown" href="#" id="myProfile" data-toggle="dropdown">
 		                    		<img class="rounded-circle" src="/resources/img/undraw_profile_1.svg"
 		                    			width="40" height="40">
-	                    			<span id="myNickName">${loginInfo.mnick}닉네임</span>
+	                    			<span id="myNickName">${loginInfo.mnick}</span>
 								</a>
 								<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 									 <a class="dropdown-item disabled" href="#">포인트 0</a>
-									 <a class="dropdown-item" href="/myPage/jo_myInfo">마이페이지</a>
+									 <c:choose>
+										 <c:when test="${loginInfo.mid eq 'admin'}">
+											 <a class="dropdown-item" href="/admin/ham_admins">관리자페이지</a>
+										 </c:when>
+										 <c:otherwise>
+											 <a class="dropdown-item" href="/myPage/jo_myInfo">마이페이지</a>
+										 </c:otherwise>
+									 </c:choose>
 									 <a class="dropdown-item" href="#">예매내역</a>
-									 <a class="dropdown-item" href="#">로그아웃</a>
+									 <a class="dropdown-item" href="/member/logout">로그아웃</a>
 								</div>
 							</div>
-<%--                     	</c:if> --%>
+                    	</c:if>
                     </div>
                     <!-- // 로그인 -->
 				</nav>
