@@ -37,7 +37,7 @@
     </a>
 
 
-  <script src="/resources/js/moviekind.js"></script> <script src="/resources/js/membership.js"></script>
+  <script src="/resources/js/moviekind.js"></script> <script src="/resources/js/membership.js"></script> 
   
    
     
