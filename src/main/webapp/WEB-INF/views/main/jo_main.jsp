@@ -12,11 +12,11 @@ $(function() {
 		location.href="/main/heo_details";
 	});
 	
-	$(".test-div").hover(function() {
-		$(this).next().css("color", "#6666fe");
-	}, function() {
-		$(this).next().css("color", "inherit");
-	});
+// 	$(".test-div").hover(function() {
+// 		$(this).next().css("color", "#6666fe");
+// 	}, function() {
+// 		$(this).next().css("color", "inherit");
+// 	});
 	
 	$(window).on("scroll", function() {
 		var scroll = $(window).scrollTop();
@@ -128,8 +128,8 @@ $(function() {
 		</div>
 		<div class="col-md-8">
 			<nav class="navbar navbar-expand-sm bg-dark" id="main-nav">
-				<div class="container">
-					<div class="d-flex justify-content-between" style="width: 20%;">
+				<div class="container" style="padding: 0px;">
+					<div class="d-flex justify-content-between mr-auto" style="width: 20%;">
 						<div class="dropdown main-dropdown">
 				        	<a class="dropdown main-nav-dropdown" data-toggle="dropdown">정렬</a>
 				        	<div class="dropdown-menu">
@@ -149,6 +149,26 @@ $(function() {
 						  	</div>
 					  	</div>
 					</div>
+					<div style="width: 30%;">
+					  	<form class="d-none d-sm-inline-block form-inline navbar-search" style="margin: 0px;">
+					  		<div class="d-flex justify-content-between">
+								<select id="search" name="search">
+									<option value="title">타이틀</option>
+									<option value="director">감독</option>
+								</select>
+		                        <div class="input-group">
+		                            <input type="text" class="form-control bg-light border-0 small" 
+		                            	placeholder="검색어를 입력해주세요" name="movie-search"
+		                                aria-label="Search" aria-describedby="basic-addon2">
+		                            <div class="input-group-append">
+		                                <button class="btn btn-secondary" type="button">
+		                                    <i class="fas fa-search fa-sm"></i>
+		                                </button>
+		                            </div>
+		                        </div>
+	                        </div>
+	                    </form>
+                    </div>
 				</div>
 			</nav>
 			
