@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<%@ include file="/WEB-INF/views/include/bs.jsp" %>
 <%@ include file="/WEB-INF/views/include/ad_sidebar.jsp" %>
 <%@ include file="/WEB-INF/views/include/ad_topbar.jsp" %>
 
@@ -25,9 +24,11 @@
             <div class="search-field">
 					<select name="target" title="검색선택">
 						<option value="">전체</option>
-						<option value="title">제목</option>
-						<option value="content">내용</option>
-						<option value="member_display">작성자</option>
+						<option value="title">아이디</option>
+						<option value="content">닉네임</option>
+						<option value="member_display">이름</option>
+						<option value="member_display">이메일</option>
+						<option value="member_display">전화번호</option>
 					</select> 
 					<input type="text" value="" name="s" class="s" title="검색어 입력" id="search_id" placeholder="검색 ..." />
                 <input value="검색" type="submit" class="searchsubmit" />
