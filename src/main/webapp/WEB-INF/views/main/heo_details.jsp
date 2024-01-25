@@ -2,9 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/include/top.jsp"%>
 
-<!-- 결제창모달.jsp -->
-<%@ include file="/WEB-INF/views/include/heo_pointChargeModal.jsp"%>
-<script src="/resources/js/details/heo_details.js"></script>
+<!-- 결과창모달 -->
+<%@ include file="/WEB-INF/views/include/heo_payLoginModal.jsp"%>
 <link href="/resources/css/details/heo_details.css?after"
 	rel="stylesheet">
 <div class="container-fluid">

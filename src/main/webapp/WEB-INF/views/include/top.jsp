@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -37,6 +38,7 @@
 <link href="/resources/css/include/top.css?after" rel="stylesheet">
 <link href="/resources/css/include/bottom.css?after" rel="stylesheet">
 
+<!-- 부트스트랩4 -->
 <%@ include file="/WEB-INF/views/include/bs.jsp" %>
 <!-- Bootstrap core JavaScript-->
 <!-- <script src="/resources/vendor/jquery/jquery.min.js"></script> -->
@@ -48,9 +50,28 @@
 <!-- <!-- Custom scripts for all pages-->
 <!-- <script src="/resources/js/sb-admin-2.min.js"></script> -->
 
+
+
 <script>
 $(function() {
-
+	$(window).on("scroll", function() {
+		var scroll = $(window).scrollTop();
+		if (scroll > 0) {
+			$(".scroll-to-top").fadeIn(1000);
+		} else {
+			$(".scroll-to-top").fadeOut(1000);
+		}
+	});
+	
+	$("#login").on("mouseenter", function() {
+		$(this).find($(".fa-door-closed")).css("display", "none");
+		$(this).find($(".fa-door-open")).css("display", "");
+	});
+	
+	$("#login").on("mouseleave", function() {
+		$(this).find($(".fa-door-open")).css("display", "none");
+		$(this).find($(".fa-door-closed")).css("display", "");
+	});
 });
 </script>
 </head>
@@ -81,8 +102,8 @@ $(function() {
 					<!-- 드롭다운 -->
 					<div class="d-flex justify-content-between" style="width: 40%;">
 						<div class="top-hover-dropdown">
-				        	<a href="/main/jo_studio" class="topbar-dropdown" style="vertical-align: middle;">
-				        		<i class="fa fa-film"></i> 영화관 정보
+				        	<a href="/main/jo_event" class="topbar-dropdown" style="vertical-align: middle;">
+				        		<i class="fa fa-calendar-check"></i> 이벤트
 				        	</a>
 					  	</div>  
 						<div class="dropdown top-hover-dropdown">
@@ -120,7 +141,7 @@ $(function() {
 	                    			<span id="myNickName">${loginInfo.mnick}</span>
 								</a>
 								<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-									 <a class="dropdown-item disabled" href="#">포인트 0</a>
+									 <a class="dropdown-item disabled" href="#">포인트 <fmt:formatNumber value="${loginInfo.mpoint}" pattern="#,###"/></a>
 									 <c:choose>
 										 <c:when test="${loginInfo.mid eq 'admin'}">
 											 <a class="dropdown-item" href="/admin/ham_admins">관리자페이지</a>

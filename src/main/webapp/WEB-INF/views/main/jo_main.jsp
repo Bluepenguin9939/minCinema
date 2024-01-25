@@ -18,24 +18,6 @@ $(function() {
 // 		$(this).next().css("color", "inherit");
 // 	});
 	
-	$(window).on("scroll", function() {
-		var scroll = $(window).scrollTop();
-		if (scroll > 0) {
-			$(".scroll-to-top").fadeIn(1000);
-		} else {
-			$(".scroll-to-top").fadeOut(1000);
-		}
-	});
-	
-	$("#login").on("mouseenter", function() {
-		$(this).find($(".fa-door-closed")).css("display", "none");
-		$(this).find($(".fa-door-open")).css("display", "");
-	});
-	
-	$("#login").on("mouseleave", function() {
-		$(this).find($(".fa-door-open")).css("display", "none");
-		$(this).find($(".fa-door-closed")).css("display", "");
-	});
 });
 </script>
 
@@ -351,16 +333,16 @@ $(function() {
 			</div>
 			<!-- // 메인 리스트 -->
 			
-			<hr style="border: 0; border-bottom: 5px solid #333333">
+			<hr style="border: 0; border-bottom: 2px solid #555555;">
 			
 			<!-- 이벤트 -->
 			<h3 style="margin-bottom: 10px;">이벤트</h3>
 			<div>
 				<div>
-					<a href="#">
-					<!-- 이미지 출처 : <a href="https://kr.freepik.com/free-photo/calendar-with-checklist-date-schedule-3d-icon_33062239.htm#query=%EC%B6%9C%EC%84%9D%EC%B2%B4%ED%81%AC&position=1&from_view=keyword&track=sph&uuid=2a4d4c31-c698-4c74-a6d3-855a2527015a">작가 upklyak</a> 출처 Freepik -->
-						<img src="/resources/img/event/attendance_check.jpg" alt="출석체크"
-						 style="width: 500px; height: 400px; border: 3px solid #000000"> 
+					<a href="/main/jo_event">
+						<!-- 이미지 출처 : <a href="https://kr.freepik.com/free-photo/calendar-with-checklist-date-schedule-3d-icon_33062239.htm#query=%EC%B6%9C%EC%84%9D%EC%B2%B4%ED%81%AC&position=1&from_view=keyword&track=sph&uuid=2a4d4c31-c698-4c74-a6d3-855a2527015a">작가 upklyak</a> 출처 Freepik -->
+						<img src="/resources/img/event/attendance_check.png" alt="출석체크"
+							style="width: 500px; height: 400px; border: 2px solid #000000"> 
 				 	</a>
 				</div>
 			</div>

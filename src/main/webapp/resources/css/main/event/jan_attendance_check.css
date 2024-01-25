@@ -1,0 +1,37 @@
+@charset "UTF-8";
+
+tr {
+	display: flex;
+}
+
+th {
+	width: 135px;
+}
+
+td {
+	height: 135px;
+    width: 135px;
+    align-self: center;
+    display: flex;
+    justify-content: center;
+}
+
+.attendance_td {
+	width: 80%;
+	height: 80%;
+	align-self: center;
+	background-color: #bbbbbb;
+	border-radius: 10px;
+	display: flex;
+	justify-content: center;
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+a:hover {
+	text-decoration: none;
+	color: inherit;
+}
