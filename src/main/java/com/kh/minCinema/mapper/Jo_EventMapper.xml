@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kh.minCinema.mapper.Jo_EventMapper">
+<select id="selectByMid" resultType="string">
+	SELECT ECHECK FROM MC_EVENT
+	WHERE SUBSTR(TO_CHAR(EDATE, 'YYYY/MM/DD'), 0, 10) = #{curDate}
+	AND MID = #{mid}
+</select>
+<select id="changeImg" resultType="string">
+	SELECT SUBSTR(TO_CHAR(EDATE), 9, 2) FROM MC_EVENT
+	WHERE MID = #{mid}
+</select>
+</mapper>

@@ -50,7 +50,24 @@
 
 <script>
 $(function() {
-
+	$(window).on("scroll", function() {
+		var scroll = $(window).scrollTop();
+		if (scroll > 0) {
+			$(".scroll-to-top").fadeIn(1000);
+		} else {
+			$(".scroll-to-top").fadeOut(1000);
+		}
+	});
+	
+	$("#login").on("mouseenter", function() {
+		$(this).find($(".fa-door-closed")).css("display", "none");
+		$(this).find($(".fa-door-open")).css("display", "");
+	});
+	
+	$("#login").on("mouseleave", function() {
+		$(this).find($(".fa-door-open")).css("display", "none");
+		$(this).find($(".fa-door-closed")).css("display", "");
+	});
 });
 </script>
 </head>
@@ -81,8 +98,8 @@ $(function() {
 					<!-- 드롭다운 -->
 					<div class="d-flex justify-content-between" style="width: 40%;">
 						<div class="top-hover-dropdown">
-				        	<a href="/main/jo_studio" class="topbar-dropdown" style="vertical-align: middle;">
-				        		<i class="fa fa-film"></i> 영화관 정보
+				        	<a href="/main/jo_event" class="topbar-dropdown" style="vertical-align: middle;">
+				        		<i class="fa fa-calendar-check"></i> 이벤트
 				        	</a>
 					  	</div>  
 						<div class="dropdown top-hover-dropdown">
