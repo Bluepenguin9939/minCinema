@@ -19,8 +19,9 @@
 					<span aria-hidden="true">×</span>
 				</button>
 			</div>
-			<div class="modal-body">아이디 혹은 비밀번호를 확인해주세요.</div>
+			<div class="modal-body" id="resultModalBody">아이디 혹은 비밀번호를 확인해주세요.</div>
 			<div class="modal-footer">
+				<button type="button" class="btn btn-success" id="btnLogin">로그인</button>
 				<button type="button" class="btn btn-danger" data-dismiss="modal">닫기</button>
 			</div>
 		</div>

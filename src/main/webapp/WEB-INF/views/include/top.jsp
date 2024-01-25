@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -120,7 +121,7 @@ $(function() {
 	                    			<span id="myNickName">${loginInfo.mnick}</span>
 								</a>
 								<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-									 <a class="dropdown-item disabled" href="#">포인트 0</a>
+									 <a class="dropdown-item disabled" href="#">포인트 <fmt:formatNumber value="${loginInfo.mpoint}" pattern="#,###"/></a>
 									 <c:choose>
 										 <c:when test="${loginInfo.mid eq 'admin'}">
 											 <a class="dropdown-item" href="/admin/ham_admins">관리자페이지</a>
