@@ -26,7 +26,7 @@ $(function() {
 	var curDate = today_year + "/" + today_month + "/" + today_date; 
 	console.log(curDate);
 	
-	var url = "/main/event/jan_attendance_check";
+	var url = "/main/event/jan_attendance_status";
 	var sData = {
 			"mid" : mid,
 			"curDate" : curDate
@@ -34,17 +34,42 @@ $(function() {
 	
 	$.post(url, sData, function(rData) {
 		console.log("attendance : ", rData);
+		
+		var checkAttendance = rData.checkAttendance;
+		console.log("checkAttendance : ", checkAttendance);
+		var attendanceList = rData.attendanceList;
+		console.log("attendanceList : ", attendanceList);
+		
 		var cal_date = $(".attendance_td");
-		console.log("today_date :", today_date);
-		cal_date.each(function() {
-			var date = $(this).attr("data-date");
-			console.log("date :",date);
-			if (rData == "Y" && today_date == date) {
-				console.log("true");
-				$(this).find("h1").remove();
-				var attendance_image = "<img src='/resources/img/event/check_penguin.png' alt='출석체크' width='87' height='98'>";
-				$(this).append(attendance_image);
-			}
+		for (var v = 0; v < attendanceList.length; v++) {
+			cal_date.each(function() {
+				var date = $(this).attr("data-date");
+				if (attendanceList[v] == date) {
+					$(this).find("h1").remove();
+					var attendance_image = "<img src='/resources/img/event/check_penguin.png' alt='출석체크' width='87' height='98'>";
+					$(this).append(attendance_image);
+					$("#allAttendance").text(attendanceList.length);
+				}
+			});
+		}
+		
+		if (checkAttendance == "Y") {
+			$("#btnAttendance").attr("disabled", true);
+			$("#btnAttendance").text("출석 완료");
+		}
+	});
+// 	출석 참여 상태 체크 //
+
+// 	출석 체크 하기
+	$("#btnAttendance").click(function() {
+		var url = "/main/event/jan_attendance_check";
+		var sData = {
+				"mid" : mid
+		}
+		
+		$.post(url, sData, function(rData) {
+			console.log(rData)
+			
 		});
 	});
 });
@@ -187,8 +212,8 @@ $(function() {
 						<div style="background-color: #aaaaaa; text-align: center; width: 100%;">
 							<h4>현재 출석일</h4>
 							<hr>
-							<h2>0일</h2>
-							<button type="button" class="btn btn-dark" id="btnAttendance">출석</button>
+							<h2><span id="allAttendance">0</span>일</h2>
+							<button type="button" class="btn btn-secondary" id="btnAttendance">출석</button>
 						</div>
 						<div style="">
 						</div> 

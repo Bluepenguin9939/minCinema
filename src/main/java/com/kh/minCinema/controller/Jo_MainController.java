@@ -9,12 +9,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.minCinema.domain.Jo_EventDTO;
 import com.kh.minCinema.service.Jo_EventService;
 
+import lombok.extern.log4j.Log4j;
+
 @Controller
 @RequestMapping("/main")
+@Log4j
 public class Jo_MainController {
 	
 	@Autowired
@@ -47,11 +51,20 @@ public class Jo_MainController {
 		
 	}
 	
-	@PostMapping(value = "/event/jan_attendance_check",
+	@PostMapping(value = "/event/jan_attendance_status",
 				 produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public Map<String, String> post_jan_attendance_check(Jo_EventDTO eventDTO) {
-		Map<String, String> map = eventService.checkAttendance(eventDTO);
+	public Map<String, Object> post_jan_attendance_status(Jo_EventDTO eventDTO) {
+		Map<String, Object> map = eventService.checkAttendance(eventDTO);
 		return map;
+	}
+	
+	@PostMapping("/event/jan_attendance_check")
+	@ResponseBody
+	public void post_jan_attendance_check(String mid, RedirectAttributes rttr) {
+		boolean attendanceResult = eventService.clickToAttendance(mid);
+		log.info("attendanceResult : " + attendanceResult);
+		rttr.addFlashAttribute("attendanceResult", attendanceResult);
+//		return "redirect:/event/jan_attendance_check";
 	}
 }

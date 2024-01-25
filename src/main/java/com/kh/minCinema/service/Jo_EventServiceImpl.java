@@ -1,7 +1,7 @@
 package com.kh.minCinema.service;
 
 import java.util.HashMap;
-
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,19 +17,23 @@ public class Jo_EventServiceImpl implements Jo_EventService {
 	private Jo_EventMapper eventMapper;
 
 	@Override
-	public Map<String, String> checkAttendance(Jo_EventDTO eventDTO) {
-		String result = eventMapper.selectByMid(eventDTO);
-		String result2 = eventMapper.changeImg(eventDTO.getMid());
-		System.out.println("result : " + result);
-		System.out.println("result2 : " + result2);
-		Map<String, String> map = new HashMap<String, String>();
-		map.put("result", result);
-		map.put("result2", result2);
+	public Map<String, Object> checkAttendance(Jo_EventDTO eventDTO) {
+		String checkAttendance = eventMapper.selectByMid(eventDTO);
+		List<String> attendanceList = eventMapper.changeImg(eventDTO.getMid());
+		System.out.println("checkAttendance : " + checkAttendance);
+		System.out.println("attendanceList : " + attendanceList);
+		Map<String, Object> map = new HashMap<>();
+		map.put("checkAttendance", checkAttendance);
+		map.put("attendanceList", attendanceList);
 		return map;
 	}
 
-//	@Override
-//	public String changeImg(String mid) {
-//		return result;
-//	}
+	@Override
+	public boolean clickToAttendance(String mid) {
+		int count = eventMapper.clickToAttendance(mid);
+		if (count == 1) {
+			return true;
+		}
+		return false;
+	}
 }
