@@ -233,18 +233,19 @@
 			<version>0.4.8</version>
 		</dependency>
 
-		<!-- javax.mail -->
-<!-- 		<dependency> -->
-<!-- 			<groupId>com.sun.mail</groupId> -->
-<!-- 			<artifactId>javax.mail</artifactId> -->
-<!-- 			<version>1.6.2</version> -->
-<!-- 		</dependency> -->
 
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.springframework</groupId> -->
-<!-- 			<artifactId>spring-context-support</artifactId> -->
-<!-- 			<version>${org.springframework-version}</version> -->
-<!-- 		</dependency> -->
+		<!-- javax.mail -->
+		<!-- 		<dependency> -->
+		<!-- 			<groupId>com.sun.mail</groupId> -->
+		<!-- 			<artifactId>javax.mail</artifactId> -->
+		<!-- 			<version>1.6.2</version> -->
+		<!-- 		</dependency> -->
+
+		<!-- 		<dependency> -->
+		<!-- 			<groupId>org.springframework</groupId> -->
+		<!-- 			<artifactId>spring-context-support</artifactId> -->
+		<!-- 			<version>${org.springframework-version}</version> -->
+		<!-- 		</dependency> -->
 
 	</dependencies>
 	<build>
@@ -254,10 +255,12 @@
 				<version>3.1</version>
 				<configuration>
 					<additionalProjectnatures>
-						<projectnature>org.springframework.ide.eclipse.core.springnature</projectnature>
+						<projectnature>
+							org.springframework.ide.eclipse.core.springnature</projectnature>
 					</additionalProjectnatures>
 					<additionalBuildcommands>
-						<buildcommand>org.springframework.ide.eclipse.core.springbuilder</buildcommand>
+						<buildcommand>
+							org.springframework.ide.eclipse.core.springbuilder</buildcommand>
 					</additionalBuildcommands>
 					<downloadSources>true</downloadSources>
 					<downloadJavadocs>true</downloadJavadocs>

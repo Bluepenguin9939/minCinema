@@ -6,17 +6,59 @@
 <%@ include file="/WEB-INF/views/include/ad_topbar.jsp" %>
 
 <head>
-<link rel="stylesheet" href="/resources/css/notice.css?after" type="text/css">
+<link rel="stylesheet" href="/resources/css/admin/cmanagement.css?after" type="text/css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
 <!-- <meta name="viewport" content="width=device-width,initial-scale=1.0"> -->
-<style>
+<script>
 
-</style>
+</script>
 
 </head>
-<!-- list(게시판) 양식 -->
 <body>
+<!-- 테스트 모달 -->
+	<div>
+		<a id="modal-474701" href="#modal-container-474701" role="button"
+			class="btn" data-toggle="modal">테스트 회원 생성 </a>
+
+		<div class="modal fade" id="modal-container-474701" role="dialog"
+			aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="myModalLabel">Modal title</h5>
+						<button type="button" class="close" data-dismiss="modal">
+							<span aria-hidden="true">×</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<input type="text" class="form-control" placeholder="테스트 아이디">
+					</div>
+					<div class="modal-body">
+						<input type="text" class="form-control" placeholder="테스트 닉네임">
+					</div>
+					<div class="modal-body">
+						<input type="text" class="form-control" placeholder="테스트 이름">
+					</div>
+					<div class="modal-body">
+						<input type="text" class="form-control" placeholder="테스트 이메일">
+					</div>
+					<div class="modal-body">
+						<input type="text" class="form-control" placeholder="테스트 전화번호">
+					</div>
+					<div class="modal-footer">
+
+						<button type="button" class="btn btn-primary">생성</button>
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+	<!-- 관리자용 회원관리 게시판 -->
 	<div class="notice d-flex justify-content-center" > 
 		<div class="admin-top" >
 			<h2 class="admin-body" title="" >회원 관리</h2>
@@ -59,7 +101,7 @@
 						<td>apple@naver.com</td>
 						<td>010-1111-1111</td>
 						<td>
-							<i class="fa fa-user-alt-slash" title="벤"></i> <i class="fa fa-trash" title="del"></i> 
+							<i class="fa fa-user-alt-slash" title="ven"></i> <i class="fa fa-trash" title="del"></i> 
 						</td>
 					</tr>
 					<tr>
@@ -70,7 +112,7 @@
 						<td>apple@naver.com</td>
 						<td>010-1111-1111</td>
 						<td>
-							<i class="fa fa-user-alt-slash" title="벤"></i> <i class="fa fa-trash" title="del"></i> 
+							<i class="fa fa-user-alt-slash" title="ven"></i> <i class="fa fa-trash" title="del"></i> 
 						</td>
 					</tr>
 					<tr>
@@ -81,7 +123,7 @@
 						<td>apple@naver.com</td>
 						<td>010-1111-1111</td>
 						<td>
-							<i class="fa fa-user-alt-slash" title="벤"></i> <i class="fa fa-trash" title="del"></i> 
+							<i class="fa fa-user-alt-slash" title="ven"></i> <i class="fa fa-trash" title="del"></i> 
 						</td>
 					</tr>
 					<tr>
@@ -92,7 +134,7 @@
 						<td>apple@naver.com</td>
 						<td>010-1111-1111</td>
 						<td>
-							<i class="fa fa-user-alt-slash" title="벤"></i> <i class="fa fa-trash" title="del"></i> 
+							<i class="fa fa-user-alt-slash" title="ven"></i> <i class="fa fa-trash" title="del"></i> 
 						</td>
 					</tr>
 					

@@ -11,36 +11,61 @@
 .reserve-container {
     /*margin-top: 20px; /*마진달기*/
     justify-content: center; /* 가운데 정렬 */
-    
     height: 805px; /*높이 800px*/
     /* border: 1px solid #dddddd; */
-    background-color: #444444;
+    background-color: gray;
 }
 
 .reserve-container>div{
 	justify-content: center; /* 가운데 정렬 */
 	display: flex; /**flex 적용**/
+	
 }
 
+.select-part{
+	height: 85%;
+}
+
+.send{
+	height: 15%;
+}
+
+
 .next{
-	/*justify-content: center; /* 가운데 정렬 */
-	/*height: 97px; 
-	width: 1018px; 
-	display: flex; */
-	background-color:#F2F5A9;
+
+	background-color:#AAAAAA;
+	width: 930px;
 }
 
 #go{
-	height: 97px; 
-	width: 848px; 
+	height: 100%; 
+	width: 100%; 
 	display: flex; 
 }
 
 .reserve-container>div>div {
     border: 1px solid #dddddd;
     /*외각선 굵게만들어 구분하기*/
-    background-color: #F2F5A9;
+    background-color: #AAAAAA;
 } 
+
+
+.movie-part {
+    width: 360px; /*영화파트 너비*/
+}
+
+/*.theater-part {
+    width: 264px; 극장파트
+}*/
+
+.day-part {
+   /* width: 91px; /*날짜파트*/
+    width: 210px; /*날짜파트*/
+}
+
+.time-part {
+    width: 360px; /*영화 시작시간*/
+}
 
 .reserve-title { /*타이틀 상단제목 css*/
     border-bottom: 1px solid #dddddd;
@@ -48,25 +73,14 @@
     text-align: center;
     color: #dddddd;/*글자 색*/
     padding: 5px;
-    font-size: 13px;
+    font-size: 22px;
     font-weight: bold;
-}
-
-.movie-part {
-    width: 300px; /*영화파트 너비*/
-}
-
-.theater-part {
-    width: 264px; /*극장파트*/
-}
-
-.day-part {
-   /* width: 91px; /*날짜파트*/
-    width: 200px; /*날짜파트*/
-}
-
-.time-part {
-    width: 350px; /*영화 시작시간*/
+    
+    height: 5%;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .sort-wrapper { /* 예매율순/가나다순 부분*/
@@ -100,7 +114,7 @@
     /*display: flex;
     flex-direction: column;  /*아이템을 배치하리 세로열로*/
     align-items: center;
-    height: 670px;
+    height: 95%;
     overflow: scroll; /*스크롤바 생성*/
     overflow-x: hidden; /*x축 스크롤바 숨기기*/
 	*/
@@ -121,13 +135,26 @@
     cursor: pointer;
 }
 
+.date-month{
+	height: 7%;
+	display: flex;
+    justify-content: center;
+    align-items: center;
+    
+   	font-weight: bold;
+	background-color: #123499;
+	color: white;
+	font-size:25px;
+	text-align: center;
+}
 
 .reserve-date { /*날짜 부분*/
     padding-top: 5px;
     /*display: flex;
     flex-direction: column;  /*아이템을 배치하리 세로열로*/
     align-items: center;
-    height: 630px;
+    /*height: 630px;*/
+    height: 88%;
     overflow: scroll; /*스크롤바 생성*/
     overflow-x: hidden; /*x축 스크롤바 숨기기*/
 }
@@ -162,15 +189,63 @@
     color: #dddddd;/*글자 색*/
 }
 
-.button{
-	height: 100px;
-	width: 100px;
+.btn{
+	font-size:64px; 
+	height: 100%;
+	width: 39%;
 }
 
 </style>
 
 <script>
 $(function(){
+	
+	function getDayAndWeekday(year,month){
+		monthdayMap.clear();
+		
+		var dates = new Date(year,month,0).getDate();
+
+		for(var i=1;i<=dates;i++){
+			
+			var day = weekday[new Date(year,month-1,i).getDay()]
+			//console.log("월 일과 요일",year,month,i,day);
+			monthdayMap.set(i,day);
+			$(".reserve-date").append("<div class='day'>"
+										+"<span class='rounded-circle bg-light' style='font-size:24px;'>"+day+"</span>"+"&nbsp&nbsp&nbsp&nbsp&nbsp"
+										+"<span class='bg-danger' style='font-weight:normal;'>"+( i <= 9 ? "0" + i : i )+"</span>"
+										+"</div>");
+		}
+		//var day = weekday[new Date(year,month,1).getDay()]
+		console.log("monthdayMap:",monthdayMap);
+	}
+	
+	function dateFormat(date) {
+		var newDateFormat = date.getFullYear() +
+				'.' + ( (date.getMonth()+1) < 9 ? "0" + (date.getMonth()+1) : (date.getMonth()+1) );
+		return newDateFormat;
+	}
+	
+	var weekday = new Array(7);
+		weekday[0] = "일";
+		weekday[1] = "월";
+		weekday[2] = "화";
+		weekday[3] = "수";
+		weekday[4] = "목";
+		weekday[5] = "금";
+		weekday[6] = "토";
+
+	
+	var now = new Date();
+	var year = now.getFullYear();
+	var month = now.getMonth()+1;
+	
+	var dates = new Date(year,month,0).getDate();
+	
+	var monthdayMap = new Map();
+	
+	
+	
+	getDayAndWeekday(year,month);
 	
 	$(".movie-list").click(function(){
 		
@@ -179,7 +254,7 @@ $(function(){
 		var find = that.parent().find("[data-select='select']");
 		
 		find.removeAttr("data-select");
-		find.css("background-color","#F2F5A9");
+		find.css("background-color","#AAAAAA");
 		find.css("color","black");
 		
 		//신규 선택사항
@@ -203,7 +278,7 @@ $(function(){
 		var find = that.parent().find("[data-select='select']");
 		
 		find.removeAttr("data-select");
-		find.css("background-color","#F2F5A9");
+		find.css("background-color","#AAAAAA");
 		find.css("color","black");
 		
 		//신규 선택사항
@@ -228,7 +303,7 @@ $(function(){
 		var find = that.parent().find("[data-select='select']");
 		
 		find.removeAttr("data-select");
-		find.css("background-color","#F2F5A9");
+		find.css("background-color","#AAAAAA");
 		find.css("color","black");
 		
 		//신규 선택사항
@@ -253,13 +328,13 @@ $(function(){
 <div>
 	<div class="reserve-container">
 		
-		<div>
+		<div class="select-part">
 	        <div class="movie-part">
-	            <div class="reserve-title">영화</div>
-	           <!--  <div class="sort-wrapper">
-	                <div class="sort-rate sort-selected">예매율순</div>
-	                <div class="sort-korean">가나다순</div>
-	            </div> -->
+	            <div class="reserve-title">
+	            	<span class="material-symbols-outlined">
+						movie
+					</span>영화
+				</div>
 	           
 	            <div id="movie" class="movie-datas">
 	            	<div class="movie-list" data-select="select">토이스토리4</div>
@@ -270,41 +345,39 @@ $(function(){
 	            
 	            
 	        </div>
-	        <!--  <div class="theater-part">
-	            <div class="reserve-title">극장</div>
-	            <div>사용안함</div>
-	        </div>-->
+
 	        <div class="day-part">
-	            <div class="reserve-title">날짜</div>
-	            <div id="date-month" class="rounded" 
-	            	 style="font-weight: bold;
-	            			background-color: #123499;
-	            			color: white;
-	            			font-size:25px;
-	            			text-align: center;">2024.02</div>
+	            <div class="reserve-title">
+	            	<span class="material-symbols-outlined">
+						calendar_month
+					</span>날짜
+				</div>
+				
+	            <div class="rounded date-month">
+	            	<span class="material-symbols-outlined" style="font-size: 36px;">
+						chevron_left
+					</span>
+	            	<div id="date-month">2024.02</div>
+	            	<span class="material-symbols-outlined" style="font-size: 36px;">
+						chevron_right
+					</span>
+	            </div>
+	            
 	            <div id="date" class="reserve-date">
+	            	 
 	            	
-	            	<div class="day" >01</div>
-	            	<div class="day" >02</div>
-	            	<div class="day" >03</div>
-	            	<div class="day" >04</div>
-	            	<div class="day" >05</div>
-	            	<div class="day" >06</div>
-	            	<div class="day" >07</div>
-	            	<div class="day" >08</div>
-	            	<div class="day" >09</div>
-	            	<div class="day" >10</div>
-	            	<div class="day" >11</div>
-	            	<div class="day" >12</div>
-	            	<div class="day" >13</div>
-	            	<div class="day" >14</div>
-	            	<div class="day" >15</div>
-	            	<div class="day" >16</div>
-	            	<div class="day" >17</div>
+	            	<div class="day" >${date}</div>
+	            	
+	            	
+	            	
 	            </div>
 	        </div>
 	        <div class="time-part">
-	            <div class="reserve-title">시간</div>
+	            <div class="reserve-title">
+	            	<span class="material-symbols-outlined">
+						schedule
+					</span>시간
+				</div>
 	            
 	            <div class="times" data-select="unselect">
 	            	<span class="material-symbols-outlined">
@@ -352,17 +425,16 @@ $(function(){
 
     	</div>
     	
-    	<div class="d-flex justify-content-center">
+    	<div class="d-flex justify-content-center send">
 	    	<div class="next">
 				<form id="go" name="go" action="/ticketing/seat" method="get">
 					<div style="flex-grow: 1; font-weight: bold;">
-						<div style="font-size: 20px;">영화 : <span id="movieName"></span></div>
-						<div style="font-size: 20px;">날짜 : <span id="dateText"></span></div>
-						<div style="font-size: 20px;">시간 : <span id="timesText"></span> </div>
+						<div style="font-size: 24px;">영화 : <span id="movieName"></span></div>
+						<div style="font-size: 24px;">날짜 : <span id="dateText"></span></div>
+						<div style="font-size: 24px;">시간 : <span id="timesText"></span> </div>
 					</div>
 						
-					<button class="btn btn-success" style="font-size:64px; 
-										width: 383px">좌석배치</button>
+					<button class="btn btn-success">좌석배치</button>
 				</form>
 			</div>
     	</div>

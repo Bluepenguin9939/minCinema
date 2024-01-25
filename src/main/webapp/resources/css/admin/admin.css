@@ -1,5 +1,5 @@
 @charset "UTF-8";
-
+/* side,top 검은색 */
 section a{
 	background-color: black;	
 }
@@ -33,20 +33,7 @@ nav.navbar{
 ul#Sidebar{
 	background-color: black;	
 }
-/* <여기는 기존 회원 관리입니다> */
-body .admin-top{
-width: 80%;
-height: auto;
-margin-top: 50px;
-}
-.admin-top h2{
-	font-family:Cursive;
-	font-weight: bold;
-	color:black;
-	margin-bottom: 50px;
-}
-[title="벤"]{
-	margin-right: 10px;
-}
+
+
 
 

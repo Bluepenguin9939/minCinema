@@ -22,7 +22,7 @@
 						<tbody style="border-bottom: 0.5px solid black;">
 							<tr class="table-dark text-dark">
 								<th class="table-header">아이디</th>
-								<td>아이디 내용</td>
+								<td>${loginInfo.mid}</td>
 							</tr>
 							<tr class="table-dark text-dark">
 								<th class="table-header" style="vertical-align: middle;">비밀번호</th>
@@ -34,12 +34,12 @@
 							</tr>
 							<tr class="table-dark text-dark">
 								<th class="table-header">이름</th>
-								<td>OOO</td>
+								<td>${loginInfo.mname}</td>
 							</tr>
 							<tr class="table-dark text-dark">
 								<th class="table-header" style="vertical-align: middle;">닉네임</th>
 								<td>
-									블루펭귄
+									${loginInfo.mnick}
 									<button class="btn btn-secondary btn-sm"type="button"
 										id="btnNickNameMod">변경</button>
 								</td>
@@ -47,7 +47,7 @@
 							<tr class="table-dark text-dark">
 								<th class="table-header" style="vertical-align: middle;">전화번호</th>
 								<td>
-									010-1234-5678
+									${loginInfo.mtel}
 									<button class="btn btn-secondary btn-sm"type="button"
 										id="btnTelMod">변경</button>
 								</td>
