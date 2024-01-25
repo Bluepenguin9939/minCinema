@@ -37,6 +37,7 @@
 <link href="/resources/css/include/top.css?after" rel="stylesheet">
 <link href="/resources/css/include/bottom.css?after" rel="stylesheet">
 
+<!-- 부트스트랩4 -->
 <%@ include file="/WEB-INF/views/include/bs.jsp" %>
 <!-- Bootstrap core JavaScript-->
 <!-- <script src="/resources/vendor/jquery/jquery.min.js"></script> -->
@@ -47,6 +48,8 @@
 
 <!-- <!-- Custom scripts for all pages-->
 <!-- <script src="/resources/js/sb-admin-2.min.js"></script> -->
+
+
 
 <script>
 $(function() {
