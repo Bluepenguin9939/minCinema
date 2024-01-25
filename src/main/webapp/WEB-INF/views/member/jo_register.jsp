@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>로그인</title>
 <%@ include file="/WEB-INF/views/include/bs.jsp" %>
-<link href="/resources/css/register.css?after" rel="stylesheet">
+<link href="/resources/css/member/register.css?after" rel="stylesheet">
 <script>
 $(function() {
 	

@@ -6,29 +6,28 @@
 <%@ include file="/WEB-INF/views/include/ad_topbar.jsp" %>
 
 <head>
-<link rel="stylesheet" href="/resources/css/notice.css?after" type="text/css">
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
-<!-- <meta name="viewport" content="width=device-width,initial-scale=1.0"> -->
-<style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/resources/css/notice.css?after" type="text/css">
+    <title>Point</title>
+<script>
 
-</style>
-
+</script>
 </head>
-<!-- list(게시판) 양식 -->
 <body>
-	<div class="notice d-flex justify-content-center" > 
+<div class="notice d-flex justify-content-center" > 
 		<div class="admin-top" >
-			<h2 class="admin-body" title="" >회원 관리</h2>
+			<h2 class="admin-body" title="" >포인트 관리</h2>
 			<div class="search">
             <div class="search-field">
 					<select name="target" title="검색선택">
 						<option value="">전체</option>
 						<option value="title">아이디</option>
 						<option value="content">닉네임</option>
-						<option value="member_display">이름</option>
-						<option value="member_display">이메일</option>
-						<option value="member_display">전화번호</option>
+						<option value="">포인트</option>
+						<option value="">포인트종류</option>
+						<option value="">포인트 적립일</option>
 					</select> 
 					<input type="text" value="" name="s" class="s" title="검색어 입력" id="search_id" placeholder="검색 ..." />
                 <input value="검색" type="submit" class="searchsubmit" />
@@ -42,10 +41,9 @@
 						<th>#</th>
 						<th>아이디</th> <!--  -->
 						<th>닉네임</th>
-						<th>이름</th>
-						<th>이메일</th> <!--  -->
-						<th>전화번호</th>
-						<th>관리</th>
+						<th>포인트</th>
+						<th>포인트종류</th> <!--  -->
+						<th>포인트 적립일</th>
 					</tr>
 				</thead>
 				<!-- 임시 -->
@@ -55,45 +53,33 @@
 						<td>1</td>
 						<td>apple</td>
 						<td>황금올리브</td>
-						<td>감감감</td>
-						<td>apple@naver.com</td>
-						<td>010-1111-1111</td>
-						<td>
-							<i class="fa fa-user-alt-slash" title="벤"></i> <i class="fa fa-trash" title="del"></i> 
-						</td>
+						<td>100000000</td>
+						<td>충전 포인트</td>
+						<td>2024.01.24</td>
 					</tr>
 					<tr>
 						<td>1</td>
 						<td>apple</td>
 						<td>황금올리브</td>
-						<td>감감감</td>
-						<td>apple@naver.com</td>
-						<td>010-1111-1111</td>
-						<td>
-							<i class="fa fa-user-alt-slash" title="벤"></i> <i class="fa fa-trash" title="del"></i> 
-						</td>
+						<td>0.005</td>
+						<td>리뷰 포인트</td>
+						<td>2024.01.24</td>
 					</tr>
 					<tr>
 						<td>1</td>
 						<td>apple</td>
 						<td>황금올리브</td>
-						<td>감감감</td>
-						<td>apple@naver.com</td>
-						<td>010-1111-1111</td>
-						<td>
-							<i class="fa fa-user-alt-slash" title="벤"></i> <i class="fa fa-trash" title="del"></i> 
-						</td>
+						<td>0.005</td>
+						<td>리뷰 포인트</td>
+						<td>2024.01.24</td>
 					</tr>
 					<tr>
 						<td>1</td>
 						<td>apple</td>
 						<td>황금올리브</td>
-						<td>감감감</td>
-						<td>apple@naver.com</td>
-						<td>010-1111-1111</td>
-						<td>
-							<i class="fa fa-user-alt-slash" title="벤"></i> <i class="fa fa-trash" title="del"></i> 
-						</td>
+						<td>500000</td>
+						<td>충전 포인트</td>
+						<td>2024.01.24</td>
 					</tr>
 					
 				</tbody>
@@ -146,5 +132,4 @@
 	</div>
 	</div>
 	</div>
-
 </body>
