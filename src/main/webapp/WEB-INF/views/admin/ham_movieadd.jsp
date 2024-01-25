@@ -28,7 +28,7 @@
 			<div class="">
 				<div class="col-md-2 cardV" >
 				<div class="card-body" title="중앙쓰"> 
-				<label for="chooseFile" title="사진규격" style="cursor: pointer;">
+				<label for="chooseFile" title="사진규격" >
 				사진(198x288)
 				</label>
  			    </div>
@@ -36,7 +36,7 @@
 	  <input type="file" id="chooseFile" name="chooseFile" accept="image/*" onchange="loadFile(this)"
 	  	style="visibility: hidden;">
 				<div class="col-md-10 si">
-					<input type="text" placeholder="영화 제목" size="100">
+					<input type="text" placeholder="영화 제목" size="100px;">
 					<div>
 					<textarea id="" rows="3" cols="100" placeholder="상세 내용"></textarea>
 					</div>

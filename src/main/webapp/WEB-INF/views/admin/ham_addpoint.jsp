@@ -9,13 +9,133 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/resources/css/notice.css?after" type="text/css">
+    <link rel="stylesheet" href="/resources/css/admin/addpoint.css?after" type="text/css">
     <title>Point</title>
 <script>
 
 </script>
 </head>
 <body>
+<!-- 테스트 모달-생성 -->
+<div class="d-flex justify-content-center">
+		<a id="modal-474701" href="#modal-container-474701" role="button"
+			class="btn modalPoint" data-toggle="modal">테스트 포인트 생성 </a>
+
+		<div class="modal fade" id="modal-container-474701" role="dialog"
+			aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="myModalLabel">테스트 포인트 생성창 입니다</h5>
+						<button type="button" class="close" data-dismiss="modal">
+							<span aria-hidden="true">×</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<input type="text" class="form-control" placeholder="테스트 아이디">
+					</div>
+					<div class="modal-body">
+						<input type="text" class="form-control" placeholder="테스트 닉네임">
+					</div>
+					<div class="modal-body">
+						<input type="text" class="form-control" placeholder="테스트 포인트">
+					</div>
+					<div class="modal-body">
+						<input type="text" class="form-control" placeholder="테스트 포인트종류">
+					</div>
+					<div class="modal-body">
+						<input type="text" class="form-control" placeholder="테스트 포인트 적립일">
+					</div>
+					<div class="modal-footer">
+
+						<button type="button" class="btn btn-primary">생성</button>
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 테스트 모달-수정 -->
+	<div class="d-flex">
+		<a id="modal-474701" href="#modal-container-474702" role="button"
+			class="btn modalPoint" data-toggle="modal">테스트 포인트 수정 </a>
+
+		<div class="modal fade" id="modal-container-474702" role="dialog"
+			aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="myModalLabel">테스트 포인트 수정창 입니다</h5>
+						<button type="button" class="close" data-dismiss="modal">
+							<span aria-hidden="true">×</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<input type="text" class="form-control" placeholder="테스트 아이디">
+					</div>
+					<div class="modal-body">
+						<input type="text" class="form-control" placeholder="테스트 닉네임">
+					</div>
+					<div class="modal-body">
+						<input type="text" class="form-control" placeholder="테스트 포인트">
+					</div>
+					<div class="modal-body">
+						<input type="text" class="form-control" placeholder="테스트 포인트종류">
+					</div>
+					<div class="modal-body">
+						<input type="text" class="form-control" placeholder="테스트 포인트 적립일">
+					</div>
+					<div class="modal-footer">
+
+						<button type="button" class="btn btn-primary">생성</button>
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 테스트 모달-삭제 -->
+	<div class="d-flex">
+		<a id="modal-474701" href="#modal-container-474703" role="button"
+			class="btn modalPoint" data-toggle="modal">테스트 포인트 삭제 </a>
+
+		<div class="modal fade" id="modal-container-474703" role="dialog"
+			aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="myModalLabel">테스트 포인트 삭제창 입니다</h5>
+						<button type="button" class="close" data-dismiss="modal">
+							<span aria-hidden="true">×</span>
+						</button>
+					</div>
+						<div class="modal-body">
+						<input type="text" class="form-control" placeholder="테스트 아이디">
+					</div>
+					<div class="modal-body">
+						<input type="text" class="form-control" placeholder="테스트 닉네임">
+					</div>
+					<div class="modal-body">
+						<input type="text" class="form-control" placeholder="테스트 포인트">
+					</div>
+					<div class="modal-body">
+						<input type="text" class="form-control" placeholder="테스트 포인트종류">
+					</div>
+					<div class="modal-body">
+						<input type="text" class="form-control" placeholder="테스트 포인트 적립일">
+					</div>
+					<div class="modal-footer">
+
+						<button type="button" class="btn btn-primary">생성</button>
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div> <!-- 수정 끝  -->
+	</div> <!-- 입력 끝 -->
+
+
+<!-- 관리자용 포인트 관리 게시판 -->
 <div class="notice d-flex justify-content-center" > 
 		<div class="admin-top" >
 			<h2 class="admin-body" title="" >포인트 관리</h2>

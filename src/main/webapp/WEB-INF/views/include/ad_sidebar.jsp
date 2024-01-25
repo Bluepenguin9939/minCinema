@@ -17,11 +17,13 @@
     <!-- 구글 글리피콘 -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-	
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,500,0,0" />
     <!-- Custom styles for this template-->
     <link href="/resources/css/sb-admin-2.min.css" rel="stylesheet">
 	<!-- 관리자 차트 절대 지우지말기 -->
 	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	<!-- D3 차트 -->
+	<script src="https://d3js.org/d3.v7.min.js"></script>
 </head>
 
 <body id="page-top">
@@ -80,7 +82,7 @@
 			<!-- 고객센터 관리/일반 -->
 			<li class="nav-item">
                 <a class="nav-link" href="/admin/ham_oneonone">
-					<i class="fab fa-product-hunt align-self-center"></i>
+					<i class="fa fa-headset"></i>
                    <span>고객센터 관리</span></a>
             </li>
 			<!-- 이벤트 관리/일반 -->
