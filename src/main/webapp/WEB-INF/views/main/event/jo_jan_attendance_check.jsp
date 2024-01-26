@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="/WEB-INF/views/include/top.jsp" %>
 
-<link rel="stylesheet" href="/resources/css/main/event/jan_attendance_check.css">
+<link rel="stylesheet" href="/resources/css/main/event/jan_attendance_check.css?after">
 
 <script>
 $(function() {
@@ -58,18 +58,32 @@ $(function() {
 			$("#btnAttendance").text("출석 완료");
 		}
 	});
-// 	출석 참여 상태 체크 //
+
+// 	로그인 판별
+	if (mid == "" || mid == null) {
+			$("#btnAttendance").attr("disabled", true);
+	}
 
 // 	출석 체크 하기
-	$("#btnAttendance").click(function() {
-		var url = "/main/event/jan_attendance_check";
-		var sData = {
+	$("#btnAttendance").click(function(e) {
+		e.preventDefault();
+		
+		var checkUrl = "/main/event/jan_attendance_check";
+		var checkSData = {
 				"mid" : mid
 		}
 		
-		$.post(url, sData, function(rData) {
-			console.log(rData)
-			
+		$.ajax({
+			method : "post",
+			url : checkUrl,
+			data : checkSData,
+			success : function(rData) {
+				console.log(rData);
+				if (rData) {
+					alert("출석 완료");
+					self.location = "/main/event/jo_jan_attendance_check";
+				}
+			}
 		});
 	});
 });
@@ -88,7 +102,7 @@ $(function() {
 				<div style="width: 80%; text-align: center; padding: 10px;">
 					<h1>January<sub style="font-size: 20px;">1월</sub></h1>
 					<div style="background-color: #aaaaaa;">
-						<table style="width: 100%;">
+						<table id="callender" style="width: 100%;">
 							<tr style="font-size: 20px; border-bottom: 1px solid #666666;">
 								<th>Sun</th>
 								<th>Mon</th>
@@ -215,7 +229,23 @@ $(function() {
 							<h2><span id="allAttendance">0</span>일</h2>
 							<button type="button" class="btn btn-secondary" id="btnAttendance">출석</button>
 						</div>
-						<div style="">
+						<div style="background-color: #aaaaaa; margin-top: 30px;">
+							<table id="gift-table">
+								<tbody>
+									<tr>
+										<th>10일차</th>
+										<td>5% 할인 쿠폰</td>
+									</tr>
+									<tr>
+										<th>20일차</th>
+										<td>10% 할인 쿠폰</td>
+									</tr>
+									<tr>
+										<th>30일차</th>
+										<td>15% 할인 쿠폰</td>
+									</tr>
+								</tbody>
+							</table>
 						</div> 
 					</div>
 				</div>

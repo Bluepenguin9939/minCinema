@@ -20,11 +20,11 @@ div h3{
 }
 /* // */
 /* 추후에 반응형 작업 해야함 pie차트는 깨짐 현상  */
-#myChart3{
-	width: 50%;
-	height: 50%;
-	margin-left: 250px;
-}
+/* #myChart3{ */
+/* 	width: 50%; */
+/* 	height: 50%; */
+/* 	margin-left: 250px; */
+/* } */
 /* 막대 차트를 제외한 차트들 */
 .mainChart{
 	margin-top: 30px;

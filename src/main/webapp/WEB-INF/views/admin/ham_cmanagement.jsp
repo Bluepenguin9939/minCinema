@@ -17,6 +17,7 @@
 </head>
 <body>
 <!-- 테스트 모달 -->
+	
 	<div>
 		<a id="modal-474701" href="#modal-container-474701" role="button"
 			class="btn" data-toggle="modal">테스트 회원 생성 </a>
@@ -31,8 +32,12 @@
 							<span aria-hidden="true">×</span>
 						</button>
 					</div>
+					<form action="/testMember" method="post">
 					<div class="modal-body">
 						<input type="text" class="form-control" placeholder="테스트 아이디">
+					</div>
+					<div class="modal-body">
+						<input type="password" class="form-control" placeholder="테스트 비밀번호">
 					</div>
 					<div class="modal-body">
 						<input type="text" class="form-control" placeholder="테스트 닉네임">
@@ -41,16 +46,16 @@
 						<input type="text" class="form-control" placeholder="테스트 이름">
 					</div>
 					<div class="modal-body">
-						<input type="text" class="form-control" placeholder="테스트 이메일">
+						<input type="email" class="form-control" placeholder="테스트 이메일">
 					</div>
 					<div class="modal-body">
 						<input type="text" class="form-control" placeholder="테스트 전화번호">
 					</div>
 					<div class="modal-footer">
-
-						<button type="button" class="btn btn-primary">생성</button>
+						<button type="submit" class="btn btn-primary">생성</button>
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
 					</div>
+					</form>
 				</div>
 
 			</div>
