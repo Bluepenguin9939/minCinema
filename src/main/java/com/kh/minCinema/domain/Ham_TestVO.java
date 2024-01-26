@@ -10,8 +10,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class Ham_TestVO {
-
+	private int tmno;
 	private String tmid;
+	private String tmpw;
 	private String tmnick;
 	private String tmname;
 	private String tmemail;

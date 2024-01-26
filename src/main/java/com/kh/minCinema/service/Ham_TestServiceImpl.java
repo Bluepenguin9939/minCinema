@@ -1,5 +1,7 @@
 package com.kh.minCinema.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,8 +15,22 @@ public class Ham_TestServiceImpl implements Ham_TestService {
 	private Ham_TestMapper testMapper;
 
 	@Override
-	public void TestInsert(Ham_TestVO testVO) {
-		testMapper.insertTest(testVO);
+	public int TestInsert(Ham_TestVO testVO) {
+		return testMapper.insertTest(testVO);
 	}
+
+	@Override
+	public List<Ham_TestVO> testMemberList() {
+		List<Ham_TestVO> list  = testMapper.testMemberList();
+		return list;
+	}
+
+	@Override
+	public int testMemberDelete(String tmid) {
+		 
+		return testMapper.testMemberDelete(tmid);
+	}
+	
+
 
 }

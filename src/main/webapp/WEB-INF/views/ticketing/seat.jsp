@@ -60,7 +60,7 @@ body {
 .seatLoc{
 	
 	
-	background-color:#F2F5A9;
+	background-color:#AAAAAA;
 	/*height: 675px; */
 	height: 100%; 
  	width: 70%; 
@@ -68,19 +68,33 @@ body {
    	border-right: 3px solid #dddddd;
 }
 
-.seatLoc > div{
-	
-	/*align-items : center;*/
- 	/*height: 60px; /*높이 800px*/
- 	/*width: 100%; 
-	/*display: flex;
-   /*	justify-content: center; */
-   	
-}
 
 .seatLoc-top{
 	width: 100%;
 	font-size: 22px;
+}
+
+.seatLoc-top >div >div{
+	border: 2px solid #dddddd;
+}
+
+.scroll{
+	overflow: scroll; 
+	overflow-y: hidden;
+}
+
+.scroll::-webkit-scrollbar{
+    width: 15px;
+}
+
+.scroll::-webkit-scrollbar-thumb{
+    background-color: #9b54ba;
+    /* 스크롤바 둥글게 설정    */
+    border-radius: 10px;
+}
+
+.scroll::-webkit-scrollbar-track{
+    background-color: #e4e4f8;
 }
 
 .seatRow{
@@ -145,7 +159,7 @@ body {
 .count{
 	width: 30%;
 	height: 100%; 
-	background-color:#F2F5A9;
+	background-color:#AAAAAA;
 }
 
 .countText{
@@ -155,6 +169,7 @@ body {
 }
 
 .pCount{
+	/*border: 5px solid #dddddd;*/
 	background: red;
 	cursor: pointer;
 }
@@ -163,31 +178,24 @@ body {
 	white-space: nowrap;
 }
 
+span[data-select='noselect'] {
+  background-color: #f2e2cd;
+  color: white;
+}
+
 
 </style>
 <script>
+/*
+ * 
+ date-select: select => 내가 선택한 좌석
+ date-select: unselect => 비어있는 좌석
+ date-select: noselect => 이미 예약된 좌석
+ 
+ */
+
 
 var seatMap = new Map();
-
-function select_offclick(thatSeat , pCount){
-	
-	var seatArray = seatMap.get(thatSeat);
-	
-	$.each(seatArray, function (index, seat) {
-		 	console.log('element', index, seat);
-		  	$("#id-"+seat).css("background-color","white");
-			$("#id-"+seat).css("color","black");
-			$("#id-"+seat).attr("data-select","unselect");
-			
-			var id = "#"+seat;
-			$(id).remove();
-	});
-	
-	$.each(seatArray, function (index, seat) {
-		seatMap.delete(seat);
-	});
-
-}
 
 function mouseHoverOronClick(that , pCount, bgColor, color , method){
 	
@@ -208,19 +216,19 @@ function mouseHoverOronClick(that , pCount, bgColor, color , method){
 		
 		that.css("background-color",bgColor);
 		that.css("color",color);
-		if(method=="on-click" || method=="off-click"){ 
+		if(method=="on-click"){ 
 			that.attr("data-select","select"); 
 			seatArray.push( that.attr("data-seat") );
 		}
 		
 		if(pCount >= 2){
 		
-			if(thatNT_text == "" || thatNT_attr == "select"){
+			if(thatNT_text == "" || thatNT_attr == "select" || thatNT_attr == "noselect"){
 				//console.log("적용테스트");
 					//console.log("끝")
 				thatPV.css("background-color",bgColor);
 				thatPV.css("color",color);
-				if(method=="on-click" || method=="off-click"){
+				if(method=="on-click"){
 						thatPV.attr("data-select","select");
 						seatArray.push( thatPV.attr("data-seat") );
 				}
@@ -229,7 +237,7 @@ function mouseHoverOronClick(that , pCount, bgColor, color , method){
 			else{
 				thatNT.css("background-color",bgColor);
 				thatNT.css("color",color);
-				if(method=="on-click" || method=="off-click"){
+				if(method=="on-click"){
 					thatNT.attr("data-select","select");
 					seatArray.push( thatNT.attr("data-seat") );
 				}
@@ -238,13 +246,13 @@ function mouseHoverOronClick(that , pCount, bgColor, color , method){
 			
 			if(pCount == 3){
 			
-				if(thatNT2_text == "" || thatNT2_attr == "select"){
+				if(thatNT2_text == "" || thatNT2_attr == "select" || thatNT2_attr == "noselect"){
 					//console.log("check1");
-					if(thatNT_text == "" || thatNT_attr=="select"){
+					if(thatNT_text == "" || thatNT_attr=="select" || thatNT_attr == "noselect"){
 							//console.log("check1-2");
 						thatPV2.css("background-color",bgColor);
 						thatPV2.css("color",color);
-						if(method=="on-click" || method=="off-click"){
+						if(method=="on-click"){
 							thatPV2.attr("data-select","select");
 							seatArray.push( thatPV2.attr("data-seat") );
 						}
@@ -253,7 +261,7 @@ function mouseHoverOronClick(that , pCount, bgColor, color , method){
 						//console.log("check1-3");
 						thatPV.css("background-color",bgColor);
 						thatPV.css("color",color);
-						if(method=="on-click" || method=="off-click"){
+						if(method=="on-click"){
 							thatPV.attr("data-select","select");
 							seatArray.push( thatPV.attr("data-seat") );
 						}
@@ -264,11 +272,11 @@ function mouseHoverOronClick(that , pCount, bgColor, color , method){
 					//console.log("check2");	
 						
 						
-					if(thatNT_text=="" || thatNT_attr=="select"){
+					if(thatNT_text=="" || thatNT_attr=="select" || thatNT_attr=="noselect"){
 						//console.log("check2-1");
 						thatPV2.css("background-color",bgColor);
 						thatPV2.css("color",color);
-						if(method=="on-click" || method=="off-click"){
+						if(method=="on-click"){
 							thatPV2.attr("data-select","select");
 							seatArray.push( thatPV2.attr("data-seat") );
 						}
@@ -277,7 +285,7 @@ function mouseHoverOronClick(that , pCount, bgColor, color , method){
 						//console.log("check2-2");
 						thatNT2.css("background-color",bgColor);
 						thatNT2.css("color",color);
-						if(method=="on-click" || method=="off-click"){
+						if(method=="on-click"){
 							thatNT2.attr("data-select","select");
 							seatArray.push( thatNT2.attr("data-seat") );
 						}
@@ -301,7 +309,17 @@ function mouseHoverOronClick(that , pCount, bgColor, color , method){
 }
 	
 $(function(){
+	/*테스트할 임의의예약 좌석들*/
+	$("#id-A02").attr("data-select","noselect");
+	$("#id-B06").attr("data-select","noselect");
+	$("#id-C07").attr("data-select","noselect");
+	$("#id-D08").attr("data-select","noselect");
+	$("#id-E11").attr("data-select","noselect");
 	
+	var bookSeat = 5;
+	/////////
+	var currentSeat = 72 - bookSeat;
+	$(".currentSeat").text(currentSeat);
 	
 	/*1,2,3인 선택*/
 	$(".pCount").click(function(){
@@ -351,8 +369,10 @@ $(function(){
 				break;
 			case "2":
 				
-				if( !( (thatNT.text() == "" || thatNT.attr("data-select") == "select") && (thatPV.text() == "" || thatPV.attr("data-select") == "select") ) )
-				{mouseHoverOronClick(that,pCount,"black","white",null);}
+				if( !( (thatNT.text() == "" || thatNT.attr("data-select") == "select" || thatNT.attr("data-select") == "noselect") 
+						&& 
+						(thatPV.text() == "" || thatPV.attr("data-select") == "select" || thatPV.attr("data-select") == "select") 
+					) ){mouseHoverOronClick(that,pCount,"black","white",null);}
 				
 				break;
 				
@@ -360,11 +380,11 @@ $(function(){
 				if(!(that.text() == "11" || that.text() == "12") ){
 					if(
 						 !(	
-							((thatNT.text() == "" || thatNT.attr("data-select") == "select") && (thatPV.text() == "" || thatPV.attr("data-select") == "select") ) 
+							((thatNT.text() == "" || thatNT.attr("data-select") == "select" || thatNT.attr("data-select") == "noselect") && (thatPV.text() == "" || thatPV.attr("data-select") == "select" || thatPV.attr("data-select") == "noselect") ) 
 							|| 
-						  	((thatNT.text() == "" || thatNT.attr("data-select") == "select") && (thatPV2.text() == "" || thatPV2.attr("data-select") == "select") )
+						  	((thatNT.text() == "" || thatNT.attr("data-select") == "select" || thatNT.attr("data-select") == "noselect") && (thatPV2.text() == "" || thatPV2.attr("data-select") == "select" || thatPV2.attr("data-select") == "noselect") )
 							||
-							((thatNT2.text() == "" || thatNT2.attr("data-select") == "select") && (thatPV.text() == "" || thatPV.attr("data-select") == "select") )
+							((thatNT2.text() == "" || thatNT2.attr("data-select") == "select" || thatNT2.attr("data-select") == "noselect") && (thatPV.text() == "" || thatPV.attr("data-select") == "select" || thatPV.attr("data-select") == "noselect") )
 						 )
 						){
 						mouseHoverOronClick(that,pCount,"black","white",null);
@@ -398,26 +418,26 @@ $(function(){
 				break;
 				
 			case "2":
-				if(!( (thatNT.text() == "" || thatNT.attr("data-select") == "select") && (thatPV.text() == "" || thatPV.attr("data-select") == "select") ) )
-				{
-					mouseHoverOronClick(that,pCount,"white","black",null);
-				}
+				if( !( (thatNT.text() == "" || thatNT.attr("data-select") == "select" || thatNT.attr("data-select") == "noselect") 
+						&& 
+						(thatPV.text() == "" || thatPV.attr("data-select") == "select" || thatPV.attr("data-select") == "select") 
+					) ){ mouseHoverOronClick(that,pCount,"white","black",null); }
+				
 				break;
 				
 			case "3":
-				if(!(that.text() == "11" || that.text() == "12")){
+				if(!(that.text() == "11" || that.text() == "12") ){
 					if(
-						!(	
-							((thatNT.text() == "" || thatNT.attr("data-select")== "select") && (thatPV.text() == "" || thatPV.attr("data-select")== "select") ) 
+						 !(	
+							((thatNT.text() == "" || thatNT.attr("data-select") == "select" || thatNT.attr("data-select") == "noselect") && (thatPV.text() == "" || thatPV.attr("data-select") == "select" || thatPV.attr("data-select") == "noselect") ) 
 							|| 
-							((thatNT.text() == "" || thatNT.attr("data-select")== "select") && (thatPV2.text() == "" || thatPV2.attr("data-select")== "select") )
+						  	((thatNT.text() == "" || thatNT.attr("data-select") == "select" || thatNT.attr("data-select") == "noselect") && (thatPV2.text() == "" || thatPV2.attr("data-select") == "select" || thatPV2.attr("data-select") == "noselect") )
 							||
-							((thatNT2.text() == "" || thatNT2.attr("data-select")== "select") && (thatPV.text() == "" || thatPV.attr("data-select")== "select") )
+							((thatNT2.text() == "" || thatNT2.attr("data-select") == "select" || thatNT2.attr("data-select") == "noselect") && (thatPV.text() == "" || thatPV.attr("data-select") == "select" || thatPV.attr("data-select") == "noselect") )
 						 )
-					){
+						){
 						mouseHoverOronClick(that,pCount,"white","black",null);
 					}
-
 				}
 				break;
 
@@ -445,31 +465,57 @@ $(function(){
 		var thatPV = that.prev();
 		var thatPV2 = that.prev().prev();
 		
+		var ticketCost = parseInt($("#ticketCost").text());
+		//console.log("ticketCost:",ticketCost);
+		
 		if(select=="unselect"){
+			var currentSeat = parseInt( $(".currentSeat").text() );
+			currentSeat = currentSeat - parseInt(pCount);
+			$(".currentSeat").text(currentSeat);
+			
+			var age;
+			
 			switch (pCount) {
 			case "1":
 				var seatArray = mouseHoverOronClick(that,pCount,"black","white","on-click");
 				var appendId;
-				if(ageCheck=="성인"){appendId = "#adult";}
-				else if(ageCheck="청소년"){appendId = "#teen"; }
+				if(ageCheck=="성인"){
+					ticketCost = ticketCost + 10000*parseInt(pCount);
+					age = "adult";
+					appendId = "#"+age;
+				}
+				else if(ageCheck="청소년"){
+					ticketCost = ticketCost + 8000*parseInt(pCount);
+					age = "teen";
+					appendId = "#"+age;
+				}
 			
 				$.each(seatArray, function (index, seat) {
-					$("<div id="+seat+" class='seatMember pl-2 d-flex flex-nowrap'>"+seat+"("+ageCheck+")</div>").appendTo(appendId);
+					$("<div id="+seat+" data-age='"+age+"' class='seatMember pl-2 d-flex flex-nowrap'>"+seat+"("+ageCheck+")</div>").appendTo(appendId);
 				});
+				
 				
 				break;
 			case "2":
-				if(!( (thatNT.text() == "" || thatNT.attr("data-select") == "select") && (thatPV.text() == "" || thatPV.attr("data-select") == "select") ) )
+				if(!( (thatNT.text() == "" || thatNT.attr("data-select") == "select" || thatNT.attr("data-select") == "noselect") && (thatPV.text() == "" || thatPV.attr("data-select") == "select" || thatPV.attr("data-select") == "noselect") ) )
 				{
 					
 					var seatArray = mouseHoverOronClick(that ,pCount, "black", "white","on-click");
 					
 					var appendId;
-					if(ageCheck=="성인"){appendId = "#adult";}
-					else if(ageCheck="청소년"){appendId = "#teen"; }
+					if(ageCheck=="성인"){
+						ticketCost = ticketCost + 10000*parseInt(pCount);
+						age = "adult";
+						appendId = "#"+age;
+					}
+					else if(ageCheck="청소년"){
+						ticketCost = ticketCost + 8000*parseInt(pCount);
+						age = "teen";
+						appendId = "#"+age;
+					}
 				
 					$.each(seatArray, function (index, seat) {
-						$("<div id="+seat+" class='seatMember pl-2 d-flex flex-nowrap'>"+seat+"("+ageCheck+")</div>").appendTo(appendId);
+						$("<div id="+seat+" data-age='"+age+"' class='seatMember pl-2 d-flex flex-nowrap'>"+seat+"("+ageCheck+")</div>").appendTo(appendId);
 					});
 				}
 				break;
@@ -478,21 +524,29 @@ $(function(){
 				if(!(that.text() == "11" || that.text() == "12")){
 					if(
 						!(	
-							((thatNT.text() == "" || thatNT.attr("data-select")== "select") && (thatPV.text() == "" || thatPV.attr("data-select")== "select") ) 
+							((thatNT.text() == "" || thatNT.attr("data-select")== "select" || thatNT.attr("data-select")== "noselect") && (thatPV.text() == "" || thatPV.attr("data-select")== "select" || thatPV.attr("data-select")== "noselect") ) 
 							|| 
-							((thatNT.text() == "" || thatNT.attr("data-select")== "select") && (thatPV2.text() == "" || thatPV2.attr("data-select")== "select") )
+							((thatNT.text() == "" || thatNT.attr("data-select")== "select" || thatNT.attr("data-select")== "noselect") && (thatPV2.text() == "" || thatPV2.attr("data-select")== "select" || thatPV2.attr("data-select")== "noselect") )
 							||
-							((thatNT2.text() == "" || thatNT2.attr("data-select")== "select") && (thatPV.text() == "" || thatPV.attr("data-select")== "select") )
+							((thatNT2.text() == "" || thatNT2.attr("data-select")== "select" || thatNT2.attr("data-select")== "noselect") && (thatPV.text() == "" || thatPV.attr("data-select")== "select" || thatPV.attr("data-select")== "noselect") )
 						 )
 					){
 						var seatArray = mouseHoverOronClick(that ,pCount, "black", "white","on-click");
 					
 						var appendId;
-						if(ageCheck=="성인"){appendId = "#adult";}
-						else if(ageCheck="청소년"){appendId = "#teen"; }
+						if(ageCheck=="성인"){
+							ticketCost = ticketCost + 10000*parseInt(pCount);
+							age = "adult";
+							appendId = "#"+age;
+						}
+						else if(ageCheck="청소년"){
+							ticketCost = ticketCost + 8000*parseInt(pCount);
+							age = "teen";
+							appendId = "#"+age;
+						}
 					
 						$.each(seatArray, function (index, seat) {
-							$("<div id="+seat+" class='seatMember pl-2 d-flex flex-nowrap'>"+seat+"("+ageCheck+")</div>").appendTo(appendId);
+							$("<div id="+seat+" data-age='"+age+"' class='seatMember pl-2 d-flex flex-nowrap'>"+seat+"("+ageCheck+")</div>").appendTo(appendId);
 						});
 					}
 
@@ -502,18 +556,60 @@ $(function(){
 			default:
 				break;
 			}
-	
+			
+			$("#ticketCost").text(ticketCost);
+			$("#subCost").text(ticketCost);
 		}
 		/*선택취소 클릭*/
 		else if(select=="select"){
 			
 			var thatSeat = that.attr("data-seat");
-			select_offclick(thatSeat , pCount);
+			var seatArray = seatMap.get(thatSeat);
+			var age;
+			
+			var currentSeat = parseInt( $(".currentSeat").text() );
+			currentSeat = currentSeat + parseInt(pCount);
+			$(".currentSeat").text(currentSeat);
+			
+			$.each(seatArray, function (index, seat) { /*ㅇdiv 정리*/
+				 	//console.log('element', index, seat);
+				  	$("#id-"+seat).css("background-color","white");
+					$("#id-"+seat).css("color","black");
+					$("#id-"+seat).attr("data-select","unselect");
+					
+					var id = "#"+seat;
+					age = $(id).attr("data-age");
+					$(id).remove();
+			});
+			console.log(ticketCost);
+			//$("#ticketCost").text(ticketCost);
+			if(age == "adult"){ ticketCost = ticketCost - 10000 * seatArray.length }
+			else if(age == "teen"){ ticketCost = ticketCost - 8000 * seatArray.length }
+			$("#ticketCost").text(ticketCost);
+			
+			$.each(seatArray, function (index, seat) { /*map 정리*/
+				seatMap.delete(seat);
+			});
 			
 		}
+		$("#subCost").text("-"+ticketCost+"원");
+		var afterCost = $("")
+		var point = parseInt( $("#myPoint").text() );
+		var result = point - ticketCost;
 		
-
-	});/////////// seat-click
+		$("#resultCost").text(result);
+		
+	});//////////////////////////////// seat-click
+	
+	
+	$(".payButton").click(function() {
+		console.log("빼꼼?")
+		
+		var ticketList = $(".seatMember").text();
+		console.log("ticketList:",ticketList);
+		
+	});
+	
 	
 });
 	
@@ -528,7 +624,7 @@ $(function(){
 	        	<div class="seatLoc" >
 	        		<div class="seatLoc-top bg-light rounded">
 	        			
-	        			<div style="">
+	        			<div style="background-color: #AAAAAA;">
 	        				<div class="bg-danger text-center">이용자 선택</div>
 	        				
 	        				<div>
@@ -536,12 +632,11 @@ $(function(){
 	        					<span class="pCount rounded-circle m-2" data-select="unselect" data-pCount="2">2인</span>
 	        					<span class="pCount rounded-circle m-2" data-select="unselect" data-pCount="3">3인</span>
 	        					<input type="hidden" id="hid-pCount" value="1">
-	        					<%-- 
-		        				<input type="radio" name="peopleCount" value="1" checked>1인 
-		        				<input type="radio" name="peopleCount" value="2" checked>2인 
-		        				<input type="radio" name="peopleCount" value="3" checked>3인 --%>
+	        					<span>성인 : 10000원</span>
+	        					<span>-</span>
+	        					<span>청소년 : 8000원</span>
 	        				</div>
-	        				<div style="overflow: scroll; overflow-y: hidden;">
+	        				<div class="scroll">
 		        				<div class="p-1 d-flex flex-nowrap" id="adult">
 		        					<label class="text-nowrap" style="cursor: pointer">
 		        						<input type="radio" name="age" value="성인" checked>성인:
@@ -596,30 +691,29 @@ $(function(){
 		        	<div class="rounded countText bg-primary">좌석 예매 결제</div>
 		        	
 		        	<ul style="font-size: 24px">
-		        		<li>영화 : 토이스토리4</li>
-		        		<li>날짜 : 2024.02.01</li>
-		        		<li>시간 : 11:00(am)</li>
+		        		<li>영화 : ${je_reservationVO.movieTitle}</li>
+		        		<li>날짜 : ${je_reservationVO.movieDate}</li>
+		        		<li>시간 : ${je_reservationVO.movieTime}</li>
 		        	</ul>
 		        	
 		        	
-		        	
 		        	<div style="width: 100%">=========================</div>
-		        	<div class="rounded text-center" style="width: 100%; background-color: silver;">
-		        		<div class="rounded" style="background-color: white;font-size: 20px">결제할 금액</div>
-		        		<p style="font-size: 20px">24000원</p>
-		        	</div>
-		        	
-		        	<div class="rounded text-center" style="width: 100%; background-color: silver;">
+		        	<div class="rounded text-center" style="width: 100%; background-color: #9dff71;">
 		        		<div class="rounded" style="background-color: white;font-size: 20px">포인트 현황</div>
-		        		<p style="font-size: 20px">18000원</p>
+		        		<p id="myPoint" style="font-size: 28px">24000 포인트</p>
 		        	</div>
 		        	
-		        	<div class="rounded text-center" style="width: 100%; background-color: silver;">
+		        	<div class="rounded text-center" style="width: 100%; background-color: #9dff71;">
+		        		<div class="rounded" style="background-color: white;font-size: 20px">결재할 금액</div>
+		        		<p id="ticketCost" style="font-size: 28px">0</p>
+		        	</div>
+		        	
+		        	<div class="rounded text-center" style="width: 100%; background-color: #9dff71;">
 		        		<div class="rounded" style="background-color: white;font-size: 20px">결제내역</div>
-		        		<div class="text-right" style="font-size: 20px">24000원</div>
-		        		<div class="text-right" style="font-size: 20px">-  18000원</div>
-		        		<div class="text-right" style="font-size: 20px">==============</div>
-		        		<div class="text-right" style="font-size: 20px">6000원</div>
+		        		<div class="text-right" style="font-size: 28px">24000원</div>
+		        		<div id="subCost" class="text-right" style="font-size: 28px">-18000원</div>
+		        		<div class="text-right" style="font-size: 20px">====================</div>
+		        		<div id="resultCost" class="text-right" style="font-size: 28px">6000원</div>
 		        	</div>
 		        </div><!-- count -->
 		        
@@ -627,15 +721,16 @@ $(function(){
 	        
 			<div style="height: 10%; width: 100%; display: flex; background-color:#F7FFF9;">
 				<div style="flex-grow: 1;">
-					<div style="font-size: 50px; text-align: center;">남은좌석 ??/72석</div>
+					<div style="font-size: 50px; text-align: center;">남은좌석 <span class="currentSeat">??</span>/72석</div>
 				</div>
-			
-				<button class="btn btn-success" 
-						style="font-size:40px;width: 280px;">
-					<span style="font-size:36px;" class="material-symbols-outlined">
-							credit_card
-					</span>결제하기
-				</button>
+				<form>
+					<button class="payButton btn btn-success"  type="button"
+							style="font-size:40px;width: 280px; height: 100%">
+						<span style="font-size:36px;" class="material-symbols-outlined">
+								credit_card
+						</span>결제하기
+					</button>
+				</form>
 			</div>
 		</div>
 	</div>

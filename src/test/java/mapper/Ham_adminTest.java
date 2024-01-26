@@ -28,12 +28,22 @@ public class Ham_adminTest {
 	public void testMember() {
 		Ham_TestVO testVO = Ham_TestVO.builder()
 				.tmid("ss")
+				.tmpw("22")
 				.tmnick("sss")
 				.tmname("ssss")
 				.tmemail("sss@na.com")
 				.tmtel("010-2222-2222")
 				.build();
 		ham_TestMapper.insertTest(testVO);
+	}
+	
+	@Test
+	public void testList() {
+		ham_TestMapper.testMemberList();
+	}
+	@Test
+	public void testDelete() {
+		ham_TestMapper.testMemberDelete("ss");
 	}
 	
 }
