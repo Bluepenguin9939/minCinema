@@ -1,8 +1,15 @@
 package com.kh.minCinema.mapper;
 
+import java.util.List;
+
 import com.kh.minCinema.domain.Ham_TestVO;
 
 public interface Ham_TestMapper {
 
-	public void insertTest(Ham_TestVO testVO);
+	public int insertTest(Ham_TestVO testVO);
+	
+	public List<Ham_TestVO> testMemberList();
+	
+	public int testMemberDelete(String tmid);
+	
 }

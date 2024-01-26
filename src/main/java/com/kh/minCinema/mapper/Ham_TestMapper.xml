@@ -5,9 +5,16 @@
 <mapper namespace="com.kh.minCinema.mapper.Ham_TestMapper">
 	<!-- 테스트 멤버 생성 -->
 	<insert id="insertTest">
-		insert into TEST_MEMBER(tmno,tmid,tmnick,tmname,tmemail,tmtel)
-		values (seq_tmno.NEXTVAL,#{tmid},#{tmnick},#{tmname},#{tmemail},#{tmtel})
+		insert into TEST_MEMBER(tmno,tmid,tmpw,tmnick,tmname,tmemail,tmtel)
+		values (seq_tmno.NEXTVAL,#{tmid},#{tmpw},#{tmnick},#{tmname},#{tmemail},#{tmtel})
 	</insert>
-
-	
+	<!-- 테스트 멤버 목록 -->
+	<select id="testMemberList" resultType="com.kh.minCinema.domain.Ham_TestVO">
+		select * from TEST_MEMBER
+	</select>
+	<!-- 테스트 멤버 삭제 -->
+	<delete id="testMemberDelete">
+		delete from TEST_MEMBER
+		where tmid = #{tmid}
+	</delete>
 </mapper>

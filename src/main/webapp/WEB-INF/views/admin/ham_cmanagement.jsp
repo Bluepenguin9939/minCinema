@@ -11,7 +11,21 @@
       rel="stylesheet">
 <!-- <meta name="viewport" content="width=device-width,initial-scale=1.0"> -->
 <script>
-
+$(function() {
+	$(".venMember").click(function(e) {
+// 		e.preventeDefault();
+		var that = $(this);
+		var x = that.attr("data-tmid");
+		
+		console.log("후",x);
+		console.log("댓댓댓",that);
+		
+		var url = "";
+		
+		
+	})
+	
+});
 </script>
 
 </head>
@@ -32,24 +46,24 @@
 							<span aria-hidden="true">×</span>
 						</button>
 					</div>
-					<form action="/testMember" method="post">
+					<form action="/admin/testMember" method="post">
 					<div class="modal-body">
-						<input type="text" class="form-control" placeholder="테스트 아이디">
+						<input type="text" name="tmid" class="form-control" placeholder="테스트 아이디">
 					</div>
 					<div class="modal-body">
-						<input type="password" class="form-control" placeholder="테스트 비밀번호">
+						<input type="password" name="tmpw" class="form-control" placeholder="테스트 비밀번호">
 					</div>
 					<div class="modal-body">
-						<input type="text" class="form-control" placeholder="테스트 닉네임">
+						<input type="text" name="tmnick" class="form-control" placeholder="테스트 닉네임">
 					</div>
 					<div class="modal-body">
-						<input type="text" class="form-control" placeholder="테스트 이름">
+						<input type="text" name="tmname" class="form-control" placeholder="테스트 이름">
 					</div>
 					<div class="modal-body">
-						<input type="email" class="form-control" placeholder="테스트 이메일">
+						<input type="email" name="tmemail" class="form-control" placeholder="테스트 이메일">
 					</div>
 					<div class="modal-body">
-						<input type="text" class="form-control" placeholder="테스트 전화번호">
+						<input type="text" name="tmtel" class="form-control" placeholder="테스트 전화번호">
 					</div>
 					<div class="modal-footer">
 						<button type="submit" class="btn btn-primary">생성</button>
@@ -69,6 +83,7 @@
 			<h2 class="admin-body" title="" >회원 관리</h2>
 			<div class="search">
             <div class="search-field">
+            <form action=""></form>
 					<select name="target" title="검색선택">
 						<option value="">전체</option>
 						<option value="title">아이디</option>
@@ -85,6 +100,7 @@
 			<table class="table table-hover">
 				<thead>
 				<!-- 관리자용과 게시판 공용 사용하되 이름(컬럼명은 변경해야함)  -->
+			
 					<tr>
 						<th>#</th>
 						<th>아이디</th> <!--  -->
@@ -97,52 +113,21 @@
 				</thead>
 				<!-- 임시 -->
 				<tbody>
-				
+				<c:forEach var="vo" items="${list}">
+			
 					<tr>
-						<td>1</td>
-						<td>apple</td>
-						<td>황금올리브</td>
-						<td>감감감</td>
-						<td>apple@naver.com</td>
-						<td>010-1111-1111</td>
+						<td>${vo.tmno}</td>
+						<td>${vo.tmid}</td>
+						<td>${vo.tmnick}</td>
+						<td>${vo.tmname}</td>
+						<td>${vo.tmemail}</td>
+						<td>${vo.tmtel}</td>
 						<td>
-							<i class="fa fa-user-alt-slash" title="ven"></i> <i class="fa fa-trash" title="del"></i> 
+							<a href="#" class="venMember" data-tmid="${vo.tmid}"><i class="fa fa-user-alt-slash" title="ven" ></i></a> 
+							<a href="#" class="deleteMember"><i class="fa fa-trash" title="del"></i></a>
 						</td>
 					</tr>
-					<tr>
-						<td>1</td>
-						<td>apple</td>
-						<td>황금올리브</td>
-						<td>감감감</td>
-						<td>apple@naver.com</td>
-						<td>010-1111-1111</td>
-						<td>
-							<i class="fa fa-user-alt-slash" title="ven"></i> <i class="fa fa-trash" title="del"></i> 
-						</td>
-					</tr>
-					<tr>
-						<td>1</td>
-						<td>apple</td>
-						<td>황금올리브</td>
-						<td>감감감</td>
-						<td>apple@naver.com</td>
-						<td>010-1111-1111</td>
-						<td>
-							<i class="fa fa-user-alt-slash" title="ven"></i> <i class="fa fa-trash" title="del"></i> 
-						</td>
-					</tr>
-					<tr>
-						<td>1</td>
-						<td>apple</td>
-						<td>황금올리브</td>
-						<td>감감감</td>
-						<td>apple@naver.com</td>
-						<td>010-1111-1111</td>
-						<td>
-							<i class="fa fa-user-alt-slash" title="ven"></i> <i class="fa fa-trash" title="del"></i> 
-						</td>
-					</tr>
-					
+				</c:forEach>
 				</tbody>
 			</table>	
 		
