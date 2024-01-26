@@ -67,7 +67,7 @@
             </li>
             <!-- 영화 추가 -->
             <li class="nav-item">
-                <a class="nav-link" href="/admin/ham_movieadd">
+                <a class="nav-link" href="/admin/ham_addmovie">
                     <span class="material-symbols-outlined">movie_info</span>
                     <span>영화 관리</span></a>
             </li>
