@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="/WEB-INF/views/include/top.jsp" %>
 
-<link rel="stylesheet" href="/resources/css/main/event/jan_attendance_check.css">
+<link rel="stylesheet" href="/resources/css/main/event/jan_attendance_check.css?after">
 
 <script>
 $(function() {
@@ -26,7 +26,7 @@ $(function() {
 	var curDate = today_year + "/" + today_month + "/" + today_date; 
 	console.log(curDate);
 	
-	var url = "/main/event/jan_attendance_check";
+	var url = "/main/event/jan_attendance_status";
 	var sData = {
 			"mid" : mid,
 			"curDate" : curDate
@@ -34,16 +34,55 @@ $(function() {
 	
 	$.post(url, sData, function(rData) {
 		console.log("attendance : ", rData);
+		
+		var checkAttendance = rData.checkAttendance;
+		console.log("checkAttendance : ", checkAttendance);
+		var attendanceList = rData.attendanceList;
+		console.log("attendanceList : ", attendanceList);
+		
 		var cal_date = $(".attendance_td");
-		console.log("today_date :", today_date);
-		cal_date.each(function() {
-			var date = $(this).attr("data-date");
-			console.log("date :",date);
-			if (rData == "Y" && today_date == date) {
-				console.log("true");
-				$(this).find("h1").remove();
-				var attendance_image = "<img src='/resources/img/event/check_penguin.png' alt='출석체크' width='87' height='98'>";
-				$(this).append(attendance_image);
+		for (var v = 0; v < attendanceList.length; v++) {
+			cal_date.each(function() {
+				var date = $(this).attr("data-date");
+				if (attendanceList[v] == date) {
+					$(this).find("h1").remove();
+					var attendance_image = "<img src='/resources/img/event/check_penguin.png' alt='출석체크' width='87' height='98'>";
+					$(this).append(attendance_image);
+					$("#allAttendance").text(attendanceList.length);
+				}
+			});
+		}
+		
+		if (checkAttendance == "Y") {
+			$("#btnAttendance").attr("disabled", true);
+			$("#btnAttendance").text("출석 완료");
+		}
+	});
+
+// 	로그인 판별
+	if (mid == "" || mid == null) {
+			$("#btnAttendance").attr("disabled", true);
+	}
+
+// 	출석 체크 하기
+	$("#btnAttendance").click(function(e) {
+		e.preventDefault();
+		
+		var checkUrl = "/main/event/jan_attendance_check";
+		var checkSData = {
+				"mid" : mid
+		}
+		
+		$.ajax({
+			method : "post",
+			url : checkUrl,
+			data : checkSData,
+			success : function(rData) {
+				console.log(rData);
+				if (rData) {
+					alert("출석 완료");
+					self.location = "/main/event/jo_jan_attendance_check";
+				}
 			}
 		});
 	});
@@ -63,7 +102,7 @@ $(function() {
 				<div style="width: 80%; text-align: center; padding: 10px;">
 					<h1>January<sub style="font-size: 20px;">1월</sub></h1>
 					<div style="background-color: #aaaaaa;">
-						<table style="width: 100%;">
+						<table id="callender" style="width: 100%;">
 							<tr style="font-size: 20px; border-bottom: 1px solid #666666;">
 								<th>Sun</th>
 								<th>Mon</th>
@@ -187,10 +226,26 @@ $(function() {
 						<div style="background-color: #aaaaaa; text-align: center; width: 100%;">
 							<h4>현재 출석일</h4>
 							<hr>
-							<h2>0일</h2>
-							<button type="button" class="btn btn-dark" id="btnAttendance">출석</button>
+							<h2><span id="allAttendance">0</span>일</h2>
+							<button type="button" class="btn btn-secondary" id="btnAttendance">출석</button>
 						</div>
-						<div style="">
+						<div style="background-color: #aaaaaa; margin-top: 30px;">
+							<table id="gift-table">
+								<tbody>
+									<tr>
+										<th>10일차</th>
+										<td>5% 할인 쿠폰</td>
+									</tr>
+									<tr>
+										<th>20일차</th>
+										<td>10% 할인 쿠폰</td>
+									</tr>
+									<tr>
+										<th>30일차</th>
+										<td>15% 할인 쿠폰</td>
+									</tr>
+								</tbody>
+							</table>
 						</div> 
 					</div>
 				</div>
