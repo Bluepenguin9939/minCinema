@@ -37,11 +37,11 @@ public class Ham_AdminController {
 	public void movieadd() {
 		
 	}
-	@PostMapping("/addMovie")
-	public void addMovie(MultipartFile[] uploadFile) {
-		
-		log.info("업로드 파일:"+uploadFile);
-	}
+//	@PostMapping("/addMovie")
+//	public void addMovie(MultipartFile[] uploadFile) {
+//		
+//		log.info("업로드 파일:"+uploadFile);
+//	}
 	@GetMapping("/ham_addpoint")
 	public void addpoint() {
 		

@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.kh.minCinema.domain.Jo_MovieVO;
 import com.kh.minCinema.service.Jo_MovieService;
 
 @Controller
@@ -15,7 +17,9 @@ public class Jo_AdminController {
 	private Jo_MovieService movieService;
 	
 	@PostMapping("/addMovie")
-	public void addMovie() {
-		
+	@ResponseBody
+	public String addMovie(Jo_MovieVO movieVO) {
+		boolean result = movieService.addMovie(movieVO);
+		return String.valueOf(result);
 	}
 }

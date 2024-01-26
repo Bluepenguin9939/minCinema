@@ -11,35 +11,6 @@ $(function() {
 	$(".slide-movie-image").click(function() {
 		location.href="/main/heo_details";
 	});
-	
-// 	영화 리스트 가져오기
-	var key = "93e13fb8a551cb3daf41b1d892d75166"
-	var movieListURL = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchWeeklyBoxOfficeList.json";
-	var movieListData = {
-			"key" : key,
-			"targetDt" : "20130301",
-			"multiMovieYn" : "N"
-	}
-	
-	$.get(movieListURL, movieListData, function(rData) {
-		console.log(rData.boxOfficeResult.weeklyBoxOfficeList);
-		for (var v = 0; v < rData.boxOfficeResult.weeklyBoxOfficeList.length; v++) {
-			var movieList = rData.boxOfficeResult.weeklyBoxOfficeList[v];
-			console.log(movieList);
-			
-			var movieCd = rData.boxOfficeResult.weeklyBoxOfficeList[v].movieCd;
-			console.log(movieCd);
-			
-			var movieDetailURL = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieInfo.json";
-			var movieDetailData = {
-					"key" : key,
-					"movieCd" : movieCd
-			}
-			$.get(movieDetailURL, movieDetailData, function(detailrData) {
-				console.log(detailrData);
-			});
-		}
-	});
 });
 </script>
 

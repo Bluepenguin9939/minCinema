@@ -1,8 +1,6 @@
 @charset "UTF-8";
 .admin-top{
-width: 80%;
-height: auto;
-margin-top: 200px;
+	width: 80%;
 }
 .admin-body{
 	font-size: 50px;

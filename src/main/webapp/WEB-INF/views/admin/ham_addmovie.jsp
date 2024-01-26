@@ -8,7 +8,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="stylesheet" href="/resources/css/admin/addmovie.css?after" type="text/css">
+    <link rel="stylesheet" href="/resources/css/admin/addmovie.css" type="text/css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Image Upload Example</title>
 
@@ -59,11 +59,25 @@
 </head>
 
 <body>
-	<div class="notice d-flex justify-content-center" > 
-		<div class="admin-top" >
-			<h2 class="admin-body" title="" >영화 추가</h2>
+	<div class="notice d-flex justify-content-center" style="height: 280px;"> 
+		<div style="width: 80%; display: flex; justify-content: space-between;"
+			class="flex-column">
+			<div class="align-self-start">
+				<button type="button" id="btnGetMovie"class="btn btn-sm btn-secondary">
+					지난주 박스오피스 TOP10 가져오기
+				</button>
+			</div>
+			<div class="align-self-start">
+				<input type="text" id="getMovieData" placeholder="영화코드">
+				<button type="button" id="btnAddMovie" class="btn btn-sm btn-secondary">
+					영화 가져오기
+				</button>
+			</div>
+			<div class="admin-top">
+				<h2 class="admin-body" title="" >영화 추가</h2>
+			</div>
+		</div>
 	</div>
-</div>
 <!--  		칸나누기 -->
  <form action="" method=""  enctype="multipart/form-data">
 	<div class="col-md-12" style="margin-left: 10%;" >
@@ -76,15 +90,18 @@
 	  				<input type="file" id="fileupload" name="image" accept="image/*">
   				</div>
 				<div class="col-md-10 si">
-					<input type="text" placeholder="영화 제목" size="100px;">
+					<input type="text" id="movieTitle" placeholder="영화 제목" size="100px;">
 					<div>
-					<textarea id="" rows="3" cols="100" placeholder="상세 내용"></textarea>
+					<textarea id="moviePlot" rows="3" cols="100" placeholder="상세 내용"></textarea>
 					</div>
 					<div class="quarter">
-					<input class="" type="text" placeholder="개봉일" >
-					<input class="movieText" type="text" placeholder="연령" >
-					<input class="movieText" type="text" placeholder="시간" >
-					<input class="movieText" type="text" placeholder="장르" >
+					<input class="" id="movieReleaseDate" type="text" placeholder="개봉일" >
+					<input class="movieText" id="movieRating" type="text" placeholder="연령" >
+					<input class="movieText" id="movieRuntime" type="text" placeholder="시간" >
+					<input class="movieText" id="movieGenre" type="text" placeholder="장르" >
+					<input class="movieText" id="movieCd" type="text" placeholder="영화 코드" > 
+					<input class="movieText" id="movieDirector" type="text" placeholder="영화 감독" > 
+					<input class="movieText" id="movieActor" type="text" placeholder="영화 배우" > 
 					</div>
 					<div>
 						<i class="fa fa-video"></i><label for="chooseVideo" style="cursor: pointer;">동영상 업로드</label>
@@ -112,6 +129,104 @@ $(function(){
 		console.log(that);
 		that.show();
 	})
+	
+// 	영화 리스트 가져오기
+	var key = "93e13fb8a551cb3daf41b1d892d75166" // 공용 키
+	
+	$("#btnGetMovie").click(function() {
+		var today = new Date();
+		console.log(today);
+		var day = today.getDay();
+		console.log("day :", day);
+		
+		var year = today.getFullYear();
+		var month = today.getMonth() + 1;
+		if (month < 10) {
+			month = "0" + month;
+		}
+		var date = today.getDate();
+		if (date < 10) {
+			date = "0" + date;
+		}
+		
+		if (day != 0) {
+			if (date <= day) {
+				month--;
+				if (month == 0) {
+					year--;
+					month = 12;
+				}
+				var lmDate = new Date(year, month, 0).getDate();
+				console.log("lmDate :", lmDate);
+				date = lmDate + parseInt(date) - day;
+			} else {
+				date = date - day;
+			}
+		}
+		var targetDt = String(year) + month + date;
+		
+		var movieListURL = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchWeeklyBoxOfficeList.json";
+		var movieListData = {
+				"key" : key,
+				"weekGb" : "0",
+				"targetDt" : targetDt,
+				"multiMovieYn" : "N"
+		}
+		
+		$.get(movieListURL, movieListData, function(rData) {
+			console.log(rData.boxOfficeResult.weeklyBoxOfficeList);
+		});
+	});
+
+// 	영화 코드로 값 가져오기
+	$("#btnAddMovie").click(function() {
+		var getMovieData = $("#getMovieData").val();
+		console.log("movieCd :",getMovieData);
+		
+		var movieDetailURL = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieInfo.json";
+		var movieDetailData = {
+				"key" : key,
+				"movieCd" : getMovieData
+		}
+		$.get(movieDetailURL, movieDetailData, function(detailrData) {
+			var movieInfo = detailrData.movieInfoResult.movieInfo;
+			console.log("movieInfo :", movieInfo);
+			var movieGenre = "";
+			var movieDirector = "";
+			var movieActor = "";
+			
+			$("#movieCd").val(movieInfo.movieCd);
+			$("#movieTitle").val(movieInfo.movieNm);
+			$("#movieReleaseDate").val(movieInfo.openDt);
+			$("#movieRating").val(movieInfo.audits[0].watchGradeNm);
+			$("#movieRuntime").val(movieInfo.showTm + "분");
+			
+			for (var v = 0; v < movieInfo.genres.length; v++) {
+				console.log("genres :", movieInfo.genres[v].genreNm);
+				movieGenre += movieInfo.genres[v].genreNm;
+			}
+			$("#movieGenre").val(movieGenre);
+			
+			console.log("directors :", movieInfo.directors.length);
+			for (var v = 0; v < movieInfo.directors.length; v++) {
+				var director = movieInfo.directors[v];
+				var arr1 = new Array(1);
+				console.log("directors :", director.peopleNm);
+				arr1.push(director.peopleNm);
+			}
+			console.log("arr1 :", arr1);
+			movieDirector = arr1.join(",");
+			$("#movieDirector").val(movieDirector);
+			
+			for (var v = 0; v < movieInfo.actors.length; v++) {
+				console.log("actors :", movieInfo.actors[v].peopleNm);
+				var arr2 = new Array();
+				arr2.push(movieInfo.actors[v].peopleNm);
+			}
+			movieActor = arr2.join(",");
+			$("#movieActor").val(movieActor);
+		});
+	});
 });
 </script>
 </body>
