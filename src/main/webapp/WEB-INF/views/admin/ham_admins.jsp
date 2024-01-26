@@ -33,8 +33,9 @@
 				<!-- 파이 차트-연령별 회원 수 -->
                  <div class="col-md-12" >
                  	<div class="row">
-                 		<div class="col-md-6">
-						<h3 class="d-flex justify-content-center" id="ageView"><span class="material-symbols-outlined">family_restroom</span>연령별 회원 수</h3>
+                 	<div class="col-md-2"></div>
+                 		<div class="col-md-4">
+						<h3 class="" id="ageView"><span class="material-symbols-outlined">family_restroom</span>연령별 회원 수</h3>
 							<canvas class="mainChart" id="myChart3" ></canvas>
                  		</div>
                  		<!-- 선형 차트-매출액 -->
