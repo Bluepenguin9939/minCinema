@@ -59,12 +59,11 @@ public class Jo_MainController {
 		return map;
 	}
 	
-	@PostMapping("/event/jan_attendance_check")
+	@PostMapping(value = "/event/jan_attendance_check",
+				 produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public void post_jan_attendance_check(String mid, RedirectAttributes rttr) {
+	public boolean post_jan_attendance_check(String mid) {
 		boolean attendanceResult = eventService.clickToAttendance(mid);
-		log.info("attendanceResult : " + attendanceResult);
-		rttr.addFlashAttribute("attendanceResult", attendanceResult);
-//		return "redirect:/event/jan_attendance_check";
+		return attendanceResult;
 	}
 }

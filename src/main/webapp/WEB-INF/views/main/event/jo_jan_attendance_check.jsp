@@ -58,18 +58,32 @@ $(function() {
 			$("#btnAttendance").text("출석 완료");
 		}
 	});
-// 	출석 참여 상태 체크 //
+
+// 	로그인 판별
+	if (mid == "" || mid == null) {
+			$("#btnAttendance").attr("disabled", true);
+	}
 
 // 	출석 체크 하기
-	$("#btnAttendance").click(function() {
-		var url = "/main/event/jan_attendance_check";
-		var sData = {
+	$("#btnAttendance").click(function(e) {
+		e.preventDefault();
+		
+		var checkUrl = "/main/event/jan_attendance_check";
+		var checkSData = {
 				"mid" : mid
 		}
 		
-		$.post(url, sData, function(rData) {
-			console.log(rData)
-			
+		$.ajax({
+			method : "post",
+			url : checkUrl,
+			data : checkSData,
+			success : function(rData) {
+				console.log(rData);
+				if (rData) {
+					alert("출석 완료");
+					self.location = "/main/event/jo_jan_attendance_check";
+				}
+			}
 		});
 	});
 });
