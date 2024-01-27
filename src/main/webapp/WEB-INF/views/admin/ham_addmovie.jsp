@@ -131,6 +131,11 @@ $(function(){
 		that.show();
 	})
 	
+	var addMovieResult = "${addResult}";
+	if (addMovieResult == "true") {
+		alert("영화 추가 완료");
+	}
+	
 // 	영화 주간 박스오피스 TOP10 가져오기
 	var key = "93e13fb8a551cb3daf41b1d892d75166" // 공용 키
 	

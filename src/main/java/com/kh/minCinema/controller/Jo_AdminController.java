@@ -22,6 +22,6 @@ public class Jo_AdminController {
 		System.out.println("movieVO : " + movieVO);
 		boolean addResult = movieService.addMovie(movieVO);
 		rttr.addFlashAttribute("addResult", addResult);
-		return "redirect:/admin/ham_admins";
+		return "redirect:/admin/ham_addmovie";
 	}
 }

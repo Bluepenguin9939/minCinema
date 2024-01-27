@@ -77,6 +77,16 @@
 	opacity: 1;
 }
 
+.test-div:hover + .movie-name {
+	transition: 0.4s;
+	color: #6666fa;
+}
+
+.test-div:not(:hover) + .movie-name {
+	transition: 0.4s;
+	color: inherit;
+}
+
 .test-div {
 	position: relative;
 }
