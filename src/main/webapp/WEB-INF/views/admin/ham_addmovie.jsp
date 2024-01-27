@@ -63,13 +63,13 @@
 		<div style="width: 80%; display: flex; justify-content: space-between;"
 			class="flex-column">
 			<div class="align-self-start">
-				<button type="button" id="btnGetMovie"class="btn btn-sm btn-secondary">
+				<button type="button" id="btnGetWeekMovie"class="btn btn-sm btn-secondary">
 					지난주 박스오피스 TOP10 가져오기
 				</button>
 			</div>
 			<div class="align-self-start">
 				<input type="text" id="getMovieData" placeholder="영화코드">
-				<button type="button" id="btnAddMovie" class="btn btn-sm btn-secondary">
+				<button type="button" id="btnGetMovie" class="btn btn-sm btn-secondary">
 					영화 가져오기
 				</button>
 			</div>
@@ -79,38 +79,39 @@
 		</div>
 	</div>
 <!--  		칸나누기 -->
- <form action="" method=""  enctype="multipart/form-data">
-	<div class="col-md-12" style="margin-left: 10%;" >
+ 	<form action="/admin/addMovie" method="post">
+		<div class="col-md-12" style="margin-left: 10%;" >
 			<div class="fileMove-card">
 				<div class="profile-images" >
-				<img alt="" src="/resources/img/moviedefault.jpg" id="upload-img">
+					<img alt="" src="/resources/img/moviedefault.jpg" id="upload-img">
 				</div>
 				<div class="custom-file">
-				<label class="main_image_text" id="te" for="fileupload">영화 사진 추가</label>
+					<label class="main_image_text" id="te" for="fileupload">영화 사진 추가</label>
 	  				<input type="file" id="fileupload" name="image" accept="image/*">
   				</div>
 				<div class="col-md-10 si">
-					<input type="text" id="movieTitle" placeholder="영화 제목" size="100px;">
+					<input type="text" id="movieTitle" name="mov_title" placeholder="영화 제목" size="100px;">
 					<div>
-					<textarea id="moviePlot" rows="3" cols="100" placeholder="상세 내용"></textarea>
+						<textarea id="moviePlot" name="mov_plot" rows="3" cols="100" placeholder="상세 내용"></textarea>
 					</div>
 					<div class="quarter">
-					<input class="" id="movieReleaseDate" type="text" placeholder="개봉일" >
-					<input class="movieText" id="movieRating" type="text" placeholder="연령" >
-					<input class="movieText" id="movieRuntime" type="text" placeholder="시간" >
-					<input class="movieText" id="movieGenre" type="text" placeholder="장르" >
-					<input class="movieText" id="movieCd" type="text" placeholder="영화 코드" > 
-					<input class="movieText" id="movieDirector" type="text" placeholder="영화 감독" > 
-					<input class="movieText" id="movieActor" type="text" placeholder="영화 배우" > 
+						<input class="" id="movieReleaseDate" name="mov_releaseDate" type="text" placeholder="개봉일" >
+						<input class="movieText" id="movieRating" name="mov_rating" type="text" placeholder="연령" >
+						<input class="movieText" id="movieRuntime" name="mov_runtime" type="text" placeholder="시간" >
+						<input class="movieText" id="movieGenre" name="mov_genre" type="text" placeholder="장르" >
+						<input class="movieText" id="movieCd" name="mov_code" type="text" placeholder="영화 코드" > 
+						<input class="movieText" id="movieDirector" name="mov_director" type="text" placeholder="영화 감독" > 
+						<input class="movieText" id="movieActor" name="mov_actor" type="text" placeholder="영화 배우" > 
 					</div>
 					<div>
 						<i class="fa fa-video"></i><label for="chooseVideo" style="cursor: pointer;">동영상 업로드</label>
 					</div>
-						<input type="file" id="chooseVideo" name="chooseVideo" accept="video/*" onchange="loadFile(this)" style="visibility: hidden;">
+					<input type="file" id="chooseVideo" name="chooseVideo" accept="video/*" onchange="loadFile(this)" style="visibility: hidden;">
 				</div>
-					<div>
-						<i class="fa fa-link"></i> <input type="text" placeholder="동영상 URI 등록"> <input type="submit">
-					</div>
+				<div>
+					<i class="fa fa-link"></i> <input type="text" placeholder="동영상 URI 등록"> <input type="submit">
+					<button type="submit" id="btnAddMovie">영화 등록하기</button>
+				</div>
 			</div>
 		</div>
 	</form>
@@ -130,10 +131,10 @@ $(function(){
 		that.show();
 	})
 	
-// 	영화 리스트 가져오기
+// 	영화 주간 박스오피스 TOP10 가져오기
 	var key = "93e13fb8a551cb3daf41b1d892d75166" // 공용 키
 	
-	$("#btnGetMovie").click(function() {
+	$("#btnGetWeekMovie").click(function() {
 		var today = new Date();
 		console.log(today);
 		var day = today.getDay();
@@ -179,7 +180,7 @@ $(function(){
 	});
 
 // 	영화 코드로 값 가져오기
-	$("#btnAddMovie").click(function() {
+	$("#btnGetMovie").click(function() {
 		var getMovieData = $("#getMovieData").val();
 		console.log("movieCd :",getMovieData);
 		
@@ -199,31 +200,27 @@ $(function(){
 			$("#movieTitle").val(movieInfo.movieNm);
 			$("#movieReleaseDate").val(movieInfo.openDt);
 			$("#movieRating").val(movieInfo.audits[0].watchGradeNm);
-			$("#movieRuntime").val(movieInfo.showTm + "분");
+			$("#movieRuntime").val(movieInfo.showTm);
 			
+			var arrGenre= new Array();
 			for (var v = 0; v < movieInfo.genres.length; v++) {
-				console.log("genres :", movieInfo.genres[v].genreNm);
-				movieGenre += movieInfo.genres[v].genreNm;
+				arrGenre.push(movieInfo.genres[v].genreNm);
 			}
+			movieGenre = arrGenre.join(",");
 			$("#movieGenre").val(movieGenre);
 			
-			console.log("directors :", movieInfo.directors.length);
+			var arrDirector = new Array();
 			for (var v = 0; v < movieInfo.directors.length; v++) {
-				var director = movieInfo.directors[v];
-				var arr1 = new Array(1);
-				console.log("directors :", director.peopleNm);
-				arr1.push(director.peopleNm);
+				arrDirector.push(movieInfo.directors[v].peopleNm);
 			}
-			console.log("arr1 :", arr1);
-			movieDirector = arr1.join(",");
+			movieDirector = arrDirector.join(",");
 			$("#movieDirector").val(movieDirector);
 			
+			var arrActor = new Array();
 			for (var v = 0; v < movieInfo.actors.length; v++) {
-				console.log("actors :", movieInfo.actors[v].peopleNm);
-				var arr2 = new Array();
-				arr2.push(movieInfo.actors[v].peopleNm);
+				arrActor.push(movieInfo.actors[v].peopleNm);
 			}
-			movieActor = arr2.join(",");
+			movieActor = arrActor.join(",");
 			$("#movieActor").val(movieActor);
 		});
 	});
