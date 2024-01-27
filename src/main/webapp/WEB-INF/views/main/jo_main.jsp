@@ -151,55 +151,55 @@ $(function() {
 			<!-- 메인 리스트 -->
 			<div class="main-movie-list">
 			<c:forEach var="vo" items="${movieList}" begin="0" end="4">
-				<div>
-					<div class="test-div">
-						<a href="#">
+				<div class="main-movie" data-mov_code="${vo.mov_code}">
+					<a href="/main/heo_details/${vo.mov_code}">
+						<div class="card-div">
 							<div class="card-movie-image">
 								<img src="/resources/img/mov01.jpg" alt="영화1"
-									class="main-movie">
+									class="main-movie-img">
 							</div>
 <!-- 							<div class="user-rate"> -->
 <!-- 								<span><i class="fa fa-star"></i>9.6</span> -->
 <!-- 							</div> -->
-						</a>
-						<button type="button" class="bookmark"><i class="far fa-heart"></i></button>
-					</div>
-					<c:choose>
-						<c:when test="${fn:length(vo.mov_title) > 10}">
-							<span class="movie-name">${fn:substring(vo.mov_title, 0, 10)}...</span><br>
-						</c:when>
-						<c:otherwise>
-							<span class="movie-name">${vo.mov_title}</span><br>
-						</c:otherwise>
-					</c:choose>
-					<span class="info">${fn:substring(vo.mov_releaseDate, 0, 4)} | ${vo.mov_genre} | ${vo.mov_runtime}분</span>
+							<button type="button" class="heart"><i class="far fa-heart"></i></button>
+						</div>
+						<c:choose>
+							<c:when test="${fn:length(vo.mov_title) > 10}">
+								<span class="movie-name">${fn:substring(vo.mov_title, 0, 10)}...</span><br>
+							</c:when>
+							<c:otherwise>
+								<span class="movie-name">${vo.mov_title}</span><br>
+							</c:otherwise>
+						</c:choose>
+						<span class="info">${fn:substring(vo.mov_releaseDate, 0, 4)} | ${vo.mov_genre} | ${vo.mov_runtime}분</span>
+					</a>
 				</div>
 			</c:forEach>
 			</div>
 			<div class="main-movie-list">
 			<c:forEach var="vo" items="${movieList}" begin="5" end="9">
-				<div>
-					<div class="test-div">
-						<a href="#">
+				<div class="main-movie" data-mov_code="${vo.mov_code}">
+					<a href="/main/heo_details/${vo.mov_code}">
+						<div class="card-div">
 							<div class="card-movie-image">
 								<img src="/resources/img/mov01.jpg" alt="영화1"
-									class="main-movie">
+									class="main-movie-img">
 							</div>
 <!-- 							<div class="user-rate"> -->
 <!-- 								<span><i class="fa fa-star"></i>9.6</span> -->
 <!-- 							</div> -->
-						</a>
-						<button type="button" class="bookmark"><i class="far fa-heart"></i></button>
-					</div>
-					<c:choose>
-						<c:when test="${fn:length(vo.mov_title) > 10}">
-							<span class="movie-name">${fn:substring(vo.mov_title, 0, 10)}...</span><br>
-						</c:when>
-						<c:otherwise>
-							<span class="movie-name">${vo.mov_title}</span><br>
-						</c:otherwise>
-					</c:choose>
-					<span class="info">${fn:substring(vo.mov_releaseDate, 0, 4)} | ${vo.mov_genre} | ${vo.mov_runtime}분</span>
+						<button type="button" class="heart"><i class="far fa-heart"></i></button>
+						</div>
+						<c:choose>
+							<c:when test="${fn:length(vo.mov_title) > 10}">
+								<span class="movie-name">${fn:substring(vo.mov_title, 0, 10)}...</span><br>
+							</c:when>
+							<c:otherwise>
+								<span class="movie-name">${vo.mov_title}</span><br>
+							</c:otherwise>
+						</c:choose>
+						<span class="info">${fn:substring(vo.mov_releaseDate, 0, 4)} | ${vo.mov_genre} | ${vo.mov_runtime}분</span>
+					</a>
 				</div>
 			</c:forEach>
 			</div>

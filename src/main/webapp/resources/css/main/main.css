@@ -6,6 +6,7 @@
 
 .main-dropdown:hover .dropdown-menu {
 	display: block;
+	margin-top: 0px;
 }
 
 .main-nav-dropdown {
@@ -17,7 +18,7 @@
 	text-decoration: none;
 }
 
-.main-movie {
+.main-movie-img {
 	border-radius: 10px;
 }
 
@@ -36,12 +37,12 @@
 }
 
 .slide-movie-image:hover {
-	transition: 0.4s;
+	transition: 0.6s;
 	opacity: 0.5;
 }
 
 .slide-movie-image:not(:hover) {
-	transition: 0.4s;
+	transition: 0.6s;
 	opacity: 1; 
 }
 
@@ -57,37 +58,37 @@
 	justify-content: space-between;
 }
 
-.test-div:hover > .bookmark {
-	transition: 0.4s;
+.main-movie:hover > a > .card-div > .heart {
+	transition: 0.6s;
 	opacity: 0.5;
 }
 
-.test-div:not(:hover) > .bookmark {
-	transition: 0.4s;
+.main-movie:not(:hover) > a > .card-div > .heart {
+	transition: 0.6s;
 	opacity: 0;
 }
 
-.test-div:hover > a > .card-movie-image {
-	transition: 0.4s;
+.main-movie:hover > a > .card-div > .card-movie-image {
+	transition: 0.6s;
 	opacity: 0.5;
 }
 
-.test-div:not(:hover) > a > .card-movie-image {
-	transition: 0.4s;
+.main-movie:not(:hover) > a > .card-div > .card-movie-image {
+	transition: 0.6s;
 	opacity: 1;
 }
 
-.test-div:hover + .movie-name {
-	transition: 0.4s;
+.main-movie:hover > a > .movie-name {
+	transition: 0.6s;
 	color: #6666fa;
 }
 
-.test-div:not(:hover) + .movie-name {
-	transition: 0.4s;
+.main-movie:not(:hover) > a > .movie-name {
+	transition: 0.6s;
 	color: inherit;
 }
 
-.test-div {
+.main-movie {
 	position: relative;
 }
 
@@ -104,7 +105,7 @@
 }
 
 
-.bookmark {
+.heart {
 	position: absolute;
 	top: 1%;
 	right: 4.5%;
