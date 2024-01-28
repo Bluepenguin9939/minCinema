@@ -9,4 +9,6 @@ public interface Jo_MovieService {
 	public boolean addMovie(Jo_MovieVO movieVO);
 	
 	public List<Jo_MovieVO> getAll();
+	
+	public Jo_MovieVO getMovieByCode(String mov_code);
 }

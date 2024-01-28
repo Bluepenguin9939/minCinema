@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <%@ include file="/WEB-INF/views/include/top.jsp" %>
 
@@ -8,37 +9,48 @@
 
 <script>
 $(function() {
-	$(".slide-movie-image").click(function() {
-		location.href="/main/heo_details";
-	});
-	
-// 	영화 리스트 가져오기
-	var key = "93e13fb8a551cb3daf41b1d892d75166"
-	var movieListURL = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchWeeklyBoxOfficeList.json";
-	var movieListData = {
-			"key" : key,
-			"targetDt" : "20130301",
-			"multiMovieYn" : "N"
+	var loginInfo = "${loginInfo}";
+// 	누른 하트 찾기
+	if (loginInfo != "") {
+		var heartMovies = "${heartMovies}";
+		var heartList = heartMovies.split(",");
+		
+		for (var v = 0; v < heartList.length; v++) {
+			for (var i = 0; i < $(".card-movie-image").length; i++) {
+				var main_movie = $(".card-movie-image:eq(" + i + ")");
+				var movie_code = main_movie.attr("data-mov_code");
+				if (heartList[v].trim() == movie_code) {
+					main_movie.next().css("background-color", "red");
+				}
+			}
+		}
 	}
 	
-	$.get(movieListURL, movieListData, function(rData) {
-		console.log(rData.boxOfficeResult.weeklyBoxOfficeList);
-		for (var v = 0; v < rData.boxOfficeResult.weeklyBoxOfficeList.length; v++) {
-			var movieList = rData.boxOfficeResult.weeklyBoxOfficeList[v];
-			console.log(movieList);
-			
-			var movieCd = rData.boxOfficeResult.weeklyBoxOfficeList[v].movieCd;
-			console.log(movieCd);
-			
-			var movieDetailURL = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieInfo.json";
-			var movieDetailData = {
-					"key" : key,
-					"movieCd" : movieCd
+// 	하트 추가 및 제거
+	$(".heart").click(function() {
+		if (loginInfo != "") {
+			var heart = $(this);
+			var mov_code = heart.prev().attr("data-mov_code");
+			var url = "";
+			if (heart.css("background-color") == "rgb(153, 153, 153)") { // 하트 추가
+				heart.css("background-color", "rgb(255, 0, 0)");
+				url = "/heart/addHeart/" + mov_code;
+			} else if (heart.css("background-color") == "rgb(255, 0, 0)") { // 하트 삭제
+				heart.css("background-color", "rgb(153, 153, 153)");
+				url = "/heart/removeHeart/" + mov_code;
 			}
-			$.get(movieDetailURL, movieDetailData, function(detailrData) {
-				console.log(detailrData);
+			$.post(url, function() {
+				
 			});
+		} else {
+			self.location = "/member/jo_login";
 		}
+	});
+	
+	$(".card-movie-image").click(function() {
+		var mov_code = $(this).attr("data-mov_code");
+		$("#detail_mov_code").val(mov_code);
+		$("#frmDetails").submit();
 	});
 });
 </script>
@@ -176,182 +188,60 @@ $(function() {
 				</div>
 			</nav>
 			
+			<form id="frmDetails" action="/main/heo_details" method="get">
+				<input type="hidden" id="detail_mov_code" name="detail_mov_code">
+			</form>
+			
 			<!-- 메인 리스트 -->
 			<div class="main-movie-list">
-				<div>
-					<div class="test-div">
-						<a href="#">
-							<div class="card-movie-image">
-								<img src="/resources/img/mov01.jpg" alt="영화1"
-									class="main-movie">
-							</div>
+			<c:forEach var="vo" items="${movieList}" begin="0" end="4">
+				<div class="main-movie">
+					<div class="card-div">
+						<div class="card-movie-image" data-mov_code="${vo.mov_code}">
+							<img src="/resources/img/mov01.jpg" alt="영화1"
+								class="main-movie-img">
+						</div>
 <!-- 							<div class="user-rate"> -->
 <!-- 								<span><i class="fa fa-star"></i>9.6</span> -->
 <!-- 							</div> -->
-						</a>
-						<button type="button" class="bookmark"><i class="far fa-heart"></i></button>
+						<button type="button" class="heart"><i class="far fa-heart"></i></button>
 					</div>
-					<span class="movie-name">토이스토리</span><br>
-					<span class="info">2014 | 애니메이션, 가족 | 100분</span>
+					<c:choose>
+						<c:when test="${fn:length(vo.mov_title) > 10}">
+							<span class="movie-name">${fn:substring(vo.mov_title, 0, 10)}...</span><br>
+						</c:when>
+						<c:otherwise>
+							<span class="movie-name">${vo.mov_title}</span><br>
+						</c:otherwise>
+					</c:choose>
+					<span class="info">${fn:substring(vo.mov_releaseDate, 0, 4)} | ${vo.mov_genre} | ${vo.mov_runtime}분</span>
 				</div>
-				<div>
-					<div class="test-div">
-						<a href="#">
-							<div class="card-movie-image">
-								<img src="/resources/img/mov02.jpg" alt="영화1"
-									class="main-movie">
-							</div>
-	<!-- 						<div class="user-rate"><span><i class="fa fa-star"></i>9.6</span></div> -->
-						</a>
-						<button type="button" class="bookmark"><i class="far fa-heart"></i></button>
-					</div>
-					<span class="movie-name">호빗</span><br>
-					<span class="info">2014 | 판타지, 모험, 액션 | 144분</span>
-				</div>
-				<div>
-					<div class="test-div">
-						<a href="#">
-							<div class="card-movie-image">
-								<img src="/resources/img/mov03.jpg" alt="영화1"
-									class="main-movie">
-							</div>
-	<!-- 						<div class="user-rate"><span><i class="fa fa-star"></i>9.6</span></div> -->
-						</a>
-						<button type="button" class="bookmark"><i class="far fa-heart"></i></button>
-					</div>
-					<span class="movie-name">토이스토리</span><br>
-					<span class="info">2014 | 애니메이션, 가족 | 100분</span>
-				</div>
-				<div>
-					<div class="test-div">
-						<a href="#">
-							<div class="card-movie-image">
-								<img src="/resources/img/mov04.jpg" alt="영화1"
-									class="main-movie">
-							</div>
-	<!-- 						<div class="user-rate"><span><i class="fa fa-star"></i>9.6</span></div> -->
-						</a>
-						<button type="button" class="bookmark"><i class="far fa-heart"></i></button>
-					</div>
-					<span class="movie-name">호빗</span><br>
-					<span class="info">2014 | 판타지, 모험, 액션 | 144분</span>
-				</div>
-				<div>
-					<div class="test-div">
-						<a href="#">
-							<div class="card-movie-image">
-								<img src="/resources/img/mov05.jpg" alt="영화1"
-									class="main-movie">
-							</div>
-	<!-- 						<div class="user-rate"><span><i class="fa fa-star"></i>9.6</span></div> -->
-						</a>
-						<button type="button" class="bookmark"><i class="far fa-heart"></i></button>
-					</div>
-					<span class="movie-name">토이스토리</span><br>
-					<span class="info">2014 | 애니메이션, 가족 | 100분</span>
-				</div>
-				<div>
-					<div class="test-div">
-						<a href="#">
-							<div class="card-movie-image">
-								<img src="/resources/img/mov06.jpg" alt="영화1"
-									class="main-movie">
-							</div>
-	<!-- 						<div class="user-rate"><span><i class="fa fa-star"></i>9.6</span></div> -->
-						</a>
-						<button type="button" class="bookmark"><i class="far fa-heart"></i></button>
-					</div>
-					<span class="movie-name">호빗</span><br>
-					<span class="info">2014 | 판타지, 모험, 액션 | 144분</span>
-				</div>
+			</c:forEach>
 			</div>
 			<div class="main-movie-list">
-				<div>
-					<div class="test-div">
-						<a href="#">
-							<div class="card-movie-image">
-								<img src="/resources/img/mov01.jpg" alt="영화1"
-									class="main-movie">
-							</div>
+			<c:forEach var="vo" items="${movieList}" begin="5" end="9">
+				<div class="main-movie">
+					<div class="card-div">
+						<div class="card-movie-image" data-mov_code="${vo.mov_code}">
+							<img src="/resources/img/mov01.jpg" alt="영화1"
+								class="main-movie-img">
+						</div>
 <!-- 							<div class="user-rate"> -->
 <!-- 								<span><i class="fa fa-star"></i>9.6</span> -->
 <!-- 							</div> -->
-						</a>
-						<button type="button" class="bookmark"><i class="far fa-heart"></i></button>
+					<button type="button" class="heart"><i class="far fa-heart"></i></button>
 					</div>
-					<span class="movie-name">토이스토리</span><br>
-					<span class="info">2014 | 애니메이션, 가족 | 100분</span>
+					<c:choose>
+						<c:when test="${fn:length(vo.mov_title) > 10}">
+							<span class="movie-name">${fn:substring(vo.mov_title, 0, 10)}...</span><br>
+						</c:when>
+						<c:otherwise>
+							<span class="movie-name">${vo.mov_title}</span><br>
+						</c:otherwise>
+					</c:choose>
+					<span class="info">${fn:substring(vo.mov_releaseDate, 0, 4)} | ${vo.mov_genre} | ${vo.mov_runtime}분</span>
 				</div>
-				<div>
-					<div class="test-div">
-						<a href="#">
-							<div class="card-movie-image">
-								<img src="/resources/img/mov02.jpg" alt="영화1"
-									class="main-movie">
-							</div>
-	<!-- 						<div class="user-rate"><span><i class="fa fa-star"></i>9.6</span></div> -->
-						</a>
-						<button type="button" class="bookmark"><i class="far fa-heart"></i></button>
-					</div>
-					<span class="movie-name">호빗</span><br>
-					<span class="info">2014 | 판타지, 모험, 액션 | 144분</span>
-				</div>
-				<div>
-					<div class="test-div">
-						<a href="#">
-							<div class="card-movie-image">
-								<img src="/resources/img/mov03.jpg" alt="영화1"
-									class="main-movie">
-							</div>
-	<!-- 						<div class="user-rate"><span><i class="fa fa-star"></i>9.6</span></div> -->
-						</a>
-						<button type="button" class="bookmark"><i class="far fa-heart"></i></button>
-					</div>
-					<span class="movie-name">토이스토리</span><br>
-					<span class="info">2014 | 애니메이션, 가족 | 100분</span>
-				</div>
-				<div>
-					<div class="test-div">
-						<a href="#">
-							<div class="card-movie-image">
-								<img src="/resources/img/mov04.jpg" alt="영화1"
-									class="main-movie">
-							</div>
-	<!-- 						<div class="user-rate"><span><i class="fa fa-star"></i>9.6</span></div> -->
-						</a>
-						<button type="button" class="bookmark"><i class="far fa-heart"></i></button>
-					</div>
-					<span class="movie-name">호빗</span><br>
-					<span class="info">2014 | 판타지, 모험, 액션 | 144분</span>
-				</div>
-				<div>
-					<div class="test-div">
-						<a href="#">
-							<div class="card-movie-image">
-								<img src="/resources/img/mov05.jpg" alt="영화1"
-									class="main-movie">
-							</div>
-	<!-- 						<div class="user-rate"><span><i class="fa fa-star"></i>9.6</span></div> -->
-						</a>
-						<button type="button" class="bookmark"><i class="far fa-heart"></i></button>
-					</div>
-					<span class="movie-name">토이스토리</span><br>
-					<span class="info">2014 | 애니메이션, 가족 | 100분</span>
-				</div>
-				<div>
-					<div class="test-div">
-					<a href="#">
-						<div class="card-movie-image">
-							<img src="/resources/img/mov06.jpg" alt="영화1"
-								class="main-movie">
-						</div>
-<!-- 						<div class="user-rate"><span><i class="fa fa-star"></i>9.6</span></div> -->
-					</a>
-						<button type="button" class="bookmark"><i class="far fa-heart"></i></button>
-					</div>
-					<span class="movie-name">호빗</span><br>
-					<span class="info">2014 | 판타지, 모험, 액션 | 144분</span>
-				</div>
+			</c:forEach>
 			</div>
 			<!-- // 메인 리스트 -->
 			

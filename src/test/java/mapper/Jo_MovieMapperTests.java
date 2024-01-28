@@ -1,6 +1,5 @@
 package mapper;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -77,6 +76,13 @@ public class Jo_MovieMapperTests {
 	@Test
 	public void testSelectAll() {
 		List<Jo_MovieVO> movieVO = movieMapper.selectAll();
+		log.info("movieVO : " + movieVO);
+	}
+	
+	@Test
+	public void testSelectMovieByCode() {
+		String mov_code = "20235253";
+		Jo_MovieVO movieVO = movieMapper.selectMovieByCode(mov_code);
 		log.info("movieVO : " + movieVO);
 	}
 }

@@ -9,4 +9,6 @@ public interface Jo_MovieMapper {
 	public int insertMovie(Jo_MovieVO movieVO);
 	
 	public List<Jo_MovieVO> selectAll();
+	
+	public Jo_MovieVO selectMovieByCode(String mov_code);
 }
