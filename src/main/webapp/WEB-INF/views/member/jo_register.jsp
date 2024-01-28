@@ -29,8 +29,20 @@ $(function() {
 			} else if (rData == "false") {
 				alert("사용 가능한 아이디입니다.")
 				$("#u-pw").focus();
+				$("#btnRegister").prop("disabled", false);
 			}
 		});
+	});
+	
+	$("#frmRegister").submit(function() {
+		var upw = $("#u-pw").val();
+		var upw2 = $("#u-pw2").val();
+		if (upw != upw2) {
+			alert("비밀번호가 일치하지 않습니다.");
+			$("#u-pw").focus();
+			return false;
+		}
+// 		return false;
 	});
 });
 </script>
@@ -46,7 +58,7 @@ $(function() {
 			<div class="d-flex justify-content-center info-div">
 				<h2 id="info">회 원 가 입</h2>
 			</div>
-			<form class="user" action="/member/register" method="post">
+			<form class="user" action="/member/register" method="post" id="frmRegister">
 				<div class="form-group d-flex" style="position: relative;">
 					<input type="text" class="form-control form-control-user"
 						id="u-id" name="mid" placeholder="아이디" required>
@@ -79,7 +91,7 @@ $(function() {
 			            pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}">
 
 			    </div>
-			    <button type="submit" class="btn btn-dark btn-block">
+			    <button type="submit" id="btnRegister" class="btn btn-dark btn-block" disabled>
 			        회원가입
 			    </button>
 			    <hr style="border-bottom: 2px solid #333333;">
