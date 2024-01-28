@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kh.minCinema.mapper.Jo_HeartMapper">
+	<insert id="insertHeart">
+		INSERT INTO MC_HEART
+		VALUES (#{mid}, #{mov_code})
+	</insert>
+	
+	<delete id="deleteHeart">
+		DELETE FROM MC_HEART
+		WHERE MID = #{mid} AND MOV_CODE = #{mov_code}
+	</delete>
+	
+	<select id="checkHeart" resultType="string">
+		SELECT MOV_CODE FROM MC_HEART
+		WHERE MID = #{mid}
+	</select>
+</mapper>

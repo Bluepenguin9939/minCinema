@@ -5,15 +5,50 @@
 
 <%@ include file="/WEB-INF/views/include/top.jsp" %>
 
-<link href="/resources/css/main/main.css?after" rel="stylesheet">
+<link href="/resources/css/main/main.css" rel="stylesheet">
 
 <script>
 $(function() {
-	$(".slide-movie-image").click(function() {
-		location.href="/main/heo_details";
+	var loginInfo = "${loginInfo}";
+	console.log(loginInfo)
+// 	누른 하트 찾기
+	if (loginInfo != "") {
+		var heartMovies = "${heartMovies}";
+		var heartList = heartMovies.split(",");
+		
+		for (var v = 0; v < heartList.length; v++) {
+			for (var i = 0; i < $(".card-movie-image").length; i++) {
+				var main_movie = $(".card-movie-image:eq(" + i + ")");
+				var movie_code = main_movie.attr("data-mov_code");
+				if (heartList[v].trim() == movie_code) {
+					main_movie.next().css("background-color", "red");
+				}
+			}
+		}
+	}
+	
+// 	하트 추가 및 제거
+	$(".heart").click(function() {
+		if (loginInfo != "") {
+			var heart = $(this);
+			var mov_code = heart.prev().attr("data-mov_code");
+			var url = "";
+			if (heart.css("background-color") == "rgb(153, 153, 153)") { // 하트 추가
+				heart.css("background-color", "rgb(255, 0, 0)");
+				url = "/heart/addHeart/" + mov_code;
+			} else if (heart.css("background-color") == "rgb(255, 0, 0)") { // 하트 삭제
+				heart.css("background-color", "rgb(153, 153, 153)");
+				url = "/heart/removeHeart/" + mov_code;
+			}
+			$.post(url, function() {
+				
+			});
+		} else {
+			self.location = "/member/jo_login";
+		}
 	});
 	
-	$(".main-movie").click(function() {
+	$(".card-movie-image").click(function() {
 		var mov_code = $(this).attr("data-mov_code");
 		console.log("mov_code :", mov_code);
 		$("#detail_mov_code").val(mov_code);
@@ -162,9 +197,9 @@ $(function() {
 			<!-- 메인 리스트 -->
 			<div class="main-movie-list">
 			<c:forEach var="vo" items="${movieList}" begin="0" end="4">
-				<div class="main-movie" data-mov_code="${vo.mov_code}">
+				<div class="main-movie">
 					<div class="card-div">
-						<div class="card-movie-image">
+						<div class="card-movie-image" data-mov_code="${vo.mov_code}">
 							<img src="/resources/img/mov01.jpg" alt="영화1"
 								class="main-movie-img">
 						</div>
@@ -187,9 +222,9 @@ $(function() {
 			</div>
 			<div class="main-movie-list">
 			<c:forEach var="vo" items="${movieList}" begin="5" end="9">
-				<div class="main-movie" data-mov_code="${vo.mov_code}">
+				<div class="main-movie">
 					<div class="card-div">
-						<div class="card-movie-image">
+						<div class="card-movie-image" data-mov_code="${vo.mov_code}">
 							<img src="/resources/img/mov01.jpg" alt="영화1"
 								class="main-movie-img">
 						</div>

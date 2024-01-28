@@ -49,17 +49,9 @@
 					<div class="tab-pane active" id="tab1">
 						<h3>영화정보</h3>
 						<ul>
-							<li>장르<a style="padding-left: 10px;">${movieDetail.mov_genre}</a></li>
-							<li>감독
-								<a style="padding-left: 10px; text-decoration: underline;">
-									${movieDetail.mov_director}
-								</a>
-							</li>
-							<li>출연
-								<a style="padding-left: 10px; text-decoration: underline;">
-									${movieDetail.mov_actor}
-								</a>
-							</li>
+							<li>장르:<a style="padding-left: 10px;">${movieDetail.mov_genre}</a></li>
+							<li>감독:<a style="padding-left: 10px; text-decoration: underline;">${movieDetail.mov_director}</a></li>
+							<li>출연:<a style="padding-left: 10px; text-decoration: underline;">${movieDetail.mov_actor}</a></li>
 						</ul>
 						<br>
 						<h3>트레일러</h3>
