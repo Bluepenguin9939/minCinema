@@ -12,6 +12,13 @@ $(function() {
 	$(".slide-movie-image").click(function() {
 		location.href="/main/heo_details";
 	});
+	
+	$(".main-movie").click(function() {
+		var mov_code = $(this).attr("data-mov_code");
+		console.log("mov_code :", mov_code);
+		$("#detail_mov_code").val(mov_code);
+		$("#frmDetails").submit();
+	});
 });
 </script>
 
@@ -148,58 +155,58 @@ $(function() {
 				</div>
 			</nav>
 			
+			<form id="frmDetails" action="/main/heo_details" method="get">
+				<input type="hidden" id="detail_mov_code" name="detail_mov_code">
+			</form>
+			
 			<!-- 메인 리스트 -->
 			<div class="main-movie-list">
 			<c:forEach var="vo" items="${movieList}" begin="0" end="4">
 				<div class="main-movie" data-mov_code="${vo.mov_code}">
-					<a href="/main/heo_details/${vo.mov_code}">
-						<div class="card-div">
-							<div class="card-movie-image">
-								<img src="/resources/img/mov01.jpg" alt="영화1"
-									class="main-movie-img">
-							</div>
+					<div class="card-div">
+						<div class="card-movie-image">
+							<img src="/resources/img/mov01.jpg" alt="영화1"
+								class="main-movie-img">
+						</div>
 <!-- 							<div class="user-rate"> -->
 <!-- 								<span><i class="fa fa-star"></i>9.6</span> -->
 <!-- 							</div> -->
-							<button type="button" class="heart"><i class="far fa-heart"></i></button>
-						</div>
-						<c:choose>
-							<c:when test="${fn:length(vo.mov_title) > 10}">
-								<span class="movie-name">${fn:substring(vo.mov_title, 0, 10)}...</span><br>
-							</c:when>
-							<c:otherwise>
-								<span class="movie-name">${vo.mov_title}</span><br>
-							</c:otherwise>
-						</c:choose>
-						<span class="info">${fn:substring(vo.mov_releaseDate, 0, 4)} | ${vo.mov_genre} | ${vo.mov_runtime}분</span>
-					</a>
+						<button type="button" class="heart"><i class="far fa-heart"></i></button>
+					</div>
+					<c:choose>
+						<c:when test="${fn:length(vo.mov_title) > 10}">
+							<span class="movie-name">${fn:substring(vo.mov_title, 0, 10)}...</span><br>
+						</c:when>
+						<c:otherwise>
+							<span class="movie-name">${vo.mov_title}</span><br>
+						</c:otherwise>
+					</c:choose>
+					<span class="info">${fn:substring(vo.mov_releaseDate, 0, 4)} | ${vo.mov_genre} | ${vo.mov_runtime}분</span>
 				</div>
 			</c:forEach>
 			</div>
 			<div class="main-movie-list">
 			<c:forEach var="vo" items="${movieList}" begin="5" end="9">
 				<div class="main-movie" data-mov_code="${vo.mov_code}">
-					<a href="/main/heo_details/${vo.mov_code}">
-						<div class="card-div">
-							<div class="card-movie-image">
-								<img src="/resources/img/mov01.jpg" alt="영화1"
-									class="main-movie-img">
-							</div>
+					<div class="card-div">
+						<div class="card-movie-image">
+							<img src="/resources/img/mov01.jpg" alt="영화1"
+								class="main-movie-img">
+						</div>
 <!-- 							<div class="user-rate"> -->
 <!-- 								<span><i class="fa fa-star"></i>9.6</span> -->
 <!-- 							</div> -->
-						<button type="button" class="heart"><i class="far fa-heart"></i></button>
-						</div>
-						<c:choose>
-							<c:when test="${fn:length(vo.mov_title) > 10}">
-								<span class="movie-name">${fn:substring(vo.mov_title, 0, 10)}...</span><br>
-							</c:when>
-							<c:otherwise>
-								<span class="movie-name">${vo.mov_title}</span><br>
-							</c:otherwise>
-						</c:choose>
-						<span class="info">${fn:substring(vo.mov_releaseDate, 0, 4)} | ${vo.mov_genre} | ${vo.mov_runtime}분</span>
-					</a>
+					<button type="button" class="heart"><i class="far fa-heart"></i></button>
+					</div>
+					<c:choose>
+						<c:when test="${fn:length(vo.mov_title) > 10}">
+							<span class="movie-name">${fn:substring(vo.mov_title, 0, 10)}...</span><br>
+						</c:when>
+						<c:otherwise>
+							<span class="movie-name">${vo.mov_title}</span><br>
+						</c:otherwise>
+					</c:choose>
+					<span class="info">${fn:substring(vo.mov_releaseDate, 0, 4)} | ${vo.mov_genre} | ${vo.mov_runtime}분</span>
 				</div>
 			</c:forEach>
 			</div>

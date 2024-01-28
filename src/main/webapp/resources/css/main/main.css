@@ -90,6 +90,7 @@
 
 .main-movie {
 	position: relative;
+	cursor: pointer;
 }
 
 .user-rate {

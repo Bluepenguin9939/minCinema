@@ -79,4 +79,11 @@ public class Jo_MovieMapperTests {
 		List<Jo_MovieVO> movieVO = movieMapper.selectAll();
 		log.info("movieVO : " + movieVO);
 	}
+	
+	@Test
+	public void testSelectMovieByCode() {
+		String mov_code = "20235253";
+		Jo_MovieVO movieVO = movieMapper.selectMovieByCode(mov_code);
+		log.info("movieVO : " + movieVO);
+	}
 }

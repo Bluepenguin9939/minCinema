@@ -11,4 +11,9 @@
 	<select id="selectAll" resultType="com.kh.minCinema.domain.Jo_MovieVO">
 		SELECT * FROM MC_MOVIE
 	</select>
+	
+	<select id="selectMovieByCode" resultType="com.kh.minCinema.domain.Jo_MovieVO">
+		SELECT * FROM MC_MOVIE
+		WHERE MOV_CODE = #{mov_code}
+	</select>
 </mapper>

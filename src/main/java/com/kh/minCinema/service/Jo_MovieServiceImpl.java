@@ -28,5 +28,11 @@ public class Jo_MovieServiceImpl implements Jo_MovieService {
 		List<Jo_MovieVO> movieVO = movieMapper.selectAll();
 		return movieVO;
 	}
+
+	@Override
+	public Jo_MovieVO getMovieByCode(String mov_code) {
+		Jo_MovieVO movieVO = movieMapper.selectMovieByCode(mov_code);
+		return movieVO;
+	}
 	
 }

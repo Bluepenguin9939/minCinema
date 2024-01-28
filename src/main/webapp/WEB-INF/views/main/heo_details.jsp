@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ include file="/WEB-INF/views/include/top.jsp"%>
 
 <!-- 결과창모달 -->
@@ -14,16 +15,16 @@
 			<div class="d-flex justify-content-center">
 				<img class="movie-details" style="width: 300px; height: 400px;" src="/resources/img/mov01.jpg">
 				<div class="details-logo">
-					<div class="mov-details-name">토이스토리4</div>
+					<div class="mov-details-name">${movieDetail.mov_title}</div>
 					<ul class="mov-details-ul">
-						<li class="mov-details-info-openDate">개봉일: 2019년 6월 20일</li>
-						<li class="mov-details-info-time"><i class="fa fa-clock">100분</i></li>
-						<li class="mov-details-info-age">전체관람가</li>
+						<li class="mov-details-info-openDate">개봉일: ${fn:substring(movieDetail.mov_releaseDate, 0, 4)}년 ${fn:substring(movieDetail.mov_releaseDate, 4, 6)}월 ${fn:substring(movieDetail.mov_releaseDate, 6, 8)}일</li>
+						<li class="mov-details-info-time"><i class="fa fa-clock">${movieDetail.mov_runtime}분</i></li>
+						<li class="mov-details-info-age">${movieDetail.mov_rating}</li>
 					</ul>
 					<div class="mov-details-info-div">
 						<textarea class="form-control mov-details-info"
 							style="font-size: 20px; width: 350px; height: 200px; background-color: #999999;"
-							readonly>앤디의 집을 떠나 새로운 공간에서 살게 된 우디는 장난감 친구 포키의 돌발행동으로 인해 홀로 모험 길에 오르게 된다. 그러던 중 보핍을 오랜만에 만나고 그녀에게 도움을 청한다.</textarea>
+							readonly>${movieDetail.mov_plot}</textarea>
 					</div>
 					<br>
 					<div class="mov-details-btn-div">
@@ -48,13 +49,17 @@
 					<div class="tab-pane active" id="tab1">
 						<h3>영화정보</h3>
 						<ul>
-							<li>장르<a style="padding-left: 10px;">애니메이션/가족</a></li>
-							<li>감독<a
-								style="padding-left: 10px; text-decoration: underline;">조시
-									쿨리</a></li>
-							<li>출연<a
-								style="padding-left: 10px; text-decoration: underline;">톰
-									행크스, 팀 알렌, 애니 포츠</a></li>
+							<li>장르<a style="padding-left: 10px;">${movieDetail.mov_genre}</a></li>
+							<li>감독
+								<a style="padding-left: 10px; text-decoration: underline;">
+									${movieDetail.mov_director}
+								</a>
+							</li>
+							<li>출연
+								<a style="padding-left: 10px; text-decoration: underline;">
+									${movieDetail.mov_actor}
+								</a>
+							</li>
 						</ul>
 						<br>
 						<h3>트레일러</h3>
