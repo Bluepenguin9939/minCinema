@@ -12,19 +12,33 @@
 <!-- <meta name="viewport" content="width=device-width,initial-scale=1.0"> -->
 <script>
 $(function() {
-	$(".venMember").click(function(e) {
-// 		e.preventeDefault();
-		var that = $(this);
-		var x = that.attr("data-tmid");
+	$(function() {
+		var result = '${result}';
+		if(result == "true"){
+			alert("테스트 회원 생성 완료");
+		}
+		$(".deleteMember").click(function(e) {
+			e.preventDefault();
+			var that = $(this);
+			var testDelete = that.attr("data-tmid");
+			console.log("테스트딜리트:",testDelete);
+			var url = "/admin/testDel";
+			var sData ={
+					"tmid" : testDelete
+			};
+			console.log("sData:",sData);
+			
+			$.post(url,sData,function(rData){
+			console.log("rData:",rData);
+				if(rData == "true"){
+					alert("테스트 회원 삭제 완료");
+					location.href="/admin/ham_cmanagement";
+				}
+				
+			});
+		});
 		
-		console.log("후",x);
-		console.log("댓댓댓",that);
-		
-		var url = "";
-		
-		
-	})
-	
+	});
 });
 </script>
 
@@ -123,8 +137,8 @@ $(function() {
 						<td>${vo.tmemail}</td>
 						<td>${vo.tmtel}</td>
 						<td>
-							<a href="#" class="venMember" data-tmid="${vo.tmid}"><i class="fa fa-user-alt-slash" title="ven" ></i></a> 
-							<a href="#" class="deleteMember"><i class="fa fa-trash" title="del"></i></a>
+							<a href="#" class="venMember" ><i class="fa fa-user-alt-slash" title="ven" ></i></a> 
+							<a href="#" class="deleteMember" data-tmid="${vo.tmid}"><i class="fa fa-trash" title="del"></i></a>
 						</td>
 					</tr>
 				</c:forEach>
