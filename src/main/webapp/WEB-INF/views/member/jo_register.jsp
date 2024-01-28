@@ -9,7 +9,29 @@
 <link href="/resources/css/member/register.css?after" rel="stylesheet">
 <script>
 $(function() {
-	
+	$("#btnDupId").click(function() {
+		var uid = $("#u-id");
+		if (uid.val() == "" || uid.val().length < 4) {
+			alert("아이디를 4글자 이상 입력해주세요.")
+			uid.focus();
+			return;
+		}
+		
+		var url = "/member/isDupId";
+		var sData = {
+				"mid" : uid.val()
+		}
+		console.log("click");
+		$.post(url, sData, function(rData) {
+			if (rData == "true") {
+				alert("이미 사용중인 아이디입니다.")
+				uid.focus();
+			} else if (rData == "false") {
+				alert("사용 가능한 아이디입니다.")
+				$("#u-pw").focus();
+			}
+		});
+	});
 });
 </script>
 </head>

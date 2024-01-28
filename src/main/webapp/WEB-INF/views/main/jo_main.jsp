@@ -10,7 +10,6 @@
 <script>
 $(function() {
 	var loginInfo = "${loginInfo}";
-	console.log(loginInfo)
 // 	누른 하트 찾기
 	if (loginInfo != "") {
 		var heartMovies = "${heartMovies}";
@@ -50,7 +49,6 @@ $(function() {
 	
 	$(".card-movie-image").click(function() {
 		var mov_code = $(this).attr("data-mov_code");
-		console.log("mov_code :", mov_code);
 		$("#detail_mov_code").val(mov_code);
 		$("#frmDetails").submit();
 	});
