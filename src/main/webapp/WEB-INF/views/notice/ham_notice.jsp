@@ -52,13 +52,13 @@
 			<section>
 		   	 <ul class="nav" title="공지사항그룹">
 					  <li class="nav-item">
-					    <a class="nav-link" href="/main/jo_main">공지사항</a>
+					    <a class="nav-link" href="/notice/ham_notice">공지사항</a>
 					  </li>
 					  <li class="nav-item">
-					    <a class="nav-link" href="/notice/ham_notice">자주묻는질문</a>
+					    <a class="nav-link" href="/notice/ham_often">자주묻는질문</a>
 					  </li>
 					  <li class="nav-item">
-					    <a class="nav-link" href="https://layoutit.com">1대1문의</a>
+					    <a class="nav-link" href="/notice/ham_inquiry">1대1문의</a>
 					  </li> 
 			  </ul>
 			</section>

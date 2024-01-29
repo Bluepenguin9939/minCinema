@@ -85,4 +85,11 @@ public class Jo_MovieMapperTests {
 		Jo_MovieVO movieVO = movieMapper.selectMovieByCode(mov_code);
 		log.info("movieVO : " + movieVO);
 	}
+	
+	@Test
+	public void testSelectInterestToHeart() {
+		String mid = "test";
+		List<Jo_MovieVO> movieList = movieMapper.selectInterestToHeart(mid);
+		log.info("movieList : " + movieList);
+	}
 }

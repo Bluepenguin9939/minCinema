@@ -34,5 +34,11 @@ public class Jo_MovieServiceImpl implements Jo_MovieService {
 		Jo_MovieVO movieVO = movieMapper.selectMovieByCode(mov_code);
 		return movieVO;
 	}
+
+	@Override
+	public List<Jo_MovieVO> getInterestToHeart(String mid) {
+		List<Jo_MovieVO> movieList = movieMapper.selectInterestToHeart(mid);
+		return movieList;
+	}
 	
 }

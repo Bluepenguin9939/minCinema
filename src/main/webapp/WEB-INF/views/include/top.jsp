@@ -35,8 +35,8 @@
 <!-- 구글 글리피콘 -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 
-<link href="/resources/css/include/top.css?after" rel="stylesheet">
-<link href="/resources/css/include/bottom.css?after" rel="stylesheet">
+<link href="/resources/css/include/top.css" rel="stylesheet">
+<link href="/resources/css/include/bottom.css" rel="stylesheet">
 
 <!-- 부트스트랩4 -->
 <%@ include file="/WEB-INF/views/include/bs.jsp" %>
@@ -150,6 +150,7 @@ $(function() {
 											 <a class="dropdown-item" href="/myPage/jo_myInfo">마이페이지</a>
 										 </c:otherwise>
 									 </c:choose>
+									 <a class="dropdown-item" href="/myPage/jo_myInterest">관심목록</a>
 									 <a class="dropdown-item" href="#">예매내역</a>
 									 <a class="dropdown-item" href="/member/logout">로그아웃</a>
 								</div>

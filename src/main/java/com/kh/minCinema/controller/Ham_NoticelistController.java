@@ -7,8 +7,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/notice")
 public class Ham_NoticelistController {
 
-	@GetMapping("/ham_notice")
+	@GetMapping("/ham_notice")//공지사항
 	public void notice() {
+		
+	}
+	@GetMapping("/ham_often")//자주묻는질문
+	public void often() {
+		
+	}
+	@GetMapping("/ham_inquiry")// 1대1문의
+	public void inquiry() {
 		
 	}
 }
