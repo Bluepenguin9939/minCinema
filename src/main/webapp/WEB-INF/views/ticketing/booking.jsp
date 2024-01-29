@@ -23,21 +23,22 @@
 }
 
 .select-part{
-	height: 85%;
+	height: 82%;
 }
 
-.send{
-	height: 15%;
+.send-part{
+	height: 18%;
 }
 
 
-.next{
-
+.send-main{
+	/*display : flex; 
+	/*justify-content-center */
 	background-color:#AAAAAA;
 	width: 930px;
 }
 
-#go{
+#send-form{
 	height: 100%; 
 	width: 100%; 
 	display: flex; 
@@ -51,20 +52,20 @@
 
 
 .movie-part {
-    width: 360px; /*영화파트 너비*/
+    width: 380px; /*영화파트 너비*/
 }
 
-/*.theater-part {
-    width: 264px; 극장파트
-}*/
+.theater-part {
+    width: 150px; 극장파트
+}
 
 .day-part {
    /* width: 91px; /*날짜파트*/
-    width: 210px; /*날짜파트*/
+    width: 200px; /*날짜파트*/
 }
 
 .time-part {
-    width: 360px; /*영화 시작시간*/
+    width: 350px; /*영화 시작시간*/
 }
 
 .reserve-title { /*타이틀 상단제목 css*/
@@ -81,31 +82,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.sort-wrapper { /* 예매율순/가나다순 부분*/
-    margin: 10px 6px 6px 10px;
-    /* padding: 3px; */
-    display: flex;
-    border-bottom: 1px solid #dddddd;
-    font-size: 12px;
-}
-
-.sort-wrapper>div {
-    padding: 3px;
-}
-
-.sort-wrapper>div:hover { /*hover -> 마우스 커서를 올렸을때 적용하는 스타일*/
-    border-bottom: 1px solid #111111; /*아래에 굵은 하단선 보이게함*/
-}
-
-.sort-selected { /*예매율순 부분: 기본선택시*/
-    font-weight: bold;
-    border-bottom: 1px solid #111111;
-}
-
-.sort-korean { /*가나다순 부분 영역*/
-    margin-left: 6px;
 }
 
 
@@ -136,7 +112,7 @@
 .movie-list{
 	font-weight: bold;
 	/*justify-content: center;*/
-	font-size: 22px;
+	font-size: 25px;
 	text-align: center;
 }
 
@@ -147,6 +123,7 @@
     color: #dddddd;/*글자 색*/
     cursor: pointer;
 }
+
 
 .date-month{
 	height: 7%;
@@ -219,7 +196,7 @@
 .sendBtn{
 	font-size:64px; 
 	height: 100%;
-	width: 39%;
+	width: 37%;
 }
 
 #prev_month,#next_month{
@@ -248,7 +225,7 @@ $(function(){
 	var monthdayMap = new Map();
 	
 	$("#date-month").text(year+"."+ (todayMonth <=9 ? "0"+todayMonth : todayMonth) );
-
+	/*현재월 기준*/
 	
 	function getDayAndWeekday(year,month){
 		monthdayMap.clear();
@@ -260,7 +237,7 @@ $(function(){
 			var day = weekday[new Date(year,month-1,i).getDay()]//년, 기준달-1(0~11), 일
 			monthdayMap.set(i,day);
 			$(".reserve-date").append("<div class='days'>"
-										+"<span class='rounded-circle bg-light weekday' style='font-size:24px;'>"+day+"</span>"+"&nbsp&nbsp&nbsp&nbsp&nbsp"
+										+"<span class='rounded-circle bg-light weekday' style='font-size:24px;'>"+day+"</span>"+"&emsp;"
 										+"<span class='bg-danger day' style='font-weight:normal;'>"+( i <= 9 ? "0" + i : i )+"</span>"
 										+"</div>");
 		}
@@ -268,8 +245,7 @@ $(function(){
 	}
 	
 	
-	$(document).on("click",".movie-list",function(){
-	//$(".movie-list").click(function(){
+	$(document).on("click",".movie-list",function(){//영화제목 클릭시
 		
 		var that = $(this);
 		//기존선택사항 삭제
@@ -281,6 +257,7 @@ $(function(){
 		
 		$("#dateText").text("");
 		$("#timesText").text("");
+		$("#theaterText").text("");
 		
 		//신규 선택사항
 		console.log("find:", find);
@@ -300,17 +277,13 @@ $(function(){
 		
 	});
 	
-	//$(".day").click(function(){
 	$(document).on("click",".days",function(){
-		
 		
 		$(".times").remove();
 		$("#timesText").text("");
+		$("#theaterText").text("");
 		
 		var that = $(this);
-		//console.log("클릭:",that.find(".day").text());
-		//console.log("클릭:",that.find(".weekday").text());
-		//console.log("클릭");
 		
 		var find = that.parent().find("[data-select='select']");
 		
@@ -327,17 +300,19 @@ $(function(){
 		that.css("color","#dddddd");
 		
 		/////////
-		var text1 = $("#date-month").text();
-		var text2 = that.find(".day").text();
+		var year_month = $("#date-month").text();
+		var day = that.find(".day").text();
 		
-		var text3 = text1+"."+text2+"("+that.find(".weekday").text()+")";
+		var date = year_month+"."+day+"("+that.find(".weekday").text()+")";
 		
-		$("#dateText").text(text3);
+		$("#dateText").text(date);
 		
-		var testArray = ["05:30","11:00","12:00","13:00","14:30","17:00","19:30","21:00"];
-		console.log("testArray:",testArray);
+		/*테스트용 시간 배열*/
+		var testTimeArray = ["05:30","11:00","12:00","13:00","14:30","17:00","19:30","21:00"];
+		var testLocArray = ["1관","2관","3관","4관","5관","6관","7관","8관"];
+		//console.log("testArray:",testArray);
 		
-		$.each(testArray, function (index, testI) {
+		$.each(testTimeArray, function (index, testI) {
 			var nightAndDay;
 			var am_pm;
 			var timeHS = testI.split(":");	
@@ -346,7 +321,6 @@ $(function(){
 				nightAndDay = "clear_day";
 			}else{
 				nightAndDay = "clear_night";
-				
 			}
 			
 			if(timeHS[0] >= 12 && timeHS[0]<24){ /*am,pm 구분*/
@@ -360,18 +334,12 @@ $(function(){
 						+nightAndDay
 					+"</span>"
 					+"<span id='time'>"+testI+"("+am_pm+")"+"</span>"
+					+"&nbsp;"
+					+"<span id='loc'>"+testLocArray[index]+"</span>"
    			+"</div>");
 		});
 		
-		/*for(var i=1;i<=ㅇㅇㅇ;i++){
-			
-			$(".time-part").append("<div class='times' data-select='unselect'>"
-						            	+"<span class='material-symbols-outlined'>"
-											+"clear_day"
-										+"</span>"
-										+"<span id='time'>"+"11:00(am)"+"</span>"
-					   			+"</div>");
-		//}*/
+		
 		
 	});
 	
@@ -394,10 +362,12 @@ $(function(){
 		that.css("color","#dddddd");
 		
 		//////
-		var text = that.text();
-		var text2 = that.find("#time").text();
+		//var text = that.text();
+		var time = that.find("#time").text();
+		var loc = that.find("#loc").text();
 		
-		$("#timesText").text(text2);
+		$("#timesText").text(time);
+		$("#theaterText").text(loc);
 		
 	});
 	
@@ -435,30 +405,26 @@ $(function(){
 	$(".sendBtn").click(function() {
 		
 		var movieTitleText = $("#movieTitleText").text();
-		
 		//
 		var dateText = $("#dateText").text();
-		
 		//
 		var timesText = $("#timesText").text();
+		//
+		var theaterText = $("#theaterText").text();
 		
-		
-		
-		if(movieTitleText=="" || dateText=="" || timesText==""){
+		if(movieTitleText=="" || dateText=="" || timesText=="" || theaterText==""){
 			alert("빈값 존재");
 		}
 		else{
 			$("[name=movieTitle]").val(movieTitleText);
 			$("[name=movieDate]").val(dateText);
 			$("[name=movieTime]").val(timesText);
+			$("[name=movieTheater]").val(theaterText);
 			
-			$("#go").submit();
+			$("#send-form").submit();
 		}
-		
-		
-		
-		
-	});
+
+	});/////send
 	
 });
 	
@@ -483,7 +449,23 @@ $(function(){
 	            
 	            
 	        </div>
-
+	        <!--  
+	        <div class="theater-part">
+	            <div class="reserve-title">
+	            	<span class="material-symbols-outlined">
+						movie
+					</span>상영관
+				</div>
+	           	
+	           	
+	            <div id="theater" class="theater-datas">
+	            	<div class="theater-list" >상영관A</div>
+	            	<div class="theater-list" >상영관B</div>
+	            	<div class="theater-list" >상영관C</div>
+	            </div>
+	            
+	        </div>
+			-->
 	        <div class="day-part">
 	            <div class="reserve-title">
 	            	<span class="material-symbols-outlined">
@@ -511,64 +493,24 @@ $(function(){
 						schedule
 					</span>시간
 				</div>
-	            <!--  
-	            <div class="times" data-select="unselect">
-	            	<span class="material-symbols-outlined">
-						clear_day
-					</span>
-					<span id="time">11:00(am)</span>
-	            </div>
 	            
-	            <div class="times" data-select="unselect">
-	            	<span class="material-symbols-outlined">
-						clear_day
-					</span>
-					<span id="time">13:30(pm)</span>
-	            </div>
-	           
-	           	<div class="times" data-select="unselect">
-	            	<span class="material-symbols-outlined">
-						clear_day
-					</span>
-					<span id="time">17:30(pm)</span>
-	            </div>
-	           	
-	            <div class="times" data-select="unselect">
-	            	<span class="material-symbols-outlined">
-						clear_night
-					</span>
-					<span id="time">20:30(pm)</span>
-				</div>
-				
-				<div class="times" data-select="unselect">
-	            	<span class="material-symbols-outlined">
-						clear_night
-					</span>
-					<span id="time">24:00(am)</span>
-				</div>
-	           
-	           	<div class="times" data-select="unselect">
-	            	<span class="material-symbols-outlined">
-						clear_night
-					</span>
-					<span id="time">02:30(am)</span>
-				</div>
-				-->
 	        </div>
 
     	</div>
     	
-    	<div class="d-flex justify-content-center send">
-	    	<div class="next">
-				<form id="go" name="go" action="/ticketing/seat" method="get">
+    	<div class="send-part">
+	    	<div class="send-main">
+				<form id="send-form" name="send-form" action="/ticketing/seat" method="get">
 					<div style="flex-grow: 1; font-weight: bold;">
 						<div style="font-size: 24px;">영화 : <span id="movieTitleText"></span></div>
 						<div style="font-size: 24px;">날짜 : <span id="dateText"></span></div>
 						<div style="font-size: 24px;">시간 : <span id="timesText"></span> </div>
+						<div style="font-size: 24px;">상영관 : <span id="theaterText"></span> </div>
 					</div>
 					<input type="hidden" name="movieTitle">
 					<input type="hidden" name="movieDate">
 					<input type="hidden" name="movieTime">
+					<input type="hidden" name="movieTheater">
 					<button class="sendBtn btn btn-success" type="button">좌석배치</button>
 				</form>
 			</div>
