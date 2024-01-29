@@ -20,7 +20,7 @@
 	<div class="notice d-flex justify-content-center" > 
 		<div class="notice-top" >
 		
-			<h2 class="notice-body" title="공지사항" > <i class="fa fa-bullhorn"></i>공지사항</h2>
+			<h2 class="notice-body" title="공지사항"> <i class="fa fa-bullhorn"></i>공지사항</h2>
 <!-- 			<div class="d-flex justify-content-between"  -->
 <!--                 style="width: 50%; height: 6%; border: 1px solid #000000; background-color: white; margin-left: 350"> -->
 <!--                 <div class="align-self-center" style="border-right: 0.5px solid #000000; width: 50%; text-align: center;"> -->
@@ -50,15 +50,15 @@
 <!-- 			</section> -->
 <!--   			</div> -->
 			<section>
-		   	 <ul class="nav" title="공지사항그룹">
+		   	 <ul class="nav transfrom-scale" title="공지사항그룹">
 					  <li class="nav-item">
-					    <a class="nav-link" href="/main/jo_main">공지사항</a>
+					    <a class="nav-link" href="/notice/ham_notice">공지사항</a>
 					  </li>
 					  <li class="nav-item">
-					    <a class="nav-link" href="/notice/ham_notice">자주묻는질문</a>
+					    <a class="nav-link" href="/notice/ham_often">자주묻는질문</a>
 					  </li>
 					  <li class="nav-item">
-					    <a class="nav-link" href="https://layoutit.com">1대1문의</a>
+					    <a class="nav-link" href="/notice/ham_inquiry">1대1문의</a>
 					  </li> 
 			  </ul>
 			</section>

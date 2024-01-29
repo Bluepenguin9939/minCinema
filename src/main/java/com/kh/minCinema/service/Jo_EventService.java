@@ -6,7 +6,7 @@ import com.kh.minCinema.domain.Jo_EventDTO;
 
 public interface Jo_EventService {
 	
-	public Map<String, String> checkAttendance(Jo_EventDTO eventDTO);
+	public Map<String, Object> checkAttendance(Jo_EventDTO eventDTO);
 	
-//	public String changeImg(String mid);
+	public boolean clickToAttendance(String mid);
 }

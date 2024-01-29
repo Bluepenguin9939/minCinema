@@ -1,0 +1,49 @@
+@charset "UTF-8";
+/* notice-top */
+.admin-top{
+width: 80%;
+height: auto;
+margin-top: 200px;
+}
+.admin-body{
+	font-size: 50px;
+	font-family: cursive;
+	font-weight: bold;
+	margin-bottom: 20px;
+}
+
+.page-link{
+	color : black;
+}
+.page-link:hover{
+	color : red;
+}
+[title="검색선택"]{
+	margin-right: 20px;
+}
+/* 부트스트랩 전용 class 바꾸면 안됨 기존 li로 적용됨 */
+.nav{
+	margin-top: 100px;
+	direction: flex;
+	justify-content: center;
+	margin-bottom:50px;
+}
+
+.link{
+	cursor: pointer;
+}
+.pageBottom{
+	margin-bottom: 30px;
+}
+section a{
+	color : gray;
+}
+[title="ven"]{
+	margin-right: 25px;
+}
+#modal-474701{
+	display: flex;
+	justify-content: center;
+	font-size: 30px;
+}
+

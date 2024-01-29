@@ -1,19 +1,28 @@
 @charset "UTF-8";
 
-tr {
+#callender > tbody > tr {
 	display: flex;
 }
 
-th {
+#callender > tbody > tr > th {
 	width: 135px;
 }
 
-td {
+#callender > tbody > tr > td {
 	height: 135px;
     width: 135px;
     align-self: center;
     display: flex;
     justify-content: center;
+}
+
+#gift-table > tbody > tr > th {
+	width: 40%;
+	text-align: center;
+}
+
+#gift-table > tbody > tr > td {
+	text-align: center;
 }
 
 .attendance_td {

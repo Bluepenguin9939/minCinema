@@ -1,0 +1,32 @@
+#mainManage{
+	font-size: 40px;
+	font-family: cursive;
+}
+/* 관리자 메인 대시보드에 차트 타이틀은 h3로만 표기함 */
+
+div h3{
+	font-weight: bold;
+}
+
+/* 차트와 글간 간격 설정 */
+.mainChart-bar{
+	margin-top: 15px;
+}
+#ageView{
+	margin-top: 30px;
+}
+#monthPoint{
+	margin-top: 30px;
+}
+/* // */
+/* 추후에 반응형 작업 해야함 pie차트는 깨짐 현상  */
+/* #myChart3{ */
+/* 	width: 50%; */
+/* 	height: 50%; */
+/* 	margin-left: 250px; */
+/* } */
+/* 막대 차트를 제외한 차트들 */
+.mainChart{
+	margin-top: 30px;
+}
+

@@ -39,6 +39,11 @@
 				</a>
 			</li>
 			<li>
+				<a href="/myPage/jo_myInterest">관심목록
+					<span style="position: absolute; right: 10px;">&raquo</span>
+				</a>
+			</li>
+			<li>
 				<a href="#">쿠폰함
 					<span style="position: absolute; right: 10px;">&raquo</span>
 				</a>

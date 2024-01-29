@@ -39,6 +39,7 @@
 	};
 
 
+	
 	const myChart = new Chart(
 		document.getElementById('myChart'),
 		config //<- 상단 부 컨피그

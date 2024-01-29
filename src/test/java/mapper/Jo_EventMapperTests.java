@@ -1,5 +1,7 @@
 package mapper;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,14 +22,20 @@ public class Jo_EventMapperTests {
 	
 	@Autowired
 	private Jo_EventMapper eventMapper;
+	
 	@Test
 	public void testSelectByMid() {
-		
 		Jo_EventDTO eventDTO = Jo_EventDTO.builder()
 				.mid("test").curDate("2024/01/25")
 				.build();
 		log.info("eventDTO : " + eventDTO);
 		String result = eventMapper.selectByMid(eventDTO);
+		log.info("result : " + result);
+	}
+	
+	@Test
+	public void testChange() {
+		List<String> result = eventMapper.changeImg("test");
 		log.info("result : " + result);
 	}
 }

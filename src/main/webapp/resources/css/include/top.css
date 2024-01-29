@@ -26,6 +26,7 @@
 
 .top-hover-dropdown:hover .dropdown-menu {
 	display: block;
+	margin-top: 0px;
 }
 
 .navbar-search {
