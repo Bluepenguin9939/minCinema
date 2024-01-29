@@ -3,7 +3,7 @@
     
 <%@ include file="/WEB-INF/views/include/top.jsp" %>
 
-<link href="/resources/css/myPage/mySide.css?after" rel="stylesheet">
+<link href="/resources/css/myPage/mySide.css" rel="stylesheet">
 <link href="/resources/css/myPage/myInfo.css?after" rel="stylesheet">
 
 <div class="container-fluid">

@@ -50,5 +50,4 @@ public class Jo_MemberController {
 		log.info("isDup : " + isDup);
 		return String.valueOf(isDup); 
 	}
-	
 }

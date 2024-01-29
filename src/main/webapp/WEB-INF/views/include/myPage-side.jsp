@@ -1,13 +1,48 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<script>
+$(function() {
+	$("#profile-upload").change(function(e) {
+		var upload_image = e.target.files;
+		console.log("asd :", upload_image);
+		
+		var formData = new FormData();
+		formData.append("uploadFile", upload_image[0]);
+		console.log(formData);
+		
+		$.ajax({
+			"url" : "/uploadProfileImage",
+			"type" : "post",
+			"processData" : false,
+			"contentType" : false,
+			"data" : formData,
+			"success" : function(rData) {
+				console.log(rData);
+				var attachVO = rData.attachVO;
+				var upload_path = attachVO.upload_path;
+				var uuid = attachVO.uuid;
+				var file_name = attachVO.file_name;
+				
+				var file_path = upload_path + "/" + uuid + "_" + file_name;
+				console.log(file_path);
+				$("#profile-image").attr("src", file_path);
+			}
+		});
+	});
+});
+</script>
+
 <div style="width: 20%; margin-right: 15px;">
 	<div class="card" style="border: 0px; border-radius: 0px; background-color: #eee;">
 		<div class="d-flex justify-content-center" style="height: 150px;">
-			<a href="#" class="align-self-center">
+			<input type="file" id="profile-upload" accept="image/*">
+			<div class="align-self-center" onclick="$('#profile-upload').click();"
+				id="user-profile">
 				<img class="card-img-top rounded-circle" src="/resources/img/default-profile.png" 
 					alt="프로필" id="profile-image">
-			</a>
+			</div>
 		</div>
 		<hr style="border-bottom: 1px solid #666666;">
 		<div class="card-body" style="padding-top: 0px;">
