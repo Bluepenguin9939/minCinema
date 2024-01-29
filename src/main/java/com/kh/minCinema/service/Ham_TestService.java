@@ -8,7 +8,7 @@ public interface Ham_TestService {
 	
 	public int TestInsert(Ham_TestVO testVO);
 	
-	public List<Ham_TestVO> testMemberList();
+	public List<Ham_TestVO> testMemberList(Ham_TestVO testVO);
 	
 	public int testMemberDelete(String tmid);
 }

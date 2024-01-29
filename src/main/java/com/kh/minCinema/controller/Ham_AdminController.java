@@ -30,8 +30,8 @@ public class Ham_AdminController {
 	}
 	//관리자페이지 - 테스트 멤버 목록 
 	@GetMapping("/ham_cmanagement")
-	public void management(Model model) {
-		 List<Ham_TestVO> list = ham_TestService.testMemberList();
+	public void management(Model model, Ham_TestVO testVO) {
+		 List<Ham_TestVO> list = ham_TestService.testMemberList(testVO);
 		 model.addAttribute("list",list);
 		 
 	}

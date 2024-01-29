@@ -28,8 +28,8 @@
 		class="com.kh.minCinema.interceptor.Heo_LoginInterceptor"/>
 	<beans:bean id="authInterceptor"
 		class="com.kh.minCinema.interceptor.Heo_AuthInterceptor"/>
-	<beans:bean id="adminInterceptor"
-		class="com.kh.minCinema.interceptor.Jo_AdminInterceptor"/>
+<!-- 	<beans:bean id="adminInterceptor" -->
+<!-- 		class="com.kh.minCinema.interceptor.Jo_AdminInterceptor"/> -->
 		
 	<interceptors>
 		<interceptor>
@@ -43,10 +43,10 @@
 			<exclude-mapping path="/main/**/*"/>
 			<beans:ref bean="authInterceptor"/>
 		</interceptor>
-		<interceptor>
-			<mapping path="/admin/**/*"/>
-			<beans:ref bean="adminInterceptor"/>
-		</interceptor>
+<!-- 		<interceptor> -->
+<!-- 			<mapping path="/admin/**/*"/> -->
+<!-- 			<beans:ref bean="adminInterceptor"/> -->
+<!-- 		</interceptor> -->
 	</interceptors>
 	
 </beans:beans>
