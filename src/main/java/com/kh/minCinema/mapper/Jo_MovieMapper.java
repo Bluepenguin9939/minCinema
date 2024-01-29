@@ -11,4 +11,6 @@ public interface Jo_MovieMapper {
 	public List<Jo_MovieVO> selectAll();
 	
 	public Jo_MovieVO selectMovieByCode(String mov_code);
+	
+	public List<Jo_MovieVO> selectInterestToHeart(String mid);
 }

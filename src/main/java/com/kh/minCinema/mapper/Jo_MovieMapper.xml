@@ -16,4 +16,11 @@
 		SELECT * FROM MC_MOVIE
 		WHERE MOV_CODE = #{mov_code}
 	</select>
+	
+	<select id="selectInterestToHeart" resultType="com.kh.minCinema.domain.Jo_MovieVO" parameterType="string">
+		SELECT * FROM MC_MOVIE
+		WHERE MOV_CODE = ANY(SELECT MOV_CODE
+        		             FROM MC_HEART
+                		     WHERE MID = '${value}')
+	</select>
 </mapper>

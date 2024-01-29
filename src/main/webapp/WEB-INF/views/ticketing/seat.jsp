@@ -581,7 +581,7 @@ $(function(){
 					age = $(id).attr("data-age");
 					$(id).remove();
 			});
-			console.log(ticketCost);
+			//console.log(ticketCost);
 			//$("#ticketCost").text(ticketCost);
 			if(age == "adult"){ ticketCost = ticketCost - 10000 * seatArray.length }
 			else if(age == "teen"){ ticketCost = ticketCost - 8000 * seatArray.length }
@@ -603,10 +603,56 @@ $(function(){
 	
 	
 	$(".payButton").click(function() {
-		console.log("빼꼼?")
+		//console.log("빼꼼?");
+		var reservedSeat = [];
+		var ageMap = {};
+		var ticketListArray = $(".seatMember");
 		
-		var ticketList = $(".seatMember").text();
-		console.log("ticketList:",ticketList);
+		var resultCost = parseInt( $("#resultCost").text() );
+		
+		if(resultCost>=0){
+			
+			$.each(ticketListArray, function (index, seat) { 
+				reservedSeat.push(seat.id);
+				ageMap[seat.id] = seat.getAttribute("data-age"); // 연관 배열
+				
+			});
+			
+			
+			var data = {
+					"movieTitle" :  "${je_reservationVO.movieTitle}",//영화제목
+					"movieDate" : "${je_reservationVO.movieDate}" ,//영화상영일
+					"movieTime" :  "${je_reservationVO.movieTime}",//영화 시작시간,
+					"movieTheater" : "${je_reservationVO.movieTheater}",//영화 상영관,
+					"reservedSeat" : reservedSeat,                    //예약한좌석번호들
+					"age" : ageMap//연령
+			};
+			
+			console.log("data:",data);
+			var url = "/ticketing/cost";
+			
+
+			$.ajax({
+		            url: url,
+		            type: "POST",
+		            data: JSON.stringify(data),
+		            dataType: "json",
+		            contentType: "application/json; charset=utf-8",
+		            success: function(rdata){
+		                
+		            },
+		            error: function(){
+		                
+		            }
+		     });
+			
+		}
+		else{
+			alert("포인트가 부족합니다!!!!");
+			
+		}
+
+		
 		
 	});
 	
@@ -694,13 +740,14 @@ $(function(){
 		        		<li>영화 : ${je_reservationVO.movieTitle}</li>
 		        		<li>날짜 : ${je_reservationVO.movieDate}</li>
 		        		<li>시간 : ${je_reservationVO.movieTime}</li>
+		        		<li>상영관 : ${je_reservationVO.movieTheater}</li>
 		        	</ul>
 		        	
 		        	
 		        	<div style="width: 100%">=========================</div>
 		        	<div class="rounded text-center" style="width: 100%; background-color: #9dff71;">
 		        		<div class="rounded" style="background-color: white;font-size: 20px">포인트 현황</div>
-		        		<p id="myPoint" style="font-size: 28px">24000 포인트</p>
+		        		<p id="myPoint" style="font-size: 28px">28000 포인트</p>
 		        	</div>
 		        	
 		        	<div class="rounded text-center" style="width: 100%; background-color: #9dff71;">
@@ -710,8 +757,8 @@ $(function(){
 		        	
 		        	<div class="rounded text-center" style="width: 100%; background-color: #9dff71;">
 		        		<div class="rounded" style="background-color: white;font-size: 20px">결제내역</div>
-		        		<div class="text-right" style="font-size: 28px">24000원</div>
-		        		<div id="subCost" class="text-right" style="font-size: 28px">-18000원</div>
+		        		<div class="text-right" style="font-size: 28px">28000 포인트</div>
+		        		<div id="subCost" class="text-right" style="font-size: 28px"></div>
 		        		<div class="text-right" style="font-size: 20px">====================</div>
 		        		<div id="resultCost" class="text-right" style="font-size: 28px">6000원</div>
 		        	</div>
@@ -723,14 +770,13 @@ $(function(){
 				<div style="flex-grow: 1;">
 					<div style="font-size: 50px; text-align: center;">남은좌석 <span class="currentSeat">??</span>/72석</div>
 				</div>
-				<form>
-					<button class="payButton btn btn-success"  type="button"
+				<button class="payButton btn btn-success"  type="button"
 							style="font-size:40px;width: 280px; height: 100%">
-						<span style="font-size:36px;" class="material-symbols-outlined">
+					<span style="font-size:36px;" class="material-symbols-outlined">
 								credit_card
-						</span>결제하기
-					</button>
-				</form>
+					</span>결제하기
+				</button>
+				
 			</div>
 		</div>
 	</div>
