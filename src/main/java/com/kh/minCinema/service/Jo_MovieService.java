@@ -11,4 +11,6 @@ public interface Jo_MovieService {
 	public List<Jo_MovieVO> getAll();
 	
 	public Jo_MovieVO getMovieByCode(String mov_code);
+	
+	public List<Jo_MovieVO> getInterestToHeart(String mid);
 }
