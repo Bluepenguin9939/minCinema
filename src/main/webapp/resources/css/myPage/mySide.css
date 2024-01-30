@@ -1,5 +1,13 @@
 @charset "UTF-8";
 
+#profile-upload {
+	display: none;
+}
+
+#user-profile {
+	cursor: pointer;
+}
+
 #myMenu {
 	list-style-type: none;
 	padding: 0;
