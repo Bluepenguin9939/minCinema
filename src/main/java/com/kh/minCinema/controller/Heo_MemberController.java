@@ -5,11 +5,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.minCinema.domain.Heo_LoginDTO;
 import com.kh.minCinema.domain.Heo_MemberVO;
 import com.kh.minCinema.service.Heo_MemberService;
+import com.kh.minCinema.service.Jo_AttachService;
 
 @Controller
 @RequestMapping("/member")
@@ -17,6 +17,11 @@ public class Heo_MemberController {
 
 	@Autowired
 	private Heo_MemberService heo_MemberService;
+//	@Autowired
+//	private Heo_PointService heo_PointService;
+	
+	@Autowired
+	private Jo_AttachService attachService;
 	
 	@PostMapping("/register")
 	public String register(Heo_MemberVO heo_MemberVO) {
@@ -31,12 +36,17 @@ public class Heo_MemberController {
 	}
 	
 	@PostMapping("/login")
-	public void login(Model model, Heo_LoginDTO heo_LoginDTO,RedirectAttributes rttr) {
+	public void login(Model model, Heo_LoginDTO heo_LoginDTO) {
 		Heo_MemberVO heo_MemberVO = heo_MemberService.memberLogin(heo_LoginDTO);
 		if (heo_MemberVO == null) {
 			return;
 		}
-		model.addAttribute("loginInfo", heo_MemberVO);
+		Heo_MemberVO memberVO = attachService.getFile(heo_MemberVO.getMid());
+		if (memberVO != null) {
+			model.addAttribute("loginInfo", memberVO);
+		} else {
+			model.addAttribute("loginInfo", heo_MemberVO);
+		}
 		model.addAttribute("useCookie", heo_LoginDTO.getUseCookie());
 	}
 	

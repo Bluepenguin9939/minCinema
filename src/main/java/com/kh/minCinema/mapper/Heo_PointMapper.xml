@@ -9,4 +9,18 @@
 		values
 			(seq_pid.nextval, #{mid}, #{ppoint}, #{pcode})
 	</insert>
+	
+	<select id="getPointList" resultType="com.kh.minCinema.domain.Heo_PointVO">
+		select * from(
+    		select /*+INDEX_DESC(MC_POINT PK_PID) */
+        	rownum rn, pid, mid, ppoint, pcode, pdate
+        	from MC_POINT)
+        where mid = #{mid}
+        and rn between #{startRow} and #{endRow}
+	</select>
+	
+	<select id="getPointListCount" resultType="int">
+		select count(*) from MC_POINT
+		where mid = #{mid} 
+	</select>
 </mapper>
