@@ -467,6 +467,7 @@ $(function(){
 		
 		var ticketCost = parseInt($("#ticketCost").text());
 		//console.log("ticketCost:",ticketCost);
+		$("#disCount").val("0").prop("selected",true);
 		
 		if(select=="unselect"){
 			var currentSeat = parseInt( $(".currentSeat").text() );
@@ -562,6 +563,7 @@ $(function(){
 		}
 		/*선택취소 클릭*/
 		else if(select=="select"){
+			$("#disCount").val("0").prop("selected",true);
 			
 			var thatSeat = that.attr("data-seat");
 			var seatArray = seatMap.get(thatSeat);
@@ -569,7 +571,7 @@ $(function(){
 			
 			var currentSeat = parseInt( $(".currentSeat").text() );
 			currentSeat = currentSeat + parseInt(pCount);
-			$(".currentSeat").text(currentSeat);
+			$(".currentSeat").text(currentSeat); //좌석개수 설정
 			
 			$.each(seatArray, function (index, seat) { /*ㅇdiv 정리*/
 				 	//console.log('element', index, seat);
@@ -592,14 +594,43 @@ $(function(){
 			});
 			
 		}
-		$("#subCost").text("-"+ticketCost+"원");
-		var afterCost = $("")
+		$("#subCost").text(ticketCost+"원");
 		var point = parseInt( $("#myPoint").text() );
 		var result = point - ticketCost;
 		
 		$("#resultCost").text(result);
 		
 	});//////////////////////////////// seat-click
+	
+	$("#disCount").on("change",function(){
+		var that = $(this);
+		var value = $(this).val();
+		var point = parseInt( $("#myPoint").text() );
+		var ticketCost = parseInt( $("#ticketCost").text() );
+		if(ticketCost > 0){
+			if(value > 0){
+				var disCountCost = ticketCost * value / 100 ;
+				var subCost = ticketCost-disCountCost;
+				
+				var resultCost = point - subCost;			
+
+				$("#subCost").text(subCost+"(할인)원");
+				$("#resultCost").text(resultCost);
+			}
+			else{
+				var subCost = ticketCost;
+				
+				var resultCost = point - subCost;			
+
+				$("#subCost").text(subCost+"원");
+				$("#resultCost").text(resultCost);
+			}
+		}
+		//console.log("that.val:",value);
+		
+		
+	});//할인적용
+	
 	
 	
 	$(".payButton").click(function() {
@@ -753,14 +784,23 @@ $(function(){
 		        	<div class="rounded text-center" style="width: 100%; background-color: #9dff71;">
 		        		<div class="rounded" style="background-color: white;font-size: 20px">결재할 금액</div>
 		        		<p id="ticketCost" style="font-size: 28px">0</p>
+			        	<div class="d-flex text-nowrap bg-warning mb-3">
+			        		<span style="font-size: 20px">할인쿠폰 :</span>
+			        		<select class="form-control" id="disCount">
+								<option value="0">없음</option>
+								<option value="5">5% 할인쿠폰</option>
+								<option value="10">10% 할인쿠폰</option>
+								<option value="15">15% 할인쿠폰</option>
+							</select>
+			        	</div>
 		        	</div>
 		        	
 		        	<div class="rounded text-center" style="width: 100%; background-color: #9dff71;">
 		        		<div class="rounded" style="background-color: white;font-size: 20px">결제내역</div>
 		        		<div class="text-right" style="font-size: 28px">28000 포인트</div>
-		        		<div id="subCost" class="text-right" style="font-size: 28px"></div>
+		        		<div id="subCost" class="text-right" style="font-size: 28px">0원</div>
 		        		<div class="text-right" style="font-size: 20px">====================</div>
-		        		<div id="resultCost" class="text-right" style="font-size: 28px">6000원</div>
+		        		<div id="resultCost" class="text-right" style="font-size: 28px">0원</div>
 		        	</div>
 		        </div><!-- count -->
 		        
