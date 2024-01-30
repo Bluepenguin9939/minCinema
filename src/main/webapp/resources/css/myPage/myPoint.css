@@ -35,17 +35,17 @@
 	color: #aca1f2;
 }
 
-.point-history-tr {
-	border-top: 1px solid #999999;
-}
+/* .point-history-tr { */
+/* 	border-top: 1px solid #999999; */
+/* } */
 
-.point-history-tr > td {
-	padding: 0px;
-	padding-top: 15px;
-	padding-bottom: 15px;
-	text-align: center;
-	vertical-align: middle;
-}
+/* .point-history-tr > td { */
+/* 	padding: 0px; */
+/* 	padding-top: 15px; */
+/* 	padding-bottom: 15px; */
+/* 	text-align: center; */
+/* 	vertical-align: middle; */
+/* } */
 
 .table-point-i {
 	color: #aca1f2;

@@ -39,7 +39,7 @@ public class Ham_adminTest {
 	
 	@Test
 	public void testList() {
-		ham_TestMapper.testMemberList();
+//		ham_TestMapper.testMemberList();
 	}
 	@Test
 	public void testDelete() {

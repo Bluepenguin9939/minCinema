@@ -8,8 +8,7 @@ public interface Ham_TestMapper {
 
 	public int insertTest(Ham_TestVO testVO);
 	
-	public List<Ham_TestVO> testMemberList();
+	public List<Ham_TestVO> testMemberList(Ham_TestVO vo);
 	
 	public int testMemberDelete(String tmid);
-	
 }

@@ -3,6 +3,29 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kh.minCinema.mapper.Ham_TestMapper">
+	<sql id="search">
+		<where>
+	    	<foreach item="type" collection="typeArr">
+			    <choose>
+			    	<when test="type == 'I'.toString()">
+			    		tmid LIKE '%' || #{keyword} || '%'
+			    	</when>
+			    	<when test="type == 'NI'.toString()">
+			    		OR tmnick LIKE '%' || #{keyword} || '%'
+			    	</when>
+			    	<when test="type == 'N'.toString()">
+			    		OR tmname LIKE '%' || #{keyword} || '%'
+			    	</when>
+			    	<when test="type == 'E'.toString()">
+			    		OR tmemail LIKE '%' || #{keyword} || '%'
+			    	</when>
+			    	<when test="type == 'T'.toString()">
+			    		OR tmtel LIKE '%' || #{keyword} || '%'
+			    	</when>
+			    </choose>
+	    	</foreach>
+	    </where>
+	</sql>
 	<!-- 테스트 멤버 생성 -->
 	<insert id="insertTest">
 		insert into TEST_MEMBER(tmno,tmid,tmpw,tmnick,tmname,tmemail,tmtel)
@@ -10,11 +33,18 @@
 	</insert>
 	<!-- 테스트 멤버 목록 -->
 	<select id="testMemberList" resultType="com.kh.minCinema.domain.Ham_TestVO">
-		select * from TEST_MEMBER
+		SELECT * FROM (
+		    SELECT 
+		         tmno,tmid,tmpw,tmnick,tmname,tmemail,tmtel
+		    FROM TEST_MEMBER
+		    <include refid="search"></include>
+		    )
+		    ORDER BY TMNO DESC
 	</select>
 	<!-- 테스트 멤버 삭제 -->
 	<delete id="testMemberDelete">
 		delete from TEST_MEMBER
 		where tmid = #{tmid}
 	</delete>
+	
 </mapper>

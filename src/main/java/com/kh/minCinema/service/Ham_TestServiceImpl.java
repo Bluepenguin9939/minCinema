@@ -20,8 +20,8 @@ public class Ham_TestServiceImpl implements Ham_TestService {
 	}
 
 	@Override
-	public List<Ham_TestVO> testMemberList() {
-		List<Ham_TestVO> list  = testMapper.testMemberList();
+	public List<Ham_TestVO> testMemberList(Ham_TestVO testVO) {
+		List<Ham_TestVO> list  = testMapper.testMemberList(testVO);
 		return list;
 	}
 

@@ -35,32 +35,56 @@
 			  </ul>
 			</section>
 		<!-- 1대1 문의틀 -->
-			<div class="">
-				<div class="col-md-12">
-					<div class="inquiry">
-						<h2>1대1 문의하기</h2>
-						<hr style="border: 0; height: 5px; background-color: #000000;">
+<div class="col-md-12">
+				<form role="form">
+				
+					<div class="form-group">
+						<label for="exampleInputPassword1"> 문의하실 고객님 아이디 </label> 
+						<input type="text" class="form-control" id="exampleInputPassword1"/>
 					</div>
-					<div class="d-flex firstInput">
-						<h3 style="margin-right: 50px;">문의제목</h3>
-						<input type="text" placeholder="문의하실 내용의 제목을 적어주세요." size="170">
+					<div class="form-group">
+						<label for="exampleInputPassword1"> 문의 제목 </label> 
+						<input type="text" class="form-control" id="exampleInputPassword1"/>
 					</div>
-					<div class="d-flex secondInput" style="margin-top: 20px;">
-						<h3 style="margin-right: 50px;">문의내용</h3>
-						<textarea cols="173" rows="5" placeholder="신속하고 정확한 안내를 위해 상세하게 작성해주세요."></textarea> 
+					<div class="form-group">
+						<label for="exampleInputPassword1"> 문의 내용 </label><br>
+						<textarea style="width: 100%; height: 6.25em;  resize: none;"></textarea> 
+
+  
 					</div>
-					<div class="d-flex firstInput" style="margin-top: 20px;">
-						<h3 style="margin-right: 20px;">이메일 주소</h3>
-						<input type="text" placeholder="ex)example@naver.com" size="170">
+					<div class="form-group">
+
+						<input type="file" class="form-control-file" id="exampleInputFile" />
 					</div>
-					<div style="margin-top: 20px;">
-						<input type="file">
-					</div>
-					<div style="margin-top: 20px;">
-					<button>문의사항 제출</button>
-					</div>
-				</div>
+					<button type="submit" class="btn btn-primary">Submit</button>
+				</form>
 			</div>
+<!-- 			<div class=""> -->
+<!-- 				<div class="col-md-12"> -->
+<!-- 					<div class="inquiry"> -->
+<!-- 						<h2>1대1 문의하기</h2> -->
+<!-- 						<hr style="border: 0; height: 5px; background-color: #000000;"> -->
+<!-- 					</div> -->
+<!-- 					<div class="d-flex firstInput"> -->
+<!-- 						<h3 style="margin-right: 50px;">문의제목</h3> -->
+<!-- 						<input type="text" placeholder="문의하실 내용의 제목을 적어주세요." size="170"> -->
+<!-- 					</div> -->
+<!-- 					<div class="d-flex secondInput" style="margin-top: 20px;"> -->
+<!-- 						<h3 style="margin-right: 50px;">문의내용</h3> -->
+<!-- 						<textarea cols="173" rows="5" placeholder="신속하고 정확한 안내를 위해 상세하게 작성해주세요."></textarea>  -->
+<!-- 					</div> -->
+<!-- 					<div class="d-flex firstInput" style="margin-top: 20px;"> -->
+<!-- 						<h3 style="margin-right: 20px;">이메일 주소</h3> -->
+<!-- 						<input type="text" placeholder="ex)example@naver.com" size="170"> -->
+<!-- 					</div> -->
+<!-- 					<div style="margin-top: 20px;"> -->
+<!-- 						<input type="file"> -->
+<!-- 					</div> -->
+<!-- 					<div style="margin-top: 20px;"> -->
+<!-- 					<button>문의사항 제출</button> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
 		<!-- 1대1문의 모달창 -->
 <!-- 		<div class="col-md-12"> -->
 <!-- 		<div class="card"> -->

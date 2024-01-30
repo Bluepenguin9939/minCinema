@@ -46,6 +46,7 @@
 <!-- 			<mapping path="/admin/**/*"/> -->
 			<mapping path="/ticketing/**/*"/>
 			<exclude-mapping path="/main/**/*"/>
+			<exclude-mapping path="/ticketing/cost"/>
 			<beans:ref bean="authInterceptor"/>
 		</interceptor>
 <!-- 		<interceptor> -->
