@@ -15,4 +15,5 @@ public class Jo_AttachVO {
 	private String upload_path;
 	private String file_name;
 	private String mid;
+	private String mov_code;
 }

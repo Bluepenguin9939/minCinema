@@ -29,7 +29,8 @@ import lombok.extern.log4j.Log4j;
 @Controller
 @Log4j
 public class Jo_AttachController {
-	private static final String UPLOAD_PATH = "G:/upload/user_profile_image";
+	private static final String PROFILE_UPLOAD_PATH = "G:/upload/user_profile_image";
+	private static final String POSTER_UPLOAD_PATH = "G:/upload/poster";
 	
 	@Autowired
 	private Jo_AttachService attachService;
@@ -46,10 +47,10 @@ public class Jo_AttachController {
 		UUID uuid = UUID.randomUUID();
 		String orgFileName = uploadFile.getOriginalFilename();
 		String saveFileName = uuid + "_" + orgFileName;
-		File saveRepository = new File(UPLOAD_PATH, saveFileName);
+		File saveRepository = new File(PROFILE_UPLOAD_PATH, saveFileName);
 		Map<String, Object> map = new HashMap<>();
 		Jo_AttachVO attachVO = Jo_AttachVO.builder()
-				.uuid(uuid.toString()).upload_path(UPLOAD_PATH)
+				.uuid(uuid.toString()).upload_path(PROFILE_UPLOAD_PATH)
 				.file_name(orgFileName).mid(mid)
 				.build();
 		boolean result = (attachVO != null) ? true : false;
@@ -60,6 +61,40 @@ public class Jo_AttachController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return map;
+	}
+	
+	@PostMapping(value = "/uploadPosterImage",
+				 produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public Map<String, Object> uploadPosterImage(MultipartFile uploadFile) {
+		if (uploadFile == null) {
+			return null;
+		}
+		int movieOrgNameLength = uploadFile.getOriginalFilename().length() - 4;
+		String movieOrgName = uploadFile.getOriginalFilename().substring(0, movieOrgNameLength);
+		String moviePath = POSTER_UPLOAD_PATH + "/" + movieOrgName;
+		File movieFolder = new File(moviePath);
+		if (!movieFolder.exists()) {
+			movieFolder.mkdirs();
+		}
+		UUID uuid = UUID.randomUUID();
+		String orgFileName = uploadFile.getOriginalFilename();
+		String saveFileName = uuid + "_" + orgFileName;
+		File saveRepository = new File(moviePath, saveFileName);
+		Map<String, Object> map = new HashMap<>();
+		Jo_AttachVO attachVO = Jo_AttachVO.builder()
+				.uuid(uuid.toString()).upload_path(moviePath)
+				.file_name(orgFileName)
+				.build();
+		boolean result = (attachVO != null) ? true : false;
+		map.put("attachVO", attachVO);
+		map.put("result", result);
+		try {
+			uploadFile.transferTo(saveRepository);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}	
 		return map;
 	}
 	

@@ -22,4 +22,6 @@ public class Jo_MovieVO {
 	private String mov_genre;			// 영화 장르
 //	private String mov_posterURL;		// 영화 포스터URL
 //	private String mov_stillURL;		// 영화 스틸컷URL
+	
+	private Jo_AttachVO attachVO;
 }
