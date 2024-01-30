@@ -9,13 +9,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Ham_CheckVO {
-	private int tmno;
-	private String tmid;
-	private String tmpw;
-	private String tmnick;
-	private String tmname;
-	private String tmemail;
-	private String tmtel;
-	
+public class Ham_DateVO {
+	private int rn;
+	private String msg_id;
+	private String sender;
+	private String message;
+	private String mtitle;
+	private String send_date;
+	private String open_date;
 }

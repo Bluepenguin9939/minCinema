@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kh.minCinema.mapper.Ham_OneononeMapper">
+	<!-- 전체를 조회 -->
+	<select id="selectOne" resultType="com.kh.minCinema.domain.Ham_OneononeVO"> 
+		select * from MC_ONEONONE 
+		order by rn desc
+	</select>
+	<!-- 유저측 문의사항 입력 -->
+	<insert id="insertInquiry">
+		insert into MC_ONEONONE(rn,msg_id,sender,mtitle,message)
+		values(seq_rn.NEXTVAL,#{msg_id},#{sender},#{mtitle},#{message})
+	</insert>
+	<!-- 유저 문의내용 들고오기 -->
+	<select id="selectGetOne" resultType="com.kh.minCinema.domain.Ham_OneononeVO">
+		select * from MC_ONEONONE
+		where rn = #{rn}
+		and sender = #{sender}
+		
+	</select>
+	
+	<update id="updateInquiry">
+		update mc_oneonone set
+		remessage = #{remessage},
+		open_date = sysdate
+		where msg_id = #{msg_id}
+	</update>
+</mapper>

@@ -24,6 +24,7 @@ $(function() {
 	var aa = $(".wrap>tr");
 	var sa = aa.slice(begin,end);
 	aa.hide();
+	sa.show();
 	if(result == "true"){
 		alert("테스트 회원 생성 완료");
 	}
