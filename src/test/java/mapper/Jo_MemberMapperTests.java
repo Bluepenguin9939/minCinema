@@ -7,6 +7,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
+import com.kh.minCinema.domain.Jo_InfoChangeDTO;
 import com.kh.minCinema.mapper.Jo_MemberMapper;
 
 import lombok.extern.log4j.Log4j;
@@ -24,5 +25,13 @@ public class Jo_MemberMapperTests {
 	public void testSelectDupId() {
 		int isDupCount = memberMapper.selectDupId("test");
 		log.info(isDupCount);
+	}
+	
+	@Test
+	public void testUpdatePw() {
+		Jo_InfoChangeDTO changeDTO = Jo_InfoChangeDTO.builder()
+				.mid("test").futurePw("testtest")
+				.build();
+		int count = memberMapper.updatePw(changeDTO);
 	}
 }

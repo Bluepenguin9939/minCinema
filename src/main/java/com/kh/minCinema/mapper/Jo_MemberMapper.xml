@@ -7,4 +7,21 @@
 		SELECT count(*) FROM MC_MEMBER
 		WHERE MID = #{mid}
 	</select>
+	
+	<select id="checkPw" resultType="string">
+		SELECT MPW FROM MC_MEMBER
+		WHERE MID = #{mid}
+	</select>
+	
+	<update id="updatePw">
+		UPDATE MC_MEMBER SET
+			MPW = #{futurePw}
+		WHERE MID = #{mid}
+	</update>
+	
+	<update id="updateNick">
+		UPDATE MC_MEMBER SET
+			MNICK = #{mnick}
+		WHERE MID = #{mid}
+	</update>
 </mapper>
