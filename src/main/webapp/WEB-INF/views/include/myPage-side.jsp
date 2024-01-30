@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <script>
 $(function() {
+// 	프로필 사진 띄우기
 	$("#profile-upload").change(function(e) {
 		var upload_image = e.target.files;
 		console.log("asd :", upload_image);
@@ -26,9 +28,54 @@ $(function() {
 				var file_name = attachVO.file_name;
 				
 				var file_path = upload_path + "/" + uuid + "_" + file_name;
-				console.log(file_path);
-				$("#profile-image").attr("src", file_path);
+				var url = "/display?fileName=" + file_path
+				console.log(url);
+				$("#profile-image").attr("src", url);
+				if (rData.result) {
+					$("#btnChange").attr("data-file_path", file_path);
+					$("#btnCancle").attr("data-file_path", file_path);
+					$("#changeModal").modal("show");
+				}
 			}
+		});
+	});
+	
+// 	모달 이미지 변경버튼
+	$("#btnChange").click(function() {
+		var file_path = $(this).attr("data-file_path");
+		console.log(file_path);
+		var upload_path = file_path.substring(0, 28);
+		var uuid = file_path.substring(29, 65);
+		var file_name = file_path.substring(66);
+		
+		var url = "/changeProfile"
+		var sData = {
+				"uuid" : uuid,
+				"upload_path" : upload_path,
+				"file_name" : file_name
+		}
+		
+		$.post(url, sData, function(rData) {
+			console.log(rData);
+			if (rData) {
+				self.location = window.location.href;
+			}
+		});
+	});
+	
+// 	모달 취소버튼
+	$("#btnCancle").click(function(e) {
+		e.preventDefault();
+		
+		var file_path = $(this).attr("data-file_path");
+		
+		var url = "/deleteProfile"
+		var sData = {
+				"file_path" : file_path
+		}
+		
+		$.post(url, sData, function(rData) {
+			console.log(rData);
 		});
 	});
 });
@@ -40,8 +87,16 @@ $(function() {
 			<input type="file" id="profile-upload" accept="image/*">
 			<div class="align-self-center" onclick="$('#profile-upload').click();"
 				id="user-profile">
-				<img class="card-img-top rounded-circle" src="/resources/img/default-profile.png" 
-					alt="프로필" id="profile-image">
+				<c:choose>
+					<c:when test="${loginInfo.uuid != null}">
+						<img class="card-img-top rounded-circle" src="/display?fileName=${loginInfo.upload_path}/${loginInfo.uuid}_${loginInfo.file_name}" 
+							alt="프로필" id="profile-image">
+					</c:when>
+					<c:otherwise>
+						<img class="card-img-top rounded-circle" src="/resources/img/default-profile.png" 
+							alt="프로필" id="profile-image">
+					</c:otherwise>
+				</c:choose>
 			</div>
 		</div>
 		<hr style="border-bottom: 1px solid #666666;">
@@ -84,5 +139,30 @@ $(function() {
 				</a>
 			</li>
 		</ul>
+	</div>
+</div>
+<div class="modal fade" id="changeModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="changeModal-title" id="myModalLabel">
+					변경
+				</h5> 
+				<button type="button" class="close" data-dismiss="modal">
+					<span aria-hidden="true">×</span>
+				</button>
+			</div>
+			<div class="modal-body" id="changeModal-body">
+				변경하시겠습니까?
+			</div>
+			<div class="modal-footer">
+				<button type="button" id="btnChange" class="btn btn-primary">
+					변경
+				</button> 
+				<button type="button" id="btnCancle" class="btn btn-secondary" data-dismiss="modal">
+					취소
+				</button>
+			</div>
+		</div>
 	</div>
 </div>

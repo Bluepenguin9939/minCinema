@@ -22,4 +22,8 @@ public class Heo_MemberVO {
 	private Integer mpoint;
 	private String mactive;
 	private Date mregdate;
+	
+	private String upload_path;
+	private String file_name;
+	private String uuid;
 }
