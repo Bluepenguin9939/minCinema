@@ -236,14 +236,18 @@ $(function(){
 			
 			var day = weekday[new Date(year,month-1,i).getDay()]//년, 기준달-1(0~11), 일
 			monthdayMap.set(i,day);
-			$(".reserve-date").append("<div class='days'>"
+			$(".reserve-date").append("<div class='days' id='"+i+"'>"
 										+"<span class='rounded-circle bg-light weekday' style='font-size:24px;'>"+day+"</span>"+"&emsp;"
 										+"<span class='bg-danger day' style='font-weight:normal;'>"+( i <= 9 ? "0" + i : i )+"</span>"
 										+"</div>");
 		}
-		console.log("monthdayMap:",monthdayMap);
+		//console.log("monthdayMap:",monthdayMap);
+		$("#date-month").text(year+"."+ (month <=9 ? "0"+month : month) );
 	}
 	
+	
+	var dateCode;
+	var timeCode;
 	
 	$(document).on("click",".movie-list",function(){//영화제목 클릭시
 		
@@ -260,10 +264,9 @@ $(function(){
 		$("#theaterText").text("");
 		
 		//신규 선택사항
-		console.log("find:", find);
+		//console.log("find:", find);
 		
 		that.attr("data-select","select");
-		that.addClass("")
 		that.css("background-color","#444444");
 		that.css("color","#dddddd");
 		
@@ -271,31 +274,64 @@ $(function(){
 		var text = that.text();
 		
 		$("#movieTitleText").text(text);
-		//console.log("tt:",$("[name=sendMovie]").val());
+
+		var  data = {"movieCode" : "12345678"}; //테스트용 고정데이터
+		//var  data = {"movieCode" : "11112222"}; //테스트용 고정데이터
 		
-		getDayAndWeekday(year,todayMonth);
+		$.post("/ticketing/date",data,function(rdata){
+			
+			console.log("rDaat:",rdata);
+			console.log("rDaat:",rdata[0]);
+			
+			var date = rdata[0].split(".");
+			//console.log("mb:",date[0]);
+			
+			var mvYear = parseInt(date[0]);
+			var mvMonth = parseInt(date[1]);
+			var mvday = parseInt(date[2]);
+			//var offsetId = "#"+mvday;
+			
+			console.log("mvYear:",mvYear);
+			console.log("mvMonth:",mvMonth);
+			
+			
+			getDayAndWeekday(mvYear,mvMonth);
+			//getDayAndWeekday(year,todayMonth);
+			
+			/*var offset = $(offsetId).offset();
+			console.log("offset:",offset);
+			$("#date").animate({scrollTop: offset.top},0);*/
+			
+			/*내일할거 : 클릭시 날짜에 MOV_DATE_CODE 값을 DATA 속성에 넣기*/
+			/*내일할거 : 1,2월 이런식으로 날짜가 2개인경우 어떻게할지 생각하기*/
+			/*내일할거 : */
+		});
 		
-	});
+		
+		
+	});/////////////////////////////////////////////////////
 	
-	$(document).on("click",".days",function(){
+	$(document).on("click",".days",function(){//날짜 클릭시
 		
 		$(".times").remove();
+		//이전 시간파트 삭제
+		
 		$("#timesText").text("");
 		$("#theaterText").text("");
+		//밑 텍스트 삭제
 		
 		var that = $(this);
 		
 		var find = that.parent().find("[data-select='select']");
 		
+		//이전 선택사항 삭제
 		find.removeAttr("data-select");
 		find.css("background-color","#AAAAAA");
 		find.css("color","black");
 		
 		//신규 선택사항
-		//console.log("find:", find);
 		
 		that.attr("data-select","select");
-		that.addClass("")
 		that.css("background-color","#444444");
 		that.css("color","#dddddd");
 		
@@ -308,9 +344,19 @@ $(function(){
 		$("#dateText").text(date);
 		
 		/*테스트용 시간 배열*/
-		var testTimeArray = ["05:30","11:00","12:00","13:00","14:30","17:00","19:30","21:00"];
-		var testLocArray = ["1관","2관","3관","4관","5관","6관","7관","8관"];
+		//var testTimeArray = ["05:30","11:00","12:00","13:00","14:30","17:00","19:30","21:00"];
+		//var testLocArray = ["1관","2관","3관","4관","5관","6관","7관","8관"];
 		//console.log("testArray:",testArray);
+		
+		$.post("/ticketing/time",data,function(rdata){
+			
+			///시간 가져오기
+			
+		});
+		
+		
+		
+		
 		
 		$.each(testTimeArray, function (index, testI) {
 			var nightAndDay;
@@ -329,7 +375,7 @@ $(function(){
 				am_pm = "am";
 			}
 		
-			$(".time-part").append("<div class='times' data-select='unselect'>"
+			$(".time-data").append("<div class='times' data-select='unselect'>"
 	            	+"<span class='material-symbols-outlined'>"
 						+nightAndDay
 					+"</span>"
@@ -357,7 +403,6 @@ $(function(){
 		console.log("find:", find);
 		
 		that.attr("data-select","select");
-		that.addClass("")
 		that.css("background-color","#444444");
 		that.css("color","#dddddd");
 		
@@ -389,7 +434,7 @@ $(function(){
 	});
 	/*이전달*/
 	$("#prev_month").click(function(){
-		if(currentMonth=1){
+		if(currentMonth==1){
 			currentMonth = 12;
 			currentYear--;
 		}else{
@@ -429,6 +474,7 @@ $(function(){
 });
 	
 </script>
+
 <div>
 	<div class="reserve-container">
 		
@@ -493,7 +539,9 @@ $(function(){
 						schedule
 					</span>시간
 				</div>
-	            
+	            <div class="time-data">
+	            	
+	            </div>
 	        </div>
 
     	</div>

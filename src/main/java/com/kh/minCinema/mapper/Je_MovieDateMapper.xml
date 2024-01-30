@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kh.minCinema.mapper.Je_MovieDateMapper">
+	<insert id="insertMovie">
+		INSERT INTO MC_MOVIE
+		VALUES (#{mov_code}, #{mov_title}, #{mov_director}, #{mov_actor}, #{mov_releaseDate}, #{mov_plot}, #{mov_runtime}, #{mov_rating}, #{mov_genre})
+	</insert>
+	
+	<select id="movieScreenDates" resultType="String">
+		SELECT MOV_SCREEN_DATE FROM MC_MOVIE_DATE
+			WHERE MOV_CODE = #{movieCode}
+			ORDER BY MOV_SCREEN_DATE ASC
+	</select>
+	
+	
+</mapper>
