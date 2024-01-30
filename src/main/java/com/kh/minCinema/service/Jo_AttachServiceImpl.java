@@ -69,4 +69,10 @@ public class Jo_AttachServiceImpl implements Jo_AttachService {
 		return map;
 	}
 
+	@Override
+	public Jo_AttachVO getMoviePoster() {
+		Jo_AttachVO attachVO = attachMapper.selectMoviePoster();
+		return attachVO;
+	}
+
 }

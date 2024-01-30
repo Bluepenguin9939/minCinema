@@ -143,7 +143,6 @@ $(function(){
 	
 	$("#frmAddMovie").submit(function() {
 		var upload_path = $("#upload-img").attr("data-upload_path");
-		console.log(upload_path);
 		var uuid = $("#upload-img").attr("data-uuid");
 		var file_name = $("#upload-img").attr("data-file_name");
 		

@@ -4,8 +4,13 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kh.minCinema.mapper.Jo_AttachMapper">
 	<insert id="insertFile">
-		INSERT INTO MC_ATTACH
+		INSERT INTO MC_ATTACH(UUID, UPLOAD_PATH, FILE_NAME, MID)
 		VALUES (#{uuid}, #{upload_path}, #{file_name}, #{mid})
+	</insert>
+	
+	<insert id="insertMoviePoster">
+		INSERT INTO MC_ATTACH(UUID, UPLOAD_PATH, FILE_NAME, MOV_CODE)
+		VALUES (#{uuid}, #{upload_path}, #{file_name}, #{mov_code})
 	</insert>
 	
 	<select id="selectFile" resultType="com.kh.minCinema.domain.Heo_MemberVO">
@@ -13,6 +18,10 @@
 		FROM MC_MEMBER, MC_ATTACH
 		WHERE MC_MEMBER.MID = #{mid}
 		AND MC_ATTACH.MID = #{mid}
+	</select>
+	
+	<select id="selectMoviePoster" resultType="com.kh.minCinema.domain.Jo_AttachVO">
+		SELECT * FROM MC_ATTACH
 	</select>
 	
 	<select id="checkProfileImage" resultType="int">

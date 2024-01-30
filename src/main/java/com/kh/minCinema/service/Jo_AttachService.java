@@ -11,6 +11,8 @@ public interface Jo_AttachService {
 	
 	public Heo_MemberVO getFile(String mid);
 	
+	public Jo_AttachVO getMoviePoster();
+	
 	public boolean checkProfileImage(String mid);
 	
 	public Map<String, Object> changeFile(Jo_AttachVO attachVO);
