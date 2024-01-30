@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.kh.minCinema.domain.Heo_MemberVO;
 import com.kh.minCinema.domain.Jo_MovieVO;
+import com.kh.minCinema.service.Jo_AttachService;
 import com.kh.minCinema.service.Jo_HeartService;
 import com.kh.minCinema.service.Jo_MovieService;
 

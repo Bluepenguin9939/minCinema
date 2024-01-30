@@ -136,8 +136,16 @@ $(function() {
                     	<c:if test="${not empty loginInfo}">
 							<div class="dropdown">
 								<a class="dropdown" href="#" id="myProfile" data-toggle="dropdown">
-		                    		<img class="rounded-circle" src="/resources/img/undraw_profile_1.svg"
-		                    			width="40" height="40">
+									<c:choose>
+										<c:when test="${loginInfo.uuid != null}">
+				                    		<img class="rounded-circle" src="/display?fileName=${loginInfo.upload_path}/${loginInfo.uuid}_${loginInfo.file_name}"
+				                    			width="40" height="40">
+										</c:when>
+										<c:otherwise>
+				                    		<img class="rounded-circle" src="/resources/img/undraw_profile_1.svg"
+				                    			width="40" height="40">
+										</c:otherwise>
+									</c:choose>
 	                    			<span id="myNickName">${loginInfo.mnick}</span>
 								</a>
 								<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
