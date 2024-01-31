@@ -1,0 +1,26 @@
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kh.minCinema.mapper.Heo_NoticeMapper">
+	<insert id="insertNotice">
+		insert into mc_notice (nno, ntitle, ncontent)
+		values(seq_nno.nextval, #{ntitle}, #{ncontent})
+	</insert>
+	
+	<select id="selectNotice" resultType="com.kh.minCinema.domain.Heo_NoticeVO">
+		select * from mc_notice
+	</select>
+	
+	<update id="updateNotice">
+		update mc_notice set
+		ntitle = #{ntitle},
+		ncontent = #{ncontent}
+		where nno = #{nno}
+	</update>
+	
+	<delete id="deleteNotice">
+		delete from mc_notice
+		where nno = #{nno}
+	</delete>
+	
+</mapper>

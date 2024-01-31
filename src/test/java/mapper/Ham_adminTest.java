@@ -26,15 +26,17 @@ public class Ham_adminTest {
 	
 	@Test
 	public void testMember() {
-		Ham_TestVO testVO = Ham_TestVO.builder()
-				.tmid("ss")
-				.tmpw("22")
-				.tmnick("sss")
-				.tmname("ssss")
-				.tmemail("sss@na.com")
-				.tmtel("010-2222-2222")
-				.build();
-		ham_TestMapper.insertTest(testVO);
+		for (int i = 2; i < 50; i++) {
+			Ham_TestVO testVO = Ham_TestVO.builder()
+					.tmid(String.valueOf(i))
+					.tmpw("22")
+					.tmnick("sss")
+					.tmname("ssss")
+					.tmemail("sss@na.com")
+					.tmtel("010-2222-2222")
+					.build();
+			ham_TestMapper.insertTest(testVO);			
+		}
 	}
 	
 	@Test
