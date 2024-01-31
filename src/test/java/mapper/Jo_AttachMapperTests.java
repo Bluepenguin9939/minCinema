@@ -8,7 +8,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import com.kh.minCinema.domain.Heo_MemberVO;
-import com.kh.minCinema.domain.Jo_AttachVO;
 import com.kh.minCinema.mapper.Jo_AttachMapper;
 
 import lombok.extern.log4j.Log4j;
