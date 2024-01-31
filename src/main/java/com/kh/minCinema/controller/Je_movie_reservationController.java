@@ -13,8 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.kh.minCinema.domain.Je_MovieReservDTO;
 import com.kh.minCinema.domain.Je_reservationVO;
+import com.kh.minCinema.domain.Jo_MovieVO;
 import com.kh.minCinema.service.Je_MovieDateService;
+import com.kh.minCinema.service.Jo_MovieService;
 
 import lombok.extern.log4j.Log4j;
 
@@ -26,28 +29,53 @@ public class Je_movie_reservationController {
 	@Autowired
 	private Je_MovieDateService je_MovieDateService;
 	
+	@Autowired 
+	private Jo_MovieService jo_MovieService;
 	
 	@GetMapping("/booking")
 	public void booking() {
 		
 	}
 	
+	@PostMapping(value = "/movieList",  produces = {MediaType.APPLICATION_JSON_VALUE})
+	@ResponseBody
+	public List<Je_MovieReservDTO> movie_list() {
+		//영화리스트 구하기
+		List<Je_MovieReservDTO> list = jo_MovieService.getMovieTitleAndCode();
+		
+		return list;
+	}
+	
+	
 	@PostMapping(value = "/date",  produces = {MediaType.APPLICATION_JSON_VALUE})
 	@ResponseBody
-	public List<String> movie_date(String movieCode, Model model) {
-		//log.info(">>>>>>>>> "+movieCode);
+	public List<String> movie_date(String movieCode) {
 		
 		List<String> dateList = je_MovieDateService.movieScreenDates(movieCode);
 		
-		//model.addAttribute("dateList", dateList);
-		
-		log.info(">>>>>>>>> "+dateList);
+		//log.info(">>>>>>>>> "+dateList);
 		return dateList;
 	}
 	
-	@PostMapping("/time")
-	public void movie_time() {
+	
+	@PostMapping(value = "/time",  produces = {MediaType.APPLICATION_JSON_VALUE})
+	@ResponseBody
+	public List<Je_MovieReservDTO> movie_time(Je_MovieReservDTO je_MovieReservDTO) {
 		
+		//log.info("mov_date>>>>>>>>>>"+je_MovieReservDTO);
+		//log.info("mov_code>>>>>>>>>>"+mov_code);
+		
+		String mov_date_code = je_MovieDateService.selectMovieDateCode(je_MovieReservDTO);
+		if(mov_date_code == null) {
+			return null;
+		}
+		//log.info("mov_date_code>>>>>>>>>>"+mov_date_code);
+		
+		List<Je_MovieReservDTO> list = je_MovieDateService.movieStartTimes(mov_date_code);
+		
+		//log.info("list>>>>>>>>>>"+list);
+		
+		return list;
 	}
 	
 
