@@ -37,7 +37,11 @@ $(function() {
 						<c:forEach var="vo" items="${movieList}">
 							<div style="display: inline-flex; width: 49%; margin-bottom: 10px;">
 								<div style="margin-right: 5px;">
-									<img src="/resources/img/mov01.jpg" alt="영화">
+									<c:forEach var="list" items="${attachList}">
+									<c:if test="${vo.mov_code eq list.mov_code}">
+										<img src="/display?fileName=${list.upload_path}/${list.file_name}" alt="영화">
+									</c:if>
+									</c:forEach>
 								</div>
 								<div class="d-flex flex-column justify-content-between" style="width: 220px;">
 									<div>
