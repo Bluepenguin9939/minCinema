@@ -4,20 +4,39 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.kh.minCinema.domain.Jo_AttachVO;
 import com.kh.minCinema.domain.Jo_MovieVO;
+import com.kh.minCinema.mapper.Jo_AttachMapper;
 import com.kh.minCinema.mapper.Jo_MovieMapper;
 
+import lombok.extern.log4j.Log4j;
+
 @Service
+@Log4j
 public class Jo_MovieServiceImpl implements Jo_MovieService {
 	
 	@Autowired
 	private Jo_MovieMapper movieMapper;
+	
+	@Autowired
+	private Jo_AttachMapper attachMapper;
 
 	@Override
+	@Transactional
 	public boolean addMovie(Jo_MovieVO movieVO) {
 		int count = movieMapper.insertMovie(movieVO);
-		if (count == 1) {
+		int count2 = attachMapper.insertMoviePoster(movieVO.getPosterDTO());
+		List<Jo_AttachVO> attachList = movieVO.getList();
+		int count3 = 0;
+		for (Jo_AttachVO attachVO : attachList) {
+			count3 = attachMapper.insertMovieStillCut(attachVO);
+		}
+		log.info("count : " + count);
+		log.info("count2 : " + count2);
+		log.info("count3 : " + count3);
+		if (count + count2 + count3 == 3) {
 			return true;
 		}
 		return false;

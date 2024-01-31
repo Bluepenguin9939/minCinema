@@ -196,8 +196,16 @@ $(function() {
 				<div class="main-movie">
 					<div class="card-div">
 						<div class="card-movie-image" data-mov_code="${vo.mov_code}">
-							<img src="/resources/img/mov01.jpg" alt="영화1"
-								class="main-movie-img">
+						<c:choose>
+							<c:when test="${vo.attachVO.mov_code == vo.mov_code}">
+								<img src="/display?fileName=${vo.attachVO.upload_path}/${vo.attachVO.uuid}_${vo.attachVO.file_name}" alt="영화1"
+									class="main-movie-img">
+							</c:when>
+							<c:otherwise>
+								<img src="/resources/img/mov01.jpg" alt="영화1"
+									class="main-movie-img">
+							</c:otherwise>
+						</c:choose>
 						</div>
 <!-- 							<div class="user-rate"> -->
 <!-- 								<span><i class="fa fa-star"></i>9.6</span> -->
@@ -222,8 +230,16 @@ $(function() {
 				<div class="main-movie">
 					<div class="card-div">
 						<div class="card-movie-image" data-mov_code="${vo.mov_code}">
-							<img src="/resources/img/mov01.jpg" alt="영화1"
-								class="main-movie-img">
+						<c:choose>
+							<c:when test="${vo.attachVO.mov_code == vo.mov_code}">
+								<img src="/display?fileName=${vo.attachVO.upload_path}/${vo.attachVO.file_name}" alt="영화1"
+									class="main-movie-img">
+							</c:when>
+							<c:otherwise>
+								<img src="/resources/img/mov01.jpg" alt="영화1"
+									class="main-movie-img">
+							</c:otherwise>
+						</c:choose>
 						</div>
 <!-- 							<div class="user-rate"> -->
 <!-- 								<span><i class="fa fa-star"></i>9.6</span> -->

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.kh.minCinema.domain.Heo_LoginDTO;
 import com.kh.minCinema.domain.Heo_MemberVO;
 import com.kh.minCinema.service.Heo_MemberService;
+import com.kh.minCinema.service.Jo_AttachService;
 
 @Controller
 @RequestMapping("/member")
@@ -18,6 +19,9 @@ public class Heo_MemberController {
 	private Heo_MemberService heo_MemberService;
 //	@Autowired
 //	private Heo_PointService heo_PointService;
+	
+	@Autowired
+	private Jo_AttachService attachService;
 	
 	@PostMapping("/register")
 	public String register(Heo_MemberVO heo_MemberVO) {
@@ -37,7 +41,12 @@ public class Heo_MemberController {
 		if (heo_MemberVO == null) {
 			return;
 		}
-		model.addAttribute("loginInfo", heo_MemberVO);
+		Heo_MemberVO memberVO = attachService.getFile(heo_MemberVO.getMid());
+		if (memberVO != null) {
+			model.addAttribute("loginInfo", memberVO);
+		} else {
+			model.addAttribute("loginInfo", heo_MemberVO);
+		}
 		model.addAttribute("useCookie", heo_LoginDTO.getUseCookie());
 	}
 	

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kh.minCinema.mapper.Jo_AttachMapper">
+	<insert id="insertFile">
+		INSERT INTO MC_ATTACH(UUID, UPLOAD_PATH, FILE_NAME, MID)
+		VALUES (#{uuid}, #{upload_path}, #{file_name}, #{mid})
+	</insert>
+	
+	<insert id="insertMoviePoster">
+		INSERT INTO MC_ATTACH(UPLOAD_PATH, FILE_NAME, MOV_CODE)
+		VALUES (#{uploadPath}, #{fileName}, #{mov_code})
+	</insert>
+	
+	<insert id="insertMovieStillCut">
+		INSERT INTO MC_ATTACH(UPLOAD_PATH, FILE_NAME, MOV_CODE)
+		VALUES (#{upload_path}, #{file_name}, #{mov_code})
+	</insert>
+	
+	<select id="selectFile" resultType="com.kh.minCinema.domain.Heo_MemberVO">
+		SELECT *
+		FROM MC_MEMBER, MC_ATTACH
+		WHERE MC_MEMBER.MID = #{mid}
+		AND MC_ATTACH.MID = #{mid}
+	</select>
+	
+	<select id="selectMoviePoster" resultType="com.kh.minCinema.domain.Jo_AttachVO">
+		SELECT * FROM MC_ATTACH
+		WHERE MOV_CODE IS NOT NULL
+		AND UPLOAD_PATH LIKE '%poster%'
+	</select>
+	
+	<select id="checkProfileImage" resultType="int">
+		SELECT count(*) FROM MC_ATTACH
+		WHERE MID = #{mid}
+	</select>
+	
+	<delete id="deleteFile">
+		DELETE FROM MC_ATTACH
+		WHERE UUID = #{uuid}
+	</delete>
+	
+	<select id="selectDeleteUuid" resultType="com.kh.minCinema.domain.Jo_AttachVO">
+		SELECT * FROM MC_ATTACH
+		WHERE MID = #{mid}
+	</select>
+</mapper>
