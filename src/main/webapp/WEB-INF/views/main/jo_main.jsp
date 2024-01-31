@@ -70,42 +70,23 @@ $(function() {
 				<div class="carousel-inner">
 				 	<div class="carousel-item active">
 				 		<div class="d-flex align-items-center justify-content-center">
-					    	<a href="#">
-						    	<img src="/resources/img/mov01.jpg" alt="영화1" 
-						    		height="500" class="slide-movie-image" id="test">
+			 			<c:forEach var="vo" items="${movieList}" begin="0" end="3">
+					    	<a href="#" class="a-slide-img">
+						    	<img src="/display?fileName=${vo.attachVO.upload_path}/${vo.attachVO.file_name}" alt="영화1" 
+						    		height="500" class="slide-movie-image" 
+						    		data-mov_code="${vo.mov_code}">
 				    		</a>
-					    	<a href="#">
-						    	<img src="/resources/img/mov02.jpg" alt="영화2" 
-						    		height="500" class="slide-movie-image">
-				    		</a>
-					    	<a href="#">
-						    	<img src="/resources/img/mov03.jpg" alt="영화3" 
-						    		height="500" class="slide-movie-image">
-				    		</a>
-					    	<a href="#">
-						    	<img src="/resources/img/mov03.jpg" alt="영화3" 
-						    		height="500" class="slide-movie-image">
-				    		</a>
+			    		</c:forEach>
 				    	</div>
 				  	</div>
 				  	<div class="carousel-item">
 				  		<div class="d-flex align-items-center justify-content-center">
+				  		<c:forEach var="vo" items="${movieList}" begin="4" end="7">
 					    	<a href="#">
-						    	<img src="/resources/img/mov04.jpg" alt="영화4" 
+						    	<img src="/display?fileName=${vo.attachVO.upload_path}/${vo.attachVO.file_name}" alt="영화4" 
 						    		height="500" class="slide-movie-image">
 				    		</a>
-					    	<a href="#">
-						    	<img src="/resources/img/mov05.jpg" alt="영화5" 
-						    		height="500" class="slide-movie-image">
-				    		</a>
-					    	<a href="#">
-						    	<img src="/resources/img/mov06.jpg" alt="영화6" 
-						    		height="500" class="slide-movie-image">
-					    			</a>
-					    	<a href="#">
-						    	<img src="/resources/img/mov06.jpg" alt="영화6" 
-						    		height="500" class="slide-movie-image">
-			    			</a>
+			    		</c:forEach>
 				    	</div>
 				  	</div>
 				  	<div class="carousel-item">
