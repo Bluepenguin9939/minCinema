@@ -1,6 +1,8 @@
 package com.kh.minCinema.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -49,9 +51,13 @@ public class Jo_MovieServiceImpl implements Jo_MovieService {
 	}
 
 	@Override
-	public Jo_MovieVO getMovieByCode(String mov_code) {
+	public Map<String, Object> getMovieByCode(String mov_code) {
+		Map<String, Object> map = new HashMap<>();
 		Jo_MovieVO movieVO = movieMapper.selectMovieByCode(mov_code);
-		return movieVO;
+		List<Jo_AttachVO> attachList = attachMapper.selectMovieImageToCode(mov_code);
+		map.put("movieVO", movieVO);
+		map.put("attachList", attachList);
+		return map;
 	}
 
 	@Override

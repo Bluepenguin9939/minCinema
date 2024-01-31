@@ -1,5 +1,7 @@
 package mapper;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +33,12 @@ public class Jo_AttachMapperTests {
 	@Test
 	public void testCheckProfileImage() {
 		int count = jo_AttachMapper.checkProfileImage("test");
+	}
+	
+	@Test
+	public void testSelectMovieImageToCode() {
+		List<Jo_AttachVO> attachList = jo_AttachMapper.selectMovieImageToCode("20124062");
+		log.info(attachList);
 	}
 	
 }

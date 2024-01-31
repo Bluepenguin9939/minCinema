@@ -18,6 +18,8 @@ public interface Jo_AttachMapper {
 	
 	public List<Jo_AttachVO> selectMoviePoster();
 	
+	public List<Jo_AttachVO> selectMovieImageToCode(String mov_code);
+	
 	public int checkProfileImage(String mid);
 	
 	public int deleteFile(String uuid);

@@ -5,7 +5,7 @@
 <mapper namespace="com.kh.minCinema.mapper.Jo_MovieMapper">
 	<insert id="insertMovie">
 		INSERT INTO MC_MOVIE
-		VALUES (#{mov_code}, #{mov_title}, #{mov_director}, #{mov_actor}, #{mov_releaseDate}, #{mov_plot}, #{mov_runtime}, #{mov_rating}, #{mov_genre})
+		VALUES (#{mov_code}, #{mov_title}, #{mov_director}, #{mov_actor}, #{mov_releaseDate}, #{mov_plot}, #{mov_runtime}, #{mov_rating}, #{mov_genre}, #{mov_trailer})
 	</insert>
 	
 	<select id="selectAll" resultType="com.kh.minCinema.domain.Jo_MovieVO">
