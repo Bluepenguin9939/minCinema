@@ -7,3 +7,5 @@ CREATE TABLE TEST_MEMBER(
     tmemail VARCHAR2(40) NOT NULL,
     tmtel  VARCHAR2(50) NOT NULL
 );
+
+create sequence seq_tmno;

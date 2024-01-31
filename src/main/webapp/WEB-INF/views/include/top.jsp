@@ -112,8 +112,8 @@ $(function() {
 			        		</a>
 				        	<div class="dropdown-menu">
 						   		<a class="dropdown-item" href="/notice/ham_notice">공지사항</a>
-							    <a class="dropdown-item" href="#">자주 묻는 질문</a>
-							    <a class="dropdown-item" href="#">1:1 문의</a>
+							    <a class="dropdown-item" href="/notice/ham_often">자주 묻는 질문</a>
+							    <a class="dropdown-item" href="/notice/ham_inquiry">1:1 문의</a>
 						  	</div>
 					  	</div>
 						<div class="top-hover-dropdown">

@@ -3,9 +3,7 @@ package com.kh.minCinema.controller;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -20,10 +18,13 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.kh.minCinema.domain.Ham_DateVO;
 import com.kh.minCinema.domain.Ham_OneononeVO;
 import com.kh.minCinema.domain.Ham_TestVO;
+import com.kh.minCinema.domain.Heo_NoticeVO;
 import com.kh.minCinema.service.Ham_OneononeService;
 import com.kh.minCinema.service.Ham_TestService;
+import com.kh.minCinema.service.Heo_NoticeService;
 
 import lombok.extern.log4j.Log4j;
+
 
 @Controller
 @RequestMapping("/admin")
@@ -32,6 +33,9 @@ public class Ham_AdminController {
 	
 	@Autowired
 	private Ham_TestService ham_TestService;
+	
+	@Autowired
+	private Heo_NoticeService heo_NoticeService;
 	
 	@Autowired
 	private Ham_OneononeService ham_OneononeService;
@@ -84,6 +88,7 @@ public class Ham_AdminController {
 	@GetMapping("/ham_oneonone")//고객센터 리스트 <-유저 문의에서 받은 리스트
 	public void oneonone(Model model) {
 		List<Ham_OneononeVO> list = ham_OneononeService.selectOne();
+
 		SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
 		List<Ham_DateVO> dList = new ArrayList<>();
 		Ham_DateVO ham_DateVO = new Ham_DateVO();
@@ -105,13 +110,41 @@ public class Ham_AdminController {
 			 dList.add(ham_DateVO);
 		}
 		model.addAttribute("dList", dList);
+		
 	}
 
 	@GetMapping("/ham_addevent")
 	public void addevent() {
 		
 	}
+	@GetMapping("/heo_addNotice")
+	public void addNotice(Model model) {
+		List<Heo_NoticeVO> list = heo_NoticeService.getNotice();
+		model.addAttribute("list", list);
+		System.out.println("list" + model);
+	}
 	
+	@PostMapping("/heo_addNotice")
+	@ResponseBody
+	public boolean addNotice(Heo_NoticeVO heo_NoticeVO) {
+		int result = heo_NoticeService.addNotice(heo_NoticeVO);
+		return (result == 1) ? true : false;
+	}
+	
+	@PostMapping("/heo_delNotice")
+	@ResponseBody
+	public boolean delNotice(int nno) {
+		int result = heo_NoticeService.removeNotice(nno);
+		return (result == 1) ? true : false;
+	}
+	
+	@PostMapping("/heo_modifyNotice")
+	@ResponseBody
+	public boolean modifyNotice(Heo_NoticeVO heo_NoticeVO) {
+		int result = heo_NoticeService.modifyNotice(heo_NoticeVO);
+		return (result == 1) ? true : false;
+	}
+		
 	@PostMapping(value = "/reply",produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public Ham_OneononeVO reply(Ham_OneononeVO ham_OneononeVO,Model model) {			
@@ -119,5 +152,13 @@ public class Ham_AdminController {
 		Ham_OneononeVO vo = ham_OneononeService.selectGetOne(ham_OneononeVO);
 		System.out.println("브이오:"+vo);
 		return vo;
+	}
+	
+	@PostMapping("/sendReply")
+	public String sendReply(Ham_OneononeVO ham_OneononeVO) {
+		System.out.println("하이");
+		System.out.println("왔니:" + ham_OneononeVO);
+		ham_OneononeService.updateInquiry(ham_OneononeVO);
+		return "redirect:/admin/ham_oneonone";
 	}
 }
