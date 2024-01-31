@@ -1,0 +1,40 @@
+@charset "UTF-8";
+
+.blankDiv {
+	height: 150px;
+}
+
+.notice-title {
+	font-size: 50px; 
+	font-weight: bold;
+}
+
+.btnAddNotice {
+	font-weight: bold;
+}
+
+.tblDiv {
+	height: 20px;
+}
+
+.table {
+	text-align: center;
+}
+
+.tblHead {
+	font-size: 20px;
+}
+
+.tblBody {
+	font-size: 18px;
+}
+
+.titleNum {
+	text-decoration: none;
+	color: green;
+}
+
+.titleNum:hover {
+	text-decoration: none;
+	color: red;
+}

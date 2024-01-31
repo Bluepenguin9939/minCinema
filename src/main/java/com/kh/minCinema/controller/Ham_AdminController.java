@@ -12,9 +12,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.minCinema.domain.Ham_TestVO;
+import com.kh.minCinema.domain.Heo_NoticeVO;
 import com.kh.minCinema.service.Ham_TestService;
+import com.kh.minCinema.service.Heo_NoticeService;
 
 import lombok.extern.log4j.Log4j;
+
 
 @Controller
 @RequestMapping("/admin")
@@ -23,6 +26,9 @@ public class Ham_AdminController {
 	
 	@Autowired
 	private Ham_TestService ham_TestService;
+	
+	@Autowired
+	private Heo_NoticeService heo_NoticeService;
 	
 	@GetMapping("/ham_admins")
 	public void admins() {
@@ -77,5 +83,31 @@ public class Ham_AdminController {
 	public void addevent() {
 		
 	}
+	@GetMapping("/heo_addNotice")
+	public void addNotice(Model model) {
+		List<Heo_NoticeVO> list = heo_NoticeService.getNotice();
+		model.addAttribute("list", list);
+		System.out.println("list" + model);
+	}
 	
+	@PostMapping("/heo_addNotice")
+	@ResponseBody
+	public boolean addNotice(Heo_NoticeVO heo_NoticeVO) {
+		int result = heo_NoticeService.addNotice(heo_NoticeVO);
+		return (result == 1) ? true : false;
+	}
+	
+	@PostMapping("/heo_delNotice")
+	@ResponseBody
+	public boolean delNotice(int nno) {
+		int result = heo_NoticeService.removeNotice(nno);
+		return (result == 1) ? true : false;
+	}
+	
+	@PostMapping("/heo_modifyNotice")
+	@ResponseBody
+	public boolean modifyNotice(Heo_NoticeVO heo_NoticeVO) {
+		int result = heo_NoticeService.modifyNotice(heo_NoticeVO);
+		return (result == 1) ? true : false;
+	}
 }
