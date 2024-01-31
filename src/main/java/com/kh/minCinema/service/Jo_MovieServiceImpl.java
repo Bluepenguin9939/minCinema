@@ -8,12 +8,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+
+import com.kh.minCinema.domain.Je_MovieReservDTO;
+
 import com.kh.minCinema.domain.Jo_AttachVO;
+
 import com.kh.minCinema.domain.Jo_MovieVO;
 import com.kh.minCinema.mapper.Jo_AttachMapper;
 import com.kh.minCinema.mapper.Jo_MovieMapper;
 
 import lombok.extern.log4j.Log4j;
+
 
 @Service
 @Log4j
@@ -65,5 +70,16 @@ public class Jo_MovieServiceImpl implements Jo_MovieService {
 		List<Jo_MovieVO> movieList = movieMapper.selectInterestToHeart(mid);
 		return movieList;
 	}
+
+	
+	
+
+	@Override//by Je 추가
+	public List<Je_MovieReservDTO> getMovieTitleAndCode() {
+		List<Je_MovieReservDTO> list = movieMapper.selectTitleAndCode();
+		return list;
+	}
+	
+	
 	
 }
