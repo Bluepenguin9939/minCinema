@@ -15,7 +15,7 @@ public class Ham_OneononeVO {
 	private int rn;
 	private String msg_id;
 	private String sender;
-	private String receiver;
+	private String remessage;
 	private String message;
 	private String mtitle;
 	private Date send_date;

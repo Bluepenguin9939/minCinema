@@ -17,6 +17,7 @@ public class Ham_TestVO {
 	private String tmname;
 	private String tmemail;
 	private String tmtel;
+	private String loginInfo;
 	
 	private String type; // 검색 조건(제목-T, 내용-C, 작성자-W)
 	private String keyword; // 검색어 (사용자 입력)

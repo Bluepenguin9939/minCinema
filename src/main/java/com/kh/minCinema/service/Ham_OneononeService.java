@@ -11,4 +11,12 @@ public interface Ham_OneononeService {
 	public int insertInquiry(Ham_OneononeVO ham_OneononeVO);
 	
 	public Ham_OneononeVO selectGetOne(Ham_OneononeVO ham_OneononeVO);
+	
+	public int updateInquiry(Ham_OneononeVO ham_OneononeVO);
+	
+	public Ham_OneononeVO selectViewReply(Ham_OneononeVO ham_OneononeVO);
+	
+	public List<Ham_OneononeVO> selectGetReply(String sender);
+	
+	public int inquiryCount();
 }

@@ -1,0 +1,80 @@
+@charset "UTF-8";
+/* notice-top */
+.notice-top{
+width: 60%;
+height: auto;
+margin-top: 200px;
+}
+/* .nav a:link { */
+/* 	color:blue; */
+/* } */
+/* .nav a:visited{ */
+/* 	color:red; */
+/* } */
+.nav a:hover{
+/* 	text-decoration:underline; */
+	color:red;
+}
+
+.page-link{
+	color : black;
+}
+.page-link:hover{
+	color : red;
+}
+[title="검색선택"]{
+	margin-right: 20px;
+}
+/* 부트스트랩 전용 class 바꾸면 안됨 기존 li로 적용됨 */
+.nav{
+	margin-top: 100px;
+	direction: flex;
+	justify-content: center;
+	margin-bottom:50px;
+}
+[title="공지사항"]{
+	
+	text-align: center;
+/* 	text-decoration:line-through underline red; */
+	text-transform:uppercase;
+	font-family:Cursive;
+	font-weight: bold;
+	
+}
+[title="공지사항그룹"]{
+	font-size: 20px;
+}
+
+.link{
+	cursor: pointer;
+}
+.pageBottom{
+	margin-bottom: 30px;
+}
+section a{
+	color : gray;
+}
+section a:hover{
+	 zoom:1.5
+}
+.waitReply{
+	color : green;
+}
+.completeReply{
+	color : red;
+}
+
+/* 버튼 */
+#modal-560730{
+border-radius;	
+opacity: 0.5;
+}
+.pulse:hover, 
+.pulse:focus {
+  animation: pulse 1s;
+  box-shadow: 0 0 0 2em transparent;
+}
+#table-inquiry{
+	font-size: 20px;
+	font: bold;
+}

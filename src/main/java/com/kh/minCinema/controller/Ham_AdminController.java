@@ -84,6 +84,7 @@ public class Ham_AdminController {
 	@GetMapping("/ham_oneonone")//고객센터 리스트 <-유저 문의에서 받은 리스트
 	public void oneonone(Model model) {
 		List<Ham_OneononeVO> list = ham_OneononeService.selectOne();
+
 		SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
 		List<Ham_DateVO> dList = new ArrayList<>();
 		Ham_DateVO ham_DateVO = new Ham_DateVO();
@@ -105,6 +106,7 @@ public class Ham_AdminController {
 			 dList.add(ham_DateVO);
 		}
 		model.addAttribute("dList", dList);
+		
 	}
 
 	@GetMapping("/ham_addevent")
@@ -119,5 +121,13 @@ public class Ham_AdminController {
 		Ham_OneononeVO vo = ham_OneononeService.selectGetOne(ham_OneononeVO);
 		System.out.println("브이오:"+vo);
 		return vo;
+	}
+	
+	@PostMapping("/sendReply")
+	public String sendReply(Ham_OneononeVO ham_OneononeVO) {
+		System.out.println("하이");
+		System.out.println("왔니:" + ham_OneononeVO);
+		ham_OneononeService.updateInquiry(ham_OneononeVO);
+		return "redirect:/admin/ham_oneonone";
 	}
 }
