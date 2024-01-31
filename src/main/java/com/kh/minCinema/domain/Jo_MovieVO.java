@@ -1,5 +1,7 @@
 package com.kh.minCinema.domain;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,8 +22,9 @@ public class Jo_MovieVO {
 	private Integer mov_runtime;		// 영화 런타임
 	private String mov_rating;			// 영화 관람기준
 	private String mov_genre;			// 영화 장르
-//	private String mov_posterURL;		// 영화 포스터URL
-//	private String mov_stillURL;		// 영화 스틸컷URL
 	
 	private Jo_AttachVO attachVO;
+	private Jo_MoviePosterDTO posterDTO;
+	
+	private List<Jo_AttachVO> list;
 }

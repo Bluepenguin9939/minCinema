@@ -232,7 +232,7 @@ $(function() {
 						<div class="card-movie-image" data-mov_code="${vo.mov_code}">
 						<c:choose>
 							<c:when test="${vo.attachVO.mov_code == vo.mov_code}">
-								<img src="/display?fileName=${vo.attachVO.upload_path}/${vo.attachVO.uuid}_${vo.attachVO.file_name}" alt="영화1"
+								<img src="/display?fileName=${vo.attachVO.upload_path}/${vo.attachVO.file_name}" alt="영화1"
 									class="main-movie-img">
 							</c:when>
 							<c:otherwise>
