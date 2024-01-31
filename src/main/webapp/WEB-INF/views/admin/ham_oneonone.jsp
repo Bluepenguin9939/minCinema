@@ -34,9 +34,20 @@ $(function(){
 			$("#modal-container-560730").modal();
 			$("#mtitle").val(mtitle);
 			$("#message").val(message);
+			var frmMsg_id = $("#frmresend").find("input[name=msg_id]");
+			frmMsg_id.val(sender);
 			console.log("췤1:",mtitle);
 			console.log("췤2:",message);
 		});
+	});//
+	$("#reply").click(function(e){
+		e.preventDefault();
+		$("#modal-container-560730").modal("hide");
+		$("#modal-container-000000").modal("show");
+		
+	});
+	$("#sendReply").click(function(){
+		$("#modal-container-000000").modal("hide");
 	});
 });
 
@@ -47,16 +58,16 @@ $(function(){
 <body>
 	<div class="notice d-flex justify-content-center" > 
 		<div class="admin-top" >
-			<h2 class="admin-body" title="" >고객센터 관리${vo}</h2>
+			<h2 class="admin-body" title="" >고객센터 관리</h2>
 			<!-- 모다르 -->
 						<div class="" style="display: flex; justify-content: center">
-				<form role="form" action="/notice/ono" method="post">
+				<form role="form" action="#" method="post">
 					<input type="hidden" name="msg_id" value="">
 					<input type="hidden" name="sender" value="">
-					<input type="hidden" name="receiver" value="admin"> <a
+					<a
 						id="modal-560730" href="#modal-container-560730" role="button"
 						class="btn btn-warning" data-toggle="modal"
-						style="font-size: 35px;">1대1 문의 하기</a>
+						style="font-size: 35px; display: none;">1대1 문의 하기</a>
 
 					<div class="modal fade" id="modal-container-560730" role="dialog"
 						aria-labelledby="myModalLabel" aria-hidden="true">
@@ -81,7 +92,46 @@ $(function(){
 								</div>
 								<div class="modal-footer">
 
-									<button type="submit" class="btn btn-primary">보내기</button>
+									<button type="submit" id="reply" class="btn btn-primary">답장</button>
+									<button type="button" class="btn btn-secondary"
+										data-dismiss="modal">닫기</button>
+								</div>
+							</div>
+
+						</div>
+
+					</div>
+				</form>
+			</div>
+			<!-- 모다르 끝 -->
+			<!-- 답장 모다르 -->
+			
+						<div class="" style="display: flex; justify-content: center">
+				<form role="form" action="/admin/sendReply" method="post" id="frmresend">
+					<input type="hidden" name="msg_id">
+					<a id="modal-000000" href="#modal-container-000000" role="button"
+						class="btn btn-warning" data-toggle="modal"
+						style="font-size: 35px; display: none;">1대1 문의 하기</a>
+
+					<div class="modal fade" id="modal-container-000000" role="dialog"
+						aria-labelledby="myModalLabel" aria-hidden="true">
+						<div class="modal-dialog modal-lg" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title" id="myModalLabel">고객 문의</h5>
+									<button type="button" class="close" data-dismiss="modal">
+										<span aria-hidden="true">×</span>
+									</button>
+								</div>
+								<div>
+									<label style="margin-left: 15px;" for="remessage">
+										답변 내용 </label><br>
+									<textarea class="form-control" name="remessage" id="remessage"
+										style="height: 6.25em; margin-left: 15px; width: 766px;"></textarea>
+								</div>
+								<div class="modal-footer">
+
+									<button type="submit" id="sendReply" class="btn btn-primary">보내기</button>
 									<button type="button" class="btn btn-secondary"
 										data-dismiss="modal">닫기</button>
 								</div>
@@ -95,7 +145,7 @@ $(function(){
 			
 			
 			
-			<!-- 모다르 끝 -->
+			<!-- 답장 모다르 끝 -->
 			<div class="search">
             <div class="search-field">
 					<select name="target" title="검색선택">
@@ -136,6 +186,8 @@ $(function(){
 				</c:forEach>					
 				</tbody>
 			</table>	
+			
+			<button type="button" data-toggle="modal" data-target="#myModal">Open Modal</button>
 		
 			<!-- 하단 게시판 번호(Pagination) -->
 <!-- 	<div class="pageBottom" style="margin-bottom: 100px"> -->

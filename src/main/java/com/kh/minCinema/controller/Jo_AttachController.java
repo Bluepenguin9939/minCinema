@@ -2,7 +2,9 @@ package com.kh.minCinema.controller;
 
 import java.io.File;
 import java.nio.file.Files;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -29,8 +31,9 @@ import lombok.extern.log4j.Log4j;
 @Controller
 @Log4j
 public class Jo_AttachController {
-	private static final String PROFILE_UPLOAD_PATH = "D:/upload/user_profile_image";
-	private static final String POSTER_UPLOAD_PATH = "D:/upload/poster";
+	private static final String PROFILE_UPLOAD_PATH = "G:/upload/user_profile_image";
+	private static final String POSTER_UPLOAD_PATH = "G:/upload/poster";
+	private static final String STILL_CUT_UPLOAD_PATH = "G:/upload/still_cut";
 	
 	@Autowired
 	private Jo_AttachService attachService;
@@ -64,8 +67,40 @@ public class Jo_AttachController {
 		return map;
 	}
 	
-	@PostMapping(value = "/uploadPosterImage",
+	@PostMapping(value = "/uploadStillCutImage",
 				 produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public List<Jo_AttachVO> uploadStillCutImage(MultipartFile[] uploadFile) {
+		if (uploadFile == null) {
+			return null;
+		}
+		String[] movieOrgName = uploadFile[0].getOriginalFilename().split("_");
+		String moviePath = STILL_CUT_UPLOAD_PATH + "/" + movieOrgName[0];
+		createForder(moviePath);
+		log.info("moviePath : " + moviePath);
+		
+		List<Jo_AttachVO> attachList = new ArrayList<>();
+		for (int i = 0; i < uploadFile.length; i++) {
+			String orgFileName = uploadFile[i].getOriginalFilename();
+			File saveRepository = new File(moviePath, orgFileName);
+			Jo_AttachVO attachVO = Jo_AttachVO.builder()
+					.upload_path(moviePath).file_name(orgFileName)
+					.build();
+			boolean result = (attachVO != null) ? true : false;
+			if (result) {
+				attachList.add(attachVO);
+			}
+			try {
+				uploadFile[i].transferTo(saveRepository);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return attachList;
+	}
+	
+	@PostMapping(value = "/uploadPosterImage",
+			produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public Map<String, Object> uploadPosterImage(MultipartFile uploadFile) {
 		if (uploadFile == null) {
@@ -74,18 +109,14 @@ public class Jo_AttachController {
 		int movieOrgNameLength = uploadFile.getOriginalFilename().length() - 4;
 		String movieOrgName = uploadFile.getOriginalFilename().substring(0, movieOrgNameLength);
 		String moviePath = POSTER_UPLOAD_PATH + "/" + movieOrgName;
-		File movieFolder = new File(moviePath);
-		if (!movieFolder.exists()) {
-			movieFolder.mkdirs();
-		}
-		UUID uuid = UUID.randomUUID();
-		String orgFileName = uploadFile.getOriginalFilename();
-		String saveFileName = uuid + "_" + orgFileName;
-		File saveRepository = new File(moviePath, saveFileName);
+		createForder(moviePath);
+		
 		Map<String, Object> map = new HashMap<>();
+		
+		String orgFileName = uploadFile.getOriginalFilename();
+		File saveRepository = new File(moviePath, orgFileName);
 		Jo_AttachVO attachVO = Jo_AttachVO.builder()
-				.uuid(uuid.toString()).upload_path(moviePath)
-				.file_name(orgFileName)
+				.upload_path(moviePath).file_name(orgFileName)
 				.build();
 		boolean result = (attachVO != null) ? true : false;
 		map.put("attachVO", attachVO);
@@ -94,8 +125,15 @@ public class Jo_AttachController {
 			uploadFile.transferTo(saveRepository);
 		} catch (Exception e) {
 			e.printStackTrace();
-		}	
+		}
 		return map;
+	}
+	
+	private void createForder(String moviePath) {
+		File movieFolder = new File(moviePath);
+		if (!movieFolder.exists()) {
+			movieFolder.mkdirs();
+		}
 	}
 	
 	@GetMapping("/display")

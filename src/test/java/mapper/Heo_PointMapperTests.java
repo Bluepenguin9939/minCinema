@@ -8,9 +8,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import com.kh.minCinema.domain.Heo_PointVO;
-import com.kh.minCinema.domain.Jo_EventDTO;
 import com.kh.minCinema.mapper.Heo_PointMapper;
-import com.kh.minCinema.mapper.Jo_EventMapper;
 
 import lombok.extern.log4j.Log4j;
 

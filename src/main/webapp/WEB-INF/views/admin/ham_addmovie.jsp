@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<link rel="stylesheet" href="/resources/css/admin/addmovie.css?after" type="text/css">
+<link rel="stylesheet" href="/resources/css/admin/addmovie.css" type="text/css">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Image Upload Example</title>
 <script>
@@ -128,28 +128,91 @@ $(function(){
 			"success" : function(rData) {
 				var attachVO = rData.attachVO;
 				var upload_path = attachVO.upload_path;
-				var uuid = attachVO.uuid;
 				var file_name = attachVO.file_name;
 				
-				var file_path = upload_path + "/" + uuid + "_" + file_name;
+				var file_path = upload_path + "/" + file_name;
 				var url = "/display?fileName=" + file_path
 				$("#upload-img").attr("src", url);
 				$("#upload-img").attr("data-upload_path", upload_path);
-				$("#upload-img").attr("data-uuid", uuid);
 				$("#upload-img").attr("data-file_name", file_name);
 			}
 		});
 	});
 	
+// 	스틸컷 드래그 & 드랍
+	$("#dropDiv").on("dragenter dragover", function (e){
+		e.preventDefault();
+	});
+
+	$("#dropDiv").on("drop", function(e) {
+		e.preventDefault();
+		var upload_image = e.originalEvent.dataTransfer.files;
+		
+		var formData = new FormData();
+		for (var v = 0; v < upload_image.length; v++) {
+			formData.append("uploadFile", upload_image[v]);
+		}
+		
+		$.ajax({
+			"url" : "/uploadStillCutImage",
+			"type" : "post",
+			"processData" : false,
+			"contentType" : false,
+			"data" : formData,
+			"success" : function(rData) {
+				$(rData).each(function(i, obj) {
+					var cloneStillCutDiv = $("#stillCutDiv > div:eq(0)").clone();
+					
+					var url = "/display?fileName=" + obj.upload_path + "/" + obj.file_name;
+					cloneStillCutDiv.find("img").attr("src", url);
+					
+					$("#stillCutDiv").append(cloneStillCutDiv);
+					cloneStillCutDiv.fadeIn(1000);
+					
+					cloneStillCutDiv.attr("data-upload_path", obj.upload_path);
+					cloneStillCutDiv.attr("data-file_name", obj.file_name);
+				});
+			}
+		});
+	});
+	
+// 	폼 전송 시
 	$("#frmAddMovie").submit(function() {
+		var that = $(this);
+// 		포스터 이미지
 		var upload_path = $("#upload-img").attr("data-upload_path");
-		var uuid = $("#upload-img").attr("data-uuid");
 		var file_name = $("#upload-img").attr("data-file_name");
 		
 		$("#upload_path").val(upload_path);
-		$("#uuid").val(uuid);
 		$("#file_name").val(file_name);
+		
+// 		스틸컷 이미지
+		var stillCut = $(".stillCutImage:gt(0)");
+		stillCut.each(function(i) {
+			var mov_code = $("#movieCd").val();
+			var still_upload_path = $(this).attr("data-upload_path");
+			var still_file_name = $(this).attr("data-file_name");
+			var inputPath = "<input type='hidden' name='list[" + i + "].upload_path' value='" + still_upload_path + "'>"
+			var inputFile = "<input type='hidden' name='list[" + i + "].file_name' value='" + still_file_name + "'>"
+			var inputCode = "<input type='hidden' name='list[" + i + "].mov_code' value='" + mov_code + "'>"
+			that.prepend(inputPath);
+			that.prepend(inputFile);
+			that.prepend(inputCode);
+		});
 // 		return false;
+	});
+	
+// 	영화 DB 검색 창
+	$("#btnSearchMovieDB").click(function() {
+		var url = "https://www.kobis.or.kr/kobis/business/mast/mvie/searchMovieList.do"
+		window.open(url);
+	});
+	
+// 	트레일러 버튼
+	$("#btnGetTrailer").click(function() {
+		var mov_name = $("#movieTitle").val()
+		var url = "https://tv.naver.com/search?query=" + mov_name + "%20예고편";
+		window.open(url);
 	});
 });
 </script>
@@ -162,6 +225,10 @@ $(function(){
 			<div class="align-self-start">
 				<button type="button" id="btnGetWeekMovie"class="btn btn-sm btn-secondary">
 					지난주 박스오피스 TOP10 가져오기
+				</button>
+				<button type="button" class="btn btn-sm btn-secondary" 
+					id="btnSearchMovieDB">
+					영화DB 검색하러 가기
 				</button>
 			</div>
 			<div class="align-self-start">
@@ -177,9 +244,8 @@ $(function(){
 	</div>
 	<!-- 칸나누기 -->
  	<form id="frmAddMovie" action="/admin/addMovie" method="post">
- 		<input type="hidden" id="upload_path" name="upload_path">
- 		<input type="hidden" id="uuid" name="uuid">
- 		<input type="hidden" id="file_name" name="file_name">
+ 		<input type="hidden" id="upload_path" name="uploadPath">
+ 		<input type="hidden" id="file_name" name="fileName">
 		<div class="col-md-12" style="margin-left: 10%;" >
 			<div class="fileMove-card">
 				<div class="profile-images" >
@@ -191,6 +257,10 @@ $(function(){
   				</div>
 				<div class="col-md-10 si">
 					<input type="text" id="movieTitle" name="mov_title" placeholder="영화 제목" size="100px;">
+					<button type="button" id="btnGetTrailer"
+						class="btn btn-sm btn-secondary">
+						영화 트레일러 찾으러 가기
+					</button>
 					<div>
 						<textarea id="moviePlot" name="mov_plot" rows="3" cols="100" placeholder="상세 내용"></textarea>
 					</div>
@@ -203,15 +273,30 @@ $(function(){
 						<input class="movieText" id="movieDirector" name="mov_director" type="text" placeholder="영화 감독" > 
 						<input class="movieText" id="movieActor" name="mov_actor" type="text" placeholder="영화 배우" > 
 					</div>
+					<!-- 드래그 & 드롭 -->
 					<div>
-						<i class="fa fa-video"></i><label for="chooseVideo" style="cursor: pointer;">동영상 업로드</label>
+						<div id="dropDiv">등록할 스틸컷을 드래그 &amp 드롭해주세요</div>
 					</div>
-					<input type="file" id="chooseVideo" name="chooseVideo" accept="video/*" onchange="loadFile(this)" style="visibility: hidden;">
+					<!-- 드롭된 스틸컷 목록 -->
+					<div id="stillCutDiv" class="d-flex">
+						<div class="stillCutImage" style="display: none; margin-right: 5px;">
+							<img src="/resources/img/default.png" width="100" height="100" alt="스틸컷">
+						</div>
+					</div>
+<!-- 					<div> -->
+<!-- 						<i class="fa fa-video"></i><label for="chooseVideo" style="cursor: pointer;">동영상 업로드</label> -->
+<!-- 					</div> -->
+<!-- 					<input type="file" id="chooseVideo" name="chooseVideo" accept="video/*" onchange="loadFile(this)" style="visibility: hidden;"> -->
 				</div>
 				<div>
-					<i class="fa fa-link"></i> <input type="text" placeholder="동영상 URI 등록"> <input type="submit">
-					<button type="submit" id="btnAddMovie">영화 등록하기</button>
+					<i class="fa fa-link"></i>
+					<input type="text" id="mov_trailer" 
+						name="mov_trailer" placeholder="동영상 URL 등록"
+						style="width: 350px;">
 				</div>
+				<button type="submit" id="btnAddMovie" class="btn btn-secondary">
+					영화 등록하기
+				</button>
 			</div>
 		</div>
 	</form>

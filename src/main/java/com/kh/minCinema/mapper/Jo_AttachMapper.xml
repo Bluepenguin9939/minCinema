@@ -9,8 +9,13 @@
 	</insert>
 	
 	<insert id="insertMoviePoster">
-		INSERT INTO MC_ATTACH(UUID, UPLOAD_PATH, FILE_NAME, MOV_CODE)
-		VALUES (#{uuid}, #{upload_path}, #{file_name}, #{mov_code})
+		INSERT INTO MC_ATTACH(UPLOAD_PATH, FILE_NAME, MOV_CODE)
+		VALUES (#{uploadPath}, #{fileName}, #{mov_code})
+	</insert>
+	
+	<insert id="insertMovieStillCut">
+		INSERT INTO MC_ATTACH(UPLOAD_PATH, FILE_NAME, MOV_CODE)
+		VALUES (#{upload_path}, #{file_name}, #{mov_code})
 	</insert>
 	
 	<select id="selectFile" resultType="com.kh.minCinema.domain.Heo_MemberVO">
@@ -22,6 +27,13 @@
 	
 	<select id="selectMoviePoster" resultType="com.kh.minCinema.domain.Jo_AttachVO">
 		SELECT * FROM MC_ATTACH
+		WHERE MOV_CODE IS NOT NULL
+		AND UPLOAD_PATH LIKE '%poster%'
+	</select>
+	
+	<select id="selectMovieImageToCode" resultType="com.kh.minCinema.domain.Jo_AttachVO">
+		SELECT * FROM MC_ATTACH
+		WHERE MOV_CODE = #{mov_code}
 	</select>
 	
 	<select id="checkProfileImage" resultType="int">

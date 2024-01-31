@@ -42,7 +42,7 @@ $(function(){
 </table>
 <div class="page">
 	<ul class="pagination pModal">
-<!-- 		<li><a href="#" class="first">처음 페이지</a></li> -->
+		<li><a href="${pageMaker.startPage}" class="first pages">처음 페이지</a></li>
 		<c:if test="${pageMaker.prev == true}">
 			<li><a href="${pageMaker.startPage - 1}" class="arrow left pages">&laquo;</a></li>
 		</c:if>
@@ -52,6 +52,6 @@ $(function(){
 		<c:if test="${pageMaker.next == true}">
 			<li><a href="${pageMaker.endPage + 1}" class="arrow right pages">&raquo;</a></li>
 		</c:if>
-<!-- 		<li><a href="#" class="last">끝 페이지</a></li> -->
+		<li><a href="${pageMaker.endPage}" class="last pages">끝 페이지</a></li>
 	</ul>
 </div>

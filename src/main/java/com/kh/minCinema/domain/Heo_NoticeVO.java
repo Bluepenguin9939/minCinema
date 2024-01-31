@@ -11,13 +11,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Ham_OneononeVO {
-	private int rn;
-	private String msg_id;
-	private String sender;
-	private String remessage;
-	private String message;
-	private String mtitle;
-	private Date send_date;
-	private Date open_date;
+public class Heo_NoticeVO {
+	private Integer nno;
+	private String ntitle;
+	private String ncontent;
+	private Date nregdate;
+	private Integer ncount;
 }
