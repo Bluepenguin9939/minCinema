@@ -1,6 +1,7 @@
 package com.kh.minCinema.service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,8 +71,8 @@ public class Jo_AttachServiceImpl implements Jo_AttachService {
 	}
 
 	@Override
-	public Jo_AttachVO getMoviePoster() {
-		Jo_AttachVO attachVO = attachMapper.selectMoviePoster();
+	public List<Jo_AttachVO> getMoviePoster() {
+		List<Jo_AttachVO> attachVO = attachMapper.selectMoviePoster();
 		return attachVO;
 	}
 

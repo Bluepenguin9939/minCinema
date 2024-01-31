@@ -51,11 +51,14 @@ public class Jo_MainController {
 	@GetMapping("/jo_main")
 	public void main(Model model, HttpSession session) {
 		List<Jo_MovieVO> movieList = movieService.getAll();
-		Jo_AttachVO attachVO = attachService.getMoviePoster();
+		List<Jo_AttachVO> attachList = attachService.getMoviePoster();
 		for (int i = 0; i < movieList.size(); i++) {
 			Jo_MovieVO movieVO = movieList.get(i);
-			if (movieVO.getMov_code().equals(attachVO.getMov_code())) {
-				movieVO.setAttachVO(attachVO);
+			for (int j = 0; j < attachList.size(); j++) {
+				Jo_AttachVO attachVO = attachList.get(j);
+				if (movieVO.getMov_code().equals(attachVO.getMov_code())) {
+					movieVO.setAttachVO(attachVO);
+				}
 			}
 		}
 		log.info("movieList : " + movieList);

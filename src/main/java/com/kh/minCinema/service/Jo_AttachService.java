@@ -1,5 +1,6 @@
 package com.kh.minCinema.service;
 
+import java.util.List;
 import java.util.Map;
 
 import com.kh.minCinema.domain.Heo_MemberVO;
@@ -11,7 +12,7 @@ public interface Jo_AttachService {
 	
 	public Heo_MemberVO getFile(String mid);
 	
-	public Jo_AttachVO getMoviePoster();
+	public List<Jo_AttachVO> getMoviePoster();
 	
 	public boolean checkProfileImage(String mid);
 	

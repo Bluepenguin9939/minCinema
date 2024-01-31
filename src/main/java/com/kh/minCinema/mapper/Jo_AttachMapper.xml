@@ -22,6 +22,7 @@
 	
 	<select id="selectMoviePoster" resultType="com.kh.minCinema.domain.Jo_AttachVO">
 		SELECT * FROM MC_ATTACH
+		WHERE MOV_CODE IS NOT NULL
 	</select>
 	
 	<select id="checkProfileImage" resultType="int">

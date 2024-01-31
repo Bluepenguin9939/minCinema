@@ -29,8 +29,8 @@ import lombok.extern.log4j.Log4j;
 @Controller
 @Log4j
 public class Jo_AttachController {
-	private static final String PROFILE_UPLOAD_PATH = "D:/upload/user_profile_image";
-	private static final String POSTER_UPLOAD_PATH = "D:/upload/poster";
+	private static final String PROFILE_UPLOAD_PATH = "G:/upload/user_profile_image";
+	private static final String POSTER_UPLOAD_PATH = "G:/upload/poster";
 	
 	@Autowired
 	private Jo_AttachService attachService;
@@ -67,19 +67,19 @@ public class Jo_AttachController {
 	@PostMapping(value = "/uploadPosterImage",
 				 produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public Map<String, Object> uploadPosterImage(MultipartFile uploadFile) {
+	public Map<String, Object> uploadPosterImage(MultipartFile[] uploadFile) {
 		if (uploadFile == null) {
 			return null;
 		}
-		int movieOrgNameLength = uploadFile.getOriginalFilename().length() - 4;
-		String movieOrgName = uploadFile.getOriginalFilename().substring(0, movieOrgNameLength);
+		int movieOrgNameLength = uploadFile[0].getOriginalFilename().length() - 4;
+		String movieOrgName = uploadFile[0].getOriginalFilename().substring(0, movieOrgNameLength);
 		String moviePath = POSTER_UPLOAD_PATH + "/" + movieOrgName;
 		File movieFolder = new File(moviePath);
 		if (!movieFolder.exists()) {
 			movieFolder.mkdirs();
 		}
 		UUID uuid = UUID.randomUUID();
-		String orgFileName = uploadFile.getOriginalFilename();
+		String orgFileName = uploadFile[0].getOriginalFilename();
 		String saveFileName = uuid + "_" + orgFileName;
 		File saveRepository = new File(moviePath, saveFileName);
 		Map<String, Object> map = new HashMap<>();
@@ -91,10 +91,10 @@ public class Jo_AttachController {
 		map.put("attachVO", attachVO);
 		map.put("result", result);
 		try {
-			uploadFile.transferTo(saveRepository);
+			uploadFile[0].transferTo(saveRepository);
 		} catch (Exception e) {
 			e.printStackTrace();
-		}	
+		}
 		return map;
 	}
 	

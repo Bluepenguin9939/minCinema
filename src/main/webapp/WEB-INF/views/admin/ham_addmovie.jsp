@@ -209,6 +209,11 @@ $(function(){
 					<input type="file" id="chooseVideo" name="chooseVideo" accept="video/*" onchange="loadFile(this)" style="visibility: hidden;">
 				</div>
 				<div>
+					<div>
+						
+					</div>
+				</div>
+				<div>
 					<i class="fa fa-link"></i> <input type="text" placeholder="동영상 URI 등록"> <input type="submit">
 					<button type="submit" id="btnAddMovie">영화 등록하기</button>
 				</div>
