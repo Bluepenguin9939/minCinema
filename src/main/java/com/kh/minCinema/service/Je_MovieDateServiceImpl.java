@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.minCinema.domain.Je_MovieReservDTO;
 import com.kh.minCinema.mapper.Je_MovieDateMapper;
+import com.kh.minCinema.mapper.Je_MovieLocMapper;
 import com.kh.minCinema.mapper.Je_MovieTimeMapper;
 
 import lombok.extern.log4j.Log4j;
@@ -21,6 +22,9 @@ public class Je_MovieDateServiceImpl implements Je_MovieDateService {
 	
 	@Autowired
 	private Je_MovieTimeMapper je_MovieTimeMapper;
+	
+	@Autowired 
+	private Je_MovieLocMapper je_MovieLocMapper;
 	
 	@Override
 	public List<String> movieScreenDates(String movieCode) {
@@ -41,6 +45,14 @@ public class Je_MovieDateServiceImpl implements Je_MovieDateService {
 	public List<Je_MovieReservDTO> movieStartTimes(String movieDateCode) {
 
 		List<Je_MovieReservDTO> list = je_MovieTimeMapper.movieStartTimes(movieDateCode);
+		
+		return list;
+	}
+
+	@Override
+	public List<String> movieReservedSeats(Je_MovieReservDTO je_MovieReservDTO) {
+
+		List<String> list = je_MovieLocMapper.movieReservedSeats(je_MovieReservDTO);
 		
 		return list;
 	}

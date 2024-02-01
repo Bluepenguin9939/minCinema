@@ -310,16 +310,41 @@ function mouseHoverOronClick(that , pCount, bgColor, color , method){
 	
 $(function(){
 	/*테스트할 임의의예약 좌석들*/
-	$("#id-A02").attr("data-select","noselect");
-	$("#id-B06").attr("data-select","noselect");
-	$("#id-C07").attr("data-select","noselect");
-	$("#id-D08").attr("data-select","noselect");
-	$("#id-E11").attr("data-select","noselect");
 	
-	var bookSeat = 5;
-	/////////
-	var currentSeat = 72 - bookSeat;
-	$(".currentSeat").text(currentSeat);
+	
+	var movieDate =  "${Je_ReservationInfoVO.movieDate}";
+	var movieTime = "${Je_ReservationInfoVO.movieTime}".substring(0, 5);
+	var movieTheater = "${Je_ReservationInfoVO.movieTheater}";
+	
+	var sendData = { 
+					"mov_date" : movieDate,  //영화상영일
+					"mov_start_time" : movieTime,  //영화 시작시간
+					"mov_loc" :  movieTheater//영화 상영관
+					};
+	
+	console.log("sendData:",sendData);
+	
+	$.post("/ticketing/reservedSeats",sendData,function(rData){
+		
+		//console.log("rData:",rData);
+		$.each(rData, function(index, value){
+			
+			$("#id-"+value).attr("data-select","noselect");
+			//$("#id-B06").attr("data-select","noselect");
+			//$("#id-C07").attr("data-select","noselect");
+			//$("#id-D08").attr("data-select","noselect");
+		//	$("#id-E11").attr("data-select","noselect");
+		});
+		
+		var bookSeat = rData.length;
+
+		var currentSeat = 72 - bookSeat;
+		$(".currentSeat").text(currentSeat);
+		
+	});
+	////////////////////////
+	
+	
 	
 	/*1,2,3인 선택*/
 	$(".pCount").click(function(){
@@ -768,10 +793,10 @@ $(function(){
 		        	<div class="rounded countText bg-primary">좌석 예매 결제</div>
 		        	
 		        	<ul style="font-size: 24px">
-		        		<li>영화 : ${je_reservationVO.movieTitle}</li>
-		        		<li>날짜 : ${je_reservationVO.movieDate}</li>
-		        		<li>시간 : ${je_reservationVO.movieTime}</li>
-		        		<li>상영관 : ${je_reservationVO.movieTheater}</li>
+		        		<li>영화 : ${Je_ReservationInfoVO.movieTitle}</li>
+		        		<li>날짜 : ${Je_ReservationInfoVO.movieDate}</li>
+		        		<li>시간 : ${Je_ReservationInfoVO.movieTime}</li>
+		        		<li>상영관 : ${Je_ReservationInfoVO.movieTheater}</li>
 		        	</ul>
 		        	
 		        	

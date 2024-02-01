@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Je_reservationVO {
+public class Je_ReservationInfoVO {
 	String movieTitle; //영화제목
 	String movieDate;  //영화상영일
 	String movieTime;  //영화 시작시간
