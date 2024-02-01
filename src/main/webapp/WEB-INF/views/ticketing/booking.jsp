@@ -188,6 +188,30 @@
     color: #dddddd;/*글자 색*/
 }
 
+.time-data{
+	padding-top: 5px;
+    /*display: flex;
+    flex-direction: column;  /*아이템을 배치하리 세로열로*/
+    align-items: center;
+    height: 95%;
+    overflow: scroll; /*스크롤바 생성*/
+    overflow-x: hidden; /*x축 스크롤바 숨기기*/
+}
+
+.time-data::-webkit-scrollbar{
+    width: 15px;
+}
+
+.time-data::-webkit-scrollbar-thumb{
+    background-color: #9b54ba;
+    /* 스크롤바 둥글게 설정    */
+    border-radius: 10px;
+}
+
+.time-data::-webkit-scrollbar-track{
+    background-color: 	#e4e4f8;
+}
+
 .times{
 	/*justify-content: center;*/
 	font-size: 30px;
@@ -230,6 +254,7 @@ $(function(){
 	var now = new Date();
 	var todayYear = now.getFullYear();
 	var todayMonth = now.getMonth()+1;
+	var todayDate = now.getDate();
 	var dates = new Date(todayYear,todayMonth,0).getDate();
 	
 	

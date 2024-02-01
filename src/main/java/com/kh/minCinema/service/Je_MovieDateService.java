@@ -11,4 +11,6 @@ public interface Je_MovieDateService {
 	public String selectMovieDateCode(Je_MovieReservDTO je_MovieReservDTO);
 	
 	public List<Je_MovieReservDTO> movieStartTimes(String movieDateCode);
+	
+	public List<String> movieReservedSeats(Je_MovieReservDTO je_MovieReservDTO);
 }

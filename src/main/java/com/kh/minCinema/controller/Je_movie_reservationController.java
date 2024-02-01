@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kh.minCinema.domain.Je_MovieReservDTO;
-import com.kh.minCinema.domain.Je_reservationVO;
+import com.kh.minCinema.domain.Je_ReservationInfoVO;
 import com.kh.minCinema.domain.Jo_MovieVO;
 import com.kh.minCinema.service.Je_MovieDateService;
 import com.kh.minCinema.service.Jo_MovieService;
@@ -79,19 +79,29 @@ public class Je_movie_reservationController {
 	
 
 	@GetMapping("/seat")
-	public void seat(Je_reservationVO je_reservationVO, Model model) {
-		model.addAttribute("je_reservationVO", je_reservationVO);
+	public void seat(Je_ReservationInfoVO je_ReservationInfoVO, Model model) {
+		model.addAttribute("Je_ReservationInfoVO", je_ReservationInfoVO);
 		//log.info(">>>>>>>>>>>>>>>>"+je_reservationVO);
 		//return je_reservationVO;
 	}
 	
+	@PostMapping(value = "/reservedSeats" ,  produces = {MediaType.APPLICATION_JSON_VALUE})
+	@ResponseBody
+	public List<String> reservedSeats(Je_MovieReservDTO je_MovieReservDTO) {
+		
+		log.info("@>>>>>:"+je_MovieReservDTO);
+		List<String> list = je_MovieDateService.movieReservedSeats(je_MovieReservDTO);
+		
+		return list;
+	}
+	
 	@PostMapping(value = "/cost", consumes = {MediaType.APPLICATION_JSON_VALUE})
 	@ResponseBody
-	public String cost(@RequestBody Je_reservationVO je_reservationVO) {
+	public String cost(@RequestBody Je_ReservationInfoVO je_ReservationInfoVO) {
 		//log.info("cost...");
-		log.info(">>>>>>>>>>>>>>>>>>"+je_reservationVO);
-		log.info(">>>>>>>>>>>>>>>>>>"+je_reservationVO.getAge());
-		log.info(">>>>>>>>>>>>>>>>>>"+je_reservationVO.getReservedSeat());
+		log.info(">>>>>>>>>>>>>>>>>>"+je_ReservationInfoVO);
+		log.info(">>>>>>>>>>>>>>>>>>"+je_ReservationInfoVO.getAge());
+		log.info(">>>>>>>>>>>>>>>>>>"+je_ReservationInfoVO.getReservedSeat());
 		
 		return "true";
 	}
