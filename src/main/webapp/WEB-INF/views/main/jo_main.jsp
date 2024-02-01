@@ -70,42 +70,23 @@ $(function() {
 				<div class="carousel-inner">
 				 	<div class="carousel-item active">
 				 		<div class="d-flex align-items-center justify-content-center">
-					    	<a href="#">
-						    	<img src="/resources/img/mov01.jpg" alt="영화1" 
-						    		height="500" class="slide-movie-image" id="test">
+			 			<c:forEach var="vo" items="${movieList}" begin="0" end="3">
+					    	<a href="#" class="a-slide-img">
+						    	<img src="/display?fileName=${vo.attachVO.upload_path}/${vo.attachVO.file_name}" alt="영화1" 
+						    		height="500" class="slide-movie-image" 
+						    		data-mov_code="${vo.mov_code}">
 				    		</a>
-					    	<a href="#">
-						    	<img src="/resources/img/mov02.jpg" alt="영화2" 
-						    		height="500" class="slide-movie-image">
-				    		</a>
-					    	<a href="#">
-						    	<img src="/resources/img/mov03.jpg" alt="영화3" 
-						    		height="500" class="slide-movie-image">
-				    		</a>
-					    	<a href="#">
-						    	<img src="/resources/img/mov03.jpg" alt="영화3" 
-						    		height="500" class="slide-movie-image">
-				    		</a>
+			    		</c:forEach>
 				    	</div>
 				  	</div>
 				  	<div class="carousel-item">
 				  		<div class="d-flex align-items-center justify-content-center">
+				  		<c:forEach var="vo" items="${movieList}" begin="4" end="7">
 					    	<a href="#">
-						    	<img src="/resources/img/mov04.jpg" alt="영화4" 
+						    	<img src="/display?fileName=${vo.attachVO.upload_path}/${vo.attachVO.file_name}" alt="영화4" 
 						    		height="500" class="slide-movie-image">
 				    		</a>
-					    	<a href="#">
-						    	<img src="/resources/img/mov05.jpg" alt="영화5" 
-						    		height="500" class="slide-movie-image">
-				    		</a>
-					    	<a href="#">
-						    	<img src="/resources/img/mov06.jpg" alt="영화6" 
-						    		height="500" class="slide-movie-image">
-					    			</a>
-					    	<a href="#">
-						    	<img src="/resources/img/mov06.jpg" alt="영화6" 
-						    		height="500" class="slide-movie-image">
-			    			</a>
+			    		</c:forEach>
 				    	</div>
 				  	</div>
 				  	<div class="carousel-item">
@@ -198,7 +179,7 @@ $(function() {
 						<div class="card-movie-image" data-mov_code="${vo.mov_code}">
 						<c:choose>
 							<c:when test="${vo.attachVO.mov_code == vo.mov_code}">
-								<img src="/display?fileName=${vo.attachVO.upload_path}/${vo.attachVO.uuid}_${vo.attachVO.file_name}" alt="영화1"
+								<img src="/display?fileName=${vo.attachVO.upload_path}/${vo.attachVO.file_name}" alt="영화1"
 									class="main-movie-img">
 							</c:when>
 							<c:otherwise>
@@ -210,7 +191,7 @@ $(function() {
 <!-- 							<div class="user-rate"> -->
 <!-- 								<span><i class="fa fa-star"></i>9.6</span> -->
 <!-- 							</div> -->
-						<button type="button" class="heart"><i class="far fa-heart"></i></button>
+					<button type="button" class="heart"><i class="far fa-heart"></i></button>
 					</div>
 					<c:choose>
 						<c:when test="${fn:length(vo.mov_title) > 10}">
@@ -220,8 +201,16 @@ $(function() {
 							<span class="movie-name">${vo.mov_title}</span><br>
 						</c:otherwise>
 					</c:choose>
-					<span class="info">${fn:substring(vo.mov_releaseDate, 0, 4)} | <c:if test="${fn:length(vo.mov_genre) > 8}">${fn:substring(vo.mov_genre, 0, 8)}...</c:if>
-						<c:if test="${fn:length(vo.mov_genre) <= 8}">${vo.mov_genre}</c:if> | ${vo.mov_runtime}분</span>
+					<span class="info">
+						${fn:substring(vo.mov_releaseDate, 0, 4)} | 
+						<c:if test="${fn:length(vo.mov_genre) > 8}">
+							${fn:substring(vo.mov_genre, 0, 8)}...
+						</c:if>
+						<c:if test="${fn:length(vo.mov_genre) <= 8}">
+							${vo.mov_genre}
+						</c:if>
+						 | ${vo.mov_runtime}분
+					</span>
 				</div>
 			</c:forEach>
 			</div>

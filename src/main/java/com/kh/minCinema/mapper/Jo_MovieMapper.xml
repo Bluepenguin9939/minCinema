@@ -5,7 +5,7 @@
 <mapper namespace="com.kh.minCinema.mapper.Jo_MovieMapper">
 	<insert id="insertMovie">
 		INSERT INTO MC_MOVIE
-		VALUES (#{mov_code}, #{mov_title}, #{mov_director}, #{mov_actor}, #{mov_releaseDate}, #{mov_plot}, #{mov_runtime}, #{mov_rating}, #{mov_genre})
+		VALUES (#{mov_code}, #{mov_title}, #{mov_director}, #{mov_actor}, #{mov_releaseDate}, #{mov_plot}, #{mov_runtime}, #{mov_rating}, #{mov_genre}, #{mov_trailer})
 	</insert>
 	
 	<select id="selectAll" resultType="com.kh.minCinema.domain.Jo_MovieVO">
@@ -23,4 +23,12 @@
         		             FROM MC_HEART
                 		     WHERE MID = '${value}')
 	</select>
+	
+
+	
+	<!-- // by Je 추가 -->
+	<select id="selectTitleAndCode" resultType="com.kh.minCinema.domain.Je_MovieReservDTO">
+		SELECT MOV_TITLE,MOV_CODE FROM MC_MOVIE
+	</select>
+	
 </mapper>

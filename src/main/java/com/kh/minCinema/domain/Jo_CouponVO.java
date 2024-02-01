@@ -9,11 +9,9 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Jo_AttachVO {
+public class Jo_CouponVO {
 	
-	private String uuid;
-	private String upload_path;
-	private String file_name;
+	private Integer cno;
 	private String mid;
-	private String mov_code;
+	private Integer discount;
 }

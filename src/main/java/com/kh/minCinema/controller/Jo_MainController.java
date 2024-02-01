@@ -61,7 +61,6 @@ public class Jo_MainController {
 				}
 			}
 		}
-		log.info("movieList : " + movieList);
 		Heo_MemberVO memberVO = (Heo_MemberVO)session.getAttribute("loginInfo");
 		if (memberVO != null) {
 			String mid = memberVO.getMid();

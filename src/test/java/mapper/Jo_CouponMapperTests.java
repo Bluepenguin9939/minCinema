@@ -7,8 +7,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
-import com.kh.minCinema.domain.Heo_PointVO;
-import com.kh.minCinema.mapper.Heo_PointMapper;
+import com.kh.minCinema.domain.Jo_HeartDTO;
+import com.kh.minCinema.mapper.Jo_CouponMapper;
+import com.kh.minCinema.mapper.Jo_HeartMapper;
 
 import lombok.extern.log4j.Log4j;
 
@@ -16,21 +17,14 @@ import lombok.extern.log4j.Log4j;
 @ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/spring/root-context.xml"})
 @Log4j
 @WebAppConfiguration
-public class Heo_PointMapperTests {
+public class Jo_CouponMapperTests {
 	
 	@Autowired
-	private Heo_PointMapper heo_PointMapper;
+	private Jo_CouponMapper couponMapper;
+	
 	@Test
-	public void insertTest() {
-		
-		for (int i = 10000; i < 10099; i++) {
-			Heo_PointVO heo_PointVO = Heo_PointVO.builder()
-					.mid("test")
-					.ppoint(i)
-					.pcode("PC")
-					.build();
-			log.info(heo_PointMapper.insertPoint(heo_PointVO));
-		}
-		
+	public void testSelectAllCoupon() {
+		int count = couponMapper.selectAllCoupon("test");
+		log.info(count);
 	}
 }

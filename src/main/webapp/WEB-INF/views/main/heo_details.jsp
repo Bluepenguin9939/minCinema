@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ include file="/WEB-INF/views/include/top.jsp"%>
-
 <!-- 결과창모달 -->
 <%@ include file="/WEB-INF/views/include/heo_payLoginModal.jsp"%>
 <link href="/resources/css/details/heo_details.css?after"
@@ -13,7 +13,11 @@
 		<div class="col-md-6">
 			<br> <br>
 			<div class="d-flex justify-content-center">
-				<img class="movie-details" style="width: 300px; height: 400px;" src="/resources/img/mov01.jpg">
+			<c:forEach var="list" items="${movieImage}">
+				<c:if test="${fn:contains(list.upload_path, 'poster')}">
+					<img class="movie-details" style="width: 300px; height: 400px;" src="/display?fileName=${movieImage[0].upload_path}/${movieImage[0].file_name}">
+				</c:if>
+			</c:forEach>
 				<div class="details-logo">
 					<div class="mov-details-name">${movieDetail.mov_title}</div>
 					<ul class="mov-details-ul">
@@ -57,11 +61,11 @@
 						<h3>트레일러</h3>
 						<br>
 						<div class="justify-content-center d-flex">
-							<iframe width="700" height="400"
-								src="https://www.youtube.com/embed/u8GQibRXVHg?si=jbbvFff43Jdo1jzF&autoplay=1&mute=1"
-								title="YouTube video player" frameborder="0"
-								allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;"
-								allowfullscreen></iframe>
+							<iframe src="${movieDetail.mov_trailer}"
+								frameborder='no' scrolling='no' marginwidth='0' 
+								marginheight='0' WIDTH='700' HEIGHT='400' allow='autoplay' 
+								allowfullscreen>
+							</iframe>
 						</div>
 
 						<h3 class="mov-details-stillcut">스틸컷</h3>
@@ -70,27 +74,34 @@
 							<!-- Indicators -->
 							<ul class="carousel-indicators">
 								<li data-target="#slide-movie" data-slide-to="0" class="active"></li>
-								<li data-target="#slide-movie" data-slide-to="1"></li>
-								<li data-target="#slide-movie" data-slide-to="2"></li>
+								<c:forEach var="i" begin="2" end="${fn:length(movieImage) - 1}">
+									<li data-target="#slide-movie" data-slide-to="${i}"></li>
+								</c:forEach>
 							</ul>
 
 							<!-- The slideshow -->
 							<div class="carousel-inner">
 								<div class="carousel-item active">
+									<c:forEach var="list" items="${movieImage}" end="1">
 									<div class="d-flex align-items-center justify-content-center">
-										<a href="#"> <img
-											src="/resources/img/stillcuts/toy_stillcuts/toy_stillcut1.jpeg"
-											alt="영화1" height="500" class="slide-movie-image" id="test">
-										</a>
-									</div>
-								</div>
-								<c:forEach begin="2" end="15" var="i">
-									<div class="carousel-item">
-										<div class="d-flex align-items-center justify-content-center">
+										<c:if test="${fn:contains(list.upload_path, 'still_cut')}">
 											<a href="#"> <img
-												src="/resources/img/stillcuts/toy_stillcuts/toy_stillcut${i}.jpeg"
+												src="/display?fileName=${list.upload_path}/${list.file_name}"
 												alt="영화1" height="500" class="slide-movie-image" id="test">
 											</a>
+										</c:if>
+									</div>
+									</c:forEach>
+								</div>
+								<c:forEach var="list" items="${movieImage}" begin="2">
+									<div class="carousel-item">
+										<div class="d-flex align-items-center justify-content-center">
+										<c:if test="${fn:contains(list.upload_path, 'still_cut')}">
+											<a href="#"> <img
+												src="/display?fileName=${list.upload_path}/${list.file_name}"
+												alt="영화1" height="500" class="slide-movie-image" id="test">
+											</a>
+										</c:if>
 										</div>
 									</div>
 								</c:forEach>

@@ -22,6 +22,7 @@ public class Jo_MovieVO {
 	private Integer mov_runtime;		// 영화 런타임
 	private String mov_rating;			// 영화 관람기준
 	private String mov_genre;			// 영화 장르
+	private String mov_trailer;			// 영화 트레일러
 	
 	private Jo_AttachVO attachVO;
 	private Jo_MoviePosterDTO posterDTO;

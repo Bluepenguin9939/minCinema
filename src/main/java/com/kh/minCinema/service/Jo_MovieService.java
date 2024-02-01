@@ -1,7 +1,9 @@
 package com.kh.minCinema.service;
 
 import java.util.List;
+import java.util.Map;
 
+import com.kh.minCinema.domain.Je_MovieReservDTO;
 import com.kh.minCinema.domain.Jo_MovieVO;
 
 public interface Jo_MovieService {
@@ -10,7 +12,10 @@ public interface Jo_MovieService {
 	
 	public List<Jo_MovieVO> getAll();
 	
-	public Jo_MovieVO getMovieByCode(String mov_code);
+	public Map<String, Object> getMovieByCode(String mov_code);
 	
 	public List<Jo_MovieVO> getInterestToHeart(String mid);
+	
+	
+	public List<Je_MovieReservDTO> getMovieTitleAndCode(); // by Je 추가
 }

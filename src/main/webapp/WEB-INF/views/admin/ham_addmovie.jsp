@@ -201,6 +201,19 @@ $(function(){
 		});
 // 		return false;
 	});
+	
+// 	영화 DB 검색 창
+	$("#btnSearchMovieDB").click(function() {
+		var url = "https://www.kobis.or.kr/kobis/business/mast/mvie/searchMovieList.do"
+		window.open(url);
+	});
+	
+// 	트레일러 버튼
+	$("#btnGetTrailer").click(function() {
+		var mov_name = $("#movieTitle").val()
+		var url = "https://tv.naver.com/search?query=" + mov_name + "%20예고편";
+		window.open(url);
+	});
 });
 </script>
 </head>
@@ -212,6 +225,10 @@ $(function(){
 			<div class="align-self-start">
 				<button type="button" id="btnGetWeekMovie"class="btn btn-sm btn-secondary">
 					지난주 박스오피스 TOP10 가져오기
+				</button>
+				<button type="button" class="btn btn-sm btn-secondary" 
+					id="btnSearchMovieDB">
+					영화DB 검색하러 가기
 				</button>
 			</div>
 			<div class="align-self-start">
@@ -240,6 +257,10 @@ $(function(){
   				</div>
 				<div class="col-md-10 si">
 					<input type="text" id="movieTitle" name="mov_title" placeholder="영화 제목" size="100px;">
+					<button type="button" id="btnGetTrailer"
+						class="btn btn-sm btn-secondary">
+						영화 트레일러 찾으러 가기
+					</button>
 					<div>
 						<textarea id="moviePlot" name="mov_plot" rows="3" cols="100" placeholder="상세 내용"></textarea>
 					</div>
@@ -262,15 +283,20 @@ $(function(){
 							<img src="/resources/img/default.png" width="100" height="100" alt="스틸컷">
 						</div>
 					</div>
-					<div>
-						<i class="fa fa-video"></i><label for="chooseVideo" style="cursor: pointer;">동영상 업로드</label>
-					</div>
-					<input type="file" id="chooseVideo" name="chooseVideo" accept="video/*" onchange="loadFile(this)" style="visibility: hidden;">
+<!-- 					<div> -->
+<!-- 						<i class="fa fa-video"></i><label for="chooseVideo" style="cursor: pointer;">동영상 업로드</label> -->
+<!-- 					</div> -->
+<!-- 					<input type="file" id="chooseVideo" name="chooseVideo" accept="video/*" onchange="loadFile(this)" style="visibility: hidden;"> -->
 				</div>
 				<div>
-					<i class="fa fa-link"></i> <input type="text" placeholder="동영상 URI 등록"> <input type="submit">
-					<button type="submit" id="btnAddMovie">영화 등록하기</button>
+					<i class="fa fa-link"></i>
+					<input type="text" id="mov_trailer" 
+						name="mov_trailer" placeholder="동영상 URL 등록"
+						style="width: 350px;">
 				</div>
+				<button type="submit" id="btnAddMovie" class="btn btn-secondary">
+					영화 등록하기
+				</button>
 			</div>
 		</div>
 	</form>
