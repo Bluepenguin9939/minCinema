@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Ham_OneononeVO {
+public class Ham_CountDateVO {
 	private int rn;
 	private String msg_id;
 	private String sender;
@@ -21,4 +21,5 @@ public class Ham_OneononeVO {
 	private String send_date;
 	private String open_date;
 	private int monthCount;
+	
 }

@@ -3,9 +3,7 @@ package com.kh.minCinema.controller;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -17,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.kh.minCinema.domain.Ham_CountDateVO;
 import com.kh.minCinema.domain.Ham_DateVO;
 import com.kh.minCinema.domain.Ham_OneononeVO;
 import com.kh.minCinema.domain.Ham_TestVO;
@@ -42,8 +41,13 @@ public class Ham_AdminController {
 	@Autowired
 	private Ham_OneononeService ham_OneononeService;
 	
+	
+	
 	@GetMapping("/ham_admins")
-	public void admins() {
+	public void admins(Model model) {
+		List<Ham_CountDateVO> list = ham_OneononeService.inquiryCount();
+		System.out.println("리수투:"+list);
+		model.addAttribute("list", list);
 		
 	}
 	//관리자페이지 - 테스트 멤버 목록 
@@ -89,30 +93,9 @@ public class Ham_AdminController {
 	}
 	@GetMapping("/ham_oneonone")//고객센터 리스트 <-유저 문의에서 받은 리스트
 	public void oneonone(Model model) {
-		List<Ham_OneononeVO> list = ham_OneononeService.selectOne();
-
-		SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
-		List<Ham_DateVO> dList = new ArrayList<>();
-		Ham_DateVO ham_DateVO = new Ham_DateVO();
-		for(Ham_OneononeVO vo: list) {
-			 int rn = vo.getRn();
-			 Date format= vo.getSend_date();
-			 String msg_id = vo.getMsg_id();
-			 String sender = vo.getSender();
-			 String  mtitle = vo.getMtitle();
-			 String message = vo.getMessage();
-			 String send_date = sf.format(format);
-			 if(vo.getOpen_date() != null) {
-				 Date format1 = vo.getOpen_date();
-				 String open_date = sf.format(format1);
-				  ham_DateVO = new Ham_DateVO(rn,msg_id, sender, message, mtitle, send_date, open_date);
-			 }else {
-				 ham_DateVO = new Ham_DateVO(rn,msg_id, sender, message, mtitle, send_date, null);				 
-			 }
-			 dList.add(ham_DateVO);
-		}
-		model.addAttribute("dList", dList);
-		
+		List<Ham_OneononeVO> list =  ham_OneononeService.selectOne();
+		System.out.println("리쓰뜨:"+list);
+		model.addAttribute("list", list);
 	}
 
 	@GetMapping("/ham_addevent")

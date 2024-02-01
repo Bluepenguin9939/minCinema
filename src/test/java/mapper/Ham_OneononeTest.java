@@ -39,6 +39,21 @@ public class Ham_OneononeTest {
 		ham_OneononeMapper.insertInquiry(ham_OneononeVO);
 		}
 	}
+	@Test
+	public void insertTest2() {
+			for(int i =1; i<17; i++) {
+				
+			Ham_OneononeVO ham_OneononeVO = Ham_OneononeVO.builder()
+					.rn(i)
+					.sender("admin")
+					.msg_id("admin")
+					.mtitle("1")
+					.message("1")
+					.build();
+			ham_OneononeMapper.insertInquiry(ham_OneononeVO);
+			}
+		}
+	
 	
 	@Test
 	public void listTest(){

@@ -26,9 +26,9 @@ public class Ham_adminTest {
 	
 	@Test
 	public void testMember() {
-		for (int i = 2; i < 50; i++) {
+		
 			Ham_TestVO testVO = Ham_TestVO.builder()
-					.tmid(String.valueOf(i))
+					.tmid("admin")
 					.tmpw("22")
 					.tmnick("sss")
 					.tmname("ssss")
@@ -36,6 +36,22 @@ public class Ham_adminTest {
 					.tmtel("010-2222-2222")
 					.build();
 			ham_TestMapper.insertTest(testVO);			
+		
+	}
+	@Test
+	public void testMember2() {
+		for(int i=1; i<17; i++) {
+			
+		Ham_TestVO testVO = Ham_TestVO.builder()
+				.tmid(String.valueOf(i))
+				.tmpw("22")
+				.tmnick("sss")
+				.tmname("ssss")
+				.tmemail("sss@na.com")
+				.tmtel("010-2222-2222")
+				.build();
+		ham_TestMapper.insertTest(testVO);			
+		
 		}
 	}
 	
