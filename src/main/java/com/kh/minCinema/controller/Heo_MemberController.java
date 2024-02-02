@@ -47,7 +47,9 @@ public class Heo_MemberController {
 		}
 		int allCoupon = couponService.getAllCoupon(heo_MemberVO.getMid());
 		System.out.println("allCoupon : " + allCoupon);
-		heo_MemberVO.setCoupon(allCoupon);
+		if (allCoupon != 0) {
+			heo_MemberVO.setCoupon(allCoupon);
+		}
 		Heo_MemberVO memberVO = attachService.getFile(heo_MemberVO.getMid());
 		if (memberVO != null) {
 			memberVO.setCoupon(allCoupon);

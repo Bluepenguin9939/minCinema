@@ -10,7 +10,7 @@ $(function() {
 // 	출석 참여 상태 체크
 	var mid = "${loginInfo.mid}";
 	
-	var cur_attendance_month = 01;
+	var cur_attendance_month = 02;
 	var today = new Date();
 	var today_year = today.getFullYear();
 	var today_month = today.getMonth() + 1;
@@ -23,7 +23,7 @@ $(function() {
 		today_date = "0" + today_date;
 	}
 	
-	if (today_month != 1) {
+	if (today_month != 2) {
 		$("#btnAttendance").attr("disabled", true);
 	}
 	
@@ -64,7 +64,7 @@ $(function() {
 				});
 			}
 		}
-		$("#allAttendance").text(attendanceList.length);
+		$("#allAttendance").text(allCount);
 		
 		if (checkAttendance == "Y") {
 			$("#btnAttendance").attr("disabled", true);
@@ -94,7 +94,7 @@ $(function() {
 				console.log(rData);
 				if (rData) {
 					alert("출석 완료");
-					self.location = "/main/event/jo_jan_attendance_check";
+					self.location = "/main/event/jo_feb_attendance_check";
 				}
 			}
 		});
@@ -107,13 +107,13 @@ $(function() {
 		<div class="col-md-2">
 		</div>
 		<div class="col-md-8" style="padding-top: 15px;">
-			<h2>1월 출석체크</h2>
-			<span>2024.01.01 ~ 2024.01.31</span>
+			<h2>2월 출석체크</h2>
+			<span>2024.02.01 ~ 2024.02.29</span>
 			<hr style="border-bottom: 2px solid #555555;">
 			<div style="display: flex; justify-content:center;
 				margin-left: 15px; margin-right: 15px; border: 1px solid #333333;">
 				<div style="width: 80%; text-align: center; padding: 10px;">
-					<h1>January<sub style="font-size: 20px;">1월</sub></h1>
+					<h1>January<sub style="font-size: 20px;">2월</sub></h1>
 					<div style="background-color: #aaaaaa;">
 						<table id="callender" style="width: 100%;">
 							<tr style="font-size: 20px; border-bottom: 1px solid #666666;">
@@ -127,7 +127,10 @@ $(function() {
 							</tr>
 							<tr>
 								<td></td>
-							<c:forEach var="date" varStatus="status" begin="1" end="6">
+								<td></td>
+								<td></td>
+								<td></td>
+							<c:forEach var="date" varStatus="status" begin="1" end="3">
 								<td>
 									<c:choose>
 										<c:when test="${status.last}">
@@ -145,30 +148,7 @@ $(function() {
 							</c:forEach>
 							</tr>
 							<tr>
-							<c:forEach var="date" varStatus="status" begin="7" end="13">
-								<td>
-									<c:choose>
-										<c:when test="${status.first}">
-										<div class="attendance_td" data-date="${date}">
-											<h1 style="align-self: center; color: #ff0000;">${date}</h1>
-										</div>
-										</c:when>
-										<c:when test="${status.last}">
-										<div class="attendance_td" data-date="${date}">
-											<h1 style="align-self: center; color: #0000ff;">${date}</h1>
-										</div>
-										</c:when>
-										<c:otherwise>
-										<div class="attendance_td" data-date="${date}">
-											<h1 style="align-self: center;">${date}</h1>
-										</div>
-										</c:otherwise>
-									</c:choose>
-								</td>
-							</c:forEach>
-							</tr>
-							<tr>
-							<c:forEach var="date" varStatus="status" begin="14" end="20">
+							<c:forEach var="date" varStatus="status" begin="4" end="10">
 								<td>
 									<c:choose>
 										<c:when test="${status.first}">
@@ -191,7 +171,7 @@ $(function() {
 							</c:forEach>
 							</tr>
 							<tr>
-							<c:forEach var="date" varStatus="status" begin="21" end="27">
+							<c:forEach var="date" varStatus="status" begin="11" end="17">
 								<td>
 									<c:choose>
 										<c:when test="${status.first}">
@@ -214,7 +194,30 @@ $(function() {
 							</c:forEach>
 							</tr>
 							<tr>
-							<c:forEach var="date" varStatus="status" begin="28" end="31">
+							<c:forEach var="date" varStatus="status" begin="18" end="24">
+								<td>
+									<c:choose>
+										<c:when test="${status.first}">
+										<div class="attendance_td" data-date="${date}">
+											<h1 style="align-self: center; color: #ff0000;">${date}</h1>
+										</div>
+										</c:when>
+										<c:when test="${status.last}">
+										<div class="attendance_td" data-date="${date}">
+											<h1 style="align-self: center; color: #0000ff;">${date}</h1>
+										</div>
+										</c:when>
+										<c:otherwise>
+										<div class="attendance_td" data-date="${date}">
+											<h1 style="align-self: center;">${date}</h1>
+										</div>
+										</c:otherwise>
+									</c:choose>
+								</td>
+							</c:forEach>
+							</tr>
+							<tr>
+							<c:forEach var="date" varStatus="status" begin="25" end="29">
 								<td>
 									<c:choose>
 										<c:when test="${status.first}">

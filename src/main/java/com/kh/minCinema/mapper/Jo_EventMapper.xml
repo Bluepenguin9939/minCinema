@@ -9,7 +9,7 @@
 	AND MID = #{mid}
 </select>
 <select id="changeImg" resultType="string">
-	SELECT SUBSTR(TO_CHAR(EDATE, 'YYYY/MM/DD'), 9, 2) FROM MC_EVENT
+	SELECT SUBSTR(TO_CHAR(EDATE, 'YYYY/MM/DD'), 6, 5) FROM MC_EVENT
 	WHERE MID = #{mid}
 </select>
 <insert id="clickToAttendance">

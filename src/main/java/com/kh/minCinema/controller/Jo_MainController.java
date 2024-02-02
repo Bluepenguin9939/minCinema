@@ -87,7 +87,12 @@ public class Jo_MainController {
 		
 	}
 	
-	@PostMapping(value = "/event/jan_attendance_status",
+	@GetMapping("/event/jo_feb_attendance_check")
+	public void feb_attendance_check() {
+		
+	}
+	
+	@PostMapping(value = "/event/attendance_status",
 				 produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public Map<String, Object> post_jan_attendance_status(Jo_EventDTO eventDTO) {
@@ -95,7 +100,7 @@ public class Jo_MainController {
 		return map;
 	}
 	
-	@PostMapping(value = "/event/jan_attendance_check",
+	@PostMapping(value = "/event/attendance_check",
 				 produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public boolean post_jan_attendance_check(String mid) {
