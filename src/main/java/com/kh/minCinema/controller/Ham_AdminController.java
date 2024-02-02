@@ -76,6 +76,13 @@ public class Ham_AdminController {
 	public void movieadd() {          
 		
 	}
+	
+	@GetMapping("/je_addmoviedate")
+	public void movieadd_date() {          
+		
+	}
+	
+	
 //	@PostMapping("/addMovie")
 //	public void addMovie(MultipartFile[] uploadFile) {
 //		

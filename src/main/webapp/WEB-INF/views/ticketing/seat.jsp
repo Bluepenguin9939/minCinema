@@ -191,9 +191,11 @@ span[data-select='noselect'] {
  date-select: select => 내가 선택한 좌석
  date-select: unselect => 비어있는 좌석
  date-select: noselect => 이미 예약된 좌석
- 
  */
+ //console.log("info:","${loginInfo.mpoint}");
 
+ 
+ 
 
 var seatMap = new Map();
 
@@ -311,7 +313,7 @@ function mouseHoverOronClick(that , pCount, bgColor, color , method){
 $(function(){
 	/*테스트할 임의의예약 좌석들*/
 	
-	
+	var movieTitle = "${Je_ReservationInfoVO.movieTitle}";
 	var movieDate =  "${Je_ReservationInfoVO.movieDate}";
 	var movieTime = "${Je_ReservationInfoVO.movieTime}".substring(0, 5);
 	var movieTheater = "${Je_ReservationInfoVO.movieTheater}";
@@ -676,10 +678,10 @@ $(function(){
 			
 			
 			var data = {
-					"movieTitle" :  "${je_reservationVO.movieTitle}",//영화제목
-					"movieDate" : "${je_reservationVO.movieDate}" ,//영화상영일
-					"movieTime" :  "${je_reservationVO.movieTime}",//영화 시작시간,
-					"movieTheater" : "${je_reservationVO.movieTheater}",//영화 상영관,
+					"movieTitle" :  movieTitle,//영화제목
+					"movieDate" : movieDate ,//영화상영일
+					"movieTime" :  movieTime,//영화 시작시간,
+					"movieTheater" : movieTheater,//영화 상영관,
 					"reservedSeat" : reservedSeat,                    //예약한좌석번호들
 					"age" : ageMap//연령
 			};
@@ -803,7 +805,7 @@ $(function(){
 		        	<div style="width: 100%">=========================</div>
 		        	<div class="rounded text-center" style="width: 100%; background-color: #9dff71;">
 		        		<div class="rounded" style="background-color: white;font-size: 20px">포인트 현황</div>
-		        		<p id="myPoint" style="font-size: 28px">28000 포인트</p>
+		        		<p id="myPoint" style="font-size: 28px">${loginInfo.mpoint} 포인트</p>
 		        	</div>
 		        	
 		        	<div class="rounded text-center" style="width: 100%; background-color: #9dff71;">
@@ -822,7 +824,7 @@ $(function(){
 		        	
 		        	<div class="rounded text-center" style="width: 100%; background-color: #9dff71;">
 		        		<div class="rounded" style="background-color: white;font-size: 20px">결제내역</div>
-		        		<div class="text-right" style="font-size: 28px">28000 포인트</div>
+		        		<div class="text-right" style="font-size: 28px">${loginInfo.mpoint}</div>
 		        		<div id="subCost" class="text-right" style="font-size: 28px">0원</div>
 		        		<div class="text-right" style="font-size: 20px">====================</div>
 		        		<div id="resultCost" class="text-right" style="font-size: 28px">0원</div>
