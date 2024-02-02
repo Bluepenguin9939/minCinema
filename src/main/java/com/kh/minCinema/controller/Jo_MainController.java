@@ -115,13 +115,13 @@ public class Jo_MainController {
 	@PostMapping(value = "/event/attendance_reward",
 				 produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public boolean attendance_reward(Jo_EventRewardVO eventRewardVO, HttpSession session) {
+	public List<Integer> attendance_reward(Jo_EventRewardVO eventRewardVO, HttpSession session) {
 		log.info("REWARDeventRewardVO : " + eventRewardVO);
 		Heo_MemberVO heo_MemberVO = (Heo_MemberVO)session.getAttribute("loginInfo");
 		String mid = heo_MemberVO.getMid();
 		eventRewardVO.setMid(mid);
-		boolean isReceive = eventRewardService.checkReceive(eventRewardVO);
-		return isReceive;
+		List<Integer> discountList = eventRewardService.checkReceive(eventRewardVO);
+		return discountList;
 	}
 	
 	@PostMapping("/event/attendance_receive")

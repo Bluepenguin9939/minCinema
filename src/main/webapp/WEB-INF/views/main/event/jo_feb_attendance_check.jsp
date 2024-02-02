@@ -80,10 +80,20 @@ $(function() {
 			}
 			
 			$.post(reward_url, reward_sData, function(rData) {
-				if (rData) {
-					alert("수령하지 않은 보상이 존재합니다");
-					$("#btnGetReward").prop("disabled", false);
-				}
+				console.log(rData);
+				$(rData).each(function(i) {
+					console.log("i :", i);
+					var isReceive = rData[i];
+					if (isReceive == 1) {
+						$("#gift-table > tbody > tr:eq(" + i + ")").css("text-decoration", "line-through")
+					} else {
+						$("#btnGetReward").prop("disabled", false);
+					}
+				});
+// 				if (rData) {
+// 					alert("수령하지 않은 보상이 존재합니다");
+// 					$("#btnGetReward").prop("disabled", false);
+// 				}
 			});
 		}
 	});
@@ -130,6 +140,7 @@ $(function() {
 			if (rData) {
 				alert("쿠폰 지급이 완료되었습니다.");
 				$("#btnGetReward").prop("disabled", true);
+				self.location = window.location.href;
 			}
 		});
 	});

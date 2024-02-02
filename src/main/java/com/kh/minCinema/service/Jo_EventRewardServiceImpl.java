@@ -25,7 +25,7 @@ public class Jo_EventRewardServiceImpl implements Jo_EventRewardService {
 	private Jo_CouponMapper couponMapper;
 	
 	@Override
-	public boolean checkReceive(Jo_EventRewardVO eventRewardVO) {
+	public List<Integer> checkReceive(Jo_EventRewardVO eventRewardVO) {
 		int allCount = (eventRewardVO.getAllCount() / 10);
 		List<Integer> discountList = new ArrayList<Integer>();
 		for (int i = 1; i <= allCount; i++) {
@@ -33,13 +33,8 @@ public class Jo_EventRewardServiceImpl implements Jo_EventRewardService {
 			int count = eventRewardMapper.checkReceive(eventRewardVO);
 			discountList.add(count);
 		}
-		for (int receive : discountList) {
-			if (receive == 0) {
-				return true;
-			}
-		}
 		log.info("disList : " + discountList);
-		return false;
+		return discountList;
 	}
 
 	@Override
