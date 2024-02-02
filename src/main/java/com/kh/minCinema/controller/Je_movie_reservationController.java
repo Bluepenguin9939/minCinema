@@ -81,8 +81,7 @@ public class Je_movie_reservationController {
 	@GetMapping("/seat")
 	public void seat(Je_ReservationInfoVO je_ReservationInfoVO, Model model) {
 		model.addAttribute("Je_ReservationInfoVO", je_ReservationInfoVO);
-		//log.info(">>>>>>>>>>>>>>>>"+je_reservationVO);
-		//return je_reservationVO;
+
 	}
 	
 	@PostMapping(value = "/reservedSeats" ,  produces = {MediaType.APPLICATION_JSON_VALUE})

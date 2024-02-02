@@ -268,7 +268,7 @@ $(function(){
 		$(".reserve-date").append(
 				"<div class = 'srceenDate'>"
 					+"<div id='"+year+(month <= 9 ? "0"+month : month)+"' class='year-month'>"
-						+"<span class='bg-info border border-dark'>"+year+"."+(month <= 9 ? "0"+month : month)+"</span>"
+						+"<span class='bg-info border border-dark'>"+year+"-"+(month <= 9 ? "0"+month : month)+"</span>"
 					+"</div>"
 				+"</div>"
 		);
@@ -289,7 +289,7 @@ $(function(){
 			//monthdayMap.set(i,day);
 			var dayStr = ( i <= 9 ? "0" + i : i );
 			
-			var dataDate = year+"."+monthStr+"."+dayStr;
+			var dataDate = year+"-"+monthStr+"-"+dayStr;
 			$(id).append(
 					"<div class='days' id='"+i+"' data-date='"+dataDate+"'>"
 						+"<span class='rounded-circle bg-light weekday' style='font-size:24px;'>"+wday+"</span>"+"&emsp;"
@@ -304,7 +304,7 @@ $(function(){
 		console.log("rData: ",rData);
 		if(rData != null){
 			$.each(rData , function( index, value ) {
-				console.log( index + " : " + value.mov_code +":"+ value.mov_title );
+				//console.log( index + " : " + value.mov_code +":"+ value.mov_title );
 				$(".movie-datas").append(
 						"<div class='movie-list' data-movieCode='"+value.mov_code+"'>"+value.mov_title+"</div>"
 				);
@@ -357,12 +357,12 @@ $(function(){
 			//console.log("rData: ",rdata);
 			//console.log("rData.length: ",rdata.length);
 			if(rdata.length != 0 ){
-				var startDate = rdata[0].split(".");
+				var startDate = rdata[0].split("-");
 				var startMvYear = parseInt(startDate[0]);
 				var startMvMonth = parseInt(startDate[1]);
 				var startMvday = parseInt(startDate[2]);
 				
-				var endDate = rdata[rdata.length-1].split(".");
+				var endDate = rdata[rdata.length-1].split("-");
 				var endMvYear = parseInt(endDate[0]);
 				var endMvMonth = parseInt(endDate[1]);
 				var endMvday = parseInt(endDate[2]);
@@ -370,7 +370,6 @@ $(function(){
 				
 				if(startMvYear != endMvYear || startMvMonth != endMvMonth){
 					//console.log("다름");	
-					
 					setMonth(startMvYear,startMvMonth);
 					
 					setDayandWeekday(startMvYear,startMvMonth,startMvday);
