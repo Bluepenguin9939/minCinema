@@ -108,7 +108,7 @@ $(function() {
 					<span class="align-self-center"><fmt:formatNumber value="${loginInfo.mpoint}" pattern="#,###"/> P</span>
 				</div>
 			</a>
-			<a href="#">
+			<a href="/myPage/jo_myCoupon">
 				<div class="d-flex align-items-baseline profile-pc">
 					<i class="fas fa-copyright align-self-center" id="coupon-i"></i>
 					<span class="align-self-center">보유 쿠폰 ${loginInfo.coupon}개</span>

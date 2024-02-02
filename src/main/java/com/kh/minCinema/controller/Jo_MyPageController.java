@@ -18,8 +18,11 @@ import com.kh.minCinema.service.Jo_AttachService;
 import com.kh.minCinema.service.Jo_CouponService;
 import com.kh.minCinema.service.Jo_MovieService;
 
+import lombok.extern.log4j.Log4j;
+
 @Controller
 @RequestMapping("/myPage")
+@Log4j
 public class Jo_MyPageController {
 	
 	@Autowired
@@ -55,12 +58,16 @@ public class Jo_MyPageController {
 	public void myCoupon(HttpSession session, Model model) {
 		Heo_MemberVO heo_MemberVO = (Heo_MemberVO)session.getAttribute("loginInfo");
 		String mid = heo_MemberVO.getMid();
-//		for (int i = 5; i <= 15; i += 5) {
-//			Jo_CouponVO couponVO = Jo_CouponVO.builder()
-//					.mid(mid).discount(i)
-//					.build();
-//			int discountCoupon = couponService.getCouponCount(couponVO);
-//			model.addAttribute(i + "%_coupon", discountCoupon);
-//		}
+		for (int i = 5; i <= 15; i += 5) {
+			Jo_CouponVO couponVO = Jo_CouponVO.builder()
+					.mid(mid).discount(i)
+					.build();
+			int discountCoupon = couponService.getCouponCount(couponVO);
+			log.info(discountCoupon);
+			String discount = "coupon" + i;
+			log.info(discount);
+			model.addAttribute(discount, discountCoupon);
+		}
+		
 	}
 }
