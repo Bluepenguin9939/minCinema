@@ -18,8 +18,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.kh.minCinema.domain.Heo_MemberVO;
 import com.kh.minCinema.domain.Jo_AttachVO;
 import com.kh.minCinema.domain.Jo_EventDTO;
+import com.kh.minCinema.domain.Jo_EventRewardVO;
 import com.kh.minCinema.domain.Jo_MovieVO;
 import com.kh.minCinema.service.Jo_AttachService;
+import com.kh.minCinema.service.Jo_EventRewardService;
 import com.kh.minCinema.service.Jo_EventService;
 import com.kh.minCinema.service.Jo_HeartService;
 import com.kh.minCinema.service.Jo_MovieService;
@@ -42,6 +44,9 @@ public class Jo_MainController {
 	
 	@Autowired
 	private Jo_AttachService attachService;
+	
+	@Autowired
+	private Jo_EventRewardService eventRewardService;
 	
 	@GetMapping("/test")
 	public void test() {
@@ -66,7 +71,6 @@ public class Jo_MainController {
 			String mid = memberVO.getMid();
 			String[] arrHeart = heartService.checkHeart(mid);
 			String heartMovies = Arrays.toString(arrHeart);
-			log.info("heartMovies : " + heartMovies.substring(1, (heartMovies.length() - 1)));
 			model.addAttribute("heartMovies", heartMovies.substring(1, (heartMovies.length() - 1)));
 		}
 		model.addAttribute("movieList", movieList);
@@ -106,5 +110,36 @@ public class Jo_MainController {
 	public boolean post_jan_attendance_check(String mid) {
 		boolean attendanceResult = eventService.clickToAttendance(mid);
 		return attendanceResult;
+	}
+	
+	@PostMapping(value = "/event/attendance_reward",
+				 produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public boolean attendance_reward(Jo_EventRewardVO eventRewardVO, HttpSession session) {
+		log.info("REWARDeventRewardVO : " + eventRewardVO);
+		Heo_MemberVO heo_MemberVO = (Heo_MemberVO)session.getAttribute("loginInfo");
+		String mid = heo_MemberVO.getMid();
+		eventRewardVO.setMid(mid);
+		boolean isReceive = eventRewardService.checkReceive(eventRewardVO);
+		return isReceive;
+	}
+	
+	@PostMapping("/event/attendance_receive")
+	@ResponseBody
+	public boolean attendance_receive(Jo_EventRewardVO eventRewardVO, HttpSession session) {
+		log.info("RECEIVEeventRewardVO : " + eventRewardVO);		
+		Heo_MemberVO heo_MemberVO = (Heo_MemberVO)session.getAttribute("loginInfo");
+		String mid = heo_MemberVO.getMid();
+		int couponCount = heo_MemberVO.getCoupon();
+		eventRewardVO.setMid(mid);
+		int count = eventRewardService.getReceive(eventRewardVO);
+		boolean result = false;
+		if (count != 0) {
+			couponCount =  couponCount + count;
+			heo_MemberVO.setCoupon(couponCount);
+			session.setAttribute("loginInfo", heo_MemberVO);
+			result = true;
+		}
+		return result;
 	}
 }

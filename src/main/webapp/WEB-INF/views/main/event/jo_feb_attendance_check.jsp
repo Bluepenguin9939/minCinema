@@ -70,6 +70,22 @@ $(function() {
 			$("#btnAttendance").attr("disabled", true);
 			$("#btnAttendance").text("출석 완료");
 		}
+		
+//	 	출석 보상 수령 여부
+		if (allCount >= 10) {
+			var reward_url = "/main/event/attendance_reward";
+			var reward_sData = {
+					"allCount" : allCount,
+					"r_month" : today_month
+			}
+			
+			$.post(reward_url, reward_sData, function(rData) {
+				if (rData) {
+					alert("수령하지 않은 보상이 존재합니다");
+					$("#btnGetReward").prop("disabled", false);
+				}
+			});
+		}
 	});
 
 // 	로그인 판별
@@ -99,6 +115,24 @@ $(function() {
 			}
 		});
 	});
+	
+// 	보상 받기 버튼
+	$("#btnGetReward").click(function() {
+		var allCount = $("#allAttendance").text();
+		
+		var url = "/main/event/attendance_receive";
+		var sData = {
+				"allCount" : allCount,
+				"r_month" : today_month
+		}
+		
+		$.post(url, sData, function(rData) {
+			if (rData) {
+				alert("쿠폰 지급이 완료되었습니다.");
+				$("#btnGetReward").prop("disabled", true);
+			}
+		});
+	});
 });
 </script>
 
@@ -113,7 +147,7 @@ $(function() {
 			<div style="display: flex; justify-content:center;
 				margin-left: 15px; margin-right: 15px; border: 1px solid #333333;">
 				<div style="width: 80%; text-align: center; padding: 10px;">
-					<h1>January<sub style="font-size: 20px;">2월</sub></h1>
+					<h1>Febuary<sub style="font-size: 20px;">2월</sub></h1>
 					<div style="background-color: #aaaaaa;">
 						<table id="callender" style="width: 100%;">
 							<tr style="font-size: 20px; border-bottom: 1px solid #666666;">
@@ -245,7 +279,8 @@ $(function() {
 							<h2><span id="allAttendance">0</span>일</h2>
 							<button type="button" class="btn btn-secondary" id="btnAttendance">출석</button>
 						</div>
-						<div style="background-color: #aaaaaa; margin-top: 30px;">
+						<div style="background-color: #aaaaaa; margin-top: 30px;
+							text-align: center;">
 							<table id="gift-table">
 								<tbody>
 									<tr>
@@ -262,6 +297,10 @@ $(function() {
 									</tr>
 								</tbody>
 							</table>
+							<button type="button" class="btn btn-sm btn-secondary"
+								id="btnGetReward" disabled>
+								보상 받기
+							</button>
 						</div> 
 					</div>
 				</div>

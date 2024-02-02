@@ -1,0 +1,9 @@
+-------- 이벤트 테이블 --------
+
+CREATE TABLE MC_EVENT_REWARD(
+    MID VARCHAR2(20) CONSTRAINT FK_REWARD_MID REFERENCES MC_MEMBER(MID),	-- 참조 아이디
+    R_MONTH CHAR(2) NOT NULL,												-- 참여 달
+    R_HISTORY CHAR(1) NOT NULL												-- 출석일 코드
+);
+
+DROP TABLE MC_EVENT_REWARD;
