@@ -15,6 +15,5 @@ public interface Jo_MovieMapper {
 	
 	public List<Jo_MovieVO> selectInterestToHeart(String mid);
 	
-	
 	public List<Je_MovieReservDTO> selectTitleAndCode();// by Je 추가
 }

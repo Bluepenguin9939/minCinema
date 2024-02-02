@@ -52,6 +52,14 @@ $(function() {
 		$("#detail_mov_code").val(mov_code);
 		$("#frmDetails").submit();
 	});
+	
+	$(".a-slide-img").click(function(e) {
+		e.preventDefault();
+		
+		var mov_code = $(this).attr("data-mov_code");
+		$("#detail_mov_code").val(mov_code);
+		$("#frmDetails").submit();
+	});
 });
 </script>
 
@@ -71,10 +79,10 @@ $(function() {
 				 	<div class="carousel-item active">
 				 		<div class="d-flex align-items-center justify-content-center">
 			 			<c:forEach var="vo" items="${movieList}" begin="0" end="3">
-					    	<a href="#" class="a-slide-img">
-						    	<img src="/display?fileName=${vo.attachVO.upload_path}/${vo.attachVO.file_name}" alt="영화1" 
-						    		height="500" class="slide-movie-image" 
-						    		data-mov_code="${vo.mov_code}">
+					    	<a href="#" class="a-slide-img" data-mov_code="${vo.mov_code}">
+						    	<img src="/display?fileName=${vo.attachVO.upload_path}/${vo.attachVO.file_name}"
+						    		alt="영화1" height="500" class="slide-movie-image"> 
+						    		
 				    		</a>
 			    		</c:forEach>
 				    	</div>
@@ -82,9 +90,9 @@ $(function() {
 				  	<div class="carousel-item">
 				  		<div class="d-flex align-items-center justify-content-center">
 				  		<c:forEach var="vo" items="${movieList}" begin="4" end="7">
-					    	<a href="#">
-						    	<img src="/display?fileName=${vo.attachVO.upload_path}/${vo.attachVO.file_name}" alt="영화4" 
-						    		height="500" class="slide-movie-image">
+					    	<a href="#" class="a-slide-img" data-mov_code="${vo.mov_code}">
+						    	<img src="/display?fileName=${vo.attachVO.upload_path}/${vo.attachVO.file_name}" 
+						    		alt="영화4" height="500" class="slide-movie-image">
 				    		</a>
 			    		</c:forEach>
 				    	</div>
@@ -138,11 +146,12 @@ $(function() {
 						<div class="dropdown main-dropdown">
 				        	<a class="dropdown main-nav-dropdown" data-toggle="dropdown">장르</a>
 				        	<div class="dropdown-menu">
-						   		<a class="dropdown-item" href="#">전체보기</a>
-							    <a class="dropdown-item" href="#">로맨스</a>
+						   		<a class="dropdown-item" href="/main/jo_main${''}">전체보기</a>
+							    <a class="dropdown-item" href="/main/jo_main${'로맨스'}">로맨스</a>
 							    <a class="dropdown-item" href="#">공포</a>
 							    <a class="dropdown-item" href="#">액션</a>
 							    <a class="dropdown-item" href="#">코미디</a>
+							    <a class="dropdown-item" href="#">드라마</a>
 						  	</div>
 					  	</div>
 					</div>

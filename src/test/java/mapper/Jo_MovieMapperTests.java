@@ -92,4 +92,5 @@ public class Jo_MovieMapperTests {
 		List<Jo_MovieVO> movieList = movieMapper.selectInterestToHeart(mid);
 		log.info("movieList : " + movieList);
 	}
+	
 }

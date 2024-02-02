@@ -10,6 +10,7 @@
 	
 	<select id="selectAll" resultType="com.kh.minCinema.domain.Jo_MovieVO">
 		SELECT * FROM MC_MOVIE
+		WHERE MOV_GENRE LiKE '%' || #{mov_genre} || '%'
 	</select>
 	
 	<select id="selectMovieByCode" resultType="com.kh.minCinema.domain.Jo_MovieVO">
@@ -23,8 +24,6 @@
         		             FROM MC_HEART
                 		     WHERE MID = '${value}')
 	</select>
-	
-
 	
 	<!-- // by Je 추가 -->
 	<select id="selectTitleAndCode" resultType="com.kh.minCinema.domain.Je_MovieReservDTO">
