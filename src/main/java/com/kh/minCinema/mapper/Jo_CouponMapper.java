@@ -11,4 +11,6 @@ public interface Jo_CouponMapper {
 	public int selectAllCoupon(String mid);
 	
 	public int insertCoupon(Jo_CouponVO couponVO);
+	
+	public int deleteCoupon(Jo_CouponVO couponVO);
 }

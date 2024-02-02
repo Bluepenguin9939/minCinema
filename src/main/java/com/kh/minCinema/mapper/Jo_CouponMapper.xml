@@ -25,4 +25,11 @@
 		INSERT INTO MC_COUPON
 		VALUES(SEQ_CNO.NEXTVAL, #{mid}, #{discount})
 	</insert>
+	
+	<delete id="deleteCoupon">
+		DELETE FROM MC_COUPON
+		WHERE DISCOUNT = #{discount}
+		AND MID = #{mid}
+		AND ROWNUM = 1;
+	</delete>
 </mapper>
