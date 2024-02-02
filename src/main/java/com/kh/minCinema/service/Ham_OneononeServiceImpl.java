@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kh.minCinema.domain.Ham_CountDateVO;
 import com.kh.minCinema.domain.Ham_OneononeVO;
 import com.kh.minCinema.mapper.Ham_OneononeMapper;
 
@@ -50,8 +51,11 @@ public class Ham_OneononeServiceImpl implements Ham_OneononeService {
 	}
 
 	@Override
-	public int inquiryCount() {
-		return ham_OneononeMapper.inquiryCount();
+	public List<Ham_CountDateVO> inquiryCount() {
+		List<Ham_CountDateVO> list = ham_OneononeMapper.inquiryCount();
+		
+		return list;
 	}
+
 
 }

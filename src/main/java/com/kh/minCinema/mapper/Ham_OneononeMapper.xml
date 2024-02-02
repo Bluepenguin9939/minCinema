@@ -5,8 +5,9 @@
 <mapper namespace="com.kh.minCinema.mapper.Ham_OneononeMapper">
 	<!-- 운영자측 전체를 조회 -->
 	<select id="selectOne" resultType="com.kh.minCinema.domain.Ham_OneononeVO"> 
-		select * from MC_ONEONONE 
-		order by rn desc
+		select rn,msg_id,sender,mtitle,message,remessage,TO_CHAR(open_date, 'yyyy-MM-dd HH24:MI')  open_date,TO_CHAR(send_date, 'yyyy-MM-dd HH24:MI')  send_date
+		from MC_ONEONONE 
+		order by rn desc 
 	</select>
 	<!-- 유저측 문의사항 입력 -->
 	<insert id="insertInquiry">
@@ -16,7 +17,8 @@
 	<!-- 유저 문의내용 들고오기 -->
 	<select id="selectGetOne" resultType="com.kh.minCinema.domain.Ham_OneononeVO">
 		select * from MC_ONEONONE
-		where sender = #{sender}
+		where rn = #{rn}
+		and sender = #{sender}
 	</select>
 	<!-- 관리자->유저 답장 -->
 	<update id="updateInquiry">
@@ -35,8 +37,20 @@
 		select * from MC_ONEONONE
 		where sender = #{sender}
 	</select>
-	<!-- 차트를 위한 유저 카운트 -->
-	<select id="inquiryCount" resultType="int">
-		select count(*) from mc_oneonone
+	<!-- 차트를 위한 유저문의 카운트 -->
+	<select id="inquiryCount" resultType="com.kh.minCinema.domain.Ham_CountDateVO">
+		 SELECT TO_CHAR(send_date, 'MM') send_date, count(*)
+		FROM MC_ONEONONE
+        GROUP BY TO_CHAR(send_date, 'MM')
+ 		ORDER BY send_date
+	</select>
+	<!-- 차트를 위한 관리자 카운트 -->
+	<select id="inquiryReplyCount" resultType="com.kh.minCinema.domain.Ham_OneononeVO">
+		SELECT TO_CHAR(open_date, 'yyyy-MM') AS yyyymm, count(*)
+ 	    FROM MC_ONEONONE
+ 		WHERE open_date BETWEEN TO_DATE('2024-01-01', 'yyyy-MM-dd')
+                    AND TO_DATE('2024-12-31', 'yyyy-MM-dd')
+		 GROUP BY TO_CHAR(open_date, 'yyyy-MM')
+		 ORDER BY yyyymm
 	</select>
 </mapper>

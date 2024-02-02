@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/include/ad_sidebar.jsp" %>
 <%@ include file="/WEB-INF/views/include/ad_topbar.jsp" %>
+
 <link href="/resources/css/admin/adminmain.css?after" rel="stylesheet" type="text/css"> 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
@@ -51,7 +52,18 @@
         <i class="fas fa-angle-up"></i>
     </a>
 
-    
+    <script>
+$(function(){
+	var monthCount = '${list}';
+	console.log("monthCount:",monthCount);
+	let ctx = document.getElementById('myChart2').getContext('2d');
+    let chart = new Chart(ctx, {
+        type: 'bar',
+        data: chartData,
+        options: chartOptions
+    })
+});
+</script>
     <!-- 차트 javaScript> -->
   <script src="/resources/js/moviekind.js"></script>
   <script src="/resources/js/oneonone.js"></script>

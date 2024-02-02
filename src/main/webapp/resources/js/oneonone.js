@@ -1,11 +1,3 @@
-$(function(){
-    let ctx = document.getElementById('myChart2').getContext('2d');
-    let chart = new Chart(ctx, {
-        type: 'bar',
-        data: chartData,
-        options: chartOptions
-    })
-})
 
 // chart data and options
 let chartData = {

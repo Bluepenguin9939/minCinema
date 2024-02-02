@@ -20,4 +20,9 @@
 		SELECT COUNT(*) FROM MC_COUPON
 		WHERE MID = #{mid}
 	</select>
+	
+	<insert id="insertCoupon">
+		INSERT INTO MC_COUPON
+		VALUES(SEQ_CNO.NEXTVAL, #{mid}, #{discount})
+	</insert>
 </mapper>

@@ -2,6 +2,7 @@ package com.kh.minCinema.service;
 
 import java.util.List;
 
+import com.kh.minCinema.domain.Ham_CountDateVO;
 import com.kh.minCinema.domain.Ham_OneononeVO;
 
 public interface Ham_OneononeService {
@@ -18,5 +19,6 @@ public interface Ham_OneononeService {
 	
 	public List<Ham_OneononeVO> selectGetReply(String sender);
 	
-	public int inquiryCount();
+	public List<Ham_CountDateVO> inquiryCount();
+	
 }

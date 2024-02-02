@@ -174,7 +174,7 @@ $(function(){
 				</thead>
 				<!-- 임시 -->
 				<tbody>
-				<c:forEach var="vo" items="${dList}">
+				<c:forEach var="vo" items="${list}">
 					<tr>
 						<td data-rn="${vo.rn}" class="rn">${vo.rn}</td>
 						<td data-sender="${vo.sender}" class="sender">${vo.sender}</td>
