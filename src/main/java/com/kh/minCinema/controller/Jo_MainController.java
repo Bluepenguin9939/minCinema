@@ -55,8 +55,13 @@ public class Jo_MainController {
 	}
 	
 	@GetMapping("/jo_main")
-	public void main(Model model, HttpSession session) {
-		List<Jo_MovieVO> movieList = movieService.getAll();
+	public void main(Model model, HttpSession session, String mov_genre) {
+		log.info("asd :" + mov_genre);
+		if (mov_genre == null) {
+			mov_genre = "";
+		}
+		List<Jo_MovieVO> movieList = movieService.getAll(mov_genre);
+		List<Jo_MovieVO> slideList = movieService.getSlideMovie();
 		List<Jo_AttachVO> attachList = attachService.getMoviePoster();
 		for (int i = 0; i < movieList.size(); i++) {
 			Jo_MovieVO movieVO = movieList.get(i);
@@ -75,6 +80,7 @@ public class Jo_MainController {
 			model.addAttribute("heartMovies", heartMovies.substring(1, (heartMovies.length() - 1)));
 		}
 		model.addAttribute("movieList", movieList);
+		model.addAttribute("slideList", slideList);
 	}
 	
 	@GetMapping("/jo_loadMap")

@@ -75,7 +75,7 @@ public class Jo_MovieMapperTests {
 	
 	@Test
 	public void testSelectAll() {
-		List<Jo_MovieVO> movieVO = movieMapper.selectAll();
+		List<Jo_MovieVO> movieVO = movieMapper.selectAll("");
 		log.info("movieVO : " + movieVO);
 	}
 	

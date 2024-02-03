@@ -10,12 +10,13 @@ public interface Jo_MovieService {
 	
 	public boolean addMovie(Jo_MovieVO movieVO);
 	
-	public List<Jo_MovieVO> getAll();
+	public List<Jo_MovieVO> getAll(String mov_genre);
 	
 	public Map<String, Object> getMovieByCode(String mov_code);
 	
 	public List<Jo_MovieVO> getInterestToHeart(String mid);
 	
+	public List<Jo_MovieVO> getSlideMovie();
 	
 	public List<Je_MovieReservDTO> getMovieTitleAndCode(); // by Je 추가
 }

@@ -50,8 +50,8 @@ public class Jo_MovieServiceImpl implements Jo_MovieService {
 	}
 
 	@Override
-	public List<Jo_MovieVO> getAll() {
-		List<Jo_MovieVO> movieVO = movieMapper.selectAll();
+	public List<Jo_MovieVO> getAll(String mov_genre) {
+		List<Jo_MovieVO> movieVO = movieMapper.selectAll(mov_genre);
 		return movieVO;
 	}
 
@@ -71,15 +71,16 @@ public class Jo_MovieServiceImpl implements Jo_MovieService {
 		return movieList;
 	}
 
+	@Override
+	public List<Jo_MovieVO> getSlideMovie() {
+		List<Jo_MovieVO> movieList = movieMapper.selectSlideMovie();
+		return movieList;
+	}
 	
-	
-
 	@Override//by Je 추가
 	public List<Je_MovieReservDTO> getMovieTitleAndCode() {
 		List<Je_MovieReservDTO> list = movieMapper.selectTitleAndCode();
 		return list;
 	}
-	
-	
-	
+
 }

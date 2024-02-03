@@ -10,7 +10,8 @@
 	
 	<select id="selectAll" resultType="com.kh.minCinema.domain.Jo_MovieVO">
 		SELECT * FROM MC_MOVIE
-		WHERE MOV_GENRE LiKE '%' || #{mov_genre} || '%'
+		WHERE MOV_GENRE LIKE '%' || #{mov_genre} || '%'
+		ORDER BY MOV_RELEASEDATE DESC
 	</select>
 	
 	<select id="selectMovieByCode" resultType="com.kh.minCinema.domain.Jo_MovieVO">
@@ -23,6 +24,10 @@
 		WHERE MOV_CODE = ANY(SELECT MOV_CODE
         		             FROM MC_HEART
                 		     WHERE MID = '${value}')
+	</select>
+	
+	<select id="selectSlideMovie" resultType="com.kh.minCinema.domain.Jo_MovieVO">
+		SELECT * FROM MC_MOVIE
 	</select>
 	
 	<!-- // by Je 추가 -->

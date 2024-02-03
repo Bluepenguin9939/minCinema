@@ -78,7 +78,7 @@ $(function() {
 				<div class="carousel-inner">
 				 	<div class="carousel-item active">
 				 		<div class="d-flex align-items-center justify-content-center">
-			 			<c:forEach var="vo" items="${movieList}" begin="0" end="3">
+			 			<c:forEach var="vo" items="${slideList}" begin="0" end="3">
 					    	<a href="#" class="a-slide-img" data-mov_code="${vo.mov_code}">
 						    	<img src="/display?fileName=${vo.attachVO.upload_path}/${vo.attachVO.file_name}"
 						    		alt="영화1" height="500" class="slide-movie-image"> 
@@ -89,7 +89,7 @@ $(function() {
 				  	</div>
 				  	<div class="carousel-item">
 				  		<div class="d-flex align-items-center justify-content-center">
-				  		<c:forEach var="vo" items="${movieList}" begin="4" end="7">
+				  		<c:forEach var="vo" items="${slideList}" begin="4" end="7">
 					    	<a href="#" class="a-slide-img" data-mov_code="${vo.mov_code}">
 						    	<img src="/display?fileName=${vo.attachVO.upload_path}/${vo.attachVO.file_name}" 
 						    		alt="영화4" height="500" class="slide-movie-image">
@@ -146,12 +146,12 @@ $(function() {
 						<div class="dropdown main-dropdown">
 				        	<a class="dropdown main-nav-dropdown" data-toggle="dropdown">장르</a>
 				        	<div class="dropdown-menu">
-						   		<a class="dropdown-item" href="/main/jo_main${''}">전체보기</a>
-							    <a class="dropdown-item" href="/main/jo_main${'로맨스'}">로맨스</a>
-							    <a class="dropdown-item" href="#">공포</a>
-							    <a class="dropdown-item" href="#">액션</a>
-							    <a class="dropdown-item" href="#">코미디</a>
-							    <a class="dropdown-item" href="#">드라마</a>
+						   		<a class="dropdown-item" href="/main/jo_main">전체보기</a>
+							    <a class="dropdown-item" href="/main/jo_main?mov_genre=로맨스">로맨스</a>
+							    <a class="dropdown-item" href="/main/jo_main?mov_genre=공포">공포</a>
+							    <a class="dropdown-item" href="/main/jo_main?mov_genre=액션">액션</a>
+							    <a class="dropdown-item" href="/main/jo_main?mov_genre=코미디">코미디</a>
+							    <a class="dropdown-item" href="/main/jo_main?mov_genre=드라마">드라마</a>
 						  	</div>
 					  	</div>
 					</div>
