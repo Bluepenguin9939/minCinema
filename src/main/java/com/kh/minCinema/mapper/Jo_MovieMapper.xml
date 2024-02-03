@@ -3,6 +3,28 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kh.minCinema.mapper.Jo_MovieMapper">
+	<sql id="search">
+		<where>
+	    	<foreach item="search" collection="searchArr">
+			    <choose>
+			    	<when test="search == 'T'.toString()">
+			    		MOV_TITLE LIKE '%' || #{keyword} || '%'
+			    	</when>
+			    	<when test="search == 'D'.toString()">
+			    		OR MOV_DIRECTOR LIKE '%' || #{keyword} || '%'
+			    	</when>
+			    </choose>
+	    	</foreach>
+	    </where>
+	</sql>
+
+	<select id="selectMovieSearch" resultType="com.kh.minCinema.domain.Jo_MovieVO">
+		SELECT * FROM (
+		    SELECT * FROM MC_MOVIE
+		    <include refid="search"></include>
+		    )
+	</select>
+
 	<insert id="insertMovie">
 		INSERT INTO MC_MOVIE
 		VALUES (#{mov_code}, #{mov_title}, #{mov_director}, #{mov_actor}, #{mov_releaseDate}, #{mov_plot}, #{mov_runtime}, #{mov_rating}, #{mov_genre}, #{mov_trailer})

@@ -156,18 +156,19 @@ $(function() {
 					  	</div>
 					</div>
 					<div style="width: 30%;">
-					  	<form class="d-none d-sm-inline-block form-inline navbar-search" style="margin: 0px;">
+					  	<form class="d-none d-sm-inline-block form-inline navbar-search" style="margin: 0px;"
+					  		action="/main/jo_main" method="get">
 					  		<div class="d-flex justify-content-between">
 								<select id="search" name="search">
-									<option value="title">타이틀</option>
-									<option value="director">감독</option>
+									<option value="T" ${param.search == 'T' ? 'selected' : ''}>타이틀</option>
+									<option value="D" ${param.search == 'D' ? 'selected' : ''}>감독</option>
 								</select>
 		                        <div class="input-group">
 		                            <input type="text" class="form-control bg-light border-0 small" 
-		                            	placeholder="검색어를 입력해주세요" name="movie-search"
+		                            	placeholder="검색어를 입력해주세요" name="keyword" value="${param.keyword}"
 		                                aria-label="Search" aria-describedby="basic-addon2">
 		                            <div class="input-group-append">
-		                                <button class="btn btn-secondary" type="button">
+		                                <button class="btn btn-secondary" type="submit">
 		                                    <i class="fas fa-search fa-sm"></i>
 		                                </button>
 		                            </div>

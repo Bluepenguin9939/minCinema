@@ -21,6 +21,7 @@ import com.kh.minCinema.domain.Jo_AttachVO;
 import com.kh.minCinema.domain.Jo_EventDTO;
 import com.kh.minCinema.domain.Jo_EventRewardVO;
 import com.kh.minCinema.domain.Jo_MovieVO;
+import com.kh.minCinema.domain.Jo_SearchDTO;
 import com.kh.minCinema.service.Jo_AttachService;
 import com.kh.minCinema.service.Jo_EventRewardService;
 import com.kh.minCinema.service.Jo_EventService;
@@ -55,12 +56,12 @@ public class Jo_MainController {
 	}
 	
 	@GetMapping("/jo_main")
-	public void main(Model model, HttpSession session, String mov_genre) {
-		log.info("asd :" + mov_genre);
-		if (mov_genre == null) {
-			mov_genre = "";
+	public void main(Model model, HttpSession session, Jo_SearchDTO searchDTO) {
+		log.info("searchDTO : " + searchDTO);
+		if (searchDTO.getMov_genre() == null) {
+			searchDTO.setMov_genre("");
 		}
-		List<Jo_MovieVO> movieList = movieService.getAll(mov_genre);
+		List<Jo_MovieVO> movieList = movieService.getAll(searchDTO);
 		List<Jo_MovieVO> slideList = movieService.getSlideMovie();
 		List<Jo_AttachVO> attachList = attachService.getMoviePoster();
 		for (int i = 0; i < movieList.size(); i++) {

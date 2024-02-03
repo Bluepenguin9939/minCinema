@@ -1,5 +1,6 @@
 package com.kh.minCinema.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,6 +15,7 @@ import com.kh.minCinema.domain.Je_MovieReservDTO;
 import com.kh.minCinema.domain.Jo_AttachVO;
 
 import com.kh.minCinema.domain.Jo_MovieVO;
+import com.kh.minCinema.domain.Jo_SearchDTO;
 import com.kh.minCinema.mapper.Jo_AttachMapper;
 import com.kh.minCinema.mapper.Jo_MovieMapper;
 
@@ -50,9 +52,14 @@ public class Jo_MovieServiceImpl implements Jo_MovieService {
 	}
 
 	@Override
-	public List<Jo_MovieVO> getAll(String mov_genre) {
-		List<Jo_MovieVO> movieVO = movieMapper.selectAll(mov_genre);
-		return movieVO;
+	public List<Jo_MovieVO> getAll(Jo_SearchDTO searchDTO) {
+		List<Jo_MovieVO> movieList = new ArrayList<>();
+		if (searchDTO.getKeyword() == null || searchDTO.getKeyword() == "") {
+			movieList = movieMapper.selectAll(searchDTO.getMov_genre());
+		} else {
+			movieList = movieMapper.selectMovieSearch(searchDTO);
+		}
+		return movieList;
 	}
 
 	@Override
