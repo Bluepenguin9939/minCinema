@@ -6,7 +6,6 @@ $(function(){
 	$(".pages").click(function(e){
 		e.preventDefault();
 		var pageNum = $(this).attr("href");
-		var frmCriteria = $("#frmCriteria");
 		var url = "/point/pointList";
 		var sData = {
 			mid : "${loginInfo.mid}",

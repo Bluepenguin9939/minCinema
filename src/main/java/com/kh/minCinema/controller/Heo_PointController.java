@@ -56,7 +56,6 @@ public class Heo_PointController {
 		List<Heo_PointVO> list = heo_PointService.getList(heo_PointCriteria);
 		int total = heo_PointService.getCount(mid);
 		Heo_PointPageDTO heo_PointPageDTO = new Heo_PointPageDTO(heo_PointCriteria, total);
-		System.out.println();
 		System.out.println("total " + total);
 		System.out.println("cri " + heo_PointCriteria);
 		System.out.println("list " + list);
