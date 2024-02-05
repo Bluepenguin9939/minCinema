@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class Heo_MemberVO {
-	private int mno;
+
 	private String mid;
 	private String mpw;
 	private String memail;
@@ -27,13 +27,4 @@ public class Heo_MemberVO {
 	private String file_name;
 	private String uuid;
 	private Integer coupon;
-	
-	
-	//관리자 회원관리 목록 검색 
-	private String type; // 검색 조건(제목-T, 내용-C, 작성자-W)
-	private String keyword; // 검색어 (사용자 입력)
-	
-	public String[] getTypeArr() {
-		return type == null ? new String[] {} : type.split("");
-	}
 }
