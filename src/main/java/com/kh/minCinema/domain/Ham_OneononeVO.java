@@ -1,7 +1,5 @@
 package com.kh.minCinema.domain;
 
-import java.util.Date;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -21,4 +19,11 @@ public class Ham_OneononeVO {
 	private String send_date;
 	private String open_date;
 	private int monthCount;
+	
+	private String type; // 검색 조건()
+	private String keyword; // 검색어 (사용자 입력)
+	
+	public String[] getTypeArr() {
+		return type == null ? new String[] {} : type.split("");
+	}
 }
