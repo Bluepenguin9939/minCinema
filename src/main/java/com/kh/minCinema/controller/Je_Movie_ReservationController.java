@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.kh.minCinema.domain.Je_MovieReservDTO;
+import com.kh.minCinema.domain.Je_MovieDateInfoDTO;
 import com.kh.minCinema.domain.Je_ReservationInfoVO;
 import com.kh.minCinema.domain.Jo_MovieVO;
 import com.kh.minCinema.service.Je_MovieDateService;
@@ -23,7 +23,7 @@ import lombok.extern.log4j.Log4j;
 @Controller
 @RequestMapping("/ticketing")
 @Log4j
-public class Je_movie_reservationController {
+public class Je_Movie_ReservationController {
 	
 	@Autowired
 	private Je_MovieDateService je_MovieDateService;
@@ -38,9 +38,9 @@ public class Je_movie_reservationController {
 	
 	@PostMapping(value = "/movieList",  produces = {MediaType.APPLICATION_JSON_VALUE})
 	@ResponseBody
-	public List<Je_MovieReservDTO> movie_list() {
+	public List<Je_MovieDateInfoDTO> movie_list() {
 		//영화리스트 구하기
-		List<Je_MovieReservDTO> list = jo_MovieService.getMovieTitleAndCode();
+		List<Je_MovieDateInfoDTO> list = jo_MovieService.getMovieTitleAndCode();
 		
 		return list;
 	}
@@ -48,9 +48,9 @@ public class Je_movie_reservationController {
 	
 	@PostMapping(value = "/date",  produces = {MediaType.APPLICATION_JSON_VALUE})
 	@ResponseBody
-	public List<String> movie_date(String movieCode) {
+	public List<String> movie_date(String mov_code) {
 		
-		List<String> dateList = je_MovieDateService.movieScreenDates(movieCode);
+		List<String> dateList = je_MovieDateService.movieScreenDates(mov_code);
 		
 		//log.info(">>>>>>>>> "+dateList);
 		return dateList;
@@ -59,20 +59,11 @@ public class Je_movie_reservationController {
 	
 	@PostMapping(value = "/time",  produces = {MediaType.APPLICATION_JSON_VALUE})
 	@ResponseBody
-	public List<Je_MovieReservDTO> movie_time(Je_MovieReservDTO je_MovieReservDTO) {
+	public List<Je_MovieDateInfoDTO> movie_time(Je_MovieDateInfoDTO je_MovieDateInfoDTO) {
 		
-		//log.info("mov_date>>>>>>>>>>"+je_MovieReservDTO);
-		//log.info("mov_code>>>>>>>>>>"+mov_code);
 		
-		String mov_date_code = je_MovieDateService.selectMovieDateCode(je_MovieReservDTO);
-		if(mov_date_code == null) {
-			return null;
-		}
-		//log.info("mov_date_code>>>>>>>>>>"+mov_date_code);
+		List<Je_MovieDateInfoDTO> list = je_MovieDateService.movieStartTimes(je_MovieDateInfoDTO);
 		
-		List<Je_MovieReservDTO> list = je_MovieDateService.movieStartTimes(mov_date_code);
-		
-		//log.info("list>>>>>>>>>>"+list);
 		
 		return list;
 	}
@@ -84,12 +75,13 @@ public class Je_movie_reservationController {
 
 	}
 	
+	
 	@PostMapping(value = "/reservedSeats" ,  produces = {MediaType.APPLICATION_JSON_VALUE})
 	@ResponseBody
-	public List<String> reservedSeats(Je_MovieReservDTO je_MovieReservDTO) {
+	public List<String> reservedSeats(Je_MovieDateInfoDTO je_MovieDateInfoDTO) {
 		
-		log.info("@>>>>>:"+je_MovieReservDTO);
-		List<String> list = je_MovieDateService.movieReservedSeats(je_MovieReservDTO);
+		log.info("@>>>>>:"+je_MovieDateInfoDTO);
+		List<String> list = je_MovieDateService.movieReservedSeats(je_MovieDateInfoDTO);
 		
 		return list;
 	}
@@ -98,10 +90,20 @@ public class Je_movie_reservationController {
 	@ResponseBody
 	public String cost(@RequestBody Je_ReservationInfoVO je_ReservationInfoVO) {
 		//log.info("cost...");
-		log.info(">>>>>>>>>>>>>>>>>>"+je_ReservationInfoVO);
-		log.info(">>>>>>>>>>>>>>>>>>"+je_ReservationInfoVO.getAge());
-		log.info(">>>>>>>>>>>>>>>>>>"+je_ReservationInfoVO.getReservedSeat());
+		//log.info(">>>>>>>>>>>>>>>>>>"+je_ReservationInfoVO);
+		//log.info(">>>>>>>>>>>>>>>>>>"+je_ReservationInfoVO.getAge());
+		//log.info(">>>>>>>>>>>>>>>>>>"+je_ReservationInfoVO.getReservedSeat());
 		
-		return "true";
+		int count = je_MovieDateService.insertReservedSeats(je_ReservationInfoVO);
+		
+		log.info("count:"+count);
+		
+		if(count==1) {
+			return "true";
+		}
+		else {
+			return "false";
+		}
+		
 	}
 }

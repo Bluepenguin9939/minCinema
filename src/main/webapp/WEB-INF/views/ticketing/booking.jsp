@@ -315,7 +315,7 @@ $(function(){
 	
 	
 	
-	var movieCode;
+	var mov_code;
 	var dateCode;
 	
 	
@@ -348,10 +348,10 @@ $(function(){
 		$(".reserve-date").empty();
 		$(".time-data").empty();
 		
-		movieCode = that.attr("data-movieCode");
+		mov_code = that.attr("data-movieCode");
 		
 		//
-		var movieTitleData = {"movieCode" : movieCode};
+		var movieTitleData = {"mov_code" : mov_code};
 		
 		$.post("/ticketing/date",movieTitleData,function(rdata){
 			//console.log("rData: ",rdata);
@@ -428,16 +428,16 @@ $(function(){
 		var date = that.attr("data-date");
 		$("#dateText").text(date);
 		
-		//console.log("date:",date);
-		var dateData = {"mov_date": date,
-						"mov_code": movieCode};
+		var dateData = {"mov_screen_date": date,
+						"mov_code": mov_code};
+		//console.log("dateData:",date);
 		
 		$.post("/ticketing/time",dateData,function(rdata){
 			//console.log("rdata:",rdata);
-			$.each(rdata, function (index, je_MovieReservDTO) {
+			$.each(rdata, function (index, je_MovieDateInfoDTO) {
 				var nightAndDay;
 				var am_pm;
-				var timeHS = je_MovieReservDTO.mov_start_time.split(":");	
+				var timeHS = je_MovieDateInfoDTO.mov_start_time.split(":");	
 				
 				if(timeHS[0] >= 6 && timeHS[0]<18){ //낮밤 구분
 					nightAndDay = "clear_day";
@@ -455,9 +455,9 @@ $(function(){
 		            	+"<span class='material-symbols-outlined'>"
 							+nightAndDay
 						+"</span>"
-						+"<span id='time'>"+je_MovieReservDTO.mov_start_time+"("+am_pm+")"+"</span>"
+						+"<span id='time'>"+je_MovieDateInfoDTO.mov_start_time+"("+am_pm+")"+"</span>"
 						+"&nbsp;"
-						+"<span id='loc'>"+je_MovieReservDTO.mov_loc+"</span>"
+						+"<span id='loc'>"+je_MovieDateInfoDTO.mov_theater+"</span>"
 	   			+"</div>");
 			});
 			

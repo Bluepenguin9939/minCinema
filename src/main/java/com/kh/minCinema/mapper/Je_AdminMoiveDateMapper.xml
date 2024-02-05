@@ -9,5 +9,41 @@
 		SELECT MOV_CODE,MOV_TITLE,MOV_RELEASEDATE FROM MC_MOVIE
 			ORDER BY MOV_CODE ASC
 	</select>
+	
+	<select id="movieDates" resultType="com.kh.minCinema.domain.Je_MovieDateInfoDTO">
+		SELECT * FROM MC_MOVIE_DATE
+			WHERE MOV_CODE =  #{mov_code}
+    		ORDER BY MOV_SCREEN_DATE  ASC , MOV_START_TIME ASC
+	</select>
+	
+	
+	<select id="selectDateCode" resultType="String">
+		SELECT MOV_DATE_CODE FROM MC_MOVIE_DATE
+			WHERE MOV_CODE =  #{mov_code}
+				AND MOV_SCREEN_DATE = #{mov_screen_date}
+				AND MOV_START_TIME = #{mov_start_time}
+				AND MOV_THEATER = #{mov_theater}
+    		
+	</select>
+	
+	
+	<insert id="insertDate">
+		INSERT INTO MC_MOVIE_DATE(MOV_DATE_CODE, MOV_TITLE, MOV_CODE, MOV_SCREEN_DATE, MOV_START_TIME, MOV_THEATER)
+		 VALUES (SEQ_DATE.NEXTVAL, #{mov_title}, #{mov_code}, #{mov_screen_date}, #{mov_start_time}, #{mov_theater})
+	</insert>
+	
+	
+	<update id="updateDate">
+		UPDATE MC_MOVIE_DATE SET 
+			MOV_SCREEN_DATE = #{mov_screen_date},
+			MOV_START_TIME = #{mov_start_time},
+			MOV_THEATER = #{mov_theater}
+		 WHERE MOV_DATE_CODE = #{mov_date_code}
+	</update>
+	
+	<delete id="deleteDate">
+		DELETE FROM MC_MOVIE_DATE
+			WHERE MOV_DATE_CODE = #{mov_date_code}
+	</delete>
 
 </mapper>

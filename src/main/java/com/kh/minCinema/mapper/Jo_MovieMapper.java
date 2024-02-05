@@ -2,7 +2,7 @@ package com.kh.minCinema.mapper;
 
 import java.util.List;
 
-import com.kh.minCinema.domain.Je_MovieReservDTO;
+import com.kh.minCinema.domain.Je_MovieDateInfoDTO;
 import com.kh.minCinema.domain.Jo_MovieVO;
 import com.kh.minCinema.domain.Jo_SearchDTO;
 
@@ -20,5 +20,5 @@ public interface Jo_MovieMapper {
 	
 	public List<Jo_MovieVO> selectSlideMovie();
 	
-	public List<Je_MovieReservDTO> selectTitleAndCode();// by Je 추가
+	public List<Je_MovieDateInfoDTO> selectTitleAndCode();// by Je 추가
 }

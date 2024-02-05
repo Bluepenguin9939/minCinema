@@ -50,4 +50,5 @@
 		SELECT * FROM MC_ATTACH
 		WHERE MID = #{mid}
 	</select>
+	
 </mapper>

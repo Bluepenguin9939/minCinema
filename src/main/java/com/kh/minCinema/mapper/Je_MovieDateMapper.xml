@@ -8,16 +8,15 @@
 	<select id="movieScreenDates" resultType="String">
 		SELECT MOV_SCREEN_DATE FROM MC_MOVIE_DATE
 			WHERE MOV_CODE = #{movieCode}
+			GROUP BY MOV_SCREEN_DATE
 			ORDER BY MOV_SCREEN_DATE ASC
 	</select>
 	
-	
-	<select id="selectMovieDateCode" resultType="String">
-		SELECT MOV_DATE_CODE FROM MC_MOVIE_DATE
-			WHERE MOV_SCREEN_DATE = #{mov_date} AND MOV_CODE = #{mov_code}
+	<select id="movieStartTimes" resultType="com.kh.minCinema.domain.Je_MovieDateInfoDTO">
+		SELECT MOV_START_TIME, MOV_THEATER FROM MC_MOVIE_DATE
+			WHERE MOV_CODE = #{mov_code} AND MOV_SCREEN_DATE = #{mov_screen_date}
+			ORDER BY MOV_START_TIME
 	</select>
-	
-	
 	
 	
 </mapper>
