@@ -19,7 +19,6 @@ $(function(){
 	});
 });
 </script>
-<%@ include file="/WEB-INF/views/include/heo_frmCriteria.jsp" %>
 <br>
 <h5>이용 내역</h5>
 <table class="table table-borderless">

@@ -16,6 +16,7 @@ import com.kh.minCinema.domain.Ham_CountDateVO;
 import com.kh.minCinema.domain.Ham_OneononeVO;
 import com.kh.minCinema.domain.Ham_TestVO;
 import com.kh.minCinema.domain.Heo_NoticeCriteria;
+import com.kh.minCinema.domain.Heo_NoticePageDTO;
 import com.kh.minCinema.domain.Heo_NoticeVO;
 import com.kh.minCinema.service.Ham_OneononeService;
 import com.kh.minCinema.service.Ham_TestService;
@@ -109,9 +110,22 @@ public class Ham_AdminController {
 	public void addevent() {
 		
 	}
+	
+	@GetMapping("/heo_noticeList")
+	public void noticeList(Model model, Heo_NoticeCriteria heo_NoticeCriteria) {
+		List<Heo_NoticeVO> list = heo_NoticeService.getNotice(heo_NoticeCriteria);
+		int total = heo_NoticeService.getNoticeCount();
+		Heo_NoticePageDTO heo_NoticePageDTO = new Heo_NoticePageDTO(heo_NoticeCriteria, total);
+		model.addAttribute("pageMaker", heo_NoticePageDTO);
+		model.addAttribute("list", list);
+	}
+	
 	@GetMapping("/heo_addNotice")
 	public void addNotice(Model model, Heo_NoticeCriteria heo_NoticeCriteria) {
 		List<Heo_NoticeVO> list = heo_NoticeService.getNotice(heo_NoticeCriteria);
+		int total = heo_NoticeService.getNoticeCount();
+		Heo_NoticePageDTO heo_NoticePageDTO = new Heo_NoticePageDTO(heo_NoticeCriteria, total);
+		model.addAttribute("pageMaker", heo_NoticePageDTO);
 		model.addAttribute("list", list);
 		System.out.println("list" + model);
 	}

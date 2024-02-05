@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kh.minCinema.domain.Heo_LoginDTO;
 import com.kh.minCinema.domain.Heo_MemberVO;
@@ -35,8 +36,10 @@ public class Heo_MemberController {
 	}
 	
 	@PostMapping("/updateBen")
-	public void updateBen(Heo_MemberVO heo_MemberVO) {
-		heo_MemberService.updateBen(heo_MemberVO);
+	@ResponseBody
+	public boolean updateBen(Heo_MemberVO heo_MemberVO) {
+		int result = heo_MemberService.updateBen(heo_MemberVO);
+		return (result != 1)? true : false;
 	}
 	
 	@PostMapping("/login")

@@ -9,9 +9,9 @@
 	
 	<select id="selectNotice" resultType="com.kh.minCinema.domain.Heo_NoticeVO">
 		select * from(
-    		select /*+INDEX_DESC(mc_notice nno) */
+    		select /*+ INDEX_DESC(MC_NOTICE PK_NNO) */
         	rownum rn, nno, ntitle, ncontent, nregdate, ncount
-        	from mc_notice)
+            from mc_notice)         
         where rn between #{startRow} and #{endRow}
 	</select>
 	
