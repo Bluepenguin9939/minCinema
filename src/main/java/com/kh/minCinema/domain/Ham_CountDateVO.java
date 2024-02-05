@@ -21,5 +21,6 @@ public class Ham_CountDateVO {
 	private String send_date;
 	private String open_date;
 	private int monthCount;
+	private int replyCount;
 	
 }

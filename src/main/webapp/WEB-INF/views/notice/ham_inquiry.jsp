@@ -147,7 +147,7 @@ $(function(){
 							<tr>
 								<td>${vo.rn}</td>
 								<td><a href="${vo.msg_id}" class="inquiryTitle" data-remessage="${vo.remessage}">${vo.mtitle}</a></td>
-								<td><fmt:formatDate pattern="yyyy년MM월dd일 HH시mm분" value="${vo.send_date}" /></td>
+								<td>"${vo.send_date}"</td>
 								<c:if test="${vo.open_date == null}"><td class="waitReply">답변대기중</td></c:if>								
 								<c:if test="${vo.open_date != null}"><td class="completeReply">답변완료</td></c:if>
 							</tr>

@@ -15,10 +15,14 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.kh.minCinema.domain.Ham_CountDateVO;
 import com.kh.minCinema.domain.Ham_OneononeVO;
 import com.kh.minCinema.domain.Ham_TestVO;
+import com.kh.minCinema.domain.Heo_MemberVO;
 import com.kh.minCinema.domain.Heo_NoticeVO;
+import com.kh.minCinema.domain.Heo_PointVO;
 import com.kh.minCinema.service.Ham_OneononeService;
 import com.kh.minCinema.service.Ham_TestService;
+import com.kh.minCinema.service.Heo_MemberService;
 import com.kh.minCinema.service.Heo_NoticeService;
+import com.kh.minCinema.service.Heo_PointService;
 
 import lombok.extern.log4j.Log4j;
 
@@ -37,6 +41,12 @@ public class Ham_AdminController {
 	@Autowired
 	private Ham_OneononeService ham_OneononeService;
 	
+	@Autowired
+	private Heo_MemberService heo_MemberService;
+	
+	@Autowired
+	private Heo_PointService heo_PointService;
+	
 	@GetMapping("/ham_test3")
 	public void ham_test3() {
 		
@@ -44,20 +54,26 @@ public class Ham_AdminController {
 	
 	@GetMapping("/ham_admins")
 	public void admins(Model model) {
+		
+		
 		// 유저측 문의
 		List<Ham_CountDateVO> list = ham_OneononeService.inquirySendCount();
 		System.out.println("대시보드리수투:"+list);
 		// 관리자 답장
 		List<Ham_CountDateVO> oList = ham_OneononeService.inquiryReplyCount();
 		System.out.println("오픈데이트리수투:"+oList);
+		// 월 매출
+		List<Heo_PointVO> pList = heo_PointService.pointCount();
+		System.out.println("포인트리수투:"+pList);
 		model.addAttribute("oList", oList);
+		model.addAttribute("pList", pList);
 		model.addAttribute("list", list);
 		
 	}
 	//관리자페이지 - 테스트 멤버 목록 
 	@GetMapping("/ham_cmanagement")
-	public void management(Model model, Ham_TestVO testVO) {
-		 List<Ham_TestVO> list = ham_TestService.testMemberList(testVO);
+	public void management(Model model, Heo_MemberVO memberVO) {
+		 List<Heo_MemberVO> list = heo_MemberService.memberList(memberVO);
 		 System.out.println("회원관리리스트:"+list);
 		 model.addAttribute("list",list);
 		 
@@ -66,8 +82,8 @@ public class Ham_AdminController {
 	//관리자페이지 - 테스트 멤버 생성 
 	@PostMapping("/testMember")
 //	@ResponseBody
-	public String mct(Ham_TestVO testVO,RedirectAttributes rttr) {
-		int count = ham_TestService.TestInsert(testVO);
+	public String mct(Heo_MemberVO memberVO,RedirectAttributes rttr) {
+		int count = heo_MemberService.register(memberVO);
 		boolean result = (count == 1) ? true : false; 
 		rttr.addFlashAttribute("result", result);
 		return "redirect:/admin/ham_cmanagement";
@@ -98,6 +114,7 @@ public class Ham_AdminController {
 	}
 	@GetMapping("/ham_oneonone")//고객센터 리스트 <-유저 문의에서 받은 리스트
 	public void oneonone(Ham_OneononeVO oneononeVO, Model model) {
+		System.out.println("qh:"+ oneononeVO);
 		List<Ham_OneononeVO> list = ham_OneononeService.listOneonone(oneononeVO);
 		System.out.println("리쓰뜨:"+list);
 		model.addAttribute("list", list);

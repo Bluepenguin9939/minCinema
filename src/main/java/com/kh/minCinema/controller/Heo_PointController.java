@@ -50,37 +50,13 @@ public class Heo_PointController {
 	
 	@GetMapping("/pointList")
 	public String getPointList(String mid, Model model, @ModelAttribute("heo_PointCriteria") Heo_PointCriteria heo_PointCriteria) {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy년MM월dd일 HH시mm분");
-		NumberFormat nf = NumberFormat.getInstance();
 		heo_PointCriteria.setMid(mid);
 		List<Heo_PointVO> list = heo_PointService.getList(heo_PointCriteria);
 		int total = heo_PointService.getCount(mid);
-		Heo_PointPageDTO heo_PointPageDTO = new Heo_PointPageDTO(heo_PointCriteria, total);
-		System.out.println();
-		System.out.println("total " + total);
-		System.out.println("cri " + heo_PointCriteria);
-		System.out.println("list " + list);
-		String pcode = "";
-		List<Heo_PointListVO> pointInfoList = new ArrayList<>();
-		for (Heo_PointVO heo_PointVO : list) {
-			int point = heo_PointVO.getPpoint();
-			String code = heo_PointVO.getPcode();
-			if (code.equals("PC")) {
-				pcode = "포인트 충전";
-			} else {
-				pcode = "영화 예매";
-			}
-			String ppoint = nf.format(point);
-			Date format = heo_PointVO.getPdate();
-			String pdate = sdf.format(format);
-			Heo_PointListVO heo_PointListVO = new Heo_PointListVO(ppoint, pcode, pdate);
-			pointInfoList.add(heo_PointListVO);
-		}		
+		Heo_PointPageDTO heo_PointPageDTO = new Heo_PointPageDTO(heo_PointCriteria, total);	
 		
-		model.addAttribute("pointInfoList", pointInfoList);
-		System.out.println(pointInfoList);
+		model.addAttribute("pointInfoList", list);
 		model.addAttribute("pageMaker", heo_PointPageDTO);
-		System.out.println(heo_PointPageDTO);
 		return "myPage/heo_pointList";
 	}
 	

@@ -39,4 +39,16 @@ public class Heo_PointServiceImpl implements Heo_PointService {
 		int total = heo_PointMapper.getPointListCount(mid);
 		return total;
 	}
+
+	@Override
+	public List<Heo_PointVO> pointCount() {
+		List<Heo_PointVO> list = heo_PointMapper.pointCount();
+		return list;
+	}
+
+	@Override
+	public List<Heo_PointVO> selectPoint() {
+		List<Heo_PointVO> list = heo_PointMapper.selectPoint();
+		return list;
+	}
 }

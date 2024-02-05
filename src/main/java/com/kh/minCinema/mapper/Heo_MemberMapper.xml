@@ -3,10 +3,34 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kh.minCinema.mapper.Heo_MemberMapper">
+
+<sql id="search">
+		<where>
+	    	<foreach item="type" collection="typeArr">
+			    <choose>
+			    	<when test="type == 'I'.toString()">
+			    		mid LIKE '%' || #{keyword} || '%'
+			    	</when>
+			    	<when test="type == 'K'.toString()">
+			    		OR mnick LIKE '%' || #{keyword} || '%'
+			    	</when>
+			    	<when test="type == 'N'.toString()">
+			    		OR mname LIKE '%' || #{keyword} || '%'
+			    	</when>
+			    	<when test="type == 'E'.toString()">
+			    		OR memail LIKE '%' || #{keyword} || '%'
+			    	</when>
+			    	<when test="type == 'T'.toString()">
+			    		OR mtel LIKE '%' || #{keyword} || '%'
+			    	</when>
+			    </choose>
+	    	</foreach>
+	    </where>
+	</sql>
 	<!-- 멤버 추가 -->
 	<insert id="insert">
-		insert into MC_MEMBER(mid, mpw, memail, mname, mnick, mtel)
-		values (#{mid}, #{mpw}, #{memail}, #{mname}, #{mnick}, #{mtel})
+		insert into MC_MEMBER(mno,mid, mpw, memail, mname, mnick, mtel)
+		values (seq_mno.NEXTVAL,#{mid}, #{mpw}, #{memail}, #{mname}, #{mnick}, #{mtel})
 	</insert>
 	<!-- 활동상태 갱신 -->
 	<update id="updateActive">
@@ -26,5 +50,26 @@
     	where mid = #{mid}
     	and mpw = #{mpw}
 	</select>
+	
+	
+	<!-- 관리자 멤버 목록 -->
+	<select id="memberList" resultType="com.kh.minCinema.domain.Heo_MemberVO">
+		SELECT * FROM (
+		    SELECT 
+		         mno,mid,mpw,mnick,mname,memail,mtel
+		    FROM MC_MEMBER
+		    <include refid="search"></include>
+		    )
+		    ORDER BY MNO DESC
+	</select>
+	<!-- 관리자 멤버 삭제 -->
+	<delete id="memberDelete">
+		delete from MC_MEMBER
+		where mid = #{mid}
+	</delete>
+	
+
+	
+
 	
 </mapper>

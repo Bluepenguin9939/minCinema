@@ -13,6 +13,8 @@ public class Ham_TestServiceImpl implements Ham_TestService {
 
 	@Autowired
 	private Ham_TestMapper testMapper;
+	
+
 
 	@Override
 	public int TestInsert(Ham_TestVO testVO) {

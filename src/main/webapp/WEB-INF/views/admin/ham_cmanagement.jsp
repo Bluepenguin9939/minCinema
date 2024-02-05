@@ -136,7 +136,7 @@ $(function() {
             <form action="">
 					<select name="type" title="검색선택">
 						<option value="I" ${param.type == 'I' ? 'selected' : ''}>아이디</option>
-						<option value="NI" ${param.type == 'NI' ? 'selected' : ''}>닉네임</option>
+						<option value="K" ${param.type == 'K' ? 'selected' : ''}>닉네임</option>
 						<option value="N" ${param.type == 'N' ? 'selected' : ''}>이름</option>
 						<option value="E" ${param.type == 'E' ? 'selected' : ''}>이메일</option>
 						<option value="T" ${param.type == 'T' ? 'selected' : ''}>전화번호</option>
@@ -164,15 +164,15 @@ $(function() {
 				<tbody class="wrap">
 				<c:forEach var="vo" items="${list}" varStatus="step">
 					<tr>
-						<td>${vo.tmno}</td>
-						<td>${vo.tmid}</td>
-						<td>${vo.tmnick}</td>
-						<td>${vo.tmname}</td>
-						<td>${vo.tmemail}</td>
-						<td>${vo.tmtel}</td>
+						<td>${vo.mno}</td>
+						<td>${vo.mid}</td>
+						<td>${vo.mnick}</td>
+						<td>${vo.mname}</td>
+						<td>${vo.memail}</td>
+						<td>${vo.mtel}</td>
 						<td>
 							<a href="#" class="venMember" ><i class="fa fa-user-alt-slash" title="ven" ></i></a> 
-							<a href="#" class="deleteMember" data-tmid="${vo.tmid}"><i class="fa fa-trash" title="del"></i></a>
+							<a href="#" class="deleteMember" data-tmid="${vo.mid}"><i class="fa fa-trash" title="del"></i></a>
 						</td>
 						<td class="test999" data-index="${step.index}">${step.index}</td>
 						

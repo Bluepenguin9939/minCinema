@@ -25,5 +25,7 @@ public interface Ham_OneononeMapper {
 	public List<Ham_CountDateVO> inquiryReplyCount();
 	
 	public List<Ham_OneononeVO> listOneonone(Ham_OneononeVO vo);
+	
+	public int replyUpdate(int rn);
 
 }

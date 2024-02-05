@@ -46,6 +46,7 @@ $(function(){
 			console.log("아르데이터:",rData);
 			var mtitle = rData.mtitle;
 			var message = rData.message;
+			$("#reply").attr("data-rn", rn);
 			$("#modal-container-560730").modal();
 			$("#mtitle").val(mtitle);
 			$("#message").val(message);
@@ -57,11 +58,15 @@ $(function(){
 	});//
 	$("#reply").click(function(e){
 		e.preventDefault();
+		var rn = $(this).attr("data-rn");
 		$("#modal-container-560730").modal("hide");
+		$("#sendReply").attr("data-rn", rn);
 		$("#modal-container-000000").modal("show");
 		
 	});
 	$("#sendReply").click(function(){
+		var rn = $(this).attr("data-rn");
+		$("#hi_rn").val(rn);
 		$("#modal-container-000000").modal("hide");
 	});
 });
@@ -138,6 +143,7 @@ $(function(){
 						<div class="" style="display: flex; justify-content: center">
 				<form role="form" action="/admin/sendReply" method="post" id="frmresend">
 					<input type="hidden" name="msg_id">
+					<input type="hidden" name="rn" id="hi_rn">
 					<a id="modal-000000" href="#modal-container-000000" role="button"
 						class="btn btn-warning" data-toggle="modal"
 						style="font-size: 35px; display: none;">1대1 문의 하기</a>
