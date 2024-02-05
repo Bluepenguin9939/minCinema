@@ -1,8 +1,5 @@
 package com.kh.minCinema.controller;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +13,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.minCinema.domain.Ham_CountDateVO;
-import com.kh.minCinema.domain.Ham_DateVO;
 import com.kh.minCinema.domain.Ham_OneononeVO;
 import com.kh.minCinema.domain.Ham_TestVO;
 import com.kh.minCinema.domain.Heo_NoticeVO;
