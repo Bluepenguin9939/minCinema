@@ -19,7 +19,7 @@
 	</sql>
 
 	<select id="selectMovieSearch" resultType="com.kh.minCinema.domain.Jo_MovieVO">
-		SELECT * FROM (
+		SELECT MOV_CODE, MOV_TITLE, MOV_RELEASEDATE, MOV_RUNTIME, MOV_GENRE FROM (
 		    SELECT * FROM MC_MOVIE
 		    <include refid="search"></include>
 		    )
@@ -31,7 +31,7 @@
 	</insert>
 	
 	<select id="selectAll" resultType="com.kh.minCinema.domain.Jo_MovieVO">
-		SELECT * FROM MC_MOVIE
+		SELECT MOV_CODE, MOV_TITLE, MOV_RELEASEDATE, MOV_RUNTIME, MOV_GENRE FROM MC_MOVIE
 		WHERE MOV_GENRE LIKE '%' || #{mov_genre} || '%'
 		ORDER BY MOV_RELEASEDATE DESC
 	</select>
