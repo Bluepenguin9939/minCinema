@@ -14,6 +14,8 @@ public interface Jo_AttachService {
 	
 	public List<Jo_AttachVO> getMoviePoster();
 	
+	public List<Jo_AttachVO> getSlideMoviePoster();
+	
 	public boolean checkProfileImage(String mid);
 	
 	public Map<String, Object> changeFile(Jo_AttachVO attachVO);

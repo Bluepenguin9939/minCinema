@@ -74,3 +74,42 @@ section a{
 	line-height: 50px;
 	text-align: center;
 }
+
+/*je 추가*/
+.titleTexts{
+	font-size : 22px;
+	/*background-color: gray; */
+	/*margin: 5px;*/
+	padding-top : 5px;
+	padding-left: 25px;
+	padding-right: 5px;
+	text-align: center;
+	font-weight: bold;
+}
+
+
+.editBtn, .deleteBtn{
+	
+	margin-left: 40px;
+	/*margin-right: 10px;*/
+}
+
+.scroll_dateList{
+	overflow: scroll; 
+	overflow-X: hidden;
+}
+
+.scroll_dateList::-webkit-scrollbar{
+    width: 15px;
+}
+
+.scroll_dateList::-webkit-scrollbar-thumb{
+    background-color: #9b54ba;
+    /* 스크롤바 둥글게 설정    */
+    border-radius: 10px;
+}
+
+.scroll_dateList::-webkit-scrollbar-track{
+    background-color: #e4e4f8;
+}
+

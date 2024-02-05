@@ -52,6 +52,14 @@ $(function() {
 		$("#detail_mov_code").val(mov_code);
 		$("#frmDetails").submit();
 	});
+	
+	$(".a-slide-img").click(function(e) {
+		e.preventDefault();
+		
+		var mov_code = $(this).attr("data-mov_code");
+		$("#detail_mov_code").val(mov_code);
+		$("#frmDetails").submit();
+	});
 });
 </script>
 
@@ -70,42 +78,22 @@ $(function() {
 				<div class="carousel-inner">
 				 	<div class="carousel-item active">
 				 		<div class="d-flex align-items-center justify-content-center">
-					    	<a href="#">
-						    	<img src="/resources/img/mov01.jpg" alt="영화1" 
-						    		height="500" class="slide-movie-image" id="test">
+			 			<c:forEach var="vo" items="${slideList}" begin="0" end="3">
+					    	<a href="#" class="a-slide-img" data-mov_code="${vo.mov_code}">
+						    	<img src="/display?fileName=${vo.upload_path}/${vo.file_name}"
+						    		alt="영화1" height="500" class="slide-movie-image"> 
 				    		</a>
-					    	<a href="#">
-						    	<img src="/resources/img/mov02.jpg" alt="영화2" 
-						    		height="500" class="slide-movie-image">
-				    		</a>
-					    	<a href="#">
-						    	<img src="/resources/img/mov03.jpg" alt="영화3" 
-						    		height="500" class="slide-movie-image">
-				    		</a>
-					    	<a href="#">
-						    	<img src="/resources/img/mov03.jpg" alt="영화3" 
-						    		height="500" class="slide-movie-image">
-				    		</a>
+			    		</c:forEach>
 				    	</div>
 				  	</div>
 				  	<div class="carousel-item">
 				  		<div class="d-flex align-items-center justify-content-center">
-					    	<a href="#">
-						    	<img src="/resources/img/mov04.jpg" alt="영화4" 
-						    		height="500" class="slide-movie-image">
+				  		<c:forEach var="vo" items="${slideList}" begin="4" end="7">
+					    	<a href="#" class="a-slide-img" data-mov_code="${vo.mov_code}">
+						    	<img src="/display?fileName=${vo.upload_path}/${vo.file_name}" 
+						    		alt="영화4" height="500" class="slide-movie-image">
 				    		</a>
-					    	<a href="#">
-						    	<img src="/resources/img/mov05.jpg" alt="영화5" 
-						    		height="500" class="slide-movie-image">
-				    		</a>
-					    	<a href="#">
-						    	<img src="/resources/img/mov06.jpg" alt="영화6" 
-						    		height="500" class="slide-movie-image">
-					    			</a>
-					    	<a href="#">
-						    	<img src="/resources/img/mov06.jpg" alt="영화6" 
-						    		height="500" class="slide-movie-image">
-			    			</a>
+			    		</c:forEach>
 				    	</div>
 				  	</div>
 				  	<div class="carousel-item">
@@ -157,27 +145,29 @@ $(function() {
 						<div class="dropdown main-dropdown">
 				        	<a class="dropdown main-nav-dropdown" data-toggle="dropdown">장르</a>
 				        	<div class="dropdown-menu">
-						   		<a class="dropdown-item" href="#">전체보기</a>
-							    <a class="dropdown-item" href="#">로맨스</a>
-							    <a class="dropdown-item" href="#">공포</a>
-							    <a class="dropdown-item" href="#">액션</a>
-							    <a class="dropdown-item" href="#">코미디</a>
+						   		<a class="dropdown-item" href="/main/jo_main">전체보기</a>
+							    <a class="dropdown-item" href="/main/jo_main?mov_genre=로맨스">로맨스</a>
+							    <a class="dropdown-item" href="/main/jo_main?mov_genre=공포">공포</a>
+							    <a class="dropdown-item" href="/main/jo_main?mov_genre=액션">액션</a>
+							    <a class="dropdown-item" href="/main/jo_main?mov_genre=코미디">코미디</a>
+							    <a class="dropdown-item" href="/main/jo_main?mov_genre=드라마">드라마</a>
 						  	</div>
 					  	</div>
 					</div>
 					<div style="width: 30%;">
-					  	<form class="d-none d-sm-inline-block form-inline navbar-search" style="margin: 0px;">
+					  	<form class="d-none d-sm-inline-block form-inline navbar-search" style="margin: 0px;"
+					  		action="/main/jo_main" method="get">
 					  		<div class="d-flex justify-content-between">
 								<select id="search" name="search">
-									<option value="title">타이틀</option>
-									<option value="director">감독</option>
+									<option value="T" ${param.search == 'T' ? 'selected' : ''}>타이틀</option>
+									<option value="D" ${param.search == 'D' ? 'selected' : ''}>감독</option>
 								</select>
 		                        <div class="input-group">
 		                            <input type="text" class="form-control bg-light border-0 small" 
-		                            	placeholder="검색어를 입력해주세요" name="movie-search"
+		                            	placeholder="검색어를 입력해주세요" name="keyword" value="${param.keyword}"
 		                                aria-label="Search" aria-describedby="basic-addon2">
 		                            <div class="input-group-append">
-		                                <button class="btn btn-secondary" type="button">
+		                                <button class="btn btn-secondary" type="submit">
 		                                    <i class="fas fa-search fa-sm"></i>
 		                                </button>
 		                            </div>
@@ -198,7 +188,7 @@ $(function() {
 						<div class="card-movie-image" data-mov_code="${vo.mov_code}">
 						<c:choose>
 							<c:when test="${vo.attachVO.mov_code == vo.mov_code}">
-								<img src="/display?fileName=${vo.attachVO.upload_path}/${vo.attachVO.uuid}_${vo.attachVO.file_name}" alt="영화1"
+								<img src="/display?fileName=${vo.attachVO.upload_path}/${vo.attachVO.file_name}" alt="영화1"
 									class="main-movie-img">
 							</c:when>
 							<c:otherwise>
@@ -210,7 +200,7 @@ $(function() {
 <!-- 							<div class="user-rate"> -->
 <!-- 								<span><i class="fa fa-star"></i>9.6</span> -->
 <!-- 							</div> -->
-						<button type="button" class="heart"><i class="far fa-heart"></i></button>
+					<button type="button" class="heart"><i class="far fa-heart"></i></button>
 					</div>
 					<c:choose>
 						<c:when test="${fn:length(vo.mov_title) > 10}">
@@ -220,8 +210,16 @@ $(function() {
 							<span class="movie-name">${vo.mov_title}</span><br>
 						</c:otherwise>
 					</c:choose>
-					<span class="info">${fn:substring(vo.mov_releaseDate, 0, 4)} | <c:if test="${fn:length(vo.mov_genre) > 8}">${fn:substring(vo.mov_genre, 0, 8)}...</c:if>
-						<c:if test="${fn:length(vo.mov_genre) <= 8}">${vo.mov_genre}</c:if> | ${vo.mov_runtime}분</span>
+					<span class="info">
+						${fn:substring(vo.mov_releaseDate, 0, 4)} | 
+						<c:if test="${fn:length(vo.mov_genre) > 8}">
+							${fn:substring(vo.mov_genre, 0, 8)}...
+						</c:if>
+						<c:if test="${fn:length(vo.mov_genre) <= 8}">
+							${vo.mov_genre}
+						</c:if>
+						 | ${vo.mov_runtime}분
+					</span>
 				</div>
 			</c:forEach>
 			</div>

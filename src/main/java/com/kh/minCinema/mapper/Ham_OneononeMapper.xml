@@ -3,40 +3,70 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kh.minCinema.mapper.Ham_OneononeMapper">
+	<!-- 고객센터 -->
+	<sql id="search">
+		<where>
+			<foreach item="type" collection="typeArr">
+				<choose>
+					<when test="type == 'S'.toString()"> sender LIKE '%' || #{keyword} || '%' </when>
+					<when test="type == 'M'.toString()"> mtitle LIKE '%' || #{keyword} || '%' </when>
+					<when test="type == 'D'.toString()"> send_date LIKE '%' || #{keyword} || '%' </when>
+					<when test="type == 'O'.toString()"> open_date LIKE '%' || #{keyword} || '%' </when>
+				</choose>
+			</foreach>
+		</where>
+	</sql>
 	<!-- 운영자측 전체를 조회 -->
-	<select id="selectOne" resultType="com.kh.minCinema.domain.Ham_OneononeVO"> 
-		select * from MC_ONEONONE 
-		order by rn desc
+	<select id="listOneonone"
+		resultType="com.kh.minCinema.domain.Ham_OneononeVO">
+		select rn,msg_id,sender,mtitle,message,remessage,TO_CHAR(open_date,
+		'yyyy-MM-dd HH24:MI') open_date,TO_CHAR(send_date, 'yyyy-MM-dd
+		HH24:MI') send_date
+		from ( SELECT
+		rn,msg_id,sender,mtitle,message,remessage,send_date,open_date
+		FROM MC_ONEONONE
+		<include refid="search" />
+		)
+		ORDER BY rn DESC
 	</select>
+	<!-- <select id="listOneonone" resultType="com.kh.minCinema.domain.Ham_OneononeVO"> -->
+	<!-- select rn,msg_id,sender,mtitle,message,remessage,open_date,send_date -->
+	<!-- from ( -->
+	<!-- SELECT -->
+	<!-- rn,msg_id,sender,mtitle,message,remessage,send_date,open_date -->
+	<!-- FROM MC_ONEONONE -->
+	<!-- <include refid="search"></include> -->
+	<!-- ) -->
+	<!-- ORDER BY rn DESC -->
+	<!-- </select> -->
 	<!-- 유저측 문의사항 입력 -->
 	<insert id="insertInquiry">
 		insert into MC_ONEONONE(rn,msg_id,sender,mtitle,message)
 		values(seq_rn.NEXTVAL,#{msg_id},#{sender},#{mtitle},#{message})
 	</insert>
 	<!-- 유저 문의내용 들고오기 -->
-	<select id="selectGetOne" resultType="com.kh.minCinema.domain.Ham_OneononeVO">
-		select * from MC_ONEONONE
-		where sender = #{sender}
-	</select>
+	<select id="selectGetOne"
+		resultType="com.kh.minCinema.domain.Ham_OneononeVO"> select * from MC_ONEONONE where rn = #{rn} and sender =
+		#{sender} </select>
 	<!-- 관리자->유저 답장 -->
-	<update id="updateInquiry">
-		update mc_oneonone set
-		remessage = #{remessage},
-		open_date = sysdate
-		where msg_id = #{msg_id}
-	</update>
+	<update id="updateInquiry"> update mc_oneonone set remessage = #{remessage},
+		open_date = sysdate where msg_id = #{msg_id} </update>
 	<!-- 유저측 답변 읽어 오기 -->
-	<select id="selectViewReply" resultType="com.kh.minCinema.domain.Ham_OneononeVO">
-		select * from MC_ONEONONE
-		where msg_id = #{msg_id}
+	<select id="selectViewReply"
+		resultType="com.kh.minCinema.domain.Ham_OneononeVO"> select * from MC_ONEONONE where msg_id = #{msg_id}
 	</select>
-		<!-- 유저 문의내용 들고오기 -->
-	<select id="selectGetReply" resultType="com.kh.minCinema.domain.Ham_OneononeVO">
-		select * from MC_ONEONONE
-		where sender = #{sender}
+	<!-- 유저 문의내용 들고오기 -->
+	<select id="selectGetReply"
+		resultType="com.kh.minCinema.domain.Ham_OneononeVO"> select * from MC_ONEONONE where sender = #{sender}
 	</select>
-	<!-- 차트를 위한 유저 카운트 -->
-	<select id="inquiryCount" resultType="int">
-		select count(*) from mc_oneonone
-	</select>
+	<!-- 차트를 위한 유저문의 카운트 -->
+	<select id="inquirySendCount"
+		resultType="com.kh.minCinema.domain.Ham_CountDateVO"> SELECT TO_CHAR(send_date, 'MM') send_date, count(*)
+		monthCount FROM MC_ONEONONE GROUP BY TO_CHAR(send_date, 'MM') ORDER BY
+		send_date </select>
+	<!-- 차트를 위한 관리자 카운트 -->
+	<select id="inquiryReplyCount"
+		resultType="com.kh.minCinema.domain.Ham_CountDateVO"> SELECT TO_CHAR(open_date, 'MM') open_date, count(*)
+		replyCount FROM MC_ONEONONE GROUP BY TO_CHAR(open_date, 'MM') ORDER BY
+		open_date </select>
 </mapper>

@@ -26,4 +26,5 @@ public class Heo_MemberVO {
 	private String upload_path;
 	private String file_name;
 	private String uuid;
+	private Integer coupon;
 }

@@ -10,8 +10,11 @@ import com.kh.minCinema.domain.Jo_MoviePosterDTO;
 import com.kh.minCinema.domain.Jo_MovieVO;
 import com.kh.minCinema.service.Jo_MovieService;
 
+import lombok.extern.log4j.Log4j;
+
 @Controller
 @RequestMapping("/admin")
+@Log4j
 public class Jo_AdminController {
 	
 	@Autowired
@@ -22,6 +25,10 @@ public class Jo_AdminController {
 		System.out.println("movieVO : " + movieVO);
 		System.out.println("posterDTO : " + posterDTO);
 		movieVO.setPosterDTO(posterDTO);
+		String trailer = movieVO.getMov_trailer();
+		String mov_trailer = trailer.replace("/v/", "/embed/") + "?autoPlay=true";
+		log.info(mov_trailer);
+		movieVO.setMov_trailer(mov_trailer);
 		boolean addResult = movieService.addMovie(movieVO);
 		rttr.addFlashAttribute("addResult", addResult);
 		return "redirect:/admin/ham_addmovie";

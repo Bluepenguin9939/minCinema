@@ -125,7 +125,7 @@
 }
 
 
-.date-month{
+/*.date-month{
 	height: 7%;
 	display: flex;
     justify-content: center;
@@ -136,7 +136,7 @@
 	color: white;
 	font-size:25px;
 	text-align: center;
-}
+}*/
 
 .reserve-date { /*날짜 부분*/
     padding-top: 5px;
@@ -144,7 +144,7 @@
     flex-direction: column;  /*아이템을 배치하리 세로열로*/
     align-items: center;
     /*height: 630px;*/
-    height: 88%;
+    height: 95%;
     overflow: scroll; /*스크롤바 생성*/
     overflow-x: hidden; /*x축 스크롤바 숨기기*/
 }
@@ -163,10 +163,20 @@
     background-color: #e4e4f8;
 }
 
+.srceenDate{
+	text-align: center;
+}
+
+.year-month{
+	/*font-weight: bold;*/
+	font-size:40px;
+	margin-top: 5px;
+}
+
 .days{
 	font-weight: bold;
-	font-size:32px;
-	text-align: center;
+	font-size:28px;
+	/*text-align: center;*/
 	
 	cursor: pointer;
 }
@@ -176,6 +186,30 @@
 	background-color: #444444;
 	
     color: #dddddd;/*글자 색*/
+}
+
+.time-data{
+	padding-top: 5px;
+    /*display: flex;
+    flex-direction: column;  /*아이템을 배치하리 세로열로*/
+    align-items: center;
+    height: 95%;
+    overflow: scroll; /*스크롤바 생성*/
+    overflow-x: hidden; /*x축 스크롤바 숨기기*/
+}
+
+.time-data::-webkit-scrollbar{
+    width: 15px;
+}
+
+.time-data::-webkit-scrollbar-thumb{
+    background-color: #9b54ba;
+    /* 스크롤바 둥글게 설정    */
+    border-radius: 10px;
+}
+
+.time-data::-webkit-scrollbar-track{
+    background-color: 	#e4e4f8;
 }
 
 .times{
@@ -218,36 +252,72 @@ $(function(){
 		weekday[6] = "토";
 
 	var now = new Date();
-	var year = now.getFullYear();
+	var todayYear = now.getFullYear();
 	var todayMonth = now.getMonth()+1;
-	var dates = new Date(year,todayMonth,0).getDate();
+	var todayDate = now.getDate();
+	var dates = new Date(todayYear,todayMonth,0).getDate();
 	
-	var monthdayMap = new Map();
 	
-	$("#date-month").text(year+"."+ (todayMonth <=9 ? "0"+todayMonth : todayMonth) );
+	/*$("#date-month").text(year+"."+ (todayMonth <=9 ? "0"+todayMonth : todayMonth) );*/
 	/*현재월 기준*/
 	
-	function getDayAndWeekday(year,month){
-		monthdayMap.clear();
-		$(".reserve-date").empty();
-		var dates = new Date(year,month,0).getDate(); /*month 는 +1한 상태 기록상 현재달 임(1~12)*/
-
-		for(var i=1;i<=dates;i++){
+	function setMonth(year,month){
+		
+		//var month = startMvMonth <= 9 ? "0"+startMvMonth : startMvMonth;
+		
+		$(".reserve-date").append(
+				"<div class = 'srceenDate'>"
+					+"<div id='"+year+(month <= 9 ? "0"+month : month)+"' class='year-month'>"
+						+"<span class='bg-info border border-dark'>"+year+"-"+(month <= 9 ? "0"+month : month)+"</span>"
+					+"</div>"
+				+"</div>"
+		);
+		
+	}	
+	
+	function setDayandWeekday(year,month,startMvday){
+		
+		var monthStr = (month <= 9 ? "0"+month : month);
+		var id = "#"+year+monthStr;
+		var dates = new Date(year , month , 0).getDate(); //month 는 +1한 상태 기록상 현재달 임(1~12)
+		
+		
+		for(var i=startMvday; i<=dates; i++){
 			
-			var day = weekday[new Date(year,month-1,i).getDay()]//년, 기준달-1(0~11), 일
-			monthdayMap.set(i,day);
-			$(".reserve-date").append("<div class='days' id='"+i+"'>"
-										+"<span class='rounded-circle bg-light weekday' style='font-size:24px;'>"+day+"</span>"+"&emsp;"
-										+"<span class='bg-danger day' style='font-weight:normal;'>"+( i <= 9 ? "0" + i : i )+"</span>"
-										+"</div>");
+			//해당 일의 요일 구하기
+			var wday = weekday[new Date(year,month-1,i).getDay()];//년, 기준달-1(0~11), 일
+			//monthdayMap.set(i,day);
+			var dayStr = ( i <= 9 ? "0" + i : i );
+			
+			var dataDate = year+"-"+monthStr+"-"+dayStr;
+			$(id).append(
+					"<div class='days' id='"+i+"' data-date='"+dataDate+"'>"
+						+"<span class='rounded-circle bg-light weekday' style='font-size:24px;'>"+wday+"</span>"+"&emsp;"
+						+"<span class='bg-danger day' style='font-weight:normal;'>"+dayStr+"</span>"
+					+"</span>"
+			);
 		}
-		//console.log("monthdayMap:",monthdayMap);
-		$("#date-month").text(year+"."+ (month <=9 ? "0"+month : month) );
 	}
 	
+	//페이지 시작시 영화 리스트와 코드 받아와서 열 생성
+	$.post("/ticketing/movieList",function(rData){
+		console.log("rData: ",rData);
+		if(rData != null){
+			$.each(rData , function( index, value ) {
+				//console.log( index + " : " + value.mov_code +":"+ value.mov_title );
+				$(".movie-datas").append(
+						"<div class='movie-list' data-movieCode='"+value.mov_code+"'>"+value.mov_title+"</div>"
+				);
+				
+			});
+		}
+	});
 	
+	
+	
+	var movieCode;
 	var dateCode;
-	var timeCode;
+	
 	
 	$(document).on("click",".movie-list",function(){//영화제목 클릭시
 		
@@ -274,37 +344,56 @@ $(function(){
 		var text = that.text();
 		
 		$("#movieTitleText").text(text);
-
-		var  data = {"movieCode" : "12345678"}; //테스트용 고정데이터
-		//var  data = {"movieCode" : "11112222"}; //테스트용 고정데이터
 		
-		$.post("/ticketing/date",data,function(rdata){
+		$(".reserve-date").empty();
+		$(".time-data").empty();
+		
+		movieCode = that.attr("data-movieCode");
+		
+		//
+		var movieTitleData = {"movieCode" : movieCode};
+		
+		$.post("/ticketing/date",movieTitleData,function(rdata){
+			//console.log("rData: ",rdata);
+			//console.log("rData.length: ",rdata.length);
+			if(rdata.length != 0 ){
+				var startDate = rdata[0].split("-");
+				var startMvYear = parseInt(startDate[0]);
+				var startMvMonth = parseInt(startDate[1]);
+				var startMvday = parseInt(startDate[2]);
+				
+				var endDate = rdata[rdata.length-1].split("-");
+				var endMvYear = parseInt(endDate[0]);
+				var endMvMonth = parseInt(endDate[1]);
+				var endMvday = parseInt(endDate[2]);
+
+				
+				if(startMvYear != endMvYear || startMvMonth != endMvMonth){
+					//console.log("다름");	
+					setMonth(startMvYear,startMvMonth);
+					
+					setDayandWeekday(startMvYear,startMvMonth,startMvday);
+					///////
+					setMonth(endMvYear,endMvMonth);
+					
+					setDayandWeekday(endMvYear,endMvMonth,1);
+				}
+				else{
+					//console.log("동일");
+					
+					setMonth(startMvYear,startMvMonth);
+					
+					setDayandWeekday(startMvYear,startMvMonth,startMvday);
+					
+				}
+				
+				//var offset = $(offsetId).offset();
+				//console.log("offset:",offset);
+				//$("#date").animate({scrollTop: offset.top},0);
+				
+			}
 			
-			console.log("rDaat:",rdata);
-			console.log("rDaat:",rdata[0]);
 			
-			var date = rdata[0].split(".");
-			//console.log("mb:",date[0]);
-			
-			var mvYear = parseInt(date[0]);
-			var mvMonth = parseInt(date[1]);
-			var mvday = parseInt(date[2]);
-			//var offsetId = "#"+mvday;
-			
-			console.log("mvYear:",mvYear);
-			console.log("mvMonth:",mvMonth);
-			
-			
-			getDayAndWeekday(mvYear,mvMonth);
-			//getDayAndWeekday(year,todayMonth);
-			
-			/*var offset = $(offsetId).offset();
-			console.log("offset:",offset);
-			$("#date").animate({scrollTop: offset.top},0);*/
-			
-			/*내일할거 : 클릭시 날짜에 MOV_DATE_CODE 값을 DATA 속성에 넣기*/
-			/*내일할거 : 1,2월 이런식으로 날짜가 2개인경우 어떻게할지 생각하기*/
-			/*내일할거 : 시간에따른 선택 정리하기*/
 		});
 		
 		
@@ -322,8 +411,8 @@ $(function(){
 		
 		var that = $(this);
 		
-		var find = that.parent().find("[data-select='select']");
-		
+		//var find = that.parent().find("[data-select='select']");
+		var find = $(".reserve-date").find("[data-select='select']");
 		//이전 선택사항 삭제
 		find.removeAttr("data-select");
 		find.css("background-color","#AAAAAA");
@@ -335,56 +424,44 @@ $(function(){
 		that.css("background-color","#444444");
 		that.css("color","#dddddd");
 		
-		/////////
-		var year_month = $("#date-month").text();
-		var day = that.find(".day").text();
-		
-		var date = year_month+"."+day+"("+that.find(".weekday").text()+")";
-		
+		/////////하단 텍스트
+		var date = that.attr("data-date");
 		$("#dateText").text(date);
 		
-		/*테스트용 시간 배열*/
-		//var testTimeArray = ["05:30","11:00","12:00","13:00","14:30","17:00","19:30","21:00"];
-		//var testLocArray = ["1관","2관","3관","4관","5관","6관","7관","8관"];
-		//console.log("testArray:",testArray);
+		//console.log("date:",date);
+		var dateData = {"mov_date": date,
+						"mov_code": movieCode};
 		
-		$.post("/ticketing/time",data,function(rdata){
+		$.post("/ticketing/time",dateData,function(rdata){
+			//console.log("rdata:",rdata);
+			$.each(rdata, function (index, je_MovieReservDTO) {
+				var nightAndDay;
+				var am_pm;
+				var timeHS = je_MovieReservDTO.mov_start_time.split(":");	
+				
+				if(timeHS[0] >= 6 && timeHS[0]<18){ //낮밤 구분
+					nightAndDay = "clear_day";
+				}else{
+					nightAndDay = "clear_night";
+				}
+				
+				if(timeHS[0] >= 12 && timeHS[0]<24){ //am,pm 구분
+					am_pm = "pm";
+				}else{
+					am_pm = "am";
+				}
 			
-			///시간 가져오기
+				$(".time-data").append("<div class='times' data-select='unselect'>"
+		            	+"<span class='material-symbols-outlined'>"
+							+nightAndDay
+						+"</span>"
+						+"<span id='time'>"+je_MovieReservDTO.mov_start_time+"("+am_pm+")"+"</span>"
+						+"&nbsp;"
+						+"<span id='loc'>"+je_MovieReservDTO.mov_loc+"</span>"
+	   			+"</div>");
+			});
 			
 		});
-		
-		
-		
-		
-		
-		$.each(testTimeArray, function (index, testI) {
-			var nightAndDay;
-			var am_pm;
-			var timeHS = testI.split(":");	
-			
-			if(timeHS[0] >= 6 && timeHS[0]<18){ /*낮밤 구분*/
-				nightAndDay = "clear_day";
-			}else{
-				nightAndDay = "clear_night";
-			}
-			
-			if(timeHS[0] >= 12 && timeHS[0]<24){ /*am,pm 구분*/
-				am_pm = "pm";
-			}else{
-				am_pm = "am";
-			}
-		
-			$(".time-data").append("<div class='times' data-select='unselect'>"
-	            	+"<span class='material-symbols-outlined'>"
-						+nightAndDay
-					+"</span>"
-					+"<span id='time'>"+testI+"("+am_pm+")"+"</span>"
-					+"&nbsp;"
-					+"<span id='loc'>"+testLocArray[index]+"</span>"
-   			+"</div>");
-		});
-		
 		
 		
 	});
@@ -416,35 +493,7 @@ $(function(){
 		
 	});
 	
-	var currentMonth = todayMonth;
-	var currentYear = year;
 	
-	/**다음달*/
-	$("#next_month").click(function(){
-		if(currentMonth==12){
-			currentMonth = 1;
-			currentYear++;
-		}else{
-			currentMonth++;
-		}
-		
-		$("#date-month").text(currentYear+"."+ (currentMonth <=9 ? "0"+currentMonth : currentMonth) );
-		getDayAndWeekday(currentYear,currentMonth);
-		console.log("다음");
-	});
-	/*이전달*/
-	$("#prev_month").click(function(){
-		if(currentMonth==1){
-			currentMonth = 12;
-			currentYear--;
-		}else{
-			currentMonth--;
-		}
-		
-		$("#date-month").text(currentYear+"."+ (currentMonth <=9 ? "0"+currentMonth : currentMonth) );
-		getDayAndWeekday(currentYear,currentMonth);
-		console.log("이전");
-	});
 	
 	/*폼 전송버튼*/
 	$(".sendBtn").click(function() {
@@ -487,10 +536,7 @@ $(function(){
 				</div>
 	           
 	            <div id="movie" class="movie-datas">
-	            	<div class="movie-list" data-select="select">토이스토리4</div>
-		            <div class="movie-list" >캐래비안의 해적</div>
-		            <div class="movie-list" >괴물</div>
-		            <div class="movie-list" >인디아나 존스 1000</div>
+	            	
 	            </div>
 	            
 	            
@@ -518,7 +564,7 @@ $(function(){
 						calendar_month
 					</span>날짜
 				</div>
-				
+				<!--  
 	            <div class="rounded date-month">
 	            	<span class="material-symbols-outlined" id="prev_month" style="font-size: 36px;">
 						chevron_left
@@ -528,11 +574,15 @@ $(function(){
 						chevron_right
 					</span>
 	            </div>
-	            
+	            -->
 	            <div id="date" class="reserve-date">
-	
+					
+					
+					
 	            </div>
 	        </div>
+	        
+	        
 	        <div class="time-part">
 	            <div class="reserve-title">
 	            	<span class="material-symbols-outlined">

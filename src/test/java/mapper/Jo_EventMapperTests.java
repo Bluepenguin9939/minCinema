@@ -10,7 +10,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import com.kh.minCinema.domain.Jo_EventDTO;
+import com.kh.minCinema.domain.Jo_EventRewardVO;
 import com.kh.minCinema.mapper.Jo_EventMapper;
+import com.kh.minCinema.mapper.Jo_EventRewardMapper;
 
 import lombok.extern.log4j.Log4j;
 
@@ -22,6 +24,9 @@ public class Jo_EventMapperTests {
 	
 	@Autowired
 	private Jo_EventMapper eventMapper;
+	
+	@Autowired
+	private Jo_EventRewardMapper eventRewardMapper;
 	
 	@Test
 	public void testSelectByMid() {
@@ -37,5 +42,14 @@ public class Jo_EventMapperTests {
 	public void testChange() {
 		List<String> result = eventMapper.changeImg("test");
 		log.info("result : " + result);
+	}
+	
+	@Test
+	public void testcheckReceive() {
+		Jo_EventRewardVO eventRewardVO = Jo_EventRewardVO.builder()
+				.mid("test").r_month("02").r_history("1")
+				.build();
+		int count = eventRewardMapper.checkReceive(eventRewardVO);
+		log.info(count);
 	}
 }

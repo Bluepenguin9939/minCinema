@@ -65,12 +65,31 @@
                    <i class="fa fa-user"></i>
                     <span>회원관리</span></a>
             </li>
-            <!-- 영화 추가 -->
+            <!-- 영화 추가 
             <li class="nav-item">
                 <a class="nav-link" href="/admin/ham_addmovie">
                     <span class="material-symbols-outlined">movie_info</span>
                     <span>영화 관리</span></a>
+                
+            </li>-->
+            
+            <!-- 영화 추가 -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <span class="material-symbols-outlined">movie_info</span>
+                    <span>영화 관리</span>
+                </a>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">영화 관리 메뉴</h6>
+                        <a class="collapse-item" href="/admin/ham_addmovie">영화 추가</a>
+                        <a class="collapse-item" href="/admin/je_addmoviedate">영화 상영일정</a>
+                    </div>
+                </div>
             </li>
+            
+            
 			<!-- 포인트 관리 - 일반  -->
             <li class="nav-item">
                 <a class="nav-link" href="/admin/ham_addpoint">

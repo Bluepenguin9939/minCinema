@@ -5,10 +5,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kh.minCinema.domain.Ham_CountDateVO;
 import com.kh.minCinema.domain.Ham_OneononeVO;
 import com.kh.minCinema.mapper.Ham_OneononeMapper;
 
+import lombok.extern.log4j.Log4j;
+
 @Service
+@Log4j
 public class Ham_OneononeServiceImpl implements Ham_OneononeService {
 
 	@Autowired
@@ -50,8 +54,26 @@ public class Ham_OneononeServiceImpl implements Ham_OneononeService {
 	}
 
 	@Override
-	public int inquiryCount() {
-		return ham_OneononeMapper.inquiryCount();
+	public List<Ham_CountDateVO> inquirySendCount() {
+		List<Ham_CountDateVO> list = ham_OneononeMapper.inquirySendCount();
+		
+		return list;
 	}
+
+	@Override
+	public List<Ham_CountDateVO> inquiryReplyCount() {
+		List<Ham_CountDateVO> list = ham_OneononeMapper.inquiryReplyCount();
+		return list;
+	}
+
+
+	@Override
+	public List<Ham_OneononeVO> listOneonone(Ham_OneononeVO vo) {
+		log.info("테스트브이오:"+vo);
+		List<Ham_OneononeVO> list = ham_OneononeMapper.listOneonone(vo);
+		return list;
+	}
+
+
 
 }

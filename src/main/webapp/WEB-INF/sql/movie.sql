@@ -9,9 +9,7 @@ CREATE TABLE MC_MOVIE(
     MOV_RUNTIME NUMBER(3) NOT NULL,                                    -- 영화 런타임
     MOV_RATING VARCHAR2(30) NOT NULL,                                  -- 영화 관람기준
     MOV_GENRE VARCHAR2(40) NOT NULL,                                   -- 영화 장르
-//  MOV_NATION VARCHAR2(40) NOT NULL,          현재 안씀                 -- 영화 제작국가
-//  MOV_POSTERURL VARCHAR2(100) NOT NULL,      현재 안씀                 -- 영화 포스터URL
-//  MOV_STILLURL VARCHAR2(100) NOT NULL        현재 안씀                 -- 영화 스틸컷URL
+    MOV_TRAILER VARCHAR2(200) NOT NULL     		                   -- 영화 트레일러
 );
 
 DROP TABLE MC_MOVIE;
@@ -19,7 +17,7 @@ DROP TABLE MC_MOVIE;
 
 -----영화관 날짜일정 배정 테이블------
 CREATE TABLE MC_MOVIE_DATE(
-	MOV_DATE_CODE VARCHAR2(40) CONSTRAINT PK_MOV_DATE_CODE PRIMARY KEY, --영화시간코드 --()
+	MOV_DATE_CODE VARCHAR2(40) CONSTRAINT PK_MOV_DATE_CODE PRIMARY KEY, --영화날짜코드 --()
 	MOV_CODE CHAR(8) REFERENCES MC_MOVIE(MOV_CODE) NOT NULL,    --영화코드
 	MOV_SCREEN_DATE varchar2(10) NOT NULL	--상영날짜 2024-02-01 
 
@@ -41,7 +39,7 @@ DROP TABLE MC_MOVIE_TIME;
 
 
 
------상영관 예약 테이블------ ex) /1관_2024.02_1100_A01 /1관 /1100 /A01  
+-----상영관 예약 or 예약정보 테이블------ ex) /1관_2024.02_1100_A01 /1관 /1100 /A01  
 CREATE TABLE MC_MOVIE_LOC(
 	MOV_LOC_CODE VARCHAR2(30) PRIMARY KEY, --상영관 코드 (1관_1100_A01) primarykey
 	MOV_LOC VARCHAR2(4) NOT NULL, --상영관 		1관

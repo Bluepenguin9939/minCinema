@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kh.minCinema.mapper.Jo_CouponMapper">
+	<select id="selectUseCoupon" resultType="com.kh.minCinema.domain.Jo_CouponVO">
+		SELECT * FROM MC_COUPON
+		WHERE DISCOUNT = #{discount}
+		AND MID = #{mid}
+		AND ROWNUM = 1
+	</select>
+	
+	<select id="selectCouponCount" resultType="int">
+		SELECT COUNT(*) FROM MC_COUPON
+		WHERE DISCOUNT = #{discount}
+		AND MID = #{mid}
+	</select>
+	
+	<select id="selectAllCoupon" resultType="int">
+		SELECT COUNT(*) FROM MC_COUPON
+		WHERE MID = #{mid}
+	</select>
+	
+	<insert id="insertCoupon">
+		INSERT INTO MC_COUPON
+		VALUES(SEQ_CNO.NEXTVAL, #{mid}, #{discount})
+	</insert>
+	
+	<delete id="deleteCoupon">
+		DELETE FROM MC_COUPON
+		WHERE DISCOUNT = #{discount}
+		AND MID = #{mid}
+		AND ROWNUM = 1;
+	</delete>
+</mapper>

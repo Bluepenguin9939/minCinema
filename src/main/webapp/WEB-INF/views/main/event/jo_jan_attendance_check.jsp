@@ -3,14 +3,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="/WEB-INF/views/include/top.jsp" %>
 
-<link rel="stylesheet" href="/resources/css/main/event/jan_attendance_check.css?after">
+<link rel="stylesheet" href="/resources/css/main/event/attendance_check.css?after">
 
 <script>
 $(function() {
 // 	출석 참여 상태 체크
 	var mid = "${loginInfo.mid}";
-	console.log("mid :", mid);
 	
+	var cur_attendance_month = 01;
 	var today = new Date();
 	var today_year = today.getFullYear();
 	var today_month = today.getMonth() + 1;
@@ -23,10 +23,14 @@ $(function() {
 		today_date = "0" + today_date;
 	}
 	
+	if (today_month != 1) {
+		$("#btnAttendance").attr("disabled", true);
+	}
+	
 	var curDate = today_year + "/" + today_month + "/" + today_date; 
 	console.log(curDate);
 	
-	var url = "/main/event/jan_attendance_status";
+	var url = "/main/event/attendance_status";
 	var sData = {
 			"mid" : mid,
 			"curDate" : curDate
@@ -41,17 +45,26 @@ $(function() {
 		console.log("attendanceList : ", attendanceList);
 		
 		var cal_date = $(".attendance_td");
+		var allCount = 0;
 		for (var v = 0; v < attendanceList.length; v++) {
-			cal_date.each(function() {
-				var date = $(this).attr("data-date");
-				if (attendanceList[v] == date) {
-					$(this).find("h1").remove();
-					var attendance_image = "<img src='/resources/img/event/check_penguin.png' alt='출석체크' width='87' height='98'>";
-					$(this).append(attendance_image);
-					$("#allAttendance").text(attendanceList.length);
-				}
-			});
+			attendance_month = attendanceList[v].substring(0, 2);
+			if (cur_attendance_month == attendance_month) {
+				allCount++;
+				cal_date.each(function() {
+					var date = $(this).attr("data-date");
+					if (date < 10) {
+						date = "0" + date;
+					}
+					attendance_date = attendanceList[v].substring(3, 5);
+					if (attendance_date == date) {
+						$(this).find("h1").remove();
+						var attendance_image = "<img src='/resources/img/event/check_penguin.png' alt='출석체크' width='87' height='98'>";
+						$(this).append(attendance_image);
+					}
+				});
+			}
 		}
+		$("#allAttendance").text(attendanceList.length);
 		
 		if (checkAttendance == "Y") {
 			$("#btnAttendance").attr("disabled", true);
@@ -68,7 +81,7 @@ $(function() {
 	$("#btnAttendance").click(function(e) {
 		e.preventDefault();
 		
-		var checkUrl = "/main/event/jan_attendance_check";
+		var checkUrl = "/main/event/attendance_check";
 		var checkSData = {
 				"mid" : mid
 		}

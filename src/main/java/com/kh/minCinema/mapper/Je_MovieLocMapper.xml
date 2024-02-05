@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kh.minCinema.mapper.Je_MovieLocMapper">
+	
+	<select id="movieReservedSeats" resultType="String">
+		SELECT SEAT_NAME_RES FROM MC_MOVIE_LOC
+			WHERE MOV_LOC = #{mov_loc} AND 
+					MOV_LOC_TIME = #{mov_start_time} AND 
+					MOV_LOC_DATE = #{mov_date}
+			
+	</select>
+	
+</mapper>

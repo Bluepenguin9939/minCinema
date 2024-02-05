@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kh.minCinema.mapper.Jo_EventRewardMapper">
+	<select id="checkReceive" resultType="int">
+		SELECT COUNT(*) FROM MC_EVENT_REWARD
+		WHERE MID = #{mid} AND R_MONTH = #{r_month}
+		AND R_HISTORY = #{r_history}
+	</select>
+	
+	<insert id="insertReceive">
+		INSERT INTO MC_EVENT_REWARD
+		VALUES(#{mid}, #{r_month}, #{r_history})
+	</insert>
+</mapper>

@@ -10,6 +10,7 @@ import com.kh.minCinema.domain.Heo_LoginDTO;
 import com.kh.minCinema.domain.Heo_MemberVO;
 import com.kh.minCinema.service.Heo_MemberService;
 import com.kh.minCinema.service.Jo_AttachService;
+import com.kh.minCinema.service.Jo_CouponService;
 
 @Controller
 @RequestMapping("/member")
@@ -22,6 +23,9 @@ public class Heo_MemberController {
 	
 	@Autowired
 	private Jo_AttachService attachService;
+	
+	@Autowired
+	private Jo_CouponService couponService;
 	
 	@PostMapping("/register")
 	public String register(Heo_MemberVO heo_MemberVO) {
@@ -41,8 +45,14 @@ public class Heo_MemberController {
 		if (heo_MemberVO == null) {
 			return;
 		}
+		int allCoupon = couponService.getAllCoupon(heo_MemberVO.getMid());
+		System.out.println("allCoupon : " + allCoupon);
+		if (allCoupon != 0) {
+			heo_MemberVO.setCoupon(allCoupon);
+		}
 		Heo_MemberVO memberVO = attachService.getFile(heo_MemberVO.getMid());
 		if (memberVO != null) {
+			memberVO.setCoupon(allCoupon);
 			model.addAttribute("loginInfo", memberVO);
 		} else {
 			model.addAttribute("loginInfo", heo_MemberVO);

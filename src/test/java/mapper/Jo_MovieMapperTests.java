@@ -75,7 +75,7 @@ public class Jo_MovieMapperTests {
 	
 	@Test
 	public void testSelectAll() {
-		List<Jo_MovieVO> movieVO = movieMapper.selectAll();
+		List<Jo_MovieVO> movieVO = movieMapper.selectAll("");
 		log.info("movieVO : " + movieVO);
 	}
 	
@@ -92,4 +92,5 @@ public class Jo_MovieMapperTests {
 		List<Jo_MovieVO> movieList = movieMapper.selectInterestToHeart(mid);
 		log.info("movieList : " + movieList);
 	}
+	
 }
