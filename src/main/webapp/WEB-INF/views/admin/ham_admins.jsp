@@ -46,8 +46,8 @@
 							</div>
 							<div id="sisi3" >
 								 <c:forEach var="vo" items="${pList}" >
-								 	<div  class="" >${vo.pdate}</div>
-								 	<div class="" >${vo.ppoint}</div>
+								 	<div  class="point_pdate" >${vo.pdate}</div>
+								 	<div class="point_ppoint" >${vo.ppoint}</div>
 								 </c:forEach>
 							</div>
 						</div>
@@ -79,7 +79,7 @@ $(function(){
 	var monthCount = $(".month-Count").attr("data-monthCount");
 	var monthCount2 = parseInt(monthCount);
 	console.log("send_date:",send_date);
-	
+	 
 	
 	//듀얼 막대 차트 -유저
 	var asd ="";
@@ -224,7 +224,7 @@ var myChart = new Chart(ctx, {
 	myChart = new Chart(ctx3, {//월매출 
 	    type: 'line',
 	    data: {
-	        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+	        labels: co,
 	        datasets: [{
 	            label: '# of Votes',
 	            data: aa,
@@ -234,7 +234,12 @@ var myChart = new Chart(ctx, {
 	                'rgba(255, 206, 86, 1)',
 	                'rgba(75, 192, 192, 1)',
 	                'rgba(153, 102, 255, 1)',
-	                'rgba(255, 159, 64, 1)'
+	                'rgba(255, 159, 64, 1)',
+	                'rgba(54, 162, 235, 0.2)',
+	                'rgba(255, 206, 86, 0.2)',
+	                'rgba(75, 192, 192, 0.2)',
+	                'rgba(153, 102, 255, 0.2)',
+	                'rgba(255, 159, 64, 0.2)'
 	            ],
 	            borderWidth: 1
 	        }]
