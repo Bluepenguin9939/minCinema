@@ -127,6 +127,10 @@
 	font-size: 14px;
 }
 
+#btnMoreMovie {
+	display: none;
+}
+
 a {
 	text-decoration: none;
 	color: inherit;

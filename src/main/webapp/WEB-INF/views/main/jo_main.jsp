@@ -5,8 +5,8 @@
 
 <%@ include file="/WEB-INF/views/include/top.jsp" %>
 
-<link href="/resources/css/main/main.css?after" rel="stylesheet">
-
+<link href="/resources/css/main/main.css" rel="stylesheet">
+<c:set var="begin" value="10"/>
 <script>
 $(function() {
 	var loginInfo = "${loginInfo}";
@@ -60,7 +60,68 @@ $(function() {
 		$("#detail_mov_code").val(mov_code);
 		$("#frmDetails").submit();
 	});
+	
+	var acount = 10;
+	var begin = 11;
+	var end = 0;;
+	MoreMovie(acount);
+	
+	$("#btnMoreMovie").click(function() {
+		$(this).css("display", "none");
+		
+		var list_clone = $(".all-movie-list > div:eq(0)").clone();
+		list_clone.empty();
+		$(".all-movie-list").append(list_clone);
+		
+		var all_list = "${movieList}";
+		
+		end = all_list.split("Jo_MovieVO").length;
+		console.log("asd :",end);
+		for (var i = begin; i < end; i++) {
+			var mov_title = all_list.split("Jo_MovieVO")[i].split("mov_title=")[1].split(",")[0];
+			var mov_releaseDate = all_list.split("Jo_MovieVO")[11].split("mov_releaseDate=")[1].split(",")[0].substring(0, 4);
+			var mov_genre = all_list.split("Jo_MovieVO")[i].split("mov_genre=")[1].split(", ")[0];
+			if (mov_genre.length > 9) {
+				mov_genre = mov_genre.substring(0, 9) + "...";
+			}
+			var mov_runtime = all_list.split("Jo_MovieVO")[i].split("mov_runtime=")[1].split(",")[0];
+			var info = mov_releaseDate + " | " + mov_genre + " | " + mov_runtime;
+			
+			var upload_path = all_list.split("Jo_MovieVO")[i].split("upload_path=")[1].split(",")[0];
+			var file_name = all_list.split("Jo_MovieVO")[i].split("file_name=")[1].split(",")[0];
+			
+			var moreDiv = $(".all-movie-list > div:last()");
+			if ("${fn:length(movieList)}" - acount > 5) {
+				for (var v = 0; v < 5; v++) {
+					var movie_clone = $(".all-movie-list > div:eq(0) > div:eq(0)").clone();
+					movie_clone.find(".main-movie-img").attr("src", "/display?fileName=" + upload_path + "/" + file_name);
+					movie_clone.find(".movie-name").text(mov_title);
+					movie_clone.find(".info").text(info);
+					moreDiv.append(movie_clone);
+				}
+			} else {
+				var more = "${fn:length(movieList) % 5}";
+				for (var v = 0; v < more; v++) {
+					var movie_clone = $(".all-movie-list > div:eq(0) > div:eq(0)").clone();
+					movie_clone.find(".main-movie-img").attr("src", "/display?fileName=" + upload_path + "/" + file_name);
+					movie_clone.find(".movie-name").text(mov_title);
+					movie_clone.find(".info").text(info);
+					moreDiv.append(movie_clone);
+				}
+			}
+		}
+		
+		acount += 5;
+		MoreMovie(acount);
+		begin += 5;
+		end += 5;
+	});
 });
+function MoreMovie(acount) {
+	if (${fn:length(movieList)} > acount && ${fn:length(movieList) % 5 > 0 && fn:length(movieList) % 5 < 5}) {
+		$("#btnMoreMovie").css("display", "block");
+	}
+} 
 </script>
 
 <div class="container-fluid">
@@ -73,7 +134,6 @@ $(function() {
 					<li data-target="#slide-movie" data-slide-to="1"></li>
 				  	<li data-target="#slide-movie" data-slide-to="2"></li>
 				</ul>
-				
 				<!-- The slideshow -->
 				<div class="carousel-inner">
 				 	<div class="carousel-item active">
@@ -179,82 +239,89 @@ $(function() {
 			</nav>
 			
 			<%@ include file="/WEB-INF/views/include/jo_frmDetail.jsp" %>
-			
 			<!-- 메인 리스트 -->
-			<div class="main-movie-list">
-			<c:forEach var="vo" items="${movieList}" begin="0" end="4">
-				<div class="main-movie">
-					<div class="card-div">
-						<div class="card-movie-image" data-mov_code="${vo.mov_code}">
+			<div class="all-movie-list">
+				<div class="main-movie-list">
+				<c:forEach var="vo" items="${movieList}" begin="0" end="4">
+					<div class="main-movie">
+						<div class="card-div">
+							<div class="card-movie-image" data-mov_code="${vo.mov_code}">
+<%-- 							<c:choose> --%>
+<%-- 								<c:when test="${vo.attachVO.mov_code == vo.mov_code}"> --%>
+									<img src="/display?fileName=${vo.attachVO.upload_path}/${vo.attachVO.file_name}" alt="영화1"
+										class="main-movie-img">
+<%-- 								</c:when> --%>
+<%-- 							</c:choose> --%>
+							</div>
+	<!-- 							<div class="user-rate"> -->
+	<!-- 								<span><i class="fa fa-star"></i>9.6</span> -->
+	<!-- 							</div> -->
+							<button type="button" class="heart"><i class="far fa-heart"></i></button>
+						</div>
 						<c:choose>
-							<c:when test="${vo.attachVO.mov_code == vo.mov_code}">
-								<img src="/display?fileName=${vo.attachVO.upload_path}/${vo.attachVO.file_name}" alt="영화1"
-									class="main-movie-img">
+							<c:when test="${fn:length(vo.mov_title) > 10}">
+								<span class="movie-name">${fn:substring(vo.mov_title, 0, 10)}...</span><br>
 							</c:when>
 							<c:otherwise>
-								<img src="/resources/img/mov01.jpg" alt="영화1"
-									class="main-movie-img">
+								<span class="movie-name">${vo.mov_title}</span><br>
 							</c:otherwise>
 						</c:choose>
-						</div>
-<!-- 							<div class="user-rate"> -->
-<!-- 								<span><i class="fa fa-star"></i>9.6</span> -->
-<!-- 							</div> -->
-					<button type="button" class="heart"><i class="far fa-heart"></i></button>
+						<span class="info">
+							${fn:substring(vo.mov_releaseDate, 0, 4)} | 
+							<c:if test="${fn:length(vo.mov_genre) > 8}">
+								${fn:substring(vo.mov_genre, 0, 8)}...
+							</c:if>
+							<c:if test="${fn:length(vo.mov_genre) <= 8}">
+								${vo.mov_genre}
+							</c:if>
+							 | ${vo.mov_runtime}분
+						</span>
 					</div>
-					<c:choose>
-						<c:when test="${fn:length(vo.mov_title) > 10}">
-							<span class="movie-name">${fn:substring(vo.mov_title, 0, 10)}...</span><br>
-						</c:when>
-						<c:otherwise>
-							<span class="movie-name">${vo.mov_title}</span><br>
-						</c:otherwise>
-					</c:choose>
-					<span class="info">
-						${fn:substring(vo.mov_releaseDate, 0, 4)} | 
-						<c:if test="${fn:length(vo.mov_genre) > 8}">
-							${fn:substring(vo.mov_genre, 0, 8)}...
-						</c:if>
-						<c:if test="${fn:length(vo.mov_genre) <= 8}">
-							${vo.mov_genre}
-						</c:if>
-						 | ${vo.mov_runtime}분
-					</span>
+				</c:forEach>
 				</div>
-			</c:forEach>
+				<div class="main-movie-list">
+				<c:forEach var="vo" items="${movieList}" begin="5" end="9">
+					<div class="main-movie">
+						<div class="card-div">
+							<div class="card-movie-image" data-mov_code="${vo.mov_code}">
+							<c:choose>
+								<c:when test="${vo.attachVO.mov_code == vo.mov_code}">
+									<img src="/display?fileName=${vo.attachVO.upload_path}/${vo.attachVO.file_name}" alt="영화1"
+										class="main-movie-img">
+								</c:when>
+							</c:choose>
+							</div>
+	<!-- 							<div class="user-rate"> -->
+	<!-- 								<span><i class="fa fa-star"></i>9.6</span> -->
+	<!-- 							</div> -->
+						<button type="button" class="heart"><i class="far fa-heart"></i></button>
+						</div>
+						<c:choose>
+							<c:when test="${fn:length(vo.mov_title) > 10}">
+								<span class="movie-name">${fn:substring(vo.mov_title, 0, 10)}...</span><br>
+							</c:when>
+							<c:otherwise>
+								<span class="movie-name">${vo.mov_title}</span><br>
+							</c:otherwise>
+						</c:choose>
+						<span class="info">
+							${fn:substring(vo.mov_releaseDate, 0, 4)} | 
+							<c:if test="${fn:length(vo.mov_genre) > 8}">
+								${fn:substring(vo.mov_genre, 0, 8)}...
+							</c:if>
+							<c:if test="${fn:length(vo.mov_genre) <= 8}">
+								${vo.mov_genre}
+							</c:if>
+							 | ${vo.mov_runtime}분
+						</span>
+					</div>
+				</c:forEach>
+				</div>
 			</div>
-			<div class="main-movie-list">
-			<c:forEach var="vo" items="${movieList}" begin="5" end="9">
-				<div class="main-movie">
-					<div class="card-div">
-						<div class="card-movie-image" data-mov_code="${vo.mov_code}">
-						<c:choose>
-							<c:when test="${vo.attachVO.mov_code == vo.mov_code}">
-								<img src="/display?fileName=${vo.attachVO.upload_path}/${vo.attachVO.file_name}" alt="영화1"
-									class="main-movie-img">
-							</c:when>
-							<c:otherwise>
-								<img src="/resources/img/mov01.jpg" alt="영화1"
-									class="main-movie-img">
-							</c:otherwise>
-						</c:choose>
-						</div>
-<!-- 							<div class="user-rate"> -->
-<!-- 								<span><i class="fa fa-star"></i>9.6</span> -->
-<!-- 							</div> -->
-					<button type="button" class="heart"><i class="far fa-heart"></i></button>
-					</div>
-					<c:choose>
-						<c:when test="${fn:length(vo.mov_title) > 10}">
-							<span class="movie-name">${fn:substring(vo.mov_title, 0, 10)}...</span><br>
-						</c:when>
-						<c:otherwise>
-							<span class="movie-name">${vo.mov_title}</span><br>
-						</c:otherwise>
-					</c:choose>
-					<span class="info">${fn:substring(vo.mov_releaseDate, 0, 4)} | ${vo.mov_genre} | ${vo.mov_runtime}분</span>
-				</div>
-			</c:forEach>
+			<div class="d-flex justify-content-center">
+				<button type="button" class="btn btn-secondary" id="btnMoreMovie">
+					더보기
+				</button>
 			</div>
 			<!-- // 메인 리스트 -->
 			
