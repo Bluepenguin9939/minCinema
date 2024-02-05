@@ -106,9 +106,9 @@
             </li>
 			<!-- 이벤트 관리/일반 -->
 			<li class="nav-item">
-                <a class="nav-link" href="/admin/ham_addevent">
+                <a class="nav-link" href="/admin/heo_addNotice">
 					<i class="fab fa-product-hunt align-self-center"></i>
-                   <span>이벤트 관리</span></a>
+                   <span>공지사항 관리</span></a>
             </li>
 
 

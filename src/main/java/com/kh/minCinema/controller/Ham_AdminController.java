@@ -15,6 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.kh.minCinema.domain.Ham_CountDateVO;
 import com.kh.minCinema.domain.Ham_OneononeVO;
 import com.kh.minCinema.domain.Ham_TestVO;
+import com.kh.minCinema.domain.Heo_NoticeCriteria;
 import com.kh.minCinema.domain.Heo_NoticeVO;
 import com.kh.minCinema.service.Ham_OneononeService;
 import com.kh.minCinema.service.Ham_TestService;
@@ -109,8 +110,8 @@ public class Ham_AdminController {
 		
 	}
 	@GetMapping("/heo_addNotice")
-	public void addNotice(Model model) {
-		List<Heo_NoticeVO> list = heo_NoticeService.getNotice();
+	public void addNotice(Model model, Heo_NoticeCriteria heo_NoticeCriteria) {
+		List<Heo_NoticeVO> list = heo_NoticeService.getNotice(heo_NoticeCriteria);
 		model.addAttribute("list", list);
 		System.out.println("list" + model);
 	}
