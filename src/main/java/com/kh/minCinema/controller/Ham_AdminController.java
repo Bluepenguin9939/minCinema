@@ -1,8 +1,5 @@
 package com.kh.minCinema.controller;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +13,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.minCinema.domain.Ham_CountDateVO;
-import com.kh.minCinema.domain.Ham_DateVO;
 import com.kh.minCinema.domain.Ham_OneononeVO;
 import com.kh.minCinema.domain.Ham_TestVO;
+import com.kh.minCinema.domain.Heo_NoticeCriteria;
+import com.kh.minCinema.domain.Heo_NoticePageDTO;
 import com.kh.minCinema.domain.Heo_NoticeVO;
 import com.kh.minCinema.service.Ham_OneononeService;
 import com.kh.minCinema.service.Ham_TestService;
@@ -41,12 +39,20 @@ public class Ham_AdminController {
 	@Autowired
 	private Ham_OneononeService ham_OneononeService;
 	
-	
+	@GetMapping("/ham_test3")
+	public void ham_test3() {
+		
+	}
 	
 	@GetMapping("/ham_admins")
 	public void admins(Model model) {
-		List<Ham_CountDateVO> list = ham_OneononeService.inquiryCount();
-		System.out.println("리수투:"+list);
+		// 유저측 문의
+		List<Ham_CountDateVO> list = ham_OneononeService.inquirySendCount();
+		System.out.println("대시보드리수투:"+list);
+		// 관리자 답장
+		List<Ham_CountDateVO> oList = ham_OneononeService.inquiryReplyCount();
+		System.out.println("오픈데이트리수투:"+oList);
+		model.addAttribute("oList", oList);
 		model.addAttribute("list", list);
 		
 	}
@@ -54,6 +60,7 @@ public class Ham_AdminController {
 	@GetMapping("/ham_cmanagement")
 	public void management(Model model, Ham_TestVO testVO) {
 		 List<Ham_TestVO> list = ham_TestService.testMemberList(testVO);
+		 System.out.println("회원관리리스트:"+list);
 		 model.addAttribute("list",list);
 		 
 	}
@@ -82,13 +89,6 @@ public class Ham_AdminController {
 	public void movieadd() {          
 		
 	}
-	
-	@GetMapping("/je_addmoviedate")
-	public void movieadd_date() {          
-		
-	}
-	
-	
 //	@PostMapping("/addMovie")
 //	public void addMovie(MultipartFile[] uploadFile) {
 //		
@@ -99,19 +99,33 @@ public class Ham_AdminController {
 		
 	}
 	@GetMapping("/ham_oneonone")//고객센터 리스트 <-유저 문의에서 받은 리스트
-	public void oneonone(Model model) {
-		List<Ham_OneononeVO> list =  ham_OneononeService.selectOne();
+	public void oneonone(Ham_OneononeVO oneononeVO, Model model) {
+		List<Ham_OneononeVO> list = ham_OneononeService.listOneonone(oneononeVO);
 		System.out.println("리쓰뜨:"+list);
 		model.addAttribute("list", list);
+		
 	}
 
 	@GetMapping("/ham_addevent")
 	public void addevent() {
 		
 	}
+	
+	@GetMapping("/heo_noticeList")
+	public void noticeList(Model model, Heo_NoticeCriteria heo_NoticeCriteria) {
+		List<Heo_NoticeVO> list = heo_NoticeService.getNotice(heo_NoticeCriteria);
+		int total = heo_NoticeService.getNoticeCount();
+		Heo_NoticePageDTO heo_NoticePageDTO = new Heo_NoticePageDTO(heo_NoticeCriteria, total);
+		model.addAttribute("pageMaker", heo_NoticePageDTO);
+		model.addAttribute("list", list);
+	}
+	
 	@GetMapping("/heo_addNotice")
-	public void addNotice(Model model) {
-		List<Heo_NoticeVO> list = heo_NoticeService.getNotice();
+	public void addNotice(Model model, Heo_NoticeCriteria heo_NoticeCriteria) {
+		List<Heo_NoticeVO> list = heo_NoticeService.getNotice(heo_NoticeCriteria);
+		int total = heo_NoticeService.getNoticeCount();
+		Heo_NoticePageDTO heo_NoticePageDTO = new Heo_NoticePageDTO(heo_NoticeCriteria, total);
+		model.addAttribute("pageMaker", heo_NoticePageDTO);
 		model.addAttribute("list", list);
 		System.out.println("list" + model);
 	}
@@ -152,5 +166,10 @@ public class Ham_AdminController {
 		System.out.println("왔니:" + ham_OneononeVO);
 		ham_OneononeService.updateInquiry(ham_OneononeVO);
 		return "redirect:/admin/ham_oneonone";
+	}
+	
+	@GetMapping("/ham_test1")
+	public void hamTest1() {
+		
 	}
 }

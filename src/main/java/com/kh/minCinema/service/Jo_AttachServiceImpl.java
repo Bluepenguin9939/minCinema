@@ -81,5 +81,10 @@ public class Jo_AttachServiceImpl implements Jo_AttachService {
 		List<Jo_AttachVO> attachList = attachMapper.selectMovieImageToCode(mov_code);
 		return attachList;
 	}
+	@Override
+	public List<Jo_AttachVO> getSlideMoviePoster() {
+		List<Jo_AttachVO> attachList = attachMapper.selectSlideMoviePoster();
+		return attachList;
+	}
 
 }

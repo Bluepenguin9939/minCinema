@@ -14,13 +14,13 @@ public class Heo_MemberServiceImpl implements Heo_MemberService {
 	private Heo_MemberMapper heo_MemberMapper;
 	
 	@Override
-	public void register(Heo_MemberVO vo) {
-		heo_MemberMapper.insert(vo);
+	public int register(Heo_MemberVO vo) {
+		return heo_MemberMapper.insert(vo);
 	}
 
 	@Override
-	public void updateBen(Heo_MemberVO vo) {
-		heo_MemberMapper.updateActive(vo);
+	public int updateBen(Heo_MemberVO vo) {
+		return heo_MemberMapper.updateActive(vo);
 	}
 
 	@Override

@@ -57,12 +57,12 @@ public class Jo_MainController {
 	
 	@GetMapping("/jo_main")
 	public void main(Model model, HttpSession session, Jo_SearchDTO searchDTO) {
-		log.info("searchDTO : " + searchDTO);
 		if (searchDTO.getMov_genre() == null) {
 			searchDTO.setMov_genre("");
 		}
 		List<Jo_MovieVO> movieList = movieService.getAll(searchDTO);
-		List<Jo_MovieVO> slideList = movieService.getSlideMovie();
+		List<Jo_AttachVO> slideList = attachService.getSlideMoviePoster();
+		log.info("slide : " + slideList);
 		List<Jo_AttachVO> attachList = attachService.getMoviePoster();
 		for (int i = 0; i < movieList.size(); i++) {
 			Jo_MovieVO movieVO = movieList.get(i);

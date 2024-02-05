@@ -8,7 +8,11 @@
 	</insert>
 	
 	<select id="selectNotice" resultType="com.kh.minCinema.domain.Heo_NoticeVO">
-		select * from mc_notice
+		select * from(
+    		select /*+ INDEX_DESC(MC_NOTICE PK_NNO) */
+        	rownum rn, nno, ntitle, ncontent, nregdate, ncount
+            from mc_notice)         
+        where rn between #{startRow} and #{endRow}
 	</select>
 	
 	<update id="updateNotice">
@@ -23,4 +27,18 @@
 		where nno = #{nno}
 	</delete>
 	
+	<select id="selectContent" resultType="string">
+		select ncontent from mc_notice
+		where nno = #{nno}
+	</select>
+	
+	<update id="addCount">
+		update mc_notice set
+		ncount = ncount+1
+		where nno = #{nno}
+	</update>
+	
+	<select id="getNoticeCount" resultType="int">
+		select count(*) from mc_notice
+	</select>	
 </mapper>

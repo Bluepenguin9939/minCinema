@@ -9,9 +9,7 @@ CREATE TABLE MC_MOVIE(
     MOV_RUNTIME NUMBER(3) NOT NULL,                                    -- 영화 런타임
     MOV_RATING VARCHAR2(30) NOT NULL,                                  -- 영화 관람기준
     MOV_GENRE VARCHAR2(40) NOT NULL,                                   -- 영화 장르
-    MOV_TRAILER VARCHAR2(200) NOT NULL,     		                   -- 영화 트레일러
-//  MOV_NATION VARCHAR2(40) NOT NULL,          현재 안씀                 -- 영화 제작국가
-//  MOV_STILLURL VARCHAR2(100) NOT NULL        현재 안씀                 -- 영화 스틸컷URL
+    MOV_TRAILER VARCHAR2(200) NOT NULL     		                   -- 영화 트레일러
 );
 
 DROP TABLE MC_MOVIE;

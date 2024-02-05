@@ -12,6 +12,21 @@
 <!-- <meta name="viewport" content="width=device-width,initial-scale=1.0"> -->
 <script>
 $(function(){
+	var begin = 0;
+	var end = 5;
+	var bStep = $(".wrap>tr");
+	var eStep = bStep.slice(begin,end);
+	bStep.hide();
+	eStep.show();
+	
+	$("#load-more").click(function(){
+		var that = $(this);
+		console.log("that:",that);
+		end +=5;
+		bStep.slice(begin,end).show();
+	});
+	
+	
 	$(".mtitle").click(function(e){
 		var sender = $(this).parent().prev().text();
 		var rn = $(this).parent().prev().prev().text();
@@ -59,6 +74,20 @@ $(function(){
 	<div class="notice d-flex justify-content-center" > 
 		<div class="admin-top" >
 			<h2 class="admin-body" title="" >고객센터 관리</h2>
+			<div class="search">
+            <div class="search-field">
+					<form action="/admin/ham_oneonone" method="get">
+					<select name="type" title="검색선택">
+						<option value="S" ${param.type == 'S' ? 'selected' : ''}>보낸 유저</option>
+						<option value="M" ${param.type == 'M' ? 'selected' : ''}>문의 제목</option>
+						<option value="D" ${param.type == 'D' ? 'selected' : ''}>받은 날짜</option>
+						<option value="O" ${param.type == 'O' ? 'selected' : ''}>답변 날짜</option>
+					</select> 
+					<input type="text" value="${param.keyword}" name="keyword" class="keyword" title="검색어 입력" id="search_id" placeholder="검색 ..." />
+					<button value="검색" type="submit" class="btn btn-sm btn-outline-dark">검색</button>
+                </form>
+            </div>
+        </div>
 			<!-- 모다르 -->
 						<div class="" style="display: flex; justify-content: center">
 				<form role="form" action="#" method="post">
@@ -146,20 +175,7 @@ $(function(){
 			
 			
 			<!-- 답장 모다르 끝 -->
-			<div class="search">
-            <div class="search-field">
-					<select name="target" title="검색선택">
-						<option value="">전체</option>
-						<option value="title">아이디</option>
-						<option value="content">닉네임</option>
-						<option value="member_display">이름</option>
-						<option value="member_display">이메일</option>
-						<option value="member_display">전화번호</option>
-					</select> 
-					<input type="text" value="" name="s" class="s" title="검색어 입력" id="search_id" placeholder="검색 ..." />
-                <input value="검색" type="submit" class="searchsubmit" />
-            </div>
-        </div>
+			
     
 			<table class="table table-hover">
 				<thead>
@@ -173,7 +189,7 @@ $(function(){
 					</tr>
 				</thead>
 				<!-- 임시 -->
-				<tbody>
+				<tbody class="wrap">
 				<c:forEach var="vo" items="${list}">
 					<tr>
 						<td data-rn="${vo.rn}" class="rn">${vo.rn}</td>
@@ -186,8 +202,8 @@ $(function(){
 				</c:forEach>					
 				</tbody>
 			</table>	
+			<button id="load-more">더보기</button>
 			
-			<button type="button" data-toggle="modal" data-target="#myModal">Open Modal</button>
 		
 			<!-- 하단 게시판 번호(Pagination) -->
 <!-- 	<div class="pageBottom" style="margin-bottom: 100px"> -->
