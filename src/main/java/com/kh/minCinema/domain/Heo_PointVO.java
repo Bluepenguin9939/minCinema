@@ -17,5 +17,7 @@ public class Heo_PointVO {
 	private String mid;
 	private Integer ppoint;
 	private String pcode;
-	private Date pdate;
+	private String pdate;
+	
+	private int monthPoint;
 }

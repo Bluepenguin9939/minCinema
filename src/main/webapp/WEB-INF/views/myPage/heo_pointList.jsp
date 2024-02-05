@@ -19,7 +19,6 @@ $(function(){
 	});
 });
 </script>
-<%@ include file="/WEB-INF/views/include/heo_frmCriteria.jsp" %>
 <br>
 <h5>이용 내역</h5>
 <table class="table table-borderless">
@@ -32,7 +31,15 @@ $(function(){
 				<td
 					style='padding: 0px; padding-top: 15px; padding-bottom: 15px; text-align: center; vertical-align: middle;'>${vo.pdate}</td>
 				<td
-					style='padding: 0px; padding-top: 15px; padding-bottom: 15px; text-align: center; vertical-align: middle;'>${vo.pcode}</td>
+					style='padding: 0px; padding-top: 15px; padding-bottom: 15px; text-align: center; vertical-align: middle;'>
+					<c:if test="${vo.pcode eq'PC'}">
+						포인트 충전
+					</c:if>
+					<c:if test="${vo.pcode eq'PU'}">
+						영화 예매
+					</c:if>
+
+					</td>
 				<td
 					style='padding: 0px; padding-top: 15px; padding-bottom: 15px; text-align: center; vertical-align: middle;'>${vo.ppoint}</td>
 			</tr>

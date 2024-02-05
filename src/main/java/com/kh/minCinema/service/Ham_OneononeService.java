@@ -26,4 +26,6 @@ public interface Ham_OneononeService {
 	
 	public List<Ham_OneononeVO> listOneonone(Ham_OneononeVO oneononeVO);
 	
+	public int replyUpdate(int rn);
+	
 }

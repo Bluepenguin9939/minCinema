@@ -1,5 +1,6 @@
 ----------- 멤버 테이블 생성---------
 create table MC_MEMBER(
+	mno number not null, -- 관리자할때 필요
     mid varchar2(20) constraint PK_MID primary key,         -- id
     mpw varchar2(20) not null, 								-- 비밀번호
     memail varchar2(50) not null,							-- 이메일주소

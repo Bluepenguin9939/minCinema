@@ -5,10 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.kh.minCinema.domain.Je_MovieReservDTO;
+import com.kh.minCinema.domain.Je_InsertResSeatDTO;
+import com.kh.minCinema.domain.Je_MovieDateInfoDTO;
+import com.kh.minCinema.domain.Je_ReservationInfoVO;
 import com.kh.minCinema.mapper.Je_MovieDateMapper;
-import com.kh.minCinema.mapper.Je_MovieLocMapper;
-import com.kh.minCinema.mapper.Je_MovieTimeMapper;
+import com.kh.minCinema.mapper.Je_MovieTheaterMapper;
 
 import lombok.extern.log4j.Log4j;
 
@@ -20,11 +21,9 @@ public class Je_MovieDateServiceImpl implements Je_MovieDateService {
 	@Autowired
 	private Je_MovieDateMapper je_MovieDateMapper;
 	
-	@Autowired
-	private Je_MovieTimeMapper je_MovieTimeMapper;
 	
 	@Autowired 
-	private Je_MovieLocMapper je_MovieLocMapper;
+	private Je_MovieTheaterMapper je_MovieTheaterMapper;
 	
 	@Override
 	public List<String> movieScreenDates(String movieCode) {
@@ -34,27 +33,64 @@ public class Je_MovieDateServiceImpl implements Je_MovieDateService {
 		return list;
 	}
 
+	
+
 	@Override
-	public String selectMovieDateCode(Je_MovieReservDTO je_MovieReservDTO) {
-		String mov_date_code = je_MovieDateMapper.selectMovieDateCode(je_MovieReservDTO);
-		
-		return mov_date_code;
+	public List<Je_MovieDateInfoDTO> movieStartTimes(Je_MovieDateInfoDTO je_MovieDateInfoDTO) {
+
+		List<Je_MovieDateInfoDTO> list = je_MovieDateMapper.movieStartTimes(je_MovieDateInfoDTO);
+		log.info("@>>"+list);
+		return list;
 	}
 
+	
 	@Override
-	public List<Je_MovieReservDTO> movieStartTimes(String movieDateCode) {
+	public List<String> movieReservedSeats(Je_MovieDateInfoDTO je_MovieDateInfoDTO) {
 
-		List<Je_MovieReservDTO> list = je_MovieTimeMapper.movieStartTimes(movieDateCode);
+		List<String> list = je_MovieTheaterMapper.movieReservedSeats(je_MovieDateInfoDTO);
 		
 		return list;
 	}
 
-	@Override
-	public List<String> movieReservedSeats(Je_MovieReservDTO je_MovieReservDTO) {
 
-		List<String> list = je_MovieLocMapper.movieReservedSeats(je_MovieReservDTO);
+
+	@Override
+	public int insertReservedSeats(Je_ReservationInfoVO je_ReservationInfoVO) {
 		
-		return list;
+		List<String> reservedSeats = je_ReservationInfoVO.getReservedSeat();
+		
+		int count = 0;
+		
+		for(String reservedSeat : reservedSeats) {
+			
+			Je_InsertResSeatDTO je_InsertResSeatDTO = Je_InsertResSeatDTO.builder()
+					.movieTheater(je_ReservationInfoVO.getMovieTheater())
+					.movieDate(je_ReservationInfoVO.getMovieDate())
+					.movieTime(je_ReservationInfoVO.getMovieTime())
+					.reservedSeat(reservedSeat)
+					.build();
+			count = je_MovieTheaterMapper.dupCheck(je_InsertResSeatDTO);
+			
+			if(count == 0) {
+				return 0;
+			}
+			//log.info("@count:"+count);
+		}
+		
+		
+		for(String reservedSeat : reservedSeats) {
+			
+			Je_InsertResSeatDTO je_InsertResSeatDTO = Je_InsertResSeatDTO.builder()
+					.movieTheater(je_ReservationInfoVO.getMovieTheater())
+					.movieDate(je_ReservationInfoVO.getMovieDate())
+					.movieTime(je_ReservationInfoVO.getMovieTime())
+					.reservedSeat(reservedSeat)
+					.build();
+			count = je_MovieTheaterMapper.insertReservedSeats(je_InsertResSeatDTO);
+			//log.info("@count:"+count);
+		}
+		// TODO Auto-generated method stub
+		return count;
 	}
 
 	

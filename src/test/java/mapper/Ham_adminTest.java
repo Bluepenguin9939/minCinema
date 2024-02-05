@@ -25,7 +25,8 @@ public class Ham_adminTest {
 	public void testMember() {
 		
 			Ham_TestVO testVO = Ham_TestVO.builder()
-					.tmid("admin")
+					.tmno(12)
+					.tmid("55")
 					.tmpw("22")
 					.tmnick("sss")
 					.tmname("ssss")
@@ -37,7 +38,7 @@ public class Ham_adminTest {
 	}
 	@Test
 	public void testMember2() {
-		for(int i=1; i<17; i++) {
+		for(int i=1; i<=10; i++) {
 			
 		Ham_TestVO testVO = Ham_TestVO.builder()
 				.tmid(String.valueOf(i))

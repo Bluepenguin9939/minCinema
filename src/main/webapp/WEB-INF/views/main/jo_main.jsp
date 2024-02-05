@@ -316,6 +316,24 @@ function MoreMovie(acount) {
 						</span>
 					</div>
 				</c:forEach>
+					<c:choose>
+						<c:when test="${fn:length(vo.mov_title) > 10}">
+							<span class="movie-name">${fn:substring(vo.mov_title, 0, 10)}...</span><br>
+						</c:when>
+						<c:otherwise>
+							<span class="movie-name">${vo.mov_title}</span><br>
+						</c:otherwise>
+					</c:choose>
+					<span class="info">
+						${fn:substring(vo.mov_releaseDate, 0, 4)} | 
+						<c:if test="${fn:length(vo.mov_genre) > 8}">
+							${fn:substring(vo.mov_genre, 0, 8)}...
+						</c:if>
+						<c:if test="${fn:length(vo.mov_genre) <= 8}">
+							${vo.mov_genre}
+						</c:if>
+						 | ${vo.mov_runtime}분
+					</span>
 				</div>
 			</div>
 			<div class="d-flex justify-content-center">

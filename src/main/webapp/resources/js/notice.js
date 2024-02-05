@@ -1,6 +1,10 @@
 /**
  * notice.js
  */
+ 
+ $.get("/notice/heo_noticeList",function(rData){
+ 	$("#notice-list").append(rData);
+ });
 
  function getContent(nno){
 	 var noticeNnoTd = $(nno).parent().prev();
@@ -23,6 +27,14 @@
 	 });
  }
  
- function changePages() {
-	 console.log("ddd");
+ function changePages(pageNum) {
+ 	var pageNum = $(pageNum).attr("href");
+ 	var url = "/notice/heo_noticeList";
+ 	var sData = {
+ 		pageNum : pageNum
+ 	};
+ 	$.get(url, sData, function(rData){
+ 		$("#notice-list").empty();
+ 		$("#notice-list").append(rData);
+ 	});
  }

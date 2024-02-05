@@ -41,6 +41,15 @@ public class Ham_NoticelistController {
 		model.addAttribute("list", list);
 	}
 	
+	@GetMapping("/heo_noticeList")
+	public void noticeList(Model model, Heo_NoticeCriteria heo_NoticeCriteria) {
+		List<Heo_NoticeVO> list = heo_NoticeService.getNotice(heo_NoticeCriteria);
+		int total = heo_NoticeService.getNoticeCount();
+		Heo_NoticePageDTO heo_NoticePageDTO = new Heo_NoticePageDTO(heo_NoticeCriteria, total);
+		model.addAttribute("pageMaker", heo_NoticePageDTO);
+		model.addAttribute("list", list);
+	}
+	
 	@GetMapping(value = "/selectNotice", produces = "text/plain;charset=UTF-8")
 	@ResponseBody //HEO 제작
 	public String selectNotice(int nno) {

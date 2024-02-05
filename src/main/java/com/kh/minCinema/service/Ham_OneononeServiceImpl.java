@@ -74,6 +74,12 @@ public class Ham_OneononeServiceImpl implements Ham_OneononeService {
 		return list;
 	}
 
+	@Override
+	public int replyUpdate(int rn) {
+		
+		return ham_OneononeMapper.replyUpdate(rn);
+	}
+
 
 
 }

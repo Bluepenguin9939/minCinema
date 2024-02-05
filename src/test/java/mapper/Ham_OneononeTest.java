@@ -23,7 +23,7 @@ public class Ham_OneononeTest {
 	
 	@Test
 	public void insertTest() {
-		for(int i =1; i < 17; i++) {			
+		for(int i =1; i <= 10; i++) {			
 		Ham_OneononeVO ham_OneononeVO = Ham_OneononeVO.builder()
 				.rn(i)
 				.sender(String.valueOf(i))
@@ -36,17 +36,17 @@ public class Ham_OneononeTest {
 	}
 	@Test
 	public void insertTest2() {
-			for(int i =1; i<17; i++) {
+			
 				
 			Ham_OneononeVO ham_OneononeVO = Ham_OneononeVO.builder()
-					.rn(i)
-					.sender("admin")
-					.msg_id("admin")
+					.rn(12)
+					.sender("55")
+					.msg_id("55")
 					.mtitle("1")
 					.message("1")
 					.build();
 			ham_OneononeMapper.insertInquiry(ham_OneononeVO);
-			}
+			
 		}
 	
 	

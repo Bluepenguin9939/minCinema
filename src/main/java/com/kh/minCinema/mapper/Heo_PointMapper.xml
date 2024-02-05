@@ -13,7 +13,7 @@
 	<select id="getPointList" resultType="com.kh.minCinema.domain.Heo_PointVO">
 		select * from(
     		select /*+INDEX_DESC(MC_POINT PK_PID) */
-        	rownum rn, pid, mid, ppoint, pcode, pdate
+        	rownum rn,pid,mid,ppoint,pcode,TO_CHAR(pdate,'yyyy-MM-dd HH24:MI') pdate
         	from MC_POINT)
         where mid = #{mid}
         and rn between #{startRow} and #{endRow}
@@ -23,4 +23,17 @@
 		select count(*) from MC_POINT
 		where mid = #{mid} 
 	</select>
+	
+	<!-- 관리자 -->
+	<select id="selectPoint" resultType="com.kh.minCinema.domain.Heo_PointVO">
+		select * FROM MC_POINT
+	</select>
+	
+	<!-- 관리자 페이지 월 매출액 차트 -->
+	<select id="pointCount" resultType="com.kh.minCinema.domain.Heo_PointVO"> 
+		SELECT sum(ppoint) ppoint,TO_CHAR(pdate, 'MM') pdate
+		FROM MC_POINT
+		GROUP BY TO_CHAR(pdate,'MM') 
+		ORDER BY pdate
+		 </select>
 </mapper>
