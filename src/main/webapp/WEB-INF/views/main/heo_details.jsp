@@ -15,7 +15,7 @@
 			<div class="d-flex justify-content-center">
 			<c:forEach var="list" items="${movieImage}">
 				<c:if test="${fn:contains(list.upload_path, 'poster')}">
-					<img class="movie-details" style="width: 300px; height: 400px;" src="/display?fileName=${movieImage[0].upload_path}/${movieImage[0].file_name}">
+					<img class="movie-details" style="width: 300px; height: 400px;" src="/display?fileName=${list.upload_path}/${list.file_name}">
 				</c:if>
 			</c:forEach>
 				<div class="details-logo">
