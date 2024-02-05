@@ -31,6 +31,12 @@
 		AND UPLOAD_PATH LIKE '%poster%'
 	</select>
 	
+	<select id="selectSlideMoviePoster" resultType="com.kh.minCinema.domain.Jo_AttachVO">
+		SELECT * FROM MC_ATTACH
+		WHERE MOV_CODE IS NOT NULL
+		AND UPLOAD_PATH LIKE '%poster%'
+	</select>
+	
 	<select id="selectMovieImageToCode" resultType="com.kh.minCinema.domain.Jo_AttachVO">
 		SELECT * FROM MC_ATTACH
 		WHERE MOV_CODE = #{mov_code}

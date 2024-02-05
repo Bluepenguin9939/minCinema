@@ -80,9 +80,8 @@ $(function() {
 				 		<div class="d-flex align-items-center justify-content-center">
 			 			<c:forEach var="vo" items="${slideList}" begin="0" end="3">
 					    	<a href="#" class="a-slide-img" data-mov_code="${vo.mov_code}">
-						    	<img src="/display?fileName=${vo.attachVO.upload_path}/${vo.attachVO.file_name}"
+						    	<img src="/display?fileName=${vo.upload_path}/${vo.file_name}"
 						    		alt="영화1" height="500" class="slide-movie-image"> 
-						    		
 				    		</a>
 			    		</c:forEach>
 				    	</div>
@@ -91,7 +90,7 @@ $(function() {
 				  		<div class="d-flex align-items-center justify-content-center">
 				  		<c:forEach var="vo" items="${slideList}" begin="4" end="7">
 					    	<a href="#" class="a-slide-img" data-mov_code="${vo.mov_code}">
-						    	<img src="/display?fileName=${vo.attachVO.upload_path}/${vo.attachVO.file_name}" 
+						    	<img src="/display?fileName=${vo.upload_path}/${vo.file_name}" 
 						    		alt="영화4" height="500" class="slide-movie-image">
 				    		</a>
 			    		</c:forEach>
