@@ -9,7 +9,7 @@ public interface Heo_MemberService {
 
 	public int register(Heo_MemberVO heo_MemberVO);
 	
-	public void updateBen(Heo_MemberVO heo_MemberVO);
+	public int updateBen(Heo_MemberVO heo_MemberVO);
 	
 	public Heo_MemberVO memberLogin(Heo_LoginDTO heo_LoginDTO);
 	

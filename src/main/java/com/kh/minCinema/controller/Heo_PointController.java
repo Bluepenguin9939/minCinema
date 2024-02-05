@@ -1,9 +1,5 @@
 package com.kh.minCinema.controller;
 
-import java.text.NumberFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -19,7 +15,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kh.minCinema.domain.Heo_MemberVO;
 import com.kh.minCinema.domain.Heo_PointCriteria;
-import com.kh.minCinema.domain.Heo_PointListVO;
 import com.kh.minCinema.domain.Heo_PointPageDTO;
 import com.kh.minCinema.domain.Heo_PointVO;
 import com.kh.minCinema.service.Heo_PointService;
@@ -53,8 +48,7 @@ public class Heo_PointController {
 		heo_PointCriteria.setMid(mid);
 		List<Heo_PointVO> list = heo_PointService.getList(heo_PointCriteria);
 		int total = heo_PointService.getCount(mid);
-		Heo_PointPageDTO heo_PointPageDTO = new Heo_PointPageDTO(heo_PointCriteria, total);	
-		
+		Heo_PointPageDTO heo_PointPageDTO = new Heo_PointPageDTO(heo_PointCriteria, total);		
 		model.addAttribute("pointInfoList", list);
 		model.addAttribute("pageMaker", heo_PointPageDTO);
 		return "myPage/heo_pointList";

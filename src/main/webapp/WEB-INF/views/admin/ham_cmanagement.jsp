@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="/resources/css/admin/cmanagement.css?after" type="text/css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
+<script type="text/javascript" src="/resources/js/cmanagement.js"></script>
 <!-- <meta name="viewport" content="width=device-width,initial-scale=1.0"> -->
 
 
@@ -171,8 +172,13 @@ $(function() {
 						<td>${vo.memail}</td>
 						<td>${vo.mtel}</td>
 						<td>
+
 							<a href="#" class="venMember" ><i class="fa fa-user-alt-slash" title="ven" ></i></a> 
 							<a href="#" class="deleteMember" data-tmid="${vo.mid}"><i class="fa fa-trash" title="del"></i></a>
+
+							<a href="${vo.mid}" onclick="updateBen(this); return false;" class="venMember" ><i class="fa fa-user-alt-slash" title="ven" ></i></a> 
+							<a href="#" class="deleteMember" data-tmid="${vo.mid}"><i class="fa fa-trash" title="del"></i></a>
+
 						</td>
 						<td class="test999" data-index="${step.index}">${step.index}</td>
 						

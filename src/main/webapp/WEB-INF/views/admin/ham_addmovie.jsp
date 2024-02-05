@@ -36,7 +36,6 @@ $(function(){
 		if (date < 10) {
 			date = "0" + date;
 		}
-		
 		if (day != 0) {
 			if (date <= day) {
 				month--;
@@ -49,6 +48,9 @@ $(function(){
 				date = lmDate + parseInt(date) - day;
 			} else {
 				date = date - day;
+				if (date < 10) {
+					date = "0" + date;
+				}
 			}
 		}
 		var targetDt = String(year) + month + date;

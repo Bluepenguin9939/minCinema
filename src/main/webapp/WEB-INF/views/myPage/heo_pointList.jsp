@@ -6,7 +6,6 @@ $(function(){
 	$(".pages").click(function(e){
 		e.preventDefault();
 		var pageNum = $(this).attr("href");
-		var frmCriteria = $("#frmCriteria");
 		var url = "/point/pointList";
 		var sData = {
 			mid : "${loginInfo.mid}",
@@ -20,7 +19,6 @@ $(function(){
 	});
 });
 </script>
-<%@ include file="/WEB-INF/views/include/heo_frmCriteria.jsp" %>
 <br>
 <h5>이용 내역</h5>
 <table class="table table-borderless">

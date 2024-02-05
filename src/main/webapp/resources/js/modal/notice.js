@@ -1,6 +1,24 @@
 /**
  *  addNoticeModal.js
  */
+ 
+ $.get("/admin/heo_noticeList",function(rData){
+ 	console.log(rData);
+ 	$(".tblDiv").append(rData);
+ });
+ 
+ function changePages(pageNum) {
+ 	var pageNum = $(pageNum).attr("href");
+ 	var url = "/admin/heo_noticeList";
+ 	var sData = {
+ 		pageNum : pageNum
+ 	};
+ 	$.get(url, sData, function(rData){
+ 		$(".tblDiv").empty();
+ 		$(".tblDiv").append(rData);
+ 	});
+ }
+  
 $(function(){
 	var title = "";
 	var content = "";
@@ -26,7 +44,8 @@ $(function(){
 			}
 		});
 	});
-	$(".titleNum").click(function(e){
+	
+	$(document).on("click",".titleNum",function(e) {
 		e.preventDefault();
 		titleNum = $(this).attr("href");
 		title = $(this).text();
