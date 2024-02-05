@@ -27,4 +27,5 @@ public interface Jo_AttachMapper {
 	public int deleteFile(String uuid);
 	
 	public Jo_AttachVO selectDeleteUuid(String mid);
+	
 }

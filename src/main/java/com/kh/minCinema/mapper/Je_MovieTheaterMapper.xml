@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kh.minCinema.mapper.Je_MovieTheaterMapper">
+	
+	<!-- 이미 예약된 좌석들 -->
+	<select id="movieReservedSeats" resultType="String">
+		SELECT SEAT_NAME_RES FROM MC_MOVIE_THEATER
+			WHERE MOV_THEATER = #{mov_theater} AND 
+					MOV_THEATER_TIME = #{mov_start_time} AND 
+					MOV_THEATER_DATE = #{mov_screen_date}
+			
+	</select>
+	
+	<!-- 좌석 예약 -->
+	<insert id="insertReservedSeats">
+		INSERT INTO MC_MOVIE_THEATER(MOV_THEATER_CODE, MOV_THEATER, MOV_THEATER_DATE, MOV_THEATER_TIME, SEAT_NAME_RES)
+            VALUES(seq_theater.nextval, #{movieTheater}, #{movieDate}, #{movieTime} , #{reservedSeat})
+	</insert>
+	
+	<select id="dupCheck" resultType="int">
+		SELECT  COUNT(*) FROM MC_MOVIE_THEATER 
+			WHERE 
+			    NOT EXISTS (SELECT * 
+			    	    FROM MC_MOVIE_THEATER
+			            WHERE MOV_THEATER = #{movieTheater} 
+			            AND MOV_THEATER_DATE = #{movieDate} 
+			            AND MOV_THEATER_TIME = #{movieTime} )
+	</select>
+	
+</mapper>

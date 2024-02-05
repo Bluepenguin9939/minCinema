@@ -81,14 +81,14 @@ section a{
 	/*background-color: gray; */
 	/*margin: 5px;*/
 	padding-top : 5px;
-	padding-left: 25px;
+	padding-left: 30px;
 	padding-right: 5px;
 	text-align: center;
 	font-weight: bold;
 }
 
 
-.editBtn, .deleteBtn{
+.editBtn, .deleteBtn, .insertBtn{
 	
 	margin-left: 40px;
 	/*margin-right: 10px;*/

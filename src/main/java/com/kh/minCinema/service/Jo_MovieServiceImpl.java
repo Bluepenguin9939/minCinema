@@ -9,9 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-
-import com.kh.minCinema.domain.Je_MovieReservDTO;
-
+import com.kh.minCinema.domain.Je_MovieDateInfoDTO;
 import com.kh.minCinema.domain.Jo_AttachVO;
 
 import com.kh.minCinema.domain.Jo_MovieVO;
@@ -85,8 +83,8 @@ public class Jo_MovieServiceImpl implements Jo_MovieService {
 	}
 	
 	@Override//by Je 추가
-	public List<Je_MovieReservDTO> getMovieTitleAndCode() {
-		List<Je_MovieReservDTO> list = movieMapper.selectTitleAndCode();
+	public List<Je_MovieDateInfoDTO> getMovieTitleAndCode() {
+		List<Je_MovieDateInfoDTO> list = movieMapper.selectTitleAndCode();
 		return list;
 	}
 

@@ -319,9 +319,9 @@ $(function(){
 	var movieTheater = "${Je_ReservationInfoVO.movieTheater}";
 	
 	var sendData = { 
-					"mov_date" : movieDate,  //영화상영일
+					"mov_screen_date" : movieDate,  //영화상영일
 					"mov_start_time" : movieTime,  //영화 시작시간
-					"mov_loc" :  movieTheater//영화 상영관
+					"mov_theater" :  movieTheater//영화 상영관
 					};
 	
 	console.log("sendData:",sendData);
@@ -697,7 +697,15 @@ $(function(){
 		            dataType: "json",
 		            contentType: "application/json; charset=utf-8",
 		            success: function(rdata){
-		                
+
+		            	if(rdata == true){
+		            		alert("예약완료");
+			            	window.location.replace("http://localhost/main/jo_main");
+		            	}
+		            	else if(rdata == false){
+		            		alert("예약실패");
+		            	}
+		            	
 		            },
 		            error: function(){
 		                

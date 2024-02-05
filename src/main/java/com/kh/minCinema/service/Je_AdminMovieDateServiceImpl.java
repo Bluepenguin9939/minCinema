@@ -5,12 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.kh.minCinema.domain.Je_MovieReservDTO;
+import com.kh.minCinema.domain.Je_MovieDateInfoDTO;
 import com.kh.minCinema.domain.Jo_MovieVO;
 import com.kh.minCinema.mapper.Je_AdminMoiveDateMapper;
-import com.kh.minCinema.mapper.Je_MovieDateMapper;
-import com.kh.minCinema.mapper.Je_MovieLocMapper;
-import com.kh.minCinema.mapper.Je_MovieTimeMapper;
 
 import lombok.extern.log4j.Log4j;
 
@@ -30,6 +27,47 @@ public class Je_AdminMovieDateServiceImpl implements Je_AdminMovieDateService {
 		
 		return list;
 	}
+	
+	@Override
+	public List<Je_MovieDateInfoDTO> movieDates(String mov_code) {
+		// TODO Auto-generated method stub
+		List<Je_MovieDateInfoDTO> list = je_AdminMovieDateMapper.movieDates(mov_code);
+		
+		return list;
+	}
+
+	@Override
+	public int addDate(Je_MovieDateInfoDTO je_MovieDateInfoDTO) {
+		
+		int count = je_AdminMovieDateMapper.insertDate(je_MovieDateInfoDTO);
+		
+		return count;
+	}
+	
+	@Override
+	public String selectDateCode(Je_MovieDateInfoDTO je_MovieDateInfoDTO) {
+		
+		String dateCode = je_AdminMovieDateMapper.selectDateCode(je_MovieDateInfoDTO);
+		
+		return dateCode;
+	}
+
+	@Override
+	public int editDate(Je_MovieDateInfoDTO je_MovieDateInfoDTO) {
+		int count = je_AdminMovieDateMapper.updateDate(je_MovieDateInfoDTO);
+		
+		return count;
+	}
+
+	@Override
+	public int remove(String mov_date_code) {
+		int count = je_AdminMovieDateMapper.deleteDate(mov_date_code);
+		return count;
+	}
+
+	
+	
+	
 	
 	
 
