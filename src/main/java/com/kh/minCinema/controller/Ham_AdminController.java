@@ -15,11 +15,13 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.kh.minCinema.domain.Ham_CountDateVO;
 import com.kh.minCinema.domain.Ham_OneononeVO;
 import com.kh.minCinema.domain.Ham_TestVO;
+import com.kh.minCinema.domain.Heo_MemberVO;
 import com.kh.minCinema.domain.Heo_NoticeCriteria;
 import com.kh.minCinema.domain.Heo_NoticePageDTO;
 import com.kh.minCinema.domain.Heo_NoticeVO;
 import com.kh.minCinema.service.Ham_OneononeService;
 import com.kh.minCinema.service.Ham_TestService;
+import com.kh.minCinema.service.Heo_MemberService;
 import com.kh.minCinema.service.Heo_NoticeService;
 
 import lombok.extern.log4j.Log4j;
@@ -38,6 +40,9 @@ public class Ham_AdminController {
 	
 	@Autowired
 	private Ham_OneononeService ham_OneononeService;
+	
+	@Autowired
+	private Heo_MemberService heo_MemberService;
 	
 	@GetMapping("/ham_test3")
 	public void ham_test3() {
@@ -58,8 +63,8 @@ public class Ham_AdminController {
 	}
 	//관리자페이지 - 테스트 멤버 목록 
 	@GetMapping("/ham_cmanagement")
-	public void management(Model model, Ham_TestVO testVO) {
-		 List<Ham_TestVO> list = ham_TestService.testMemberList(testVO);
+	public void management(Model model, Heo_MemberVO memberVO) {
+		 List<Heo_MemberVO> list = heo_MemberService.memberList(memberVO);
 		 System.out.println("회원관리리스트:"+list);
 		 model.addAttribute("list",list);
 		 
@@ -68,8 +73,8 @@ public class Ham_AdminController {
 	//관리자페이지 - 테스트 멤버 생성 
 	@PostMapping("/testMember")
 //	@ResponseBody
-	public String mct(Ham_TestVO testVO,RedirectAttributes rttr) {
-		int count = ham_TestService.TestInsert(testVO);
+	public String mct(Heo_MemberVO heo_MemberVO,RedirectAttributes rttr) {
+		int count = heo_MemberService.register(heo_MemberVO);
 		boolean result = (count == 1) ? true : false; 
 		rttr.addFlashAttribute("result", result);
 		return "redirect:/admin/ham_cmanagement";
@@ -78,9 +83,8 @@ public class Ham_AdminController {
 	//관리자페이지 - 테스트 멤버 삭제 
 	@PostMapping("/testDel")
 	@ResponseBody
-	public String delete(String tmid) {
-		System.out.println("tmid:"+tmid);
-		int count = ham_TestService.testMemberDelete(tmid);
+	public String delete(String mid) {
+		int count = heo_MemberService.memberDelete(mid);
 		boolean result = (count == 1)? true : false;
 		return String.valueOf(result);
 	}
