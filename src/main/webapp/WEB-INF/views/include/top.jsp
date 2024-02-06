@@ -159,7 +159,6 @@ $(function() {
 										 </c:otherwise>
 									 </c:choose>
 									 <a class="dropdown-item" href="/myPage/jo_myInterest">관심목록</a>
-									 <a class="dropdown-item" href="#">예매내역</a>
 									 <a class="dropdown-item" href="/member/logout">로그아웃</a>
 								</div>
 							</div>

@@ -670,6 +670,10 @@ $(function(){
 		
 		var resultCost = parseInt( $("#resultCost").text() );
 		var payCost = parseInt( $("#subCost").text() );
+		payCost = (payCost * (-1));
+		
+		var discount = $("#disCount").val();
+		console.log(discount);
 		
 		
 		if(resultCost>=0){
@@ -692,7 +696,8 @@ $(function(){
 					"age" : ageMap,//연령
 					"mid" : mid,		//아이디
 					"payCost" : payCost,	//지불금액
-					"resultCost" : resultCost	//현재 금액
+					"resultCost" : resultCost,	//현재 금액
+					"discount" : discount 	// 사용한 쿠폰
 			};
 			
 			//console.log("data:",data);
@@ -736,7 +741,6 @@ $(function(){
 	
 </script>
 <div>
-	
 	<div class="reserve-container">
 		<div class="seat-part">
 			<div class="reserve-title text-center">좌석배정</div>
