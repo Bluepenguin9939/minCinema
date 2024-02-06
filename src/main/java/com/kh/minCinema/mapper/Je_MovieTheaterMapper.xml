@@ -22,10 +22,11 @@
 	<!-- 좌석 중복예약 체크 -->
 	<select id="dupCheck" resultType="int">
 		SELECT  COUNT(*) FROM MC_MOVIE_THEATER 
-			WHERE  MOV_THEATER = #{movieTheater} 
+			WHERE  MOV_THEATER = #{movieTheater}
 			       AND MOV_THEATER_DATE = #{movieDate} 
 			       AND MOV_THEATER_TIME = #{movieTime} 
 			       AND SEAT_NAME_RES = #{reservedSeat}
 	</select>
+	
 	
 </mapper>
