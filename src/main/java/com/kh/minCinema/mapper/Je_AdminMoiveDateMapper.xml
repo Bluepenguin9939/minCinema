@@ -6,7 +6,7 @@
 	
 	
 	<select id="movieLists" resultType="com.kh.minCinema.domain.Jo_MovieVO">
-		SELECT MOV_CODE,MOV_TITLE,MOV_RELEASEDATE FROM MC_MOVIE
+		SELECT MOV_CODE,MOV_TITLE,MOV_RELEASEDATE,MOV_RUNTIME FROM MC_MOVIE
 			ORDER BY MOV_CODE ASC
 	</select>
 	

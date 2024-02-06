@@ -199,7 +199,7 @@ span[data-select='noselect'] {
 
 var seatMap = new Map();
 
-function mouseHoverOronClick(that , pCount, bgColor, color , method){
+function mouseHoverOronClick(that , pCount, bgColor, color , method){ 
 	
 	var thatNT = that.next();
 	var thatNT_text = that.next().text();
@@ -498,8 +498,7 @@ $(function(){
 		
 		if(select=="unselect"){
 			var currentSeat = parseInt( $(".currentSeat").text() );
-			currentSeat = currentSeat - parseInt(pCount);
-			$(".currentSeat").text(currentSeat);
+			
 			
 			var age;
 			
@@ -522,6 +521,8 @@ $(function(){
 					$("<div id="+seat+" data-age='"+age+"' class='seatMember pl-2 d-flex flex-nowrap'>"+seat+"("+ageCheck+")</div>").appendTo(appendId);
 				});
 				
+				currentSeat = currentSeat - parseInt(pCount);
+				$(".currentSeat").text(currentSeat);
 				
 				break;
 			case "2":
@@ -545,6 +546,9 @@ $(function(){
 					$.each(seatArray, function (index, seat) {
 						$("<div id="+seat+" data-age='"+age+"' class='seatMember pl-2 d-flex flex-nowrap'>"+seat+"("+ageCheck+")</div>").appendTo(appendId);
 					});
+					
+					currentSeat = currentSeat - parseInt(pCount);
+					$(".currentSeat").text(currentSeat);
 				}
 				break;
 				
@@ -576,6 +580,9 @@ $(function(){
 						$.each(seatArray, function (index, seat) {
 							$("<div id="+seat+" data-age='"+age+"' class='seatMember pl-2 d-flex flex-nowrap'>"+seat+"("+ageCheck+")</div>").appendTo(appendId);
 						});
+					
+						currentSeat = currentSeat - parseInt(pCount);
+						$(".currentSeat").text(currentSeat);
 					}
 
 				}
@@ -660,7 +667,7 @@ $(function(){
 	
 	
 	
-	$(".payButton").click(function() {
+	$(".payButton").click(function() {  //////계산부분
 		//console.log("빼꼼?");
 		var reservedSeat = [];
 		var ageMap = {};
