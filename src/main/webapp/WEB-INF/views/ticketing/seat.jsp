@@ -692,9 +692,9 @@ $(function(){
 					"movieTheater" : movieTheater,	//영화 상영관,
 					"reservedSeat" : reservedSeat,   //예약한좌석번호들
 					"age" : ageMap,//연령
-					"mid" : mid,
-					"payCost" : payCost,
-					"resultCost" : resultCost
+					"mid" : mid,		//아이디
+					"payCost" : payCost,	//지불금액
+					"resultCost" : resultCost	//현재 금액
 			};
 			
 			//console.log("data:",data);
@@ -834,9 +834,9 @@ $(function(){
 			        		<span style="font-size: 20px">할인쿠폰 :</span>
 			        		<select class="form-control" id="disCount">
 								<option value="0">없음</option>
-								<option value="5">5% 할인쿠폰 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp(${loginInfo.coupon5})</option>
-								<option value="10">10% 할인쿠폰 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp(${loginInfo.coupon10})</option>
-								<option value="15">15% 할인쿠폰 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp(${loginInfo.coupon15})</option>
+								<option value="5">&ensp;5% 할인쿠폰 &emsp;&emsp;&emsp;&nbsp;(${loginInfo.coupon5})</option>
+								<option value="10">10% 할인쿠폰 &emsp;&emsp;&emsp;&nbsp;(${loginInfo.coupon10})</option>
+								<option value="15">15% 할인쿠폰 &emsp;&emsp;&emsp;&nbsp;(${loginInfo.coupon15})</option>
 							</select>
 			        	</div>
 		        	</div>
