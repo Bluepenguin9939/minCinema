@@ -48,4 +48,9 @@ public class Heo_MemberServiceImpl implements Heo_MemberService {
 		return heo_MemberMapper.memberDelete(mid);
 	}
 
+	@Override
+	public String getActive(String mid) {
+		return heo_MemberMapper.selectActive(mid);
+	}
+
 }

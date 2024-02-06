@@ -35,9 +35,15 @@
 	<!-- 활동상태 갱신 -->
 	<update id="updateActive">
 		update MC_MEMBER set
-		mactive = #{ben}
+		mactive = #{mactive}
 		where mid = #{mid}
 	</update>
+	<!-- 활동상태 확인 -->
+	<select id="selectActive" resultType="String">
+		select mactive 
+		from mc_member
+		where mid = #{mid}
+	</select>
 	<!-- 포인트 변경 -->
 	<update id="updatePoint">
 		update MC_MEMBER set
@@ -56,7 +62,7 @@
 	<select id="memberList" resultType="com.kh.minCinema.domain.Heo_MemberVO">
 		SELECT * FROM (
 		    SELECT 
-		         mno,mid,mpw,mnick,mname,memail,mtel
+		         mno,mid,mpw,mnick,mname,memail,mtel,mactive
 		    FROM MC_MEMBER
 		    <include refid="search"></include>
 		    )
