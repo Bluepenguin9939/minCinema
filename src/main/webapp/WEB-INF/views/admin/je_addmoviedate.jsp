@@ -23,10 +23,8 @@ $(function(){
 	
 	
 	$.post("/admin/movieTitleLists",function(rData){
-		console.log("rData: ",rData);
 		var movieList = rData;
 		$.each(movieList,function(i,value){
-			console.log("aa:",value.mov_title);
 			$("#movieList").append("<option data-code='"+value.mov_code+"'" 
 									+"data-releaseDate='"+value.mov_releaseDate+"'"
 									+"data-runtime='"+value.mov_runtime+"'"

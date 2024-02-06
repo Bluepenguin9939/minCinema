@@ -324,11 +324,10 @@ $(function(){
 					"mov_theater" :  movieTheater//영화 상영관
 					};
 	
-	console.log("sendData:",sendData);
 	
+	//시작시 데이터베이스에서 이미 예약된 좌석정보 가져오기
 	$.post("/ticketing/reservedSeats",sendData,function(rData){
 		
-		//console.log("rData:",rData);
 		$.each(rData, function(index, value){
 			
 			$("#id-"+value).attr("data-select","noselect");
@@ -600,11 +599,10 @@ $(function(){
 			var age;
 			
 			var currentSeat = parseInt( $(".currentSeat").text() );
-			currentSeat = currentSeat + parseInt(pCount);
+			currentSeat = currentSeat + parseInt(seatArray.length);
 			$(".currentSeat").text(currentSeat); //좌석개수 설정
 			
 			$.each(seatArray, function (index, seat) { /*ㅇdiv 정리*/
-				 	//console.log('element', index, seat);
 				  	$("#id-"+seat).css("background-color","white");
 					$("#id-"+seat).css("color","black");
 					$("#id-"+seat).attr("data-select","unselect");
@@ -613,8 +611,8 @@ $(function(){
 					age = $(id).attr("data-age");
 					$(id).remove();
 			});
-			//console.log(ticketCost);
-			//$("#ticketCost").text(ticketCost);
+			
+			
 			if(age == "adult"){ ticketCost = ticketCost - 10000 * seatArray.length }
 			else if(age == "teen"){ ticketCost = ticketCost - 8000 * seatArray.length }
 			$("#ticketCost").text(ticketCost);
