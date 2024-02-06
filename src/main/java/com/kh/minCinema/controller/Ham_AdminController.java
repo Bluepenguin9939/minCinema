@@ -19,10 +19,12 @@ import com.kh.minCinema.domain.Heo_MemberVO;
 import com.kh.minCinema.domain.Heo_NoticeCriteria;
 import com.kh.minCinema.domain.Heo_NoticePageDTO;
 import com.kh.minCinema.domain.Heo_NoticeVO;
+import com.kh.minCinema.domain.Heo_PointVO;
 import com.kh.minCinema.service.Ham_OneononeService;
 import com.kh.minCinema.service.Ham_TestService;
 import com.kh.minCinema.service.Heo_MemberService;
 import com.kh.minCinema.service.Heo_NoticeService;
+import com.kh.minCinema.service.Heo_PointService;
 
 import lombok.extern.log4j.Log4j;
 
@@ -44,6 +46,9 @@ public class Ham_AdminController {
 	@Autowired
 	private Heo_MemberService heo_MemberService;
 	
+	@Autowired
+	private Heo_PointService heo_PointService;
+	
 	@GetMapping("/ham_test3")
 	public void ham_test3() {
 		
@@ -57,6 +62,9 @@ public class Ham_AdminController {
 		// 관리자 답장
 		List<Ham_CountDateVO> oList = ham_OneononeService.inquiryReplyCount();
 		System.out.println("오픈데이트리수투:"+oList);
+		List<Heo_PointVO> pList = heo_PointService.pointCount();
+		
+		model.addAttribute("pList", pList);
 		model.addAttribute("oList", oList);
 		model.addAttribute("list", list);
 		
