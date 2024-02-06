@@ -1,6 +1,7 @@
 package com.kh.minCinema.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -36,11 +37,18 @@ public class Heo_MemberController {
 		return "redirect:/member/jo_login";
 	}
 	
-	@PostMapping("/updateBen")
+	@PostMapping("/getActive")
+	@ResponseBody
+	public String getActive(String mid) {
+		String active = heo_MemberService.getActive(mid);
+		return active;
+	}
+	
+	@PostMapping(value = "/updateBen", produces = MediaType.APPLICATION_PROBLEM_JSON_VALUE)
 	@ResponseBody
 	public boolean updateBen(Heo_MemberVO heo_MemberVO) {
 		int result = heo_MemberService.updateBen(heo_MemberVO);
-		return (result != 1)? true : false;
+		return (result == 1)? true : false;
 	}
 	
 	@PostMapping("/login")

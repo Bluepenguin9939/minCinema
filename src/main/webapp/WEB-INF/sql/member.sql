@@ -12,5 +12,6 @@ create table MC_MEMBER(
     mregdate date default sysdate							-- 가입날짜
 );
 
+create sequence seq_mno
 
 DROP table MC_MEMBER;

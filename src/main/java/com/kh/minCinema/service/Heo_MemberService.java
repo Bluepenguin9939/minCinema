@@ -16,4 +16,6 @@ public interface Heo_MemberService {
 	public List<Heo_MemberVO> memberList(Heo_MemberVO vo);
 	
 	public int memberDelete(String mid);
+	
+	public String getActive(String mid);
 }
