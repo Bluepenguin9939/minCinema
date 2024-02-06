@@ -97,7 +97,6 @@ public class Je_MovieDateServiceImpl implements Je_MovieDateService {
 					.reservedSeat(reservedSeat)
 					.build();
 			count = je_MovieTheaterMapper.insertReservedSeats(je_InsertResSeatDTO);
-			log.info("@count:"+count);
 		}
 		return count;
 	}
