@@ -87,13 +87,13 @@ public class Je_Movie_ReservationController {
 	@ResponseBody
 	public String cost(@RequestBody Je_ReservationInfoVO je_ReservationInfoVO) {
 		//log.info("cost...");
-		//log.info(">>>>>>>>>>>>>>>>>>"+je_ReservationInfoVO);
+		log.info(">>>>>>>>>>>>>>>>>>"+je_ReservationInfoVO);
 		//log.info(">>>>>>>>>>>>>>>>>>"+je_ReservationInfoVO.getAge());
 		//log.info(">>>>>>>>>>>>>>>>>>"+je_ReservationInfoVO.getReservedSeat());
 		
 		int count = je_MovieDateService.insertReservedSeats(je_ReservationInfoVO);
 		
-		log.info("count:"+count);
+		//log.info("count:"+count);
 		
 		if(count==1) {
 			return "true";

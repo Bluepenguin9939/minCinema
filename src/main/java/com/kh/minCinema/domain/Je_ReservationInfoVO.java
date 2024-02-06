@@ -21,5 +21,6 @@ public class Je_ReservationInfoVO {
 	Map<String, String> age;  //예약 좌석 연령
 	
 	String payCost;//지불비용
+	String resultCost; // 정산비용
 	String mid;//mid
 }

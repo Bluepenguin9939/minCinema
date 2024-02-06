@@ -65,28 +65,41 @@ public class Je_AdminMovieDateController {
 	public String addMovieDate(Je_MovieDateInfoDTO je_MovieDateInfoDTO) {
 		log.info("@@"+je_MovieDateInfoDTO);
 		//List<Jo_MovieVO> list = je_AdminMovieDateService.movieDataLists();
-		int count = je_AdminMovieDateService.addDate(je_MovieDateInfoDTO);
+		int count1 = je_AdminMovieDateService.dupCheck(je_MovieDateInfoDTO);
+		
+		if(count1 == 0) {
+			int count = je_AdminMovieDateService.addDate(je_MovieDateInfoDTO);
+			
+			if(count == 1) {
+				String dateCode = je_AdminMovieDateService.selectDateCode(je_MovieDateInfoDTO);
+				return dateCode;
+			}
+			return "false1";
+		}
+		
+		return "false0";
+		/*int count = je_AdminMovieDateService.addDate(je_MovieDateInfoDTO);
 		
 		if(count == 1) {
 			String dateCode = je_AdminMovieDateService.selectDateCode(je_MovieDateInfoDTO);
 			return dateCode;
-		}
-		return "false";
-		//return list;
+		}*/
 	}
 	
 	@PostMapping(value = "/editMovieDate") //수정
 	@ResponseBody
 	public String editMovieDate(Je_MovieDateInfoDTO je_MovieDateInfoDTO) {
 		//log.info("@@"+je_MovieDateInfoDTO);
-		List<Jo_MovieVO> list = je_AdminMovieDateService.movieDataLists();
-		int count = je_AdminMovieDateService.editDate(je_MovieDateInfoDTO);
+		int count1 = je_AdminMovieDateService.dupCheck(je_MovieDateInfoDTO);
 		
-		if(count == 1) {
-			return "true";
+		if(count1 == 0) {
+			int count = je_AdminMovieDateService.editDate(je_MovieDateInfoDTO);
+			
+			if(count == 1) {
+				return "true";
+			}
 		}
 		return "false";
-		//return list;
 	}
 	
 	@PostMapping(value = "/removeMovieDate") //삭제

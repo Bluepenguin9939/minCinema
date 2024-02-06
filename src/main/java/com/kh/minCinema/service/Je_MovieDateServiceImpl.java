@@ -81,10 +81,9 @@ public class Je_MovieDateServiceImpl implements Je_MovieDateService {
 					.build();
 			count = je_MovieTheaterMapper.dupCheck(je_InsertResSeatDTO);
 			
-			if(count == 0) {
+			if(count != 0) {
 				return 0;
 			}
-			//log.info("@count:"+count);
 		}
 		
 		
@@ -94,16 +93,13 @@ public class Je_MovieDateServiceImpl implements Je_MovieDateService {
 					.movieTheater(je_ReservationInfoVO.getMovieTheater())
 					.movieDate(je_ReservationInfoVO.getMovieDate())
 					.movieTime(je_ReservationInfoVO.getMovieTime())
+					.mid(je_ReservationInfoVO.getMid())
 					.reservedSeat(reservedSeat)
 					.build();
 			count = je_MovieTheaterMapper.insertReservedSeats(je_InsertResSeatDTO);
-			//log.info("@count:"+count);
+			log.info("@count:"+count);
 		}
-		// TODO Auto-generated method stub
 		return count;
 	}
-
-	
-
 
 }

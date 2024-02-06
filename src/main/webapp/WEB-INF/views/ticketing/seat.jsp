@@ -311,7 +311,7 @@ function mouseHoverOronClick(that , pCount, bgColor, color , method){
 }
 	
 $(function(){
-	/*테스트할 임의의예약 좌석들*/
+	
 	
 	var movieTitle = "${Je_ReservationInfoVO.movieTitle}";
 	var movieDate =  "${Je_ReservationInfoVO.movieDate}";
@@ -332,10 +332,6 @@ $(function(){
 		$.each(rData, function(index, value){
 			
 			$("#id-"+value).attr("data-select","noselect");
-			//$("#id-B06").attr("data-select","noselect");
-			//$("#id-C07").attr("data-select","noselect");
-			//$("#id-D08").attr("data-select","noselect");
-		//	$("#id-E11").attr("data-select","noselect");
 		});
 		
 		var bookSeat = rData.length;
@@ -628,7 +624,7 @@ $(function(){
 			});
 			
 		}
-		$("#subCost").text(ticketCost+"원");
+		$("#subCost").text(ticketCost);
 		var point = parseInt( $("#myPoint").text() );
 		var result = point - ticketCost;
 		
@@ -647,16 +643,17 @@ $(function(){
 				var subCost = ticketCost-disCountCost;
 				
 				var resultCost = point - subCost;			
-
-				$("#subCost").text(subCost+"(할인)원");
+				$("#disCountText").text("(할인)");
+				$("#subCost").text(subCost);
 				$("#resultCost").text(resultCost);
 			}
 			else{
 				var subCost = ticketCost;
 				
 				var resultCost = point - subCost;			
-
-				$("#subCost").text(subCost+"원");
+				
+				$("#disCountText").text("");
+				$("#subCost").text(subCost);
 				$("#resultCost").text(resultCost);
 			}
 		}
@@ -674,6 +671,8 @@ $(function(){
 		var ticketListArray = $(".seatMember");
 		
 		var resultCost = parseInt( $("#resultCost").text() );
+		var payCost = parseInt( $("#subCost").text() );
+		
 		
 		if(resultCost>=0){
 			
@@ -683,20 +682,25 @@ $(function(){
 				
 			});
 			
+			var mid = "${loginInfo.mid}";
+			//console.log("mid:",mid);
 			
 			var data = {
 					"movieTitle" :  movieTitle,//영화제목
 					"movieDate" : movieDate ,//영화상영일
 					"movieTime" :  movieTime,//영화 시작시간,
-					"movieTheater" : movieTheater,//영화 상영관,
-					"reservedSeat" : reservedSeat,                    //예약한좌석번호들
-					"age" : ageMap//연령
+					"movieTheater" : movieTheater,	//영화 상영관,
+					"reservedSeat" : reservedSeat,   //예약한좌석번호들
+					"age" : ageMap,//연령
+					"mid" : mid,
+					"payCost" : payCost,
+					"resultCost" : resultCost
 			};
 			
-			console.log("data:",data);
+			//console.log("data:",data);
 			var url = "/ticketing/cost";
 			
-
+			
 			$.ajax({
 		            url: url,
 		            type: "POST",
@@ -724,7 +728,7 @@ $(function(){
 			alert("포인트가 부족합니다!!!!");
 			
 		}
-
+		
 		
 		
 	});
@@ -839,10 +843,14 @@ $(function(){
 		        	
 		        	<div class="rounded text-center" style="width: 100%; background-color: #9dff71;">
 		        		<div class="rounded" style="background-color: white;font-size: 20px">결제내역</div>
-		        		<div class="text-right" style="font-size: 28px">${loginInfo.mpoint}</div>
-		        		<div id="subCost" class="text-right" style="font-size: 28px">0원</div>
+		        		<div class="text-right" style="font-size: 28px">${loginInfo.mpoint}  &nbspP</div>
+		        		<div class="text-right" style="font-size: 28px">
+		        			<span id="disCountText"></span><span id="subCost">0</span>원
+		        		</div>
 		        		<div class="text-right" style="font-size: 20px">====================</div>
-		        		<div id="resultCost" class="text-right" style="font-size: 28px">0원</div>
+		        		<div class="text-right" style="font-size: 28px">
+		        			<span id="resultCost">0</span>원
+		        		</div>
 		        	</div>
 		        </div><!-- count -->
 		        

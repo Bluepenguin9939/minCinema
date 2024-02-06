@@ -17,5 +17,5 @@ public class Je_InsertResSeatDTO {
 	String movieTime;  //영화 시작시간
 	String movieTheater; //영화 상영관
 	String reservedSeat; //예약한 좌석번호
-	
+	String mid; // 예약한 아이디
 }

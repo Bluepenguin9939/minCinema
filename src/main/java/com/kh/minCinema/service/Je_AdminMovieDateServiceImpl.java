@@ -35,6 +35,12 @@ public class Je_AdminMovieDateServiceImpl implements Je_AdminMovieDateService {
 		
 		return list;
 	}
+	
+	@Override
+	public int dupCheck(Je_MovieDateInfoDTO je_MovieDateInfoDTO) {
+		int count = je_AdminMovieDateMapper.dupCheck(je_MovieDateInfoDTO);		
+		return count;
+	}
 
 	@Override
 	public int addDate(Je_MovieDateInfoDTO je_MovieDateInfoDTO) {
@@ -65,9 +71,6 @@ public class Je_AdminMovieDateServiceImpl implements Je_AdminMovieDateService {
 		return count;
 	}
 
-	
-	
-	
 	
 	
 
