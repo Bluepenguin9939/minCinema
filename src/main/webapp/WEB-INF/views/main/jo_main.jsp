@@ -64,7 +64,10 @@ $(function() {
 	var acount = 10;
 	var begin = 11;
 	var end = 0;;
-	MoreMovie(acount);
+	
+	if (${fn:length(movieList)} > acount) {
+		$("#btnMoreMovie").css("display", "block")
+	}
 	
 	$("#btnMoreMovie").click(function() {
 		$(this).css("display", "none");
@@ -130,7 +133,7 @@ $(function() {
 	});
 });
 function MoreMovie(acount) {
-	if (${fn:length(movieList)} > acount && ${fn:length(movieList) % 5 > 0 && fn:length(movieList) % 5 < 5}) {
+	if (${fn:length(movieList) % 5 > 0 && fn:length(movieList) % 5 < 5}) {
 		$("#btnMoreMovie").css("display", "block");
 	}
 } 
