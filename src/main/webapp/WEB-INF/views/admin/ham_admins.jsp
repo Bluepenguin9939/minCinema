@@ -44,15 +44,14 @@
 								 	<div class="reply-Count" data-replyCount="${vo.replyCount}"></div>
 								 </c:forEach>
 							</div>
-<<<<<<< HEAD
+
 							<div id="sisi3" >
 								 <c:forEach var="vo" items="${pList}" >
-								 	<div  class="point_pdate" >${vo.pdate}</div>
-								 	<div class="point_ppoint" >${vo.ppoint}</div>
+								 	<div class="point_pdate" data_pdate="${vo.pdate}">${vo.pdate}</div>
+								 	<div class="point_ppoint" data_ppoint="${vo.ppoint}">${vo.ppoint}</div>
 								 </c:forEach>
 							</div>
-=======
->>>>>>> branch 'master' of https://github.com/Bluepenguin9939/minCinema.git
+
 						</div>
 				</div>
 				
@@ -82,6 +81,8 @@ $(function(){
 	var monthCount = $(".month-Count").attr("data-monthCount");
 	var monthCount2 = parseInt(monthCount);
 	console.log("send_date:",send_date);
+	var pdate = $(".point_pdate").attr("data_pdate");
+	
 	 
 	
 	//듀얼 막대 차트 -유저
