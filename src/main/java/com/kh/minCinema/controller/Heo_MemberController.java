@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kh.minCinema.domain.Heo_LoginDTO;
 import com.kh.minCinema.domain.Heo_MemberVO;
+import com.kh.minCinema.domain.Jo_CouponVO;
 import com.kh.minCinema.service.Heo_MemberService;
 import com.kh.minCinema.service.Jo_AttachService;
 import com.kh.minCinema.service.Jo_CouponService;
@@ -48,14 +49,38 @@ public class Heo_MemberController {
 		if (heo_MemberVO == null) {
 			return;
 		}
-		int allCoupon = couponService.getAllCoupon(heo_MemberVO.getMid());
-		System.out.println("allCoupon : " + allCoupon);
-		if (allCoupon != 0) {
-			heo_MemberVO.setCoupon(allCoupon);
+		
+		int coupon5 = 0;
+		int coupon10 = 0;
+		int coupon15 = 0;
+		
+		for (int i = 5; i <= 15; i += 5) {
+			Jo_CouponVO couponVO = Jo_CouponVO.builder()
+					.mid(heo_MemberVO.getMid()).discount(i)
+					.build();
+			int discountCoupon = couponService.getCouponCount(couponVO);
+			if (i == 5) {
+				coupon5 = discountCoupon;
+			} else if (i == 10) {
+				coupon10 = discountCoupon;
+			} else if (i == 15) {
+				coupon15 = discountCoupon;
+			}
+		}
+		if (coupon5 != 0) {
+			heo_MemberVO.setCoupon5(coupon5);
+		}
+		if (coupon10 != 0) {
+			heo_MemberVO.setCoupon10(coupon10);
+		}
+		if (coupon15 != 0) {
+			heo_MemberVO.setCoupon15(coupon15);
 		}
 		Heo_MemberVO memberVO = attachService.getFile(heo_MemberVO.getMid());
 		if (memberVO != null) {
-			memberVO.setCoupon(allCoupon);
+			memberVO.setCoupon5(coupon5);
+			memberVO.setCoupon10(coupon10);
+			memberVO.setCoupon15(coupon15);
 			model.addAttribute("loginInfo", memberVO);
 		} else {
 			model.addAttribute("loginInfo", heo_MemberVO);

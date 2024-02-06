@@ -26,7 +26,9 @@ public class Heo_MemberVO {
 	private String upload_path;
 	private String file_name;
 	private String uuid;
-	private Integer coupon;
+	private Integer coupon5;
+	private Integer coupon10;
+	private Integer coupon15;
 	
 	private String type; // 검색 조건()
 	private String keyword; // 검색어 (사용자 입력)

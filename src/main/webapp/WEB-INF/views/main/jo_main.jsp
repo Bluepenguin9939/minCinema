@@ -128,11 +128,11 @@ $(function() {
 			}
 		}
 		acount += 5;
-		MoreMovie(acount);
+		MoreMovie();
 		begin += 5;
 	});
 });
-function MoreMovie(acount) {
+function MoreMovie() {
 	if (${fn:length(movieList) % 5 > 0 && fn:length(movieList) % 5 < 5}) {
 		$("#btnMoreMovie").css("display", "block");
 	}
@@ -173,22 +173,12 @@ function MoreMovie(acount) {
 				  	</div>
 				  	<div class="carousel-item">
 				  		<div class="d-flex align-items-center justify-content-center">
-					    	<a href="#">
-						    	<img src="/resources/img/mov07.jpg" alt="영화7" 
-						    		height="500" class="slide-movie-image">
+				  		<c:forEach var="vo" items="${slideList}" begin="8" end="11">
+					    	<a href="#" class="a-slide-img" data-mov_code="${vo.mov_code}">
+						    	<img src="/display?fileName=${vo.upload_path}/${vo.file_name}" 
+						    		alt="영화4" height="500" class="slide-movie-image">
 				    		</a>
-					    	<a href="#">
-						    	<img src="/resources/img/mov08.jpg" alt="영화8" 
-						    		height="500" class="slide-movie-image">
-				    		</a>
-					    	<a href="#">
-						    	<img src="/resources/img/mov09.jpg" alt="영화9" 
-						    		height="500" class="slide-movie-image">
-				    		</a>
-					    	<a href="#">
-						    	<img src="/resources/img/mov09.jpg" alt="영화9" 
-						    		height="500" class="slide-movie-image">
-				    		</a>
+			    		</c:forEach>
 				    	</div>
 				  	</div>
 				</div>
