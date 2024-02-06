@@ -2,6 +2,7 @@ package com.kh.minCinema.mapper;
 
 import java.util.List;
 
+import com.kh.minCinema.domain.Ham_MovieCountDTO;
 import com.kh.minCinema.domain.Je_MovieDateInfoDTO;
 import com.kh.minCinema.domain.Jo_MovieVO;
 import com.kh.minCinema.domain.Jo_SearchDTO;
@@ -21,4 +22,6 @@ public interface Jo_MovieMapper {
 	public List<Jo_MovieVO> selectSlideMovie();
 	
 	public List<Je_MovieDateInfoDTO> selectTitleAndCode();// by Je 추가
+	
+	public List<Ham_MovieCountDTO> selectMovieCount();// 관리자 차트 추가용 h
 }
