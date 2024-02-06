@@ -19,4 +19,6 @@ public interface Heo_MemberMapper {
 	public List<Heo_MemberVO> memberList(Heo_MemberVO vo);
 
 	public int memberDelete(String mid);
+	
+	public String selectActive(String mid);
 }
