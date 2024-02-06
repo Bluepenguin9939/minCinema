@@ -7,6 +7,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
+import com.kh.minCinema.domain.Jo_CouponVO;
 import com.kh.minCinema.domain.Jo_HeartDTO;
 import com.kh.minCinema.mapper.Jo_CouponMapper;
 import com.kh.minCinema.mapper.Jo_HeartMapper;
@@ -26,5 +27,13 @@ public class Jo_CouponMapperTests {
 	public void testSelectAllCoupon() {
 		int count = couponMapper.selectAllCoupon("test");
 		log.info(count);
+	}
+	
+	@Test
+	public void testDeleteCoupon() {
+		Jo_CouponVO couponVO = Jo_CouponVO.builder()
+				.mid("admin").discount(5)
+				.build();
+		couponMapper.deleteCoupon(couponVO);
 	}
 }
