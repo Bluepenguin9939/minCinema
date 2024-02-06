@@ -5,6 +5,13 @@
 <mapper namespace="com.kh.minCinema.mapper.Je_MovieDateMapper">
 	
 	
+	<!-- // by Je 추가 -->
+	<select id="selectTitleAndCode" resultType="com.kh.minCinema.domain.Je_MovieDateInfoDTO">
+		SELECT MOV_TITLE,MOV_CODE FROM MC_MOVIE
+			ORDER BY MOV_CODE ASC
+	</select>
+	
+	
 	<select id="movieScreenDates" resultType="String">
 		SELECT MOV_SCREEN_DATE FROM MC_MOVIE_DATE
 			WHERE MOV_CODE = #{movieCode}

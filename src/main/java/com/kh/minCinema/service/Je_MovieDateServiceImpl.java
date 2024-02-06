@@ -25,6 +25,16 @@ public class Je_MovieDateServiceImpl implements Je_MovieDateService {
 	@Autowired 
 	private Je_MovieTheaterMapper je_MovieTheaterMapper;
 	
+	
+	
+	@Override//by Je 추가
+	public List<Je_MovieDateInfoDTO> getMovieTitleAndCode() {
+		List<Je_MovieDateInfoDTO> list = je_MovieDateMapper.selectTitleAndCode();
+		return list;
+	}
+	
+	
+	
 	@Override
 	public List<String> movieScreenDates(String movieCode) {
 		

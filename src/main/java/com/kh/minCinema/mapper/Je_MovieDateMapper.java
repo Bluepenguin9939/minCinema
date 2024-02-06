@@ -11,5 +11,5 @@ public interface Je_MovieDateMapper {
 	
 	public List<Je_MovieDateInfoDTO> movieStartTimes(Je_MovieDateInfoDTO je_MovieDateInfoDTO);
 	
-
+	public List<Je_MovieDateInfoDTO> selectTitleAndCode();// by Je 추가
 }

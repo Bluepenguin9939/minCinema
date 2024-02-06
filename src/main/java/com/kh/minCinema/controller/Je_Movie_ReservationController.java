@@ -28,9 +28,6 @@ public class Je_Movie_ReservationController {
 	@Autowired
 	private Je_MovieDateService je_MovieDateService;
 	
-	@Autowired 
-	private Jo_MovieService jo_MovieService;
-	
 	@GetMapping("/booking")
 	public void booking() {
 		
@@ -40,7 +37,7 @@ public class Je_Movie_ReservationController {
 	@ResponseBody
 	public List<Je_MovieDateInfoDTO> movie_list() {
 		//영화리스트 구하기
-		List<Je_MovieDateInfoDTO> list = jo_MovieService.getMovieTitleAndCode();
+		List<Je_MovieDateInfoDTO> list = je_MovieDateService.getMovieTitleAndCode();
 		
 		return list;
 	}

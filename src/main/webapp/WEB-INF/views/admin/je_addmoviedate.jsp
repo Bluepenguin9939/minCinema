@@ -21,6 +21,8 @@
 
 $(function(){
 	
+	var mov_runtime;
+	
 	$.post("/admin/movieTitleLists",function(rData){
 		console.log("rData: ",rData);
 		var movieList = rData;
@@ -28,6 +30,7 @@ $(function(){
 			console.log("aa:",value.mov_title);
 			$("#movieList").append("<option data-code='"+value.mov_code+"'" 
 									+"data-releaseDate='"+value.mov_releaseDate+"'"
+									+"data-runtime='"+value.mov_runtime+"'"
 									+"value='"+value.mov_title+"'>"+value.mov_title+"</option>");
 		});
 		
@@ -40,6 +43,10 @@ $(function(){
 		var that = $(this);
 		//console.log("tst:",that.find("option:selected").attr('data-code'));
 		$(".screenManagements").empty(); //기존화면에 띄워져있는거 정리
+		
+		mov_runtime = $("#movieList").find("option:selected").attr("data-runtime");
+		
+		console.log("mov_runtime:",mov_runtime);
 		
 		var insertCode = $("#movieList").find("option:selected").attr("data-code");
 		
@@ -84,20 +91,17 @@ $(function(){
 		});
 		
 		
-		$.post("/admin/movieImage",codeData,function(rData){
-			//이미지 적용
+		$.post("/admin/movieImage",codeData,function(rData){//이미지 적용
 			
 			var url = rData;
 			$.each(rData,function(i,value){
 				//var upload_path = rData.upload_path;
 				if( value.upload_path.indexOf("/upload/poster/") != -1  ){
-					console.log("참");
 					var src="/display?fileName="+value.upload_path+"/"+value.file_name;
 					$("#poster").attr("src", src);
 				}
 				
 			});
-			//src="/display?fileName=${vo.attachVO.upload_path}/${vo.attachVO.file_name}"
 		});
 		
 		
@@ -177,16 +181,23 @@ $(function(){
 		var dateCode = that_p.attr("data-dateCode");
 		var deleteData = {"mov_date_code" : dateCode}
 		
-		$.post("/admin/removeMovieDate",deleteData,function(rData){
-			if(rData == "true"){
-				alert("삭제성공");
-				that.parent().remove();
-			}
-			else if(rData = "false"){
-				alert("삭제실패");
-			}
+		if(dateCode == "" || dateCode==null){
 			
-		});
+			that.parent().remove();
+		}
+		else{
+			$.post("/admin/removeMovieDate",deleteData,function(rData){
+				if(rData == "true"){
+					alert("삭제성공");
+					that.parent().remove();
+				}
+				else if(rData = "false"){
+					alert("삭제실패");
+				}
+				
+			});
+		}
+			
 		
 		
 	});////////////////////////////////////////////

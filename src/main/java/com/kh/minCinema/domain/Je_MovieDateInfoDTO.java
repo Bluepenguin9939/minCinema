@@ -18,6 +18,9 @@ public class Je_MovieDateInfoDTO {
 	private String mov_title; 	
 	private String mov_screen_date; // 영화 상영일
 	
+	private String mov_runtime; // 영화 런타임
+	
 	private String mov_start_time; // 상영시작시간
+	private String mov_end_time;  //상영 종료 시간
 	private String mov_theater;		// 상영관 (1~7 관)
 }

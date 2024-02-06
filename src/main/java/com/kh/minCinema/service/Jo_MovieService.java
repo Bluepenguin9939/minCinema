@@ -19,5 +19,4 @@ public interface Jo_MovieService {
 	
 	public List<Jo_MovieVO> getSlideMovie();
 	
-	public List<Je_MovieDateInfoDTO> getMovieTitleAndCode(); // by Je 추가
 }

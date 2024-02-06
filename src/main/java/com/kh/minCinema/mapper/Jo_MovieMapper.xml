@@ -52,9 +52,5 @@
 		SELECT * FROM MC_MOVIE
 	</select>
 	
-	<!-- // by Je 추가 -->
-	<select id="selectTitleAndCode" resultType="com.kh.minCinema.domain.Je_MovieDateInfoDTO">
-		SELECT MOV_TITLE,MOV_CODE FROM MC_MOVIE
-	</select>
 	
 </mapper>

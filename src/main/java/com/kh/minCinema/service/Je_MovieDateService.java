@@ -15,4 +15,6 @@ public interface Je_MovieDateService {
 
 	public int insertReservedSeats(Je_ReservationInfoVO je_ReservationInfoVO);
 	
+	public List<Je_MovieDateInfoDTO> getMovieTitleAndCode(); // by Je 추가
+	
 }

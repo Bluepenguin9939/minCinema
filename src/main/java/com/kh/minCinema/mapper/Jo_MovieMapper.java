@@ -20,5 +20,4 @@ public interface Jo_MovieMapper {
 	
 	public List<Jo_MovieVO> selectSlideMovie();
 	
-	public List<Je_MovieDateInfoDTO> selectTitleAndCode();// by Je 추가
 }
