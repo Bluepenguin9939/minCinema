@@ -233,7 +233,6 @@
 			<version>0.4.8</version>
 		</dependency>
 
-
 <!-- 		javax.mail -->
 		<dependency>
 			<groupId>com.sun.mail</groupId>
