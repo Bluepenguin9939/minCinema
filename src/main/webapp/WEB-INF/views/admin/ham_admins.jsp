@@ -163,13 +163,13 @@ $(function(){
 	var rCount="";
 	var rOsplit="";
 	var rCsplit="";
-=======
+
 	$(function() {
 		var send_date = $(".send-date").attr("data-send_date");
 		var monthCount = $(".month-Count").attr("data-monthCount");
 		var monthCount2 = parseInt(monthCount);
 		console.log("send_date:", send_date);
->>>>>>> branch 'master' of https://github.com/Bluepenguin9939/minCinema.git
+
 
 		//듀얼 막대 차트 -유저
 		var asd = "";
