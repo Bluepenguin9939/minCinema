@@ -46,7 +46,7 @@
 		where rn = #{rn} and 
 		sender = #{sender}
 		 </select>
-	<!-- 관리자->유저 답장 -->
+	<!-- 관리자 유저 답장 -->
 	<update id="updateInquiry"> 
 		update mc_oneonone set 
 		remessage = #{remessage},
@@ -78,4 +78,6 @@
 		GROUP BY TO_CHAR(open_date, 'MM') 
 		ORDER BY open_date
 		 </select>
+		 
+		 
 </mapper>
