@@ -76,45 +76,57 @@ $(function() {
 		var all_list = "${movieList}";
 		
 		end = all_list.split("Jo_MovieVO").length;
-		console.log("asd :",end);
-		for (var i = begin; i < end; i++) {
-			var mov_title = all_list.split("Jo_MovieVO")[i].split("mov_title=")[1].split(",")[0];
-			var mov_releaseDate = all_list.split("Jo_MovieVO")[11].split("mov_releaseDate=")[1].split(",")[0].substring(0, 4);
-			var mov_genre = all_list.split("Jo_MovieVO")[i].split("mov_genre=")[1].split(", ")[0];
-			if (mov_genre.length > 9) {
-				mov_genre = mov_genre.substring(0, 9) + "...";
+		if (end - begin > 5) {
+			end = begin + 5;
+			console.log("t :", end);
+			for (var i = begin; i < end; i++) {
+				var mov_title = all_list.split("Jo_MovieVO")[i].split("mov_title=")[1].split(",")[0];
+				var mov_releaseDate = all_list.split("Jo_MovieVO")[11].split("mov_releaseDate=")[1].split(",")[0].substring(0, 4);
+				var mov_genre = all_list.split("Jo_MovieVO")[i].split("mov_genre=")[1].split(", ")[0];
+				if (mov_genre.length > 9) {
+					mov_genre = mov_genre.substring(0, 9) + "...";
+				}
+				var mov_runtime = all_list.split("Jo_MovieVO")[i].split("mov_runtime=")[1].split(",")[0];
+				var info = mov_releaseDate + " | " + mov_genre + " | " + mov_runtime;
+				
+				var upload_path = all_list.split("Jo_MovieVO")[i].split("upload_path=")[1].split(",")[0];
+				var file_name = all_list.split("Jo_MovieVO")[i].split("file_name=")[1].split(",")[0];
+				
+				var moreDiv = $(".all-movie-list > div:last()");
+				
+				var movie_clone = $(".all-movie-list > div:eq(0) > div:eq(0)").clone();
+				movie_clone.find(".main-movie-img").attr("src", "/display?fileName=" + upload_path + "/" + file_name);
+				movie_clone.find(".movie-name").text(mov_title);
+				movie_clone.find(".info").text(info);
+				moreDiv.append(movie_clone);
 			}
-			var mov_runtime = all_list.split("Jo_MovieVO")[i].split("mov_runtime=")[1].split(",")[0];
-			var info = mov_releaseDate + " | " + mov_genre + " | " + mov_runtime;
-			
-			var upload_path = all_list.split("Jo_MovieVO")[i].split("upload_path=")[1].split(",")[0];
-			var file_name = all_list.split("Jo_MovieVO")[i].split("file_name=")[1].split(",")[0];
-			
-			var moreDiv = $(".all-movie-list > div:last()");
-			if ("${fn:length(movieList)}" - acount > 5) {
-				for (var v = 0; v < 5; v++) {
-					var movie_clone = $(".all-movie-list > div:eq(0) > div:eq(0)").clone();
-					movie_clone.find(".main-movie-img").attr("src", "/display?fileName=" + upload_path + "/" + file_name);
-					movie_clone.find(".movie-name").text(mov_title);
-					movie_clone.find(".info").text(info);
-					moreDiv.append(movie_clone);
+		} else {
+			console.log("f :", end);
+			for (var i = begin; i < end; i++) {
+				var mov_title = all_list.split("Jo_MovieVO")[i].split("mov_title=")[1].split(",")[0];
+				var mov_releaseDate = all_list.split("Jo_MovieVO")[11].split("mov_releaseDate=")[1].split(",")[0].substring(0, 4);
+				var mov_genre = all_list.split("Jo_MovieVO")[i].split("mov_genre=")[1].split(", ")[0];
+				if (mov_genre.length > 9) {
+					mov_genre = mov_genre.substring(0, 9) + "...";
 				}
-			} else {
-				var more = "${fn:length(movieList) % 5}";
-				for (var v = 0; v < more; v++) {
-					var movie_clone = $(".all-movie-list > div:eq(0) > div:eq(0)").clone();
-					movie_clone.find(".main-movie-img").attr("src", "/display?fileName=" + upload_path + "/" + file_name);
-					movie_clone.find(".movie-name").text(mov_title);
-					movie_clone.find(".info").text(info);
-					moreDiv.append(movie_clone);
-				}
+				var mov_runtime = all_list.split("Jo_MovieVO")[i].split("mov_runtime=")[1].split(",")[0];
+				var info = mov_releaseDate + " | " + mov_genre + " | " + mov_runtime;
+				
+				var upload_path = all_list.split("Jo_MovieVO")[i].split("upload_path=")[1].split(",")[0];
+				var file_name = all_list.split("Jo_MovieVO")[i].split("file_name=")[1].split(",")[0];
+				
+				var moreDiv = $(".all-movie-list > div:last()");
+				
+				var movie_clone = $(".all-movie-list > div:eq(0) > div:eq(0)").clone();
+				movie_clone.find(".main-movie-img").attr("src", "/display?fileName=" + upload_path + "/" + file_name);
+				movie_clone.find(".movie-name").text(mov_title);
+				movie_clone.find(".info").text(info);
+				moreDiv.append(movie_clone);
 			}
 		}
-		
 		acount += 5;
 		MoreMovie(acount);
 		begin += 5;
-		end += 5;
 	});
 });
 function MoreMovie(acount) {
@@ -316,24 +328,6 @@ function MoreMovie(acount) {
 						</span>
 					</div>
 				</c:forEach>
-					<c:choose>
-						<c:when test="${fn:length(vo.mov_title) > 10}">
-							<span class="movie-name">${fn:substring(vo.mov_title, 0, 10)}...</span><br>
-						</c:when>
-						<c:otherwise>
-							<span class="movie-name">${vo.mov_title}</span><br>
-						</c:otherwise>
-					</c:choose>
-					<span class="info">
-						${fn:substring(vo.mov_releaseDate, 0, 4)} | 
-						<c:if test="${fn:length(vo.mov_genre) > 8}">
-							${fn:substring(vo.mov_genre, 0, 8)}...
-						</c:if>
-						<c:if test="${fn:length(vo.mov_genre) <= 8}">
-							${vo.mov_genre}
-						</c:if>
-						 | ${vo.mov_runtime}분
-					</span>
 				</div>
 			</div>
 			<div class="d-flex justify-content-center">
