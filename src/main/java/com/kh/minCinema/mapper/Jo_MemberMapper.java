@@ -1,6 +1,7 @@
 package com.kh.minCinema.mapper;
 
 import com.kh.minCinema.domain.Jo_InfoChangeDTO;
+import com.kh.minCinema.domain.Jo_SearchPwDTO;
 
 public interface Jo_MemberMapper {
 	
@@ -11,4 +12,6 @@ public interface Jo_MemberMapper {
 	public int updatePw(Jo_InfoChangeDTO changeDTO);
 	
 	public int updateNick(Jo_InfoChangeDTO changeDTO);
+	
+	public int equalEmail(Jo_SearchPwDTO searchPwDTO);
 }
