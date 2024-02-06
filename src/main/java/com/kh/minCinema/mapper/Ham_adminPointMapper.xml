@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kh.minCinema.mapper.Ham_adminPointMapper">	
+	<!-- 관리자 -->
+	<select id="selectPoint" resultType="com.kh.minCinema.domain.Heo_PointVO">
+		select * FROM MC_POINT
+	</select>
+	
+	<!-- 관리자 페이지 월 매출액 차트 -->
+	<select id="pointCount" resultType="com.kh.minCinema.domain.Heo_PointVO"> 
+		SELECT sum(ppoint) ppoint,TO_CHAR(pdate, 'MM') pdate
+		FROM MC_POINT
+		GROUP BY TO_CHAR(pdate,'MM') 
+		ORDER BY pdate
+		 </select>
+	<!-- 고객센터 -->
+	<sql id="search">
+		<where>
+			<foreach item="type" collection="typeArr">
+				<choose>
+					<when test="type == 'M'.toString()"> mid LIKE '%' || #{keyword} || '%' </when>
+					<when test="type == 'P'.toString()"> ppoint LIKE '%' || #{keyword} || '%' </when>
+				</choose>
+			</foreach>
+		</where>
+	</sql>	
+	
+	<!-- 운영자측 전체를 조회 -->
+	<select id="AllPointList" resultType="com.kh.minCinema.domain.Heo_PointVO">
+		select pid,mid,ppoint,pcode,TO_CHAR(pdate,
+		'yyyy-MM-dd HH24:MI') pdate
+		from ( 
+			SELECT
+				pid,mid,ppoint,pcode,pdate
+		FROM MC_POINT
+		<include refid="search" />
+		)
+		ORDER BY pid DESC
+	</select>
+
+	<!-- 관리자 페이지 - 포인트 관리  -->
+<!-- 	<select id="AllPointList" resultType="com.kh.minCinema.domain.Heo_PointVO"> -->
+<!-- 		select * from mc_point -->
+<!-- 	</select> -->
+	
+</mapper>
