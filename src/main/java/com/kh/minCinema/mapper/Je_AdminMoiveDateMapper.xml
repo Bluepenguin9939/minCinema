@@ -6,7 +6,7 @@
 	
 	
 	<select id="movieLists" resultType="com.kh.minCinema.domain.Jo_MovieVO">
-		SELECT MOV_CODE,MOV_TITLE,MOV_RELEASEDATE FROM MC_MOVIE
+		SELECT MOV_CODE,MOV_TITLE,MOV_RELEASEDATE,MOV_RUNTIME FROM MC_MOVIE
 			ORDER BY MOV_CODE ASC
 	</select>
 	
@@ -27,9 +27,21 @@
 	</select>
 	
 	
+	<select id="dupCheck" resultType="int">
+		select count(*) from mc_movie_date
+			<![CDATA[where mov_screen_date = #{mov_screen_date}
+			 	AND  mov_theater = #{mov_theater} 
+			 	AND  ( 
+			 			(mov_start_time < #{mov_start_time} AND mov_end_time > #{mov_start_time})
+			 				 OR 
+			 			(mov_start_time < #{mov_end_time} AND mov_end_time > #{mov_end_time}) 
+			 	)]]> 
+			 
+	</select>
+	
 	<insert id="insertDate">
-		INSERT INTO MC_MOVIE_DATE(MOV_DATE_CODE, MOV_TITLE, MOV_CODE, MOV_SCREEN_DATE, MOV_START_TIME, MOV_THEATER)
-		 VALUES (SEQ_DATE.NEXTVAL, #{mov_title}, #{mov_code}, #{mov_screen_date}, #{mov_start_time}, #{mov_theater})
+		INSERT INTO MC_MOVIE_DATE(MOV_DATE_CODE, MOV_TITLE, MOV_CODE, MOV_SCREEN_DATE, MOV_START_TIME, MOV_END_TIME ,MOV_THEATER)
+		 VALUES (SEQ_DATE.NEXTVAL, #{mov_title}, #{mov_code}, #{mov_screen_date}, #{mov_start_time}, #{mov_end_time},#{mov_theater})
 	</insert>
 	
 	
@@ -37,6 +49,7 @@
 		UPDATE MC_MOVIE_DATE SET 
 			MOV_SCREEN_DATE = #{mov_screen_date},
 			MOV_START_TIME = #{mov_start_time},
+			MOV_END_TIME = #{mov_end_time},
 			MOV_THEATER = #{mov_theater}
 		 WHERE MOV_DATE_CODE = #{mov_date_code}
 	</update>

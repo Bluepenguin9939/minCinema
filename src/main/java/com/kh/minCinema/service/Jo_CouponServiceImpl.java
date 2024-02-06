@@ -24,4 +24,10 @@ public class Jo_CouponServiceImpl implements Jo_CouponService {
 		return allCoupon;
 	}
 
+	@Override
+	public int useCoupon(Jo_CouponVO couponVO) {
+		int count = couponMapper.deleteCoupon(couponVO);
+		return count;
+	}
+
 }

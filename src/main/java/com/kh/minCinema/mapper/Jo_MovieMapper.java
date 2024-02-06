@@ -20,8 +20,7 @@ public interface Jo_MovieMapper {
 	public List<Jo_MovieVO> selectInterestToHeart(String mid);
 	
 	public List<Jo_MovieVO> selectSlideMovie();
-	
-	public List<Je_MovieDateInfoDTO> selectTitleAndCode();// by Je 추가
-	
+		
 	public List<Ham_MovieCountDTO> selectMovieCount();// 관리자 차트 추가용 h
+
 }

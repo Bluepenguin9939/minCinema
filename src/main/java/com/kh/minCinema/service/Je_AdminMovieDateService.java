@@ -11,7 +11,10 @@ public interface Je_AdminMovieDateService {
 	
 	public List<Je_MovieDateInfoDTO> movieDates(String mov_code);
 	
+	public int dupCheck(Je_MovieDateInfoDTO je_MovieDateInfoDTO);
+	
 	public int addDate(Je_MovieDateInfoDTO je_MovieDateInfoDTO);
+	
 	
 	public String selectDateCode(Je_MovieDateInfoDTO je_MovieDateInfoDTO);
 	

@@ -83,11 +83,6 @@ public class Jo_MovieServiceImpl implements Jo_MovieService {
 		return movieList;
 	}
 	
-	@Override//by Je 추가
-	public List<Je_MovieDateInfoDTO> getMovieTitleAndCode() {
-		List<Je_MovieDateInfoDTO> list = movieMapper.selectTitleAndCode();
-		return list;
-	}
 
 	@Override//관리자 차트
 	public List<Ham_MovieCountDTO> getMovieCount() {

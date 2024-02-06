@@ -202,4 +202,11 @@ public class Ham_AdminController {
 	public void hamTest1() {
 		
 	}
+	
+	
+	@GetMapping("/je_addmoviedate")
+	public void movieadd_date() {          
+		
+	}
+	
 }

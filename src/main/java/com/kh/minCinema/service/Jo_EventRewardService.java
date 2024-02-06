@@ -8,5 +8,5 @@ public interface Jo_EventRewardService {
 
 	public List<Integer> checkReceive(Jo_EventRewardVO eventRewardVO);
 	
-	public int getReceive(Jo_EventRewardVO eventRewardVO);
+	public List<Integer> getReceive(Jo_EventRewardVO eventRewardVO);
 }

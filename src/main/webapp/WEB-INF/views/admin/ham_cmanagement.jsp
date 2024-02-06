@@ -160,6 +160,7 @@ $(function() {
 						<th>이름</th>
 						<th>이메일</th> <!--  -->
 						<th>전화번호</th>
+						<th>활동상태</th>
 						<th>관리</th>
 					</tr>
 				</thead>
@@ -173,8 +174,9 @@ $(function() {
 						<td>${vo.mname}</td>
 						<td>${vo.memail}</td>
 						<td>${vo.mtel}</td>
+						<td><c:if test="${vo.mactive eq 'Y'}">정상</c:if><c:if test="${vo.mactive eq 'N'}">정지</c:if></td>
 						<td>
-							<a href="#" class="venMember" ><i class="fa fa-user-alt-slash" title="ven" ></i></a> 
+							<a href="${vo.mid}" onclick="updateBen(this); return false;" class="venMember" ><i class="fa fa-user-alt-slash" title="ven" ></i></a> 
 							<a href="#" class="deleteMember" data-tmid="${vo.mid}"><i class="fa fa-trash" title="del"></i></a>
 						</td>
 						<td class="test999" data-index="${step.index}">${step.index}</td>

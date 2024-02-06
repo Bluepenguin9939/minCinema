@@ -30,6 +30,6 @@
 		DELETE FROM MC_COUPON
 		WHERE DISCOUNT = #{discount}
 		AND MID = #{mid}
-		AND ROWNUM = 1;
+		AND ROWNUM = 1
 	</delete>
 </mapper>

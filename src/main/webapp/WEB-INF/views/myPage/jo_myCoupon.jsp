@@ -6,13 +6,6 @@
 
 <link href="/resources/css/myPage/mySide.css?after" rel="stylesheet">
 
-<script>
-$(function() {
-
-});
-</script>
-
-
 <div class="container-fluid">
 
 	<div class="row">
@@ -32,7 +25,7 @@ $(function() {
 							<div class="d-flex flex-column justify-content-center"
 								style="width: 40%;">
 								<h3 class="align-self-center">보유 갯수</h3>
-								<h3 class="align-self-center">${coupon5}개</h3>
+								<h3 class="align-self-center">${loginInfo.coupon5}개</h3>
 							</div>
 						</div>
 						<div class="d-flex">
@@ -41,7 +34,7 @@ $(function() {
 							<div class="d-flex flex-column justify-content-center"
 								style="width: 40%;">
 								<h3 class="align-self-center">보유 갯수</h3>
-								<h3 class="align-self-center">${coupon10}개</h3>
+								<h3 class="align-self-center">${loginInfo.coupon10}개</h3>
 							</div>
 						</div>
 						<div class="d-flex">
@@ -50,7 +43,7 @@ $(function() {
 							<div class="d-flex flex-column justify-content-center"
 								style="width: 40%;">
 								<h3 class="align-self-center">보유 갯수</h3>
-								<h3 class="align-self-center">${coupon15}개</h3>
+								<h3 class="align-self-center">${loginInfo.coupon15}개</h3>
 							</div>
 						</div>
 					</div>

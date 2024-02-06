@@ -13,6 +13,8 @@ public interface Je_AdminMoiveDateMapper {
 	
 	public List<Je_MovieDateInfoDTO> movieDates(String mov_code);
 	
+	public int dupCheck(Je_MovieDateInfoDTO je_MovieDateInfoDTO);
+	
 	public int insertDate(Je_MovieDateInfoDTO je_MovieDateInfoDTO);
 	
 	public String selectDateCode(Je_MovieDateInfoDTO je_MovieDateInfoDTO);

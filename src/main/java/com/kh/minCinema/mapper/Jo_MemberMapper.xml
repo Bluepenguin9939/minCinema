@@ -24,4 +24,10 @@
 			MNICK = #{mnick}
 		WHERE MID = #{mid}
 	</update>
+	
+	<select id="equalEmail" resultType="int">
+		SELECT COUNT(*) FROM MC_MEMBER
+		WHERE MEMAIL = #{memail}
+		AND MID = #{mid}
+	</select>
 </mapper>

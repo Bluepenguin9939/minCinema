@@ -15,6 +15,10 @@ body {
 	padding-bottom: 110px;
 }
 
+#uemail-head, #uemail-domain {
+	width: 31%;
+}
+
 #info {
 	color: #999999; 
 	text-align: center;

@@ -55,22 +55,28 @@ public class Jo_MyPageController {
 	}
 	
 	@GetMapping("/jo_myCoupon")
-	public void myCoupon(HttpSession session, Model model) {
+	public void myCoupon(HttpSession session) {
 		Heo_MemberVO heo_MemberVO = (Heo_MemberVO)session.getAttribute("loginInfo");
 		String mid = heo_MemberVO.getMid();
-		int allCoupon = 0;
+		int coupon5 = 0;
+		int coupon10 = 0;
+		int coupon15 = 0;
 		for (int i = 5; i <= 15; i += 5) {
 			Jo_CouponVO couponVO = Jo_CouponVO.builder()
 					.mid(mid).discount(i)
 					.build();
 			int discountCoupon = couponService.getCouponCount(couponVO);
-			allCoupon += discountCoupon;
-			log.info(discountCoupon);
-			String discount = "coupon" + i;
-			log.info(discount);
-			model.addAttribute(discount, discountCoupon);
+			if (i == 5) {
+				coupon5 = discountCoupon;
+			} else if (i == 10) {
+				coupon10 = discountCoupon;
+			} else if (i == 15) {
+				coupon15 = discountCoupon;
+			}
 		}
-		heo_MemberVO.setCoupon(allCoupon);
+		heo_MemberVO.setCoupon5(coupon5);
+		heo_MemberVO.setCoupon10(coupon10);
+		heo_MemberVO.setCoupon15(coupon15);
 		session.setAttribute("loginInfo", heo_MemberVO);
 	}
 }
