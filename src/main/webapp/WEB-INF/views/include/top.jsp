@@ -35,7 +35,7 @@
 <!-- 구글 글리피콘 -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 
-<link href="/resources/css/include/top.css" rel="stylesheet">
+<link href="/resources/css/include/top.css?after" rel="stylesheet">
 <link href="/resources/css/include/bottom.css" rel="stylesheet">
 
 <!-- 부트스트랩4 -->
@@ -89,7 +89,7 @@ $(function() {
 				
 				<!-- Topbar -->
 				
-				<nav class="navbar navbar-expand-sm bg-dark navbar-dark d-flex justify-content-between"
+				<nav class="navbar navbar-expand-sm navbar-dark d-flex justify-content-between"
 					style="padding: 20px;">
 					<!-- 로고 -->
 					<div class="d-flex justify-content-center" style="width: 20%;">
