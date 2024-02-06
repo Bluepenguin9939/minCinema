@@ -138,16 +138,28 @@ public class Jo_MainController {
 		log.info("RECEIVEeventRewardVO : " + eventRewardVO);		
 		Heo_MemberVO heo_MemberVO = (Heo_MemberVO)session.getAttribute("loginInfo");
 		String mid = heo_MemberVO.getMid();
-		int couponCount = heo_MemberVO.getCoupon();
 		eventRewardVO.setMid(mid);
-		int count = eventRewardService.getReceive(eventRewardVO);
+		List<Integer> discountList = eventRewardService.getReceive(eventRewardVO);
 		boolean result = false;
-		if (count != 0) {
-			couponCount =  couponCount + count;
-			heo_MemberVO.setCoupon(couponCount);
-			session.setAttribute("loginInfo", heo_MemberVO);
-			result = true;
+		for (int i = 0; i < discountList.size(); i++) {
+			if (i == 0 && discountList.get(i) != 0) {
+				int couponCount = heo_MemberVO.getCoupon5();
+				couponCount++;
+				heo_MemberVO.setCoupon5(couponCount);
+				result = true;
+			} else if (i == 1 && discountList.get(i) != 0) {
+				int couponCount = heo_MemberVO.getCoupon10();
+				couponCount++;
+				heo_MemberVO.setCoupon10(couponCount);
+				result = true;
+			} else if (i == 2 && discountList.get(i) != 0) {
+				int couponCount = heo_MemberVO.getCoupon15();
+				couponCount++;
+				heo_MemberVO.setCoupon15(couponCount);
+				result = true;
+			}
 		}
+		session.setAttribute("loginInfo", heo_MemberVO);
 		return result;
 	}
 }

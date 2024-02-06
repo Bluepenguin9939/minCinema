@@ -39,9 +39,9 @@ public class Jo_EventRewardServiceImpl implements Jo_EventRewardService {
 
 	@Override
 	@Transactional
-	public int getReceive(Jo_EventRewardVO eventRewardVO) {
+	public List<Integer> getReceive(Jo_EventRewardVO eventRewardVO) {
 		int allCount = (eventRewardVO.getAllCount() / 10);
-		int count = 0;
+		List<Integer> discountList = new ArrayList<>();
 		for (int i = 1; i <= allCount; i++) {
 			Jo_CouponVO couponVO = Jo_CouponVO.builder()
 					.mid(eventRewardVO.getMid()).discount((i * 5))
@@ -49,11 +49,12 @@ public class Jo_EventRewardServiceImpl implements Jo_EventRewardService {
 			eventRewardVO.setR_history(String.valueOf(i));
 			int checkCount = eventRewardMapper.checkReceive(eventRewardVO);
 			if (checkCount == 0) {
-				count += eventRewardMapper.insertReceive(eventRewardVO);
+				int count = eventRewardMapper.insertReceive(eventRewardVO);
+				discountList.add(count);
 				couponMapper.insertCoupon(couponVO);
 			}
 		}
-		return count;
+		return discountList;
 	}
 
 }

@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.minCinema.domain.Jo_InfoChangeDTO;
+import com.kh.minCinema.domain.Jo_SearchPwDTO;
 import com.kh.minCinema.mapper.Jo_MemberMapper;
 
 import lombok.extern.log4j.Log4j;
@@ -49,6 +50,12 @@ public class Jo_MemberServiceImpl implements Jo_MemberService {
 			return true;
 		}
 		return false;
+	}
+
+	@Override
+	public boolean equalEmail(Jo_SearchPwDTO searchPwDTO) {
+		int count = memberMapper.equalEmail(searchPwDTO);
+		return (count == 1) ? true : false;
 	}
 
 }

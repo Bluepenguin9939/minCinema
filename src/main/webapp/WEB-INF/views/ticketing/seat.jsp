@@ -834,9 +834,9 @@ $(function(){
 			        		<span style="font-size: 20px">할인쿠폰 :</span>
 			        		<select class="form-control" id="disCount">
 								<option value="0">없음</option>
-								<option value="5">5% 할인쿠폰</option>
-								<option value="10">10% 할인쿠폰</option>
-								<option value="15">15% 할인쿠폰</option>
+								<option value="5">5% 할인쿠폰 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp(${loginInfo.coupon5})</option>
+								<option value="10">10% 할인쿠폰 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp(${loginInfo.coupon10})</option>
+								<option value="15">15% 할인쿠폰 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp(${loginInfo.coupon15})</option>
 							</select>
 			        	</div>
 		        	</div>
