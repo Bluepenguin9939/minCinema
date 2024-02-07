@@ -3,6 +3,40 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ include file="/WEB-INF/views/include/top.jsp"%>
+<script>
+$(function() {
+	$("#btnWriteReview").click(function() {
+		var mid = "${loginInfo.mid}";
+		console.log("asd :", mid);
+		if (mid == "") {
+			alert("로그인 후 이용 가능합니다.");
+			self.location = "/member/jo_login";
+		}
+		$("#btnInput").attr("data-mid", mid);
+		$("#review-modal").modal("show");
+	});
+	
+	$("#btnInput").click(function() {
+		var mid = $(this).attr("data-mid");
+		var review_content = $("#review-content").val();
+		var url = "/main/writeReview"
+		var sData = {
+				"mid" : mid,
+				"r_content" : review_content
+		}
+		
+		$.post(url, sData, function(rData) {
+			console.log(rData)
+			if (rData) {
+				alert("등록이 완료되었습니다.");
+			} else {
+				alert("등록을 실패하셨습니다.");
+			}
+			self.location = window.location.href;
+		});
+	});
+});
+</script>
 <!-- 결과창모달 -->
 <%@ include file="/WEB-INF/views/include/heo_payLoginModal.jsp"%>
 <link href="/resources/css/details/heo_details.css?after"
@@ -27,7 +61,7 @@
 					</ul>
 					<div class="mov-details-info-div">
 						<textarea class="form-control mov-details-info"
-							style="font-size: 20px; width: 350px; height: 200px; background-color: #999999;"
+							style="font-size: 20px; width: 350px; height: 200px; background-color: #fff;"
 							readonly>${movieDetail.mov_plot}</textarea>
 					</div>
 					<br>
@@ -49,7 +83,7 @@
 					<li class="nav-item mov-details-reviews"><a href="#tab2"
 						data-toggle="tab" class="nav-link mov-details-reviews-a">리뷰</a></li>
 				</ul>
-				<div class="tab-content py-3" style="background-color: #AAAAAA;">
+				<div class="tab-content py-3" style="background-color: #fff;">
 					<div class="tab-pane active" id="tab1">
 						<h3>영화정보</h3>
 						<ul>
@@ -118,23 +152,57 @@
 					<div class="tab-pane" id="tab2">
 						<div class="container mov-details-reviews-div">
 							<br>
-							<h2>관람평</h2>
+							<div style="position: relative;">
+								<h2>관람평</h2>
+								<button type="button" class="btn btn-sm btn-primary"
+									id="btnWriteReview"
+									style="position: absolute; right: 5px; top: 5px;">
+									리뷰 작성
+								</button>
+							</div>
 							<table class="table">
 								<thead class="thead-dark">
 									<tr>
 										<th>아이디</th>
 										<th>리뷰 내용</th>
-										<th>평점</th>
+										<th>작성날짜</th>
 									</tr>
 								</thead>
 								<tbody>
 									<tr>
 										<td>JoMaMin</td>
 										<td>재밌는지는 잘 모르겠네요</td>
-										<td>넣어야함!</td>
+										<td>2222.02.22</td>
 									</tr>
 								</tbody>
 							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal fade" id="review-modal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="myModalLabel">
+								리뷰 작성
+							</h5> 
+							<button type="button" class="close" data-dismiss="modal">
+								<span aria-hidden="true">×</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<textarea class="form-control" rows="10"
+								id="review-content" placeholder="리뷰 내용"></textarea>
+						</div>
+						<div class="modal-footer">
+							 
+							<button type="button" class="btn btn-primary" id="btnInput">
+								리뷰 작성
+							</button> 
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">
+								취소
+							</button>
 						</div>
 					</div>
 				</div>
