@@ -85,6 +85,7 @@
                         <h6 class="collapse-header">영화 관리 메뉴</h6>
                         <a class="collapse-item" href="/admin/ham_addmovie">영화 추가</a>
                         <a class="collapse-item" href="/admin/je_addmoviedate">영화 상영일정</a>
+                        <a class="collapse-item" href="/admin/je_movieList">영화 목록</a>
                     </div>
                 </div>
             </li>

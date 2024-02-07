@@ -323,7 +323,7 @@ $(function(){
 			</div>
 			
 			<div class="d-flex">
-				<div class="flex-column" style="width: 198px; height:680px; display: flex;">
+				<div class="flex-column border " style="width: 198px; height:680px; display: flex;">
 					<div>
 						<img alt="" src="/resources/img/moviedefault.jpg" id="poster">
 					</div>
@@ -333,7 +333,7 @@ $(function(){
 					
 				</div>
 				
-				<div class="border border-bottom-0 d-flex  flex-column" 
+				<div class="border  d-flex  flex-column" 
 						style="flex-grow: 1; height:680px; display: flex;">
 					
 					<div class="bg-secondary text-center" 

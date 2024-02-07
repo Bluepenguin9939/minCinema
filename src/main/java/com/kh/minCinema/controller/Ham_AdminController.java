@@ -191,4 +191,9 @@ public class Ham_AdminController {
 		
 	}
 	
+	@GetMapping("/je_movieList")
+	public void movieLists() {          
+		
+	}
+	
 }
