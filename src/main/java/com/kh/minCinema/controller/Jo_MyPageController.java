@@ -5,15 +5,19 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kh.minCinema.domain.Heo_MemberVO;
 import com.kh.minCinema.domain.Jo_AttachVO;
 import com.kh.minCinema.domain.Jo_CouponVO;
 import com.kh.minCinema.domain.Jo_MovieVO;
+import com.kh.minCinema.service.Heo_MemberService;
 import com.kh.minCinema.service.Jo_AttachService;
 import com.kh.minCinema.service.Jo_CouponService;
 import com.kh.minCinema.service.Jo_MovieService;
@@ -34,6 +38,9 @@ public class Jo_MyPageController {
 	@Autowired
 	private Jo_CouponService couponService;
 	
+	@Autowired
+	private Heo_MemberService heo_MemberService;
+	
 	@GetMapping("/jo_myInfo")
 	public void myPage() {
 		
@@ -42,6 +49,13 @@ public class Jo_MyPageController {
 	@GetMapping("/jo_myPoint")
 	public void myPoint() {
 		
+	}
+	
+	@PostMapping(value="/heo_checkPassword", produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public boolean checkPassword(Heo_MemberVO heo_MemberVO) {
+		int result = heo_MemberService.checkPassword(heo_MemberVO);
+		return (result == 1)? true : false;
 	}
 	
 	@GetMapping("/jo_myInterest")

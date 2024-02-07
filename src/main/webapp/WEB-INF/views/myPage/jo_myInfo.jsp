@@ -2,9 +2,10 @@
     pageEncoding="UTF-8"%>
     
 <%@ include file="/WEB-INF/views/include/top.jsp" %>
-
+<%@ include file="/WEB-INF/views/include/heo_resignModal.jsp" %>
 <link href="/resources/css/myPage/mySide.css" rel="stylesheet">
 <link href="/resources/css/myPage/myInfo.css?after" rel="stylesheet">
+<script type="text/javascript" src="/resources/js/myInfo.js"></script> 
 
 <script>
 $(function() {
@@ -135,6 +136,9 @@ $(function() {
 							</tr>
 						</tbody>
 					</table>
+					<div style="display: flex; justify-content: flex-end;">
+						<a href="${loginInfo.mid}" style="font-weight: bold; color: red;" onclick="resign(this); return false;">회원 탈퇴</a> 
+					</div>
 					<h5>내 예매내역</h5>
 					<div style="border: 3px solid #999999; height: 40px; display: flex;">
 						<div style="width: 90%; margin-left: 5%; align-self: center;">

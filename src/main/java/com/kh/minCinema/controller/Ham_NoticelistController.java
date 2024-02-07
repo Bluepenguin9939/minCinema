@@ -29,7 +29,9 @@ public class Ham_NoticelistController {
 	@Autowired
 	private Heo_NoticeService heo_NoticeService;
 
-	@GetMapping("/ham_notice")//공지사항 //HEO 제작
+	
+	//HEO제작
+	@GetMapping("/ham_notice")//공지사항
 	public void notice(Model model, Heo_NoticeCriteria heo_NoticeCriteria) {
 		System.out.println("확인"+heo_NoticeCriteria);
 		List<Heo_NoticeVO> list = heo_NoticeService.getNotice(heo_NoticeCriteria);
@@ -41,6 +43,7 @@ public class Ham_NoticelistController {
 		model.addAttribute("list", list);
 	}
 	
+	//HEO제작
 	@GetMapping("/heo_noticeList")
 	public void noticeList(Model model, Heo_NoticeCriteria heo_NoticeCriteria) {
 		List<Heo_NoticeVO> list = heo_NoticeService.getNotice(heo_NoticeCriteria);
@@ -50,8 +53,9 @@ public class Ham_NoticelistController {
 		model.addAttribute("list", list);
 	}
 	
+	//HEO제작
 	@GetMapping(value = "/selectNotice", produces = "text/plain;charset=UTF-8")
-	@ResponseBody //HEO 제작
+	@ResponseBody
 	public String selectNotice(int nno) {
 		String content = heo_NoticeService.getContent(nno);
 		heo_NoticeService.plusCount(nno);

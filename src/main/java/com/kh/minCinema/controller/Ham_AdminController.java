@@ -54,6 +54,7 @@ public class Ham_AdminController {
 		
 	}
 	
+	// HAM제작
 	@GetMapping("/ham_admins")
 	public void admins(Model model) {
 		// 유저측 문의
@@ -69,6 +70,8 @@ public class Ham_AdminController {
 		model.addAttribute("list", list);
 		
 	}
+	
+	// HAM제작
 	//관리자페이지 - 테스트 멤버 목록 
 	@GetMapping("/ham_cmanagement")
 	public void management(Model model, Heo_MemberVO memberVO) {
@@ -78,6 +81,7 @@ public class Ham_AdminController {
 		 
 	}
 	
+	// HAM제작
 	//관리자페이지 - 테스트 멤버 생성 
 	@PostMapping("/testMember")
 //	@ResponseBody
@@ -88,6 +92,8 @@ public class Ham_AdminController {
 		return "redirect:/admin/ham_cmanagement";
 		
 	}
+	
+	// HAM제작
 	//관리자페이지 - 테스트 멤버 삭제 
 	@PostMapping("/testDel")
 	@ResponseBody
@@ -97,6 +103,7 @@ public class Ham_AdminController {
 		return String.valueOf(result);
 	}
 	
+	// HAM제작
 	@GetMapping("/ham_addmovie")
 	public void movieadd() {          
 		
@@ -106,9 +113,12 @@ public class Ham_AdminController {
 //		
 //		log.info("업로드 파일:"+uploadFile);
 //	}
+	
+	// HAM제작
 	@GetMapping("/ham_addpoint")
 	public void addpoint() {
-		
+	
+	// HAM제작
 	}
 	@GetMapping("/ham_oneonone")//고객센터 리스트 <-유저 문의에서 받은 리스트
 	public void oneonone(Ham_OneononeVO oneononeVO, Model model) {
@@ -123,6 +133,7 @@ public class Ham_AdminController {
 		
 	}
 	
+	//HEO제작
 	@GetMapping("/heo_noticeList")
 	public void noticeList(Model model, Heo_NoticeCriteria heo_NoticeCriteria) {
 		List<Heo_NoticeVO> list = heo_NoticeService.getNotice(heo_NoticeCriteria);
@@ -132,6 +143,7 @@ public class Ham_AdminController {
 		model.addAttribute("list", list);
 	}
 	
+	//HEO제작
 	@GetMapping("/heo_addNotice")
 	public void addNotice(Model model, Heo_NoticeCriteria heo_NoticeCriteria) {
 		List<Heo_NoticeVO> list = heo_NoticeService.getNotice(heo_NoticeCriteria);
@@ -142,6 +154,7 @@ public class Ham_AdminController {
 		System.out.println("list" + model);
 	}
 	
+	//HEO제작
 	@PostMapping("/heo_addNotice")
 	@ResponseBody
 	public boolean addNotice(Heo_NoticeVO heo_NoticeVO) {
@@ -149,6 +162,7 @@ public class Ham_AdminController {
 		return (result == 1) ? true : false;
 	}
 	
+	//HEO제작
 	@PostMapping("/heo_delNotice")
 	@ResponseBody
 	public boolean delNotice(int nno) {
@@ -156,6 +170,7 @@ public class Ham_AdminController {
 		return (result == 1) ? true : false;
 	}
 	
+	//HEO제작
 	@PostMapping("/heo_modifyNotice")
 	@ResponseBody
 	public boolean modifyNotice(Heo_NoticeVO heo_NoticeVO) {

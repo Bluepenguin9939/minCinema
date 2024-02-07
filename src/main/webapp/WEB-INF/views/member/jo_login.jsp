@@ -3,13 +3,17 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="/resources/js/certification.js?after"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
+<script src="/resources/js/loginCheck.js?after"></script>
 <meta charset="UTF-8">
 <title>로그인</title>
 <%@ include file="/WEB-INF/views/include/bs.jsp" %>
 <link href="/resources/css/member/login.css" rel="stylesheet">
 </head>
 <body>
-<%@ include file="/WEB-INF/views/include/heo_resultModal.jsp"%>
+
 	<div class="row d-flex justify-content-center align-content-center" style="height: 100vh; margin: 0px;">
 		<div id="login-main-div">
 			<div class="text-center" id="logo-div">
@@ -17,14 +21,14 @@
 					<span>Min<i><sub>cinema</sub></i></span>
 				</a>
 			</div>
-			<form class="user" action="/member/login" method="post">
+			<form class="user" action="/member/login" method="post" id="loginCheck">
 				<div class="form-group">
 					<input type="text" class="form-control form-control-user"
-						id="uid" name="mid" placeholder="아이디" value="admin">
+						id="uid" name="mid" placeholder="아이디" onkeyup="loginEnter(event);" value="admin">
 			    </div>
 			    <div class="form-group">
 			        <input type="password" class="form-control form-control-user"
-			            id="upw" name="mpw" placeholder="패스워드" value="admin">
+			            id="upw" name="mpw" onkeyup="loginEnter(event);" placeholder="패스워드" value="admin">
 			    </div>
 			    <div class="form-group">
 			        <div class="custom-control custom-checkbox small">
@@ -34,7 +38,7 @@
 			            	style="color: #999999;">아이디 저장</label>
 			        </div>
 			    </div>
-			    <button type="submit" class="btn btn-dark btn-block">
+			    <button type="button" id="btnLogin" onclick="loginCheck();" class="btn btn-dark btn-block">
 			        로그인
 			    </button>
 			    <hr style="border-bottom: 2px solid #333333;">
@@ -42,7 +46,7 @@
 				    <a href="/member/jo_pwSearch" id="pwSearch">
 				    	패스워드 찾기
 				    </a>
-				    <a href="/member/jo_register" id="register">
+				    <a href="" onclick="checkMyInfo(); return false;" id="register">
 				    	회원가입
 				    </a>
 			    </div>
