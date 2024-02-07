@@ -4,9 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.minCinema.domain.Heo_LoginDTO;
 import com.kh.minCinema.domain.Heo_MemberVO;
@@ -44,7 +46,7 @@ public class Heo_MemberController {
 		return active;
 	}
 	
-	@PostMapping(value = "/updateBen", produces = MediaType.APPLICATION_PROBLEM_JSON_VALUE)
+	@PostMapping(value = "/updateBen", produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public boolean updateBen(Heo_MemberVO heo_MemberVO) {
 		int result = heo_MemberService.updateBen(heo_MemberVO);

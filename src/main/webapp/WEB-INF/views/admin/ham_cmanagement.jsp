@@ -38,7 +38,7 @@ $(function() {
 		console.log("테스트딜리트:",testDelete);
 		var url = "/admin/testDel";
 		var sData ={
-				"tmid" : testDelete
+				"mid" : testDelete
 		};
 		console.log("sData:",sData);
 		

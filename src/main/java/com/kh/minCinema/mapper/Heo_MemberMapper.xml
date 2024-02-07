@@ -56,6 +56,12 @@
     	where mid = #{mid}
     	and mpw = #{mpw}
 	</select>
+	<!-- 비밀번호 확인 -->
+	<select id="selectPassword" resultType="Int">
+		select count(*) from MC_MEMBER
+		where mid = #{mid}
+		and mpw = #{mpw}
+	</select>
 	
 	
 	<!-- 관리자 멤버 목록 -->

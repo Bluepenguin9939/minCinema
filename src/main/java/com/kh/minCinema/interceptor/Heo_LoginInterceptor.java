@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.minCinema.domain.Heo_MemberVO;
 
@@ -20,6 +21,7 @@ public class Heo_LoginInterceptor extends HandlerInterceptorAdapter {
 		Heo_MemberVO heo_MemberVO = (Heo_MemberVO)session.getAttribute("loginInfo");
 		if(heo_MemberVO != null) {
 			session.removeAttribute("loginInfo");
+			session.removeAttribute("loginResult");
 		}
 		return true;
 	}
@@ -31,6 +33,7 @@ public class Heo_LoginInterceptor extends HandlerInterceptorAdapter {
 		Heo_MemberVO heo_MemberVO = (Heo_MemberVO)map.get("loginInfo");
 		Boolean useCookie = (Boolean)map.get("useCookie");
 		if(heo_MemberVO == null) {
+			request.getSession().setAttribute("loginResult", "fail");
 			modelAndView.setViewName("redirect:/member/jo_login");
 		} else {
 			HttpSession session = request.getSession();

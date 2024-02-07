@@ -22,4 +22,6 @@ public interface Heo_MemberMapper {
 	public int memberDelete(String mid);
 	
 	public String selectActive(String mid);
+	
+	public int selectPassword(Heo_MemberVO heo_MemberVO);
 }

@@ -9,7 +9,6 @@
 
 <style>
 .reserve-container {
-    /*margin-top: 20px; /*마진달기*/
     justify-content: center; /* 가운데 정렬 */
     height: 805px; /*높이 800px*/
     /* border: 1px solid #dddddd; */
@@ -32,8 +31,6 @@
 
 
 .send-main{
-	/*display : flex; 
-	/*justify-content-center */
 	background-color:#AAAAAA;
 	width: 930px;
 }
@@ -60,7 +57,6 @@
 }
 
 .day-part {
-   /* width: 91px; /*날짜파트*/
     width: 200px; /*날짜파트*/
 }
 
@@ -87,8 +83,6 @@
 
 .movie-datas{
 	padding-top: 5px;
-    /*display: flex;
-    flex-direction: column;  /*아이템을 배치하리 세로열로*/
     align-items: center;
     height: 95%;
     overflow: scroll; /*스크롤바 생성*/
@@ -111,39 +105,14 @@
 
 .movie-list{
 	font-weight: bold;
-	/*justify-content: center;*/
 	font-size: 25px;
 	text-align: center;
+	cursor: pointer;
 }
-
-.movie-list:hover{
-	/*border-bottom: 1px solid #111111;*/
-	background-color: #444444;
-	
-    color: #dddddd;/*글자 색*/
-    cursor: pointer;
-}
-
-
-/*.date-month{
-	height: 7%;
-	display: flex;
-    justify-content: center;
-    align-items: center;
-    
-   	font-weight: bold;
-	background-color: #123499;
-	color: white;
-	font-size:25px;
-	text-align: center;
-}*/
 
 .reserve-date { /*날짜 부분*/
     padding-top: 5px;
-    /*display: flex;
-    flex-direction: column;  /*아이템을 배치하리 세로열로*/
     align-items: center;
-    /*height: 630px;*/
     height: 95%;
     overflow: scroll; /*스크롤바 생성*/
     overflow-x: hidden; /*x축 스크롤바 숨기기*/
@@ -168,7 +137,6 @@
 }
 
 .year-month{
-	/*font-weight: bold;*/
 	font-size:40px;
 	margin-top: 5px;
 }
@@ -176,22 +144,12 @@
 .days{
 	font-weight: bold;
 	font-size:28px;
-	/*text-align: center;*/
-	
 	cursor: pointer;
 }
 
-.days:hover{
-	/*border-bottom: 1px solid #111111;*/
-	background-color: #444444;
-	
-    color: #dddddd;/*글자 색*/
-}
 
 .time-data{
 	padding-top: 5px;
-    /*display: flex;
-    flex-direction: column;  /*아이템을 배치하리 세로열로*/
     align-items: center;
     height: 95%;
     overflow: scroll; /*스크롤바 생성*/
@@ -213,18 +171,10 @@
 }
 
 .times{
-	/*justify-content: center;*/
 	font-size: 30px;
 	font-weight: bold;
 	text-align: center;
 	cursor: pointer;
-}
-
-.times:hover{
-	/*border-bottom: 1px solid #111111;*/
-	background-color: #444444;
-	
-    color: #dddddd;/*글자 색*/
 }
 
 .sendBtn{
@@ -258,7 +208,6 @@ $(function(){
 	var dates = new Date(todayYear,todayMonth,0).getDate();
 	
 	
-	/*$("#date-month").text(year+"."+ (todayMonth <=9 ? "0"+todayMonth : todayMonth) );*/
 	/*현재월 기준*/
 	
 	function setMonth(year,month){
@@ -291,9 +240,9 @@ $(function(){
 			
 			var dataDate = year+"-"+monthStr+"-"+dayStr;
 			$(id).append(
-					"<div class='days' id='"+i+"' data-date='"+dataDate+"'>"
+					"<div class='days' id='"+i+"' data-select='unselect' data-date='"+dataDate+"'>"
 						+"<span class='rounded-circle bg-light weekday' style='font-size:24px;'>"+wday+"</span>"+"&emsp;"
-						+"<span class='bg-danger day' style='font-weight:normal;'>"+dayStr+"</span>"
+						+"<span class='rounded-circle bg-danger day' style='font-weight:normal;'>"+dayStr+"</span>"
 					+"</span>"
 			);
 		}
@@ -306,7 +255,7 @@ $(function(){
 			$.each(rData , function( index, value ) {
 				//console.log( index + " : " + value.mov_code +":"+ value.mov_title );
 				$(".movie-datas").append(
-						"<div class='movie-list' data-movieCode='"+value.mov_code+"'>"+value.mov_title+"</div>"
+						"<div class='movie-list' data-select='unselect' data-movieCode='"+value.mov_code+"'>"+value.mov_title+"</div>"
 				);
 				
 			});
@@ -314,6 +263,20 @@ $(function(){
 	});
 	
 	
+	$(document).on("mouseenter","[data-select='unselect']",function(){
+		//console.log("들어감");
+		var that = $(this);
+    	that.css("background-color","#444444");
+    	that.css("color","#dddddd");
+	});
+	$(document).on("mouseleave","[data-select='unselect']",function(){
+		//console.log("나감");
+		var that = $(this);
+    	that.css("background-color","#AAAAAA");
+    	that.css("color","black");
+		
+	});
+	    
 	
 	var mov_code;
 	var dateCode;
@@ -325,7 +288,8 @@ $(function(){
 		//기존선택사항 삭제
 		var find = that.parent().find("[data-select='select']");
 		
-		find.removeAttr("data-select");
+		find.attr("data-select","unselect");
+		//find.removeAttr("data-select");
 		find.css("background-color","#AAAAAA");
 		find.css("color","black");
 		
@@ -354,8 +318,7 @@ $(function(){
 		var movieTitleData = {"mov_code" : mov_code};
 		
 		$.post("/ticketing/date",movieTitleData,function(rdata){
-			//console.log("rData: ",rdata);
-			//console.log("rData.length: ",rdata.length);
+
 			if(rdata.length != 0 ){
 				var startDate = rdata[0].split("-");
 				var startMvYear = parseInt(startDate[0]);
@@ -369,7 +332,7 @@ $(function(){
 
 				
 				if(startMvYear != endMvYear || startMvMonth != endMvMonth){
-					//console.log("다름");	
+
 					setMonth(startMvYear,startMvMonth);
 					
 					setDayandWeekday(startMvYear,startMvMonth,startMvday);
@@ -411,10 +374,10 @@ $(function(){
 		
 		var that = $(this);
 		
-		//var find = that.parent().find("[data-select='select']");
 		var find = $(".reserve-date").find("[data-select='select']");
 		//이전 선택사항 삭제
-		find.removeAttr("data-select");
+		find.attr("data-select","unselect");
+		//find.removeAttr("data-select");
 		find.css("background-color","#AAAAAA");
 		find.css("color","black");
 		
@@ -451,7 +414,7 @@ $(function(){
 					am_pm = "am";
 				}
 			
-				$(".time-data").append("<div class='times' data-select='unselect'>"
+				$(".time-data").append("<div data-select='unselect' class='times' data-select='unselect'>"
 		            	+"<span class='material-symbols-outlined'>"
 							+nightAndDay
 						+"</span>"
@@ -472,12 +435,13 @@ $(function(){
 		
 		var find = that.parent().find("[data-select='select']");
 		
-		find.removeAttr("data-select");
+		find.attr("data-select","unselect");
+		//find.removeAttr("data-select");
 		find.css("background-color","#AAAAAA");
 		find.css("color","black");
 		
 		//신규 선택사항
-		console.log("find:", find);
+		//console.log("find:", find);
 		
 		that.attr("data-select","select");
 		that.css("background-color","#444444");

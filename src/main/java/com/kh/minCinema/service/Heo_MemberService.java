@@ -18,4 +18,6 @@ public interface Heo_MemberService {
 	public int memberDelete(String mid);
 	
 	public String getActive(String mid);
+	
+	public int checkPassword(Heo_MemberVO heo_MemberVO);
 }
