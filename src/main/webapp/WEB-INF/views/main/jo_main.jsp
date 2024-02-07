@@ -343,7 +343,7 @@ function MoreMovie(acount) {
 				<div>
 					<a href="/main/jo_event">
 						<!-- 이미지 출처 : <a href="https://kr.freepik.com/free-photo/calendar-with-checklist-date-schedule-3d-icon_33062239.htm#query=%EC%B6%9C%EC%84%9D%EC%B2%B4%ED%81%AC&position=1&from_view=keyword&track=sph&uuid=2a4d4c31-c698-4c74-a6d3-855a2527015a">작가 upklyak</a> 출처 Freepik -->
-						<img src="/resources/img/event/attendance_check.png" alt="출석체크"
+						<img src="/resources/img/event/attendance_check.png?after" alt="출석체크"
 							style="width: 500px; height: 400px; border: 2px solid #000000"> 
 				 	</a>
 				</div>
