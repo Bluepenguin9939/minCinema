@@ -90,7 +90,7 @@ $(function() {
 				<!-- Topbar -->
 				
 				<nav class="navbar navbar-expand-sm navbar-dark d-flex justify-content-between"
-					style="padding: 20px;">
+					style="padding: 20px; border-bottom: 2px solid #00000021;">
 					<!-- 로고 -->
 					<div class="d-flex justify-content-center" style="width: 20%;">
 						<a href="/main/jo_main" class="header__logo" id="logo">

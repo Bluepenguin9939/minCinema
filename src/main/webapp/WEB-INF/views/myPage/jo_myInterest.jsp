@@ -26,7 +26,7 @@ $(function() {
 		</div>
 		<div class="col-md-8 d-flex justify-content-center" style="height: 800px;">
 		<%@ include file="/WEB-INF/views/include/myPage-side.jsp" %>
-			<div style="width: 100%; background-color: #cccccc;">
+			<div style="width: 100%;">
 				<div style="width: 90%; height: 90%; margin-left: 5%;">
 					<div style="border-bottom: 1px solid #999999; margin-top:20px; margin-bottom: 20px;">
 						<h4>관심 목록</h4>

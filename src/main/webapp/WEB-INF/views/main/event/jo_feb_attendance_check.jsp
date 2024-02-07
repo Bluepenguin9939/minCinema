@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="/WEB-INF/views/include/top.jsp" %>
 
-<link rel="stylesheet" href="/resources/css/main/event/attendance_check.css?after">
+<link rel="stylesheet" href="/resources/css/main/event/attendance_check.css">
 
 <script>
 $(function() {
@@ -159,7 +159,7 @@ $(function() {
 				margin-left: 15px; margin-right: 15px; border: 1px solid #333333;">
 				<div style="width: 80%; text-align: center; padding: 10px;">
 					<h1>Febuary<sub style="font-size: 20px;">2월</sub></h1>
-					<div style="background-color: #aaaaaa;">
+					<div>
 						<table id="callender" style="width: 100%;">
 							<tr style="font-size: 20px; border-bottom: 1px solid #666666;">
 								<th>Sun</th>
@@ -284,13 +284,14 @@ $(function() {
 				</div>
 				<div style="align-self: center; width: 18%; padding: 10px; display: flex; justify-content: center;">
 					<div style="width: 100%;">
-						<div style="background-color: #aaaaaa; text-align: center; width: 100%;">
+						<div style="text-align: center; width: 100%; border: 1px solid;
+							padding: 5px;">
 							<h4>현재 출석일</h4>
 							<hr>
 							<h2><span id="allAttendance">0</span>일</h2>
 							<button type="button" class="btn btn-secondary" id="btnAttendance">출석</button>
 						</div>
-						<div style="background-color: #aaaaaa; margin-top: 30px;
+						<div style="margin-top: 30px; border: 1px solid; padding: 5px;
 							text-align: center;">
 							<table id="gift-table">
 								<tbody>
