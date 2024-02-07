@@ -2,15 +2,14 @@
 .admin-top{
 	width: 80%;
 }
+
 .admin-body{
 	font-size: 50px;
 	font-family: cursive;
 	font-weight: bold;
 	margin-bottom: 20px;
 }
-.si>div{
-	margin-top: 10px;
-}
+
 .cardV{
 	margin-right: 10px;
 	float : left; 
@@ -18,12 +17,7 @@
 	height: 288px; 
 	background-color: gray;
 }
-.movieText{
-	margin-left: 15px;
-}
-.qurtar>input{
-	size:20;
-}
+
 [title="사진규격"]{
 	cursor: pointer;
 	color: white;
@@ -32,12 +26,15 @@
 .page-link{
 	color : black;
 }
+
 .page-link:hover{
 	color : red;
 }
+
 [title="검색선택"]{
 	margin-right: 20px;
 }
+
 /* 부트스트랩 전용 class 바꾸면 안됨 기존 li로 적용됨 */
 .nav{
 	margin-top: 100px;
@@ -49,19 +46,21 @@
 .link{
 	cursor: pointer;
 }
+
 .pageBottom{
 	margin-bottom: 30px;
 }
+
 section a{
 	color : gray;
 }
-.profile-images{
-}
+
 .main_image_text{
 	position: absolute;
 	color: black;
 	
 }
+
 #poster-upload{
 	visibility: hidden;
 }
@@ -113,3 +112,18 @@ section a{
     background-color: #e4e4f8;
 }
 
+#mov_title_div {
+	display: flex;
+	justify-content: flex-start;
+	width: 70%;
+	margin: 0px;
+}
+
+#frmAddMovie {
+	width: 80%;
+}
+
+#stillCutDiv > img {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
