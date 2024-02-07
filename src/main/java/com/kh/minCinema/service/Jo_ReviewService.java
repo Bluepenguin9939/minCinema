@@ -8,5 +8,5 @@ public interface Jo_ReviewService {
 	
 	public boolean writeReview(Jo_ReviewVO reviewVO);
 	
-	public List<Jo_ReviewVO> getReview();
+	public List<Jo_ReviewVO> getReview(String mov_code);
 }

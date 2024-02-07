@@ -4,12 +4,13 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kh.minCinema.mapper.Jo_ReviewMapper">
 	<insert id="insertReview">
-		INSERT INTO MC_REVIEW(MID, R_CONTENT)
-		VALUES(#{mid}, #{r_content})
+		INSERT INTO MC_REVIEW(MID, MOV_CODE, R_CONTENT)
+		VALUES(#{mid}, #{mov_code}, #{r_content})
 	</insert>
 	
 	<select id="selectReview" resultType="com.kh.minCinema.domain.Jo_ReviewVO">
 		SELECT MID, R_CONTENT, TO_CHAR(R_DATE, 'yyyy-MM-dd HH24:MI') AS R_DATE 
 		FROM MC_REVIEW
+		WHERE MOV_CODE = #{mov_code}
 	</select>
 </mapper>

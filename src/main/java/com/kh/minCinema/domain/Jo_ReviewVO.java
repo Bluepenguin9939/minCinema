@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 public class Jo_ReviewVO {
 	
 	private String mid;
+	private String mov_code;
 	private String r_content;
 	private String r_date;
 }

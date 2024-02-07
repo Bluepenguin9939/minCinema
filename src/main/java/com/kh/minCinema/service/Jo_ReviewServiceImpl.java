@@ -21,8 +21,8 @@ public class Jo_ReviewServiceImpl implements Jo_ReviewService {
 	}
 
 	@Override
-	public List<Jo_ReviewVO> getReview() {
-		List<Jo_ReviewVO> reviewList = reviewMapper.selectReview();
+	public List<Jo_ReviewVO> getReview(String mov_code) {
+		List<Jo_ReviewVO> reviewList = reviewMapper.selectReview(mov_code);
 		return reviewList;
 	}
 

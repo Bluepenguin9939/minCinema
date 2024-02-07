@@ -18,10 +18,12 @@ $(function() {
 	
 	$("#btnInput").click(function() {
 		var mid = $(this).attr("data-mid");
+		var mov_code = "${param.detail_mov_code}";
 		var review_content = $("#review-content").val();
 		var url = "/main/writeReview"
 		var sData = {
 				"mid" : mid,
+				"mov_code" : mov_code,
 				"r_content" : review_content
 		}
 		
