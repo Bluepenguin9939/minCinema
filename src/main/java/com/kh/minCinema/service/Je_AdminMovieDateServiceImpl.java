@@ -21,7 +21,6 @@ public class Je_AdminMovieDateServiceImpl implements Je_AdminMovieDateService {
 	
 	@Override
 	public List<Jo_MovieVO> movieDataLists() {
-		// TODO Auto-generated method stub
 		List<Jo_MovieVO> list = je_AdminMovieDateMapper.movieLists();
 		//log.info(">>>>>>>>>>>>>>>@list:"+list);
 		
@@ -30,10 +29,15 @@ public class Je_AdminMovieDateServiceImpl implements Je_AdminMovieDateService {
 	
 	@Override
 	public List<Je_MovieDateInfoDTO> movieDates(String mov_code) {
-		// TODO Auto-generated method stub
 		List<Je_MovieDateInfoDTO> list = je_AdminMovieDateMapper.movieDates(mov_code);
 		
 		return list;
+	}
+	
+	@Override
+	public int dupCheck(Je_MovieDateInfoDTO je_MovieDateInfoDTO) {
+		int count = je_AdminMovieDateMapper.dupCheck(je_MovieDateInfoDTO);		
+		return count;
 	}
 
 	@Override
@@ -65,9 +69,6 @@ public class Je_AdminMovieDateServiceImpl implements Je_AdminMovieDateService {
 		return count;
 	}
 
-	
-	
-	
 	
 	
 

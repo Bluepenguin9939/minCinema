@@ -53,4 +53,9 @@
 	</select>
 	
 	
+	<!-- 관리자 차트용 h -->
+	<select id="selectMovieCount" resultType="com.kh.minCinema.domain.Ham_MovieCountDTO">
+		SELECT MOV_GENRE, COUNT(MOV_GENRE) MOV_COUNT FROM MC_MOVIE GROUP BY MOV_GENRE
+	</select>
+	
 </mapper>

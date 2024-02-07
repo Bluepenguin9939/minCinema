@@ -15,18 +15,18 @@
 	
 	<!-- 좌석 예약 -->
 	<insert id="insertReservedSeats">
-		INSERT INTO MC_MOVIE_THEATER(MOV_THEATER_CODE, MOV_THEATER, MOV_THEATER_DATE, MOV_THEATER_TIME, SEAT_NAME_RES)
-            VALUES(seq_theater.nextval, #{movieTheater}, #{movieDate}, #{movieTime} , #{reservedSeat})
+		INSERT INTO MC_MOVIE_THEATER(MOV_THEATER_CODE, MOV_THEATER, MOV_THEATER_DATE, MOV_THEATER_TIME, SEAT_NAME_RES , MID)
+            VALUES(seq_theater.nextval, #{movieTheater}, #{movieDate}, #{movieTime} , #{reservedSeat} ,#{mid})
 	</insert>
 	
+	<!-- 좌석 중복예약 체크 -->
 	<select id="dupCheck" resultType="int">
 		SELECT  COUNT(*) FROM MC_MOVIE_THEATER 
-			WHERE 
-			    NOT EXISTS (SELECT * 
-			    	    FROM MC_MOVIE_THEATER
-			            WHERE MOV_THEATER = #{movieTheater} 
-			            AND MOV_THEATER_DATE = #{movieDate} 
-			            AND MOV_THEATER_TIME = #{movieTime} )
+			WHERE  MOV_THEATER = #{movieTheater}
+			       AND MOV_THEATER_DATE = #{movieDate} 
+			       AND MOV_THEATER_TIME = #{movieTime} 
+			       AND SEAT_NAME_RES = #{reservedSeat}
 	</select>
+	
 	
 </mapper>

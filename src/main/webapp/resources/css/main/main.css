@@ -25,15 +25,12 @@
 #main-nav {
 	border-radius: 10px;
 	margin-bottom: 10px;
+	background-color: #000000;
 }
 
 #search {
 	margin-right: 10px;
 	border-radius: 10px;
-}
-
-.slide-movie-image {
-	margin-right: 30px;
 }
 
 .slide-movie-image:hover {
@@ -48,7 +45,7 @@
 
 #slide-movie {
 	margin-bottom: 10px;
-	background-color: #666666;
+	background-color: #000000;
 }
 
 .main-movie-list {
@@ -139,4 +136,13 @@ a {
 a:hover {
 	text-decoration: none;
 	color: inherit;
+}
+
+.carousel-control-prev, .carousel-control-next {
+	width: 5%;
+}
+
+.carousel-inner {
+	width: 90%;
+	left: 5%;
 }

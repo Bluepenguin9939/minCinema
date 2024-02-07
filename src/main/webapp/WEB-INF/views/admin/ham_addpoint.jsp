@@ -12,7 +12,21 @@
     <link rel="stylesheet" href="/resources/css/admin/addpoint.css?after" type="text/css">
     <title>Point</title>
 <script>
-
+$(function(){
+	var begin = 0;
+	var end = 5;
+	var bStep = $(".wrap>tr");
+	var eStep = bStep.slice(begin,end);
+	bStep.hide();
+	eStep.show();
+	
+	$("#load-more").click(function(){
+		var that = $(this);
+		console.log("that:",that);
+		end +=5;
+		bStep.slice(begin,end).show();
+	});
+  });	
 </script>
 </head>
 <body>
@@ -141,16 +155,14 @@
 			<h2 class="admin-body" title="" >포인트 관리</h2>
 			<div class="search">
             <div class="search-field">
-					<select name="target" title="검색선택">
-						<option value="">전체</option>
-						<option value="title">아이디</option>
-						<option value="content">닉네임</option>
-						<option value="">포인트</option>
-						<option value="">포인트종류</option>
-						<option value="">포인트 적립일</option>
+					<form action="">
+					<select name="type" title="검색선택">
+						<option value="M" ${param.type == 'M' ? 'selected' : ''}>아이디</option>
+						<option value="P" ${param.type == 'P' ? 'selected' : ''}>포인트</option>
 					</select> 
-					<input type="text" value="" name="s" class="s" title="검색어 입력" id="search_id" placeholder="검색 ..." />
-                <input value="검색" type="submit" class="searchsubmit" />
+					<input type="text" value="${param.keyword}" name="keyword" class="keyword" title="검색어 입력" placeholder="검색 ..." />
+                <button value="검색" type="submit" class="btn btn-sm btn-outline-dark">검색</button>
+            </form>
             </div>
         </div>
     
@@ -160,96 +172,75 @@
 					<tr>
 						<th>#</th>
 						<th>아이디</th> <!--  -->
-						<th>닉네임</th>
 						<th>포인트</th>
-						<th>포인트종류</th> <!--  -->
+						<th>포인트 충전 및 차감</th>
 						<th>포인트 적립일</th>
 					</tr>
 				</thead>
 				<!-- 임시 -->
-				<tbody>
-				
+				<tbody class="wrap">
+					<c:forEach var="vo" items="${list}">
 					<tr>
-						<td>1</td>
-						<td>apple</td>
-						<td>황금올리브</td>
-						<td>100000000</td>
-						<td>충전 포인트</td>
-						<td>2024.01.24</td>
+						<td>${vo.pid}</td>
+						<td>${vo.mid}</td>
+						<td>${vo.ppoint}</td>
+						<td>
+						<c:if test="${vo.pcode eq 'PC'}">포인트 충전</c:if>
+						<c:if test="${vo.pcode eq 'PU'}">포인트 차감</c:if>
+						</td>
+						<td>${vo.pdate}</td>
 					</tr>
-					<tr>
-						<td>1</td>
-						<td>apple</td>
-						<td>황금올리브</td>
-						<td>0.005</td>
-						<td>리뷰 포인트</td>
-						<td>2024.01.24</td>
-					</tr>
-					<tr>
-						<td>1</td>
-						<td>apple</td>
-						<td>황금올리브</td>
-						<td>0.005</td>
-						<td>리뷰 포인트</td>
-						<td>2024.01.24</td>
-					</tr>
-					<tr>
-						<td>1</td>
-						<td>apple</td>
-						<td>황금올리브</td>
-						<td>500000</td>
-						<td>충전 포인트</td>
-						<td>2024.01.24</td>
-					</tr>
-					
+					</c:forEach>					
 				</tbody>
-			</table>	
-		
+			</table>
+			<div style="display:flex ; justify-content: center; text-align: center;">	
+			<button id="load-more">+더보기</button>
+			</div>			
 			<!-- 하단 게시판 번호(Pagination) -->
-	<div class="pageBottom" style="margin-bottom: 100px">
-		<div class="col-md-12">
-			<nav>
+<!-- 	<div class="pageBottom" style="margin-bottom: 100px"> -->
+<!-- 		<div class="col-md-12"> -->
+<!-- 			<nav> -->
 			
-				<ul class="pagination d-flex align-items-center justify-content-center">
-						<select name="target" title="검색선택">
-						<option value="1">10</option>
-						<option value="2">20</option>
-						<option value="3">30</option>
-						<option value="4">40</option>
-						<option value="5">50</option>
-					</select> 
-					<li class="page-item">
-						<a class="page-link" href="#">&laquo;</a>
-					</li>
-					<li class="page-item">
-						<a class="page-link" href="#">1</a>
-					</li>
-					<li class="page-item">
-						<a class="page-link" href="#">2</a>
-					</li>
-					<li class="page-item">
-						<a class="page-link" href="#">3</a>
-					</li>
-					<li class="page-item">
-						<a class="page-link" href="#">4</a>
-					</li>
-					<li class="page-item">
-						<a class="page-link" href="#">5</a>
-					</li>
-					<li class="page-item">
-						<a class="page-link" href="#">...</a>
-					</li>
-					<li class="page-item">
-						<a class="page-link" href="#">10</a>
-					</li>
-					<li class="page-item">
-						<a class="page-link" href="#">&raquo;</a>
-					</li>
+<!-- 				<ul class="pagination d-flex align-items-center justify-content-center"> -->
+<!-- 						<select name="target" title="검색선택"> -->
+<!-- 						<option value="1">10</option> -->
+<!-- 						<option value="2">20</option> -->
+<!-- 						<option value="3">30</option> -->
+<!-- 						<option value="4">40</option> -->
+<!-- 						<option value="5">50</option> -->
+<!-- 					</select>  -->
+<!-- 					<li class="page-item"> -->
+<!-- 						<a class="page-link" href="#">&laquo;</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="page-item"> -->
+<!-- 						<a class="page-link" href="#">1</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="page-item"> -->
+<!-- 						<a class="page-link" href="#">2</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="page-item"> -->
+<!-- 						<a class="page-link" href="#">3</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="page-item"> -->
+<!-- 						<a class="page-link" href="#">4</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="page-item"> -->
+<!-- 						<a class="page-link" href="#">5</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="page-item"> -->
+<!-- 						<a class="page-link" href="#">...</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="page-item"> -->
+<!-- 						<a class="page-link" href="#">10</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="page-item"> -->
+<!-- 						<a class="page-link" href="#">&raquo;</a> -->
+<!-- 					</li> -->
 <!-- 					<li class="page">현재 1 page 10 page entries </li> -->
-				</ul>
-			</nav>
-		</div>
-	</div>
+<!-- 				</ul> -->
+<!-- 			</nav> -->
+<!-- 		</div> -->
+<!-- 	</div> -->
 	</div>
 	</div>
 </body>

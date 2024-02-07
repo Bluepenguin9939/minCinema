@@ -7,4 +7,6 @@ public interface Jo_CouponService {
 	public int getCouponCount(Jo_CouponVO couponVO);
 	
 	public int getAllCoupon(String mid);
+	
+	public int useCoupon(Jo_CouponVO couponVO);
 }

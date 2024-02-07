@@ -1,17 +1,17 @@
 @charset "UTF-8";
 
-.row {
-	background-color: #999999;
-}
+/* .row { */
+/* 	background-color: #999999; */
+/* } */
 
 #logo {
-	color: #999999;
+	color: #000000;
 	font-size: 40px;
 	text-decoration: none;
 }
 
 .topbar-dropdown {
-	color: #999999;
+	color: #000000;
 	font-size: 25px;
 }
 
@@ -34,7 +34,7 @@
 }
 
 #login {
-	color: #999999;
+	color: #000000;
 	font-size: 20px;
 }
 
@@ -45,7 +45,7 @@
 
 #myNickName {
 	font-size: 20px;
-	color: #999999;
+	color: #000000;
 	vertical-align: middle;
 }
 

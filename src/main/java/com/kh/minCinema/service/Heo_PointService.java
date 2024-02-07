@@ -13,7 +13,5 @@ public interface Heo_PointService {
 	
 	public int getCount(String mid);
 	
-	public List<Heo_PointVO> pointCount();
 	
-	public List<Heo_PointVO> selectPoint();
 }

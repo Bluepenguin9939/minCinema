@@ -45,7 +45,7 @@ ${pointInfoList}
 		<div class="col-md-2"></div>
 		<div class="col-md-8 d-flex justify-content-center">
 			<%@ include file="/WEB-INF/views/include/myPage-side.jsp"%>
-			<div style="width: 100%; background-color: #cccccc;">
+			<div style="width: 100%; height: 85vh;">
 				<div style="width: 90%; height: 90%; margin-left: 5%;">
 					<div
 						style="border-bottom: 1px solid #999999; margin-top: 20px; margin-bottom: 20px;">
@@ -64,7 +64,7 @@ ${pointInfoList}
 						<div id="point-tab" class="container tab-pane active point-tab">
 							<br>
 							<div
-								style="height: 220px; border-radius: 20px; background-color: #eee; display: flex; justify-content: flex-start; margin-bottom: 20px;">
+								style="height: 220px; border-radius: 20px; background-color: #fff; display: flex; justify-content: flex-start; margin-bottom: 20px;">
 								<div class="point-box" style="width: 60%;">
 									<h5>내 보유 포인트</h5>
 									<h2>${loginInfo.mnick}님의
@@ -82,7 +82,7 @@ ${pointInfoList}
 								</div>
 							</div>
 							<div
-								style="background-color: #eee; display: flex; height: 60px; border-radius: 15px;">
+								style="background-color: #fff; display: flex; height: 60px; border-radius: 15px;">
 								<div style="width: 10%; display: flex; justify-content: center;">
 									<i class="fab fa-product-hunt align-self-center"
 										id="charge-point-i"></i>

@@ -13,18 +13,20 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.minCinema.domain.Ham_CountDateVO;
+import com.kh.minCinema.domain.Ham_MovieCountDTO;
 import com.kh.minCinema.domain.Ham_OneononeVO;
-import com.kh.minCinema.domain.Ham_TestVO;
 import com.kh.minCinema.domain.Heo_MemberVO;
 import com.kh.minCinema.domain.Heo_NoticeCriteria;
 import com.kh.minCinema.domain.Heo_NoticePageDTO;
 import com.kh.minCinema.domain.Heo_NoticeVO;
 import com.kh.minCinema.domain.Heo_PointVO;
+import com.kh.minCinema.domain.Jo_SearchDTO;
 import com.kh.minCinema.service.Ham_OneononeService;
 import com.kh.minCinema.service.Ham_TestService;
+import com.kh.minCinema.service.Ham_adminPointService;
 import com.kh.minCinema.service.Heo_MemberService;
 import com.kh.minCinema.service.Heo_NoticeService;
-import com.kh.minCinema.service.Heo_PointService;
+import com.kh.minCinema.service.Jo_MovieService;
 
 import lombok.extern.log4j.Log4j;
 
@@ -38,6 +40,9 @@ public class Ham_AdminController {
 	private Ham_TestService ham_TestService;
 	
 	@Autowired
+	private Ham_adminPointService ham_adminPointService;
+	
+	@Autowired
 	private Heo_NoticeService heo_NoticeService;
 	
 	@Autowired
@@ -47,7 +52,9 @@ public class Ham_AdminController {
 	private Heo_MemberService heo_MemberService;
 	
 	@Autowired
-	private Heo_PointService heo_PointService;
+	private Jo_MovieService jo_MovieService;
+	
+	
 	
 	@GetMapping("/ham_test3")
 	public void ham_test3() {
@@ -56,15 +63,26 @@ public class Ham_AdminController {
 	
 	// HAM제작
 	@GetMapping("/ham_admins")
-	public void admins(Model model) {
+	public void admins(Model model,Jo_SearchDTO searchDTO) {
 		// 유저측 문의
 		List<Ham_CountDateVO> list = ham_OneononeService.inquirySendCount();
 		System.out.println("대시보드리수투:"+list);
 		// 관리자 답장
 		List<Ham_CountDateVO> oList = ham_OneononeService.inquiryReplyCount();
 		System.out.println("오픈데이트리수투:"+oList);
-		List<Heo_PointVO> pList = heo_PointService.pointCount();
+		// 월 매출액 
+		List<Heo_PointVO> pList = ham_adminPointService.pointCount();
 		
+		
+		//관리자 영화 장르 및 카운트 
+		if (searchDTO.getMov_genre() == null) {
+			searchDTO.setMov_genre("");
+		}
+		List<Ham_MovieCountDTO> mList = jo_MovieService.getMovieCount();
+		System.out.println("무비리스트:"+mList);
+		
+		
+		model.addAttribute("mList", mList);
 		model.addAttribute("pList", pList);
 		model.addAttribute("oList", oList);
 		model.addAttribute("list", list);
@@ -116,20 +134,17 @@ public class Ham_AdminController {
 	
 	// HAM제작
 	@GetMapping("/ham_addpoint")
-	public void addpoint() {
-	
-	// HAM제작
+	public void addpoint(Model model,Heo_PointVO heo_PointVO) {
+		List<Heo_PointVO> list = ham_adminPointService.AllPointList(heo_PointVO);
+		model.addAttribute("list", list);
+		System.out.println("list:"+list);
 	}
+	
 	@GetMapping("/ham_oneonone")//고객센터 리스트 <-유저 문의에서 받은 리스트
 	public void oneonone(Ham_OneononeVO oneononeVO, Model model) {
 		List<Ham_OneononeVO> list = ham_OneononeService.listOneonone(oneononeVO);
 		System.out.println("리쓰뜨:"+list);
 		model.addAttribute("list", list);
-		
-	}
-
-	@GetMapping("/ham_addevent")
-	public void addevent() {
 		
 	}
 	

@@ -21,13 +21,10 @@
 
 $(function(){
 	
-	var mov_runtime;
 	
 	$.post("/admin/movieTitleLists",function(rData){
-		console.log("rData: ",rData);
 		var movieList = rData;
 		$.each(movieList,function(i,value){
-			console.log("aa:",value.mov_title);
 			$("#movieList").append("<option data-code='"+value.mov_code+"'" 
 									+"data-releaseDate='"+value.mov_releaseDate+"'"
 									+"data-runtime='"+value.mov_runtime+"'"
@@ -41,12 +38,8 @@ $(function(){
 	
 	$("#movieList").on("change",function(){
 		var that = $(this);
-		//console.log("tst:",that.find("option:selected").attr('data-code'));
+		
 		$(".screenManagements").empty(); //기존화면에 띄워져있는거 정리
-		
-		mov_runtime = $("#movieList").find("option:selected").attr("data-runtime");
-		
-		console.log("mov_runtime:",mov_runtime);
 		
 		var insertCode = $("#movieList").find("option:selected").attr("data-code");
 		
@@ -55,10 +48,7 @@ $(function(){
 		$.post("/admin/movieDates",codeData,function(rData){
 			
 			$.each(rData, function(index, value) {
-				//console.log("aaa:",value);
-				//console.log("aaa:",value.mov_screen_date);
 				
-					//$(".screenManagements").append("추가입니다.");
 					$(".screenManagements").append(
 						"<div data-dateCode = '"+value.mov_date_code+"' class='d-flex flex-row pt-1 pb-1 border border-left-0' style='width: 100%; height: 8%'>"
 							+"<span class='titleTexts text-center text-nowrap'>날짜 : </span>"
@@ -148,24 +138,58 @@ $(function(){
 		
 		var updateDateCode = that_p.attr("data-dateCode");
 		
+		//////상영일 과 비교
+        var updateDateArr = updateDate.split('-');
+        //console.log("tst:",that.find("option:selected").attr('data-releasedate'));
+        var releaseDate = $("#movieList").find("option:selected").attr('data-releasedate'); //2017-12-09
+        var releaseDateArr = releaseDate.split('-');
+                 
+        var updateDateCompare = new Date(updateDateArr[0], parseInt(updateDateArr[1])-1, updateDateArr[2]);
+        var releaseDateCompare = new Date(releaseDateArr[0], parseInt(releaseDateArr[1])-1, releaseDateArr[2]);
+         
+        if(updateDateCompare.getTime() < releaseDateCompare.getTime()) {
+             
+            alert("상영일은 "+releaseDate+" 이후입니다.");
+             
+            return;
+        }
+		
+		/////엔드타임 구하기
+		var runtime = $("#movieList").find("option:selected").attr("data-runtime");
+		//var runtime = 53; test
+		
+		var hour = parseInt(runtime / 60);
+		var min = runtime % 60;
+	
+		 
+		var update_hour_min = updateTime.split(":");
+		var endHour = parseInt(update_hour_min[0])+hour;
+		var endMin = parseInt(update_hour_min[1])+min;
+		
+		if(endMin >= 60){
+			endMin = endMin-60;
+			endHour++;
+		}
+		
+		var updateEndTime = (endHour < 10 ? "0"+endHour : endHour) + ":" + (endMin < 10 ? "0"+endMin : endMin);
+		
 		var movieDateInfoData = {
 				"mov_date_code" : updateDateCode,
 				"mov_code" :  updateCode,
 				"mov_title" : updateTitle,
 				"mov_screen_date" : updateDate, 
 				"mov_start_time" : updateTime,
+				"mov_end_time" : updateEndTime,
 				"mov_theater" : updateTheater
-				
 		};
 		
 		$.post("/admin/editMovieDate",movieDateInfoData,function(rData){
 			
 			if(rData == "true"){
-				console.log("반환:",rData);
 				alert("수정완료");
 			}
 			else if(rData == "false"){
-				console.log("반환:",rData);
+				alert("해당시간에 다른 영화가 이미 상영중입니다.");
 			}
 			
 		});
@@ -181,7 +205,7 @@ $(function(){
 		var dateCode = that_p.attr("data-dateCode");
 		var deleteData = {"mov_date_code" : dateCode}
 		
-		if(dateCode == "" || dateCode==null){
+		if(dateCode == "" || dateCode==null){ //아무것도 입력하지 않았을때
 			
 			that.parent().remove();
 		}
@@ -217,22 +241,59 @@ $(function(){
 		//console.log(insertTheater);
 		var insertTitle = $("#movieList").find("option:selected").text();
 		var insertCode = $("#movieList").find("option:selected").attr("data-code");
-		//console.log(insertCode);
+		
+		//////상영일 과 비교
+        var insertDateArr = insertDate.split('-');
+        var releaseDate = $("#movieList").find("option:selected").attr('data-releasedate'); //2017-12-09
+        var releaseDateArr = releaseDate.split('-');
+                 
+        var insertDateCompare = new Date(insertDateArr[0], parseInt(insertDateArr[1])-1, insertDateArr[2]);
+        var releaseDateCompare = new Date(releaseDateArr[0], parseInt(releaseDateArr[1])-1, releaseDateArr[2]);
+         
+        if(insertDateCompare.getTime() < releaseDateCompare.getTime()) {
+             
+            alert("상영일은 "+releaseDate+" 이후입니다.");
+             
+            return;
+        }
+		///////////////
+		
+		
+		var runtime = $("#movieList").find("option:selected").attr("data-runtime");
+		
+		//var runtime = 53; test
+		
+		var hour = parseInt(runtime / 60);
+		var min = runtime % 60;
+	
+		var insert_hour_min = insertTime.split(":");
+		var endHour = parseInt(insert_hour_min[0])+hour;
+		var endMin = parseInt(insert_hour_min[1])+min;
+		
+		if(endMin >= 60){
+			endMin = endMin-60;
+			endHour++;
+		}
+		
+		var insertEndTime = (endHour < 10 ? "0"+endHour : endHour) + ":" + (endMin < 10 ? "0"+endMin : endMin);
 		
 		var movieDateInfoData = {
 				"mov_code" :  insertCode,
 				"mov_title" : insertTitle,
 				"mov_screen_date" : insertDate, 
 				"mov_start_time" : insertTime,
+				"mov_end_time" : insertEndTime,
 				"mov_theater" : insertTheater
-				
 		};
+		
 		
 		$.post("/admin/addMovieDate",movieDateInfoData,function(rData){
 			
 			
-			if(rData == "false"){
-				console.log("반환:",rData);
+			if(rData == "false0"){
+				alert("해당시간때에 다른 영화가 이미 상영중입니다.");
+			}
+			else if(rData == "false1"){
 				alert("저장실패");
 			}
 			else{

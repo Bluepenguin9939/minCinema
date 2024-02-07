@@ -137,8 +137,8 @@ $(function() {
 		begin += 5;
 	});
 });
-function MoreMovie() {
-	if (${fn:length(movieList) % 5 > 0 && fn:length(movieList) % 5 < 5}) {
+function MoreMovie(acount) {
+	if (${fn:length(movieList)} > acount && ${fn:length(movieList) % 5 > 0 && fn:length(movieList) % 5 < 5}) {
 		$("#btnMoreMovie").css("display", "block");
 	}
 } 
@@ -157,7 +157,7 @@ function MoreMovie() {
 				<!-- The slideshow -->
 				<div class="carousel-inner">
 				 	<div class="carousel-item active">
-				 		<div class="d-flex align-items-center justify-content-center">
+				 		<div class="d-flex align-items-center justify-content-around">
 			 			<c:forEach var="vo" items="${slideList}" begin="0" end="3">
 					    	<a href="#" class="a-slide-img" data-mov_code="${vo.mov_code}">
 						    	<img src="/display?fileName=${vo.upload_path}/${vo.file_name}"
@@ -167,7 +167,7 @@ function MoreMovie() {
 				    	</div>
 				  	</div>
 				  	<div class="carousel-item">
-				  		<div class="d-flex align-items-center justify-content-center">
+				  		<div class="d-flex align-items-center justify-content-around">
 				  		<c:forEach var="vo" items="${slideList}" begin="4" end="7">
 					    	<a href="#" class="a-slide-img" data-mov_code="${vo.mov_code}">
 						    	<img src="/display?fileName=${vo.upload_path}/${vo.file_name}" 
@@ -177,7 +177,7 @@ function MoreMovie() {
 				    	</div>
 				  	</div>
 				  	<div class="carousel-item">
-				  		<div class="d-flex align-items-center justify-content-center">
+				  		<div class="d-flex align-items-center justify-content-around">
 				  		<c:forEach var="vo" items="${slideList}" begin="8" end="11">
 					    	<a href="#" class="a-slide-img" data-mov_code="${vo.mov_code}">
 						    	<img src="/display?fileName=${vo.upload_path}/${vo.file_name}" 
@@ -201,7 +201,7 @@ function MoreMovie() {
 		<div class="col-md-2">
 		</div>
 		<div class="col-md-8">
-			<nav class="navbar navbar-expand-sm bg-dark" id="main-nav">
+			<nav class="navbar navbar-expand-sm" id="main-nav">
 				<div class="container" style="padding: 0px;">
 					<div class="d-flex justify-content-between mr-auto" style="width: 20%;">
 						<div class="dropdown main-dropdown">
@@ -343,7 +343,7 @@ function MoreMovie() {
 				<div>
 					<a href="/main/jo_event">
 						<!-- 이미지 출처 : <a href="https://kr.freepik.com/free-photo/calendar-with-checklist-date-schedule-3d-icon_33062239.htm#query=%EC%B6%9C%EC%84%9D%EC%B2%B4%ED%81%AC&position=1&from_view=keyword&track=sph&uuid=2a4d4c31-c698-4c74-a6d3-855a2527015a">작가 upklyak</a> 출처 Freepik -->
-						<img src="/resources/img/event/attendance_check.png" alt="출석체크"
+						<img src="/resources/img/event/attendance_check.png?after" alt="출석체크"
 							style="width: 500px; height: 400px; border: 2px solid #000000"> 
 				 	</a>
 				</div>

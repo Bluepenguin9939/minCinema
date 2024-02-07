@@ -311,7 +311,7 @@ function mouseHoverOronClick(that , pCount, bgColor, color , method){
 }
 	
 $(function(){
-	/*테스트할 임의의예약 좌석들*/
+	
 	
 	var movieTitle = "${Je_ReservationInfoVO.movieTitle}";
 	var movieDate =  "${Je_ReservationInfoVO.movieDate}";
@@ -324,18 +324,13 @@ $(function(){
 					"mov_theater" :  movieTheater//영화 상영관
 					};
 	
-	console.log("sendData:",sendData);
 	
+	//시작시 데이터베이스에서 이미 예약된 좌석정보 가져오기
 	$.post("/ticketing/reservedSeats",sendData,function(rData){
 		
-		//console.log("rData:",rData);
 		$.each(rData, function(index, value){
 			
 			$("#id-"+value).attr("data-select","noselect");
-			//$("#id-B06").attr("data-select","noselect");
-			//$("#id-C07").attr("data-select","noselect");
-			//$("#id-D08").attr("data-select","noselect");
-		//	$("#id-E11").attr("data-select","noselect");
 		});
 		
 		var bookSeat = rData.length;
@@ -604,11 +599,10 @@ $(function(){
 			var age;
 			
 			var currentSeat = parseInt( $(".currentSeat").text() );
-			currentSeat = currentSeat + parseInt(pCount);
+			currentSeat = currentSeat + parseInt(seatArray.length);
 			$(".currentSeat").text(currentSeat); //좌석개수 설정
 			
 			$.each(seatArray, function (index, seat) { /*ㅇdiv 정리*/
-				 	//console.log('element', index, seat);
 				  	$("#id-"+seat).css("background-color","white");
 					$("#id-"+seat).css("color","black");
 					$("#id-"+seat).attr("data-select","unselect");
@@ -617,8 +611,8 @@ $(function(){
 					age = $(id).attr("data-age");
 					$(id).remove();
 			});
-			//console.log(ticketCost);
-			//$("#ticketCost").text(ticketCost);
+			
+			
 			if(age == "adult"){ ticketCost = ticketCost - 10000 * seatArray.length }
 			else if(age == "teen"){ ticketCost = ticketCost - 8000 * seatArray.length }
 			$("#ticketCost").text(ticketCost);
@@ -628,7 +622,7 @@ $(function(){
 			});
 			
 		}
-		$("#subCost").text(ticketCost+"원");
+		$("#subCost").text(ticketCost);
 		var point = parseInt( $("#myPoint").text() );
 		var result = point - ticketCost;
 		
@@ -647,16 +641,17 @@ $(function(){
 				var subCost = ticketCost-disCountCost;
 				
 				var resultCost = point - subCost;			
-
-				$("#subCost").text(subCost+"(할인)원");
+				$("#disCountText").text("(할인)");
+				$("#subCost").text(subCost);
 				$("#resultCost").text(resultCost);
 			}
 			else{
 				var subCost = ticketCost;
 				
 				var resultCost = point - subCost;			
-
-				$("#subCost").text(subCost+"원");
+				
+				$("#disCountText").text("");
+				$("#subCost").text(subCost);
 				$("#resultCost").text(resultCost);
 			}
 		}
@@ -674,6 +669,12 @@ $(function(){
 		var ticketListArray = $(".seatMember");
 		
 		var resultCost = parseInt( $("#resultCost").text() );
+		var payCost = parseInt( $("#subCost").text() );
+		payCost = (payCost * (-1));
+		
+		var discount = $("#disCount").val();
+		console.log(discount);
+		
 		
 		if(resultCost>=0){
 			
@@ -683,20 +684,26 @@ $(function(){
 				
 			});
 			
+			var mid = "${loginInfo.mid}";
+			//console.log("mid:",mid);
 			
 			var data = {
 					"movieTitle" :  movieTitle,//영화제목
 					"movieDate" : movieDate ,//영화상영일
 					"movieTime" :  movieTime,//영화 시작시간,
-					"movieTheater" : movieTheater,//영화 상영관,
-					"reservedSeat" : reservedSeat,                    //예약한좌석번호들
-					"age" : ageMap//연령
+					"movieTheater" : movieTheater,	//영화 상영관,
+					"reservedSeat" : reservedSeat,   //예약한좌석번호들
+					"age" : ageMap,//연령
+					"mid" : mid,		//아이디
+					"payCost" : payCost,	//지불금액
+					"resultCost" : resultCost,	//현재 금액
+					"discount" : discount 	// 사용한 쿠폰
 			};
 			
-			console.log("data:",data);
+			//console.log("data:",data);
 			var url = "/ticketing/cost";
 			
-
+			
 			$.ajax({
 		            url: url,
 		            type: "POST",
@@ -724,7 +731,7 @@ $(function(){
 			alert("포인트가 부족합니다!!!!");
 			
 		}
-
+		
 		
 		
 	});
@@ -734,7 +741,6 @@ $(function(){
 	
 </script>
 <div>
-	
 	<div class="reserve-container">
 		<div class="seat-part">
 			<div class="reserve-title text-center">좌석배정</div>
@@ -830,19 +836,23 @@ $(function(){
 			        		<span style="font-size: 20px">할인쿠폰 :</span>
 			        		<select class="form-control" id="disCount">
 								<option value="0">없음</option>
-								<option value="5">5% 할인쿠폰 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp(${loginInfo.coupon5})</option>
-								<option value="10">10% 할인쿠폰 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp(${loginInfo.coupon10})</option>
-								<option value="15">15% 할인쿠폰 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp(${loginInfo.coupon15})</option>
+								<option value="5">&ensp;5% 할인쿠폰 &emsp;&emsp;&emsp;&nbsp;(${loginInfo.coupon5})</option>
+								<option value="10">10% 할인쿠폰 &emsp;&emsp;&emsp;&nbsp;(${loginInfo.coupon10})</option>
+								<option value="15">15% 할인쿠폰 &emsp;&emsp;&emsp;&nbsp;(${loginInfo.coupon15})</option>
 							</select>
 			        	</div>
 		        	</div>
 		        	
 		        	<div class="rounded text-center" style="width: 100%; background-color: #9dff71;">
 		        		<div class="rounded" style="background-color: white;font-size: 20px">결제내역</div>
-		        		<div class="text-right" style="font-size: 28px">${loginInfo.mpoint}</div>
-		        		<div id="subCost" class="text-right" style="font-size: 28px">0원</div>
+		        		<div class="text-right" style="font-size: 28px">${loginInfo.mpoint}  &nbspP</div>
+		        		<div class="text-right" style="font-size: 28px">
+		        			<span id="disCountText"></span><span id="subCost">0</span>원
+		        		</div>
 		        		<div class="text-right" style="font-size: 20px">====================</div>
-		        		<div id="resultCost" class="text-right" style="font-size: 28px">0원</div>
+		        		<div class="text-right" style="font-size: 28px">
+		        			<span id="resultCost">0</span>원
+		        		</div>
 		        	</div>
 		        </div><!-- count -->
 		        

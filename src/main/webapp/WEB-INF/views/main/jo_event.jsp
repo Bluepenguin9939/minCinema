@@ -16,7 +16,7 @@
 			<div style="display: flex; justify-content: space-between;">
 				<a href="/main/event/jo_feb_attendance_check">
 					<div>
-						<img src="/resources/img/event/attendance_check.png" alt="출석체크"
+						<img src="/resources/img/event/attendance_check.png?after" alt="출석체크"
 							style="width: 500px; height: 400px; border: 2px solid #000000">
 						<div style="width: 500px; border: 2px solid #000000; border-top: 0px; padding: 10px;">
 							<h5>2월 출석체크</h5>
@@ -25,7 +25,7 @@
 				 	</div>
 			 	</a>
 				<a href="#">
-					<img src="/resources/img/event/attendance_check.png" alt="출석체크"
+					<img src="/resources/img/event/attendance_check.png?after" alt="출석체크"
 					 	style="width: 500px; height: 400px; border: 2px solid #000000">
 			 	</a>
 		 	</div>
@@ -37,7 +37,7 @@
 			<div style="display: flex; justify-content: space-between;">
 				<a href="/main/event/jo_jan_attendance_check">
 					<div>
-						<img src="/resources/img/event/attendance_check.png" alt="출석체크"
+						<img src="/resources/img/event/attendance_check.png?after" alt="출석체크"
 							style="width: 500px; height: 400px; border: 2px solid #000000">
 						<div style="width: 500px; border: 2px solid #000000; border-top: 0px; padding: 10px;">
 							<h5>1월 출석체크</h5>

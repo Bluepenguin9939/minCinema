@@ -5,6 +5,16 @@
 
 <script>
 $(function() {
+	var cur_url = window.location.href;
+	if (cur_url.split("_")[1].trim() == "myInfo") {
+		$("#myMenu > li:eq(0)").css("background-color", "#fff");
+	} else if (cur_url.split("_")[1].trim() == "myPoint") {
+		$("#myMenu > li:eq(1)").css("background-color", "#fff");
+	} else if (cur_url.split("_")[1].trim() == "myInterest") {
+		$("#myMenu > li:eq(2)").css("background-color", "#fff");
+	} else if (cur_url.split("_")[1].trim() == "myCoupon") {
+		$("#myMenu > li:eq(3)").css("background-color", "#fff");
+	}
 // 	프로필 사진 띄우기
 	$("#profile-upload").change(function(e) {
 		var upload_image = e.target.files;
@@ -81,8 +91,8 @@ $(function() {
 });
 </script>
 
-<div style="width: 20%; margin-right: 15px;">
-	<div class="card" style="border: 0px; border-radius: 0px; background-color: #eee;">
+<div style="width: 20%; margin-right: 15px; margin-top: 10px;">
+	<div class="card" style="border: 0px; border-radius: 0px;">
 		<div class="d-flex justify-content-center" style="height: 150px;">
 			<input type="file" id="profile-upload" accept="image/*">
 			<div class="align-self-center" onclick="$('#profile-upload').click();"
@@ -121,26 +131,26 @@ $(function() {
 			</a>
 		</div>
 	</div>
-	<div style="background-color: #cccccc; position: relative;">
+	<div style="position: relative; border: 2px solid #00000018;">
 		<ul id="myMenu">
 			<li>
 				<a href="/myPage/jo_myInfo">회원정보
-					<span style="position: absolute; right: 10px;">&raquo</span>
+					<span style="position: absolute; right: 10px;">&raquo;</span>
 				</a>
 			</li>
 			<li>
 				<a href="/myPage/jo_myPoint">포인트
-					<span style="position: absolute; right: 10px;">&raquo</span>
+					<span style="position: absolute; right: 10px;">&raquo;</span>
 				</a>
 			</li>
 			<li>
 				<a href="/myPage/jo_myInterest">관심목록
-					<span style="position: absolute; right: 10px;">&raquo</span>
+					<span style="position: absolute; right: 10px;">&raquo;</span>
 				</a>
 			</li>
 			<li>
 				<a href="/myPage/jo_myCoupon">쿠폰함
-					<span style="position: absolute; right: 10px;">&raquo</span>
+					<span style="position: absolute; right: 10px;">&raquo;</span>
 				</a>
 			</li>
 		</ul>

@@ -2,6 +2,8 @@ package com.kh.minCinema.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -12,11 +14,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.kh.minCinema.domain.Heo_MemberVO;
 import com.kh.minCinema.domain.Je_MovieDateInfoDTO;
 import com.kh.minCinema.domain.Je_ReservationInfoVO;
-import com.kh.minCinema.domain.Jo_MovieVO;
+import com.kh.minCinema.domain.Jo_CouponVO;
+import com.kh.minCinema.mapper.Jo_CouponMapper;
 import com.kh.minCinema.service.Je_MovieDateService;
-import com.kh.minCinema.service.Jo_MovieService;
+import com.kh.minCinema.service.Jo_CouponService;
 
 import lombok.extern.log4j.Log4j;
 
@@ -85,17 +89,32 @@ public class Je_Movie_ReservationController {
 	
 	@PostMapping(value = "/cost", consumes = {MediaType.APPLICATION_JSON_VALUE})
 	@ResponseBody
-	public String cost(@RequestBody Je_ReservationInfoVO je_ReservationInfoVO) {
-		//log.info("cost...");
-		//log.info(">>>>>>>>>>>>>>>>>>"+je_ReservationInfoVO);
+	public String cost(@RequestBody Je_ReservationInfoVO je_ReservationInfoVO, HttpSession session) {
+		log.info(">>>>>>>>>>>>>>>>>>"+je_ReservationInfoVO);
 		//log.info(">>>>>>>>>>>>>>>>>>"+je_ReservationInfoVO.getAge());
 		//log.info(">>>>>>>>>>>>>>>>>>"+je_ReservationInfoVO.getReservedSeat());
 		
+		Heo_MemberVO memberVO = (Heo_MemberVO)session.getAttribute("loginInfo");
+		
 		int count = je_MovieDateService.insertReservedSeats(je_ReservationInfoVO);
 		
-		log.info("count:"+count);
-		
 		if(count==1) {
+			int discount = je_ReservationInfoVO.getDiscount();
+			if (discount == 5) {
+				int coupon5 = memberVO.getCoupon5();
+				coupon5--;
+				memberVO.setCoupon5(coupon5);
+			} else if (discount == 10) {
+				int coupon10 = memberVO.getCoupon10();
+				coupon10--;
+				memberVO.setCoupon10(coupon10);
+			} else if (discount == 15) {
+				int coupon15 = memberVO.getCoupon15();
+				coupon15--;
+				memberVO.setCoupon15(coupon15);
+			}
+			memberVO.setMpoint(je_ReservationInfoVO.getResultCost());
+			session.setAttribute("loginInfo", memberVO);
 			return "true";
 		}
 		else {
