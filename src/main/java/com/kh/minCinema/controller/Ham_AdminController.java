@@ -15,20 +15,18 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.kh.minCinema.domain.Ham_CountDateVO;
 import com.kh.minCinema.domain.Ham_MovieCountDTO;
 import com.kh.minCinema.domain.Ham_OneononeVO;
-import com.kh.minCinema.domain.Ham_TestVO;
+import com.kh.minCinema.domain.Ham_TotalPointDTO;
 import com.kh.minCinema.domain.Heo_MemberVO;
 import com.kh.minCinema.domain.Heo_NoticeCriteria;
 import com.kh.minCinema.domain.Heo_NoticePageDTO;
 import com.kh.minCinema.domain.Heo_NoticeVO;
 import com.kh.minCinema.domain.Heo_PointVO;
-import com.kh.minCinema.domain.Jo_MovieVO;
 import com.kh.minCinema.domain.Jo_SearchDTO;
 import com.kh.minCinema.service.Ham_OneononeService;
 import com.kh.minCinema.service.Ham_TestService;
 import com.kh.minCinema.service.Ham_adminPointService;
 import com.kh.minCinema.service.Heo_MemberService;
 import com.kh.minCinema.service.Heo_NoticeService;
-import com.kh.minCinema.service.Heo_PointService;
 import com.kh.minCinema.service.Jo_MovieService;
 
 import lombok.extern.log4j.Log4j;
@@ -39,8 +37,7 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 public class Ham_AdminController {
 	
-	@Autowired
-	private Ham_TestService ham_TestService;
+	
 	
 	@Autowired
 	private Ham_adminPointService ham_adminPointService;
@@ -74,7 +71,9 @@ public class Ham_AdminController {
 		System.out.println("오픈데이트리수투:"+oList);
 		// 월 매출액 
 		List<Heo_PointVO> pList = ham_adminPointService.pointCount();
-		
+		// 총 매출액
+		Ham_TotalPointDTO totalPointDTO = ham_adminPointService.allTotalSales();
+		System.out.println("totalPointDTO:"+totalPointDTO);
 		
 		//관리자 영화 장르 및 카운트 
 		if (searchDTO.getMov_genre() == null) {
@@ -84,6 +83,7 @@ public class Ham_AdminController {
 		System.out.println("무비리스트:"+mList);
 		
 		
+		model.addAttribute("totalPointDTO", totalPointDTO);
 		model.addAttribute("mList", mList);
 		model.addAttribute("pList", pList);
 		model.addAttribute("oList", oList);
@@ -129,7 +129,7 @@ public class Ham_AdminController {
 //	}
 	@GetMapping("/ham_addpoint")
 	public void addpoint(Model model,Heo_PointVO heo_PointVO) {
-		List<Heo_PointVO> list = ham_adminPointService.AllPointList(heo_PointVO);
+		List<Heo_PointVO> list = ham_adminPointService.allPointList(heo_PointVO);
 		model.addAttribute("list", list);
 		System.out.println("list:"+list);
 	}

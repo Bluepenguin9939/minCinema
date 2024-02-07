@@ -26,10 +26,11 @@ $(function(){
 		bStep.slice(begin,end).show();
 	});
 	
-	
+	var that="";
 	$(".mtitle").click(function(e){
 		var sender = $(this).parent().prev().text();
 		var rn = $(this).parent().prev().prev().text();
+		
 		
 			e.preventDefault();
 			var url = "/admin/reply"
@@ -44,6 +45,7 @@ $(function(){
 			console.log("샌더:",sender);
 		$.post(url,sData,function(rData){
 			console.log("아르데이터:",rData);
+			that = rData.rn;
 			var mtitle = rData.mtitle;
 			var message = rData.message;
 			$("#modal-container-560730").modal();
@@ -51,18 +53,24 @@ $(function(){
 			$("#message").val(message);
 			var frmMsg_id = $("#frmresend").find("input[name=msg_id]");
 			frmMsg_id.val(sender);
-			console.log("췤1:",mtitle);
-			console.log("췤2:",message);
+			console.log("check1:",mtitle);
+			console.log("check2:",message);
+			console.log("check3:",that);
 		});
 	});//
 	$("#reply").click(function(e){
 		e.preventDefault();
+		var rn = $("#sendReply").attr("data-rn", that);
 		$("#modal-container-560730").modal("hide");
 		$("#modal-container-000000").modal("show");
 		
 	});
-	$("#sendReply").click(function(){
-		$("#modal-container-000000").modal("hide");
+	$("#sendReply").click(function(e){
+// 		e.preventDefault();
+		var rn = $("#sendReply").attr("data-rn");
+		console.log("rn:",rn);
+		$("#replyRn").val(rn);
+		
 	});
 });
 
@@ -93,6 +101,7 @@ $(function(){
 				<form role="form" action="#" method="post">
 					<input type="hidden" name="msg_id" value="">
 					<input type="hidden" name="sender" value="">
+					<input type="hidden" name="rn" value="">
 					<a
 						id="modal-560730" href="#modal-container-560730" role="button"
 						class="btn btn-warning" data-toggle="modal"
@@ -138,6 +147,7 @@ $(function(){
 						<div class="" style="display: flex; justify-content: center">
 				<form role="form" action="/admin/sendReply" method="post" id="frmresend">
 					<input type="hidden" name="msg_id">
+					<input type="hidden" name="rn" id="replyRn">
 					<a id="modal-000000" href="#modal-container-000000" role="button"
 						class="btn btn-warning" data-toggle="modal"
 						style="font-size: 35px; display: none;">1대1 문의 하기</a>

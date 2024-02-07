@@ -28,7 +28,7 @@
 	</sql>	
 	
 	<!-- 운영자측 전체를 조회 -->
-	<select id="AllPointList" resultType="com.kh.minCinema.domain.Heo_PointVO">
+	<select id="allPointList" resultType="com.kh.minCinema.domain.Heo_PointVO">
 		select pid,mid,ppoint,pcode,TO_CHAR(pdate,
 		'yyyy-MM-dd HH24:MI') pdate
 		from ( 
@@ -41,8 +41,8 @@
 	</select>
 
 	<!-- 관리자 페이지 - 포인트 관리  -->
-<!-- 	<select id="AllPointList" resultType="com.kh.minCinema.domain.Heo_PointVO"> -->
-<!-- 		select * from mc_point -->
-<!-- 	</select> -->
+	<select id="totalSales" resultType="com.kh.minCinema.domain.Ham_TotalPointDTO">
+		select sum(ppoint) total from mc_point
+	</select>
 	
 </mapper>

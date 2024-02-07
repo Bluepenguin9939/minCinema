@@ -9,10 +9,11 @@
 }
 
 .lineChart{
-	width: 70%;
+/* 	width: 70%; */
+	width: 50%;
 	
 	resize: none;
-	margin: 0 auto;
+/* 	margin: 0 auto; */
 }
 
 
@@ -35,4 +36,105 @@ div>h3{
 .mainChart{
 	margin-top: 30px;
 }
+.pay{
+	display : flex;
+	margin: 100px;
+	border:  1px solid white;
+	width: 500px;
+	margin-left : auto;
+}
+.coa{
+	width:400px;
+	height:400px;
+	display: flex;
+	flex-direction: column;
+	justify-content : center;
+	border-radius: 0.5em;
+	background-color: #000000;
+/* 	border-bottom:10px solid #18f98f; */
+/* 	border-top:10px solid #18f98f; */
+/* 	border-left:10px solid #18f98f; */
+/* 	border-right:10px solid #18f98f; */
+	margin-left: 20px;
+	filter: drop-shadow( 1px 1px 10px green)
+	
+	
+}
+.coa:before
+{
+	top: -2px;
+	left: -2px;
+	right: -2px;
+	bottom: -2px;
+	z-index: -1;
+}
+.coa:after
+{
+	top: -2px;
+	left: -2px;
+	right: -2px;
+	bottom: -2px;
+	z-index: -2;
+	filter : blur(40px);
+}
+.coa:before,
+.coa:after
+{
+	background: linear-gradient(235deg,#89ff00,#060c21,#00bcd4);
+}
 
+
+#icon{
+	color: white;
+	font-size: 30px;
+	text-align: center;
+}
+label.totalPoint{
+	color : #ffffff;
+	display: grid;
+	place-items: center;
+/* 	font-weight: 600; */
+	font-size: 3em;
+}
+label.text{
+	color : white;
+	font-size: 30px;
+	text-align: center;
+/* 	pad: 0.7em 0; */
+/* 	font-weight: 400; */
+/* 	line-height: 0; */
+}
+@media screen and (max-width: 1024px){
+	
+	
+	.pay{
+		width: 85vw;
+	}
+	.coa{
+		height: 26vmin;
+		width: 26vmin;
+		font-size: 12px;
+	}
+}
+@media screen and (max-width: 768px)  {
+	.pay{
+		width:90vm;
+		flex-wrap: wrap;
+		gap:30px;
+	}
+	.coa{
+		height: 30vmin;
+		width: calc(50% -40px);
+		font-size: 14px;
+	}
+}
+@media screen and (max-width:480px) {
+	.pay{
+		gap:15px;
+	}
+	.coa{
+		height: 25vmin;
+		width: 100%;
+		font-size: 8px;
+	}
+}
