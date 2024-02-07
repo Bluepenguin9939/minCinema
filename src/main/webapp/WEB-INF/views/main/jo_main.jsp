@@ -5,7 +5,7 @@
 
 <%@ include file="/WEB-INF/views/include/top.jsp" %>
 
-<link href="/resources/css/main/main.css?after" rel="stylesheet">
+<link href="/resources/css/main/main.css" rel="stylesheet">
 <c:set var="begin" value="10"/>
 <script>
 $(function() {
@@ -167,7 +167,7 @@ function MoreMovie(acount) {
 				    	</div>
 				  	</div>
 				  	<div class="carousel-item">
-				  		<div class="d-flex align-items-center justify-content-center">
+				  		<div class="d-flex align-items-center justify-content-around">
 				  		<c:forEach var="vo" items="${slideList}" begin="4" end="7">
 					    	<a href="#" class="a-slide-img" data-mov_code="${vo.mov_code}">
 						    	<img src="/display?fileName=${vo.upload_path}/${vo.file_name}" 
@@ -177,7 +177,7 @@ function MoreMovie(acount) {
 				    	</div>
 				  	</div>
 				  	<div class="carousel-item">
-				  		<div class="d-flex align-items-center justify-content-center">
+				  		<div class="d-flex align-items-center justify-content-around">
 				  		<c:forEach var="vo" items="${slideList}" begin="8" end="11">
 					    	<a href="#" class="a-slide-img" data-mov_code="${vo.mov_code}">
 						    	<img src="/display?fileName=${vo.upload_path}/${vo.file_name}" 

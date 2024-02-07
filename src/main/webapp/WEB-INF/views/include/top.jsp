@@ -36,7 +36,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 
 <link href="/resources/css/include/top.css?after" rel="stylesheet">
-<link href="/resources/css/include/bottom.css" rel="stylesheet">
+<link href="/resources/css/include/bottom.css?after" rel="stylesheet">
 
 <!-- 부트스트랩4 -->
 <%@ include file="/WEB-INF/views/include/bs.jsp" %>

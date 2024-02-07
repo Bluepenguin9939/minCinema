@@ -33,10 +33,6 @@
 	border-radius: 10px;
 }
 
-.slide-movie-image {
-	margin-right: 30px;
-}
-
 .slide-movie-image:hover {
 	transition: 0.6s;
 	opacity: 0.5;
@@ -140,4 +136,13 @@ a {
 a:hover {
 	text-decoration: none;
 	color: inherit;
+}
+
+.carousel-control-prev, .carousel-control-next {
+	width: 5%;
+}
+
+.carousel-inner {
+	width: 90%;
+	left: 5%;
 }
