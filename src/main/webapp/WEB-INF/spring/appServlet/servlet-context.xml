@@ -43,7 +43,7 @@
 		</interceptor>
 		<interceptor>
 			<mapping path="/myPage/**/*"/>
-<!-- 			<mapping path="/admin/**/*"/> -->
+			<mapping path="/notice/ham_inquiry"/>
 			<mapping path="/ticketing/**/*"/>
 			<exclude-mapping path="/main/**/*"/>
 			<exclude-mapping path="/ticketing/cost"/>

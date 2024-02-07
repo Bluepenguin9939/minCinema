@@ -26,6 +26,8 @@ $(function() {
 	var sa = aa.slice(begin,end);
 	aa.hide();
 	sa.show();
+	
+	
 	if(result == "true"){
 		alert("테스트 회원 생성 완료");
 	}
@@ -36,7 +38,7 @@ $(function() {
 		console.log("테스트딜리트:",testDelete);
 		var url = "/admin/testDel";
 		var sData ={
-				"tmid" : testDelete
+				"mid" : testDelete
 		};
 		console.log("sData:",sData);
 		
@@ -99,22 +101,22 @@ $(function() {
 					</div>
 					<form action="/admin/testMember" method="post">
 					<div class="modal-body">
-						<input type="text" name="tmid" class="form-control" placeholder="테스트 아이디">
+						<input type="text" name="mid" class="form-control" placeholder="테스트 아이디">
 					</div>
 					<div class="modal-body">
-						<input type="password" name="tmpw" class="form-control" placeholder="테스트 비밀번호">
+						<input type="password" name="mpw" class="form-control" placeholder="테스트 비밀번호">
 					</div>
 					<div class="modal-body">
-						<input type="text" name="tmnick" class="form-control" placeholder="테스트 닉네임">
+						<input type="text" name="mnick" class="form-control" placeholder="테스트 닉네임">
 					</div>
 					<div class="modal-body">
-						<input type="text" name="tmname" class="form-control" placeholder="테스트 이름">
+						<input type="text" name="mname" class="form-control" placeholder="테스트 이름">
 					</div>
 					<div class="modal-body">
-						<input type="email" name="tmemail" class="form-control" placeholder="테스트 이메일">
+						<input type="email" name="memail" class="form-control" placeholder="테스트 이메일">
 					</div>
 					<div class="modal-body">
-						<input type="text" name="tmtel" class="form-control" placeholder="테스트 전화번호">
+						<input type="text" name="mtel" class="form-control" placeholder="테스트 전화번호">
 					</div>
 					<div class="modal-footer">
 						<button type="submit" class="btn btn-primary">생성</button>
@@ -131,7 +133,7 @@ $(function() {
 	<!-- 관리자용 회원관리 게시판 -->
 	<div class="notice d-flex justify-content-center" > 
 		<div class="admin-top" >
-			<h2 class="admin-body" title="" >회원 관리</h2> <button id="view">회원 보기</button>
+			<h2 class="admin-body" title="" >회원 관리</h2> 
 			<div class="search">
             <div class="search-field">
             <form action="">
@@ -187,51 +189,7 @@ $(function() {
 			<!-- 하단 게시판 번호(Pagination) -->
 			
 				<button id="load-more">더보기</button>
-			
-<!-- 	<div class="pageBottom" style="margin-bottom: 100px"> -->
-<!-- 		<div class="col-md-12"> -->
-<!-- 			<nav> -->
-			
-<!-- 				<ul class="pagination d-flex align-items-center justify-content-center"> -->
-<!-- 						<select name="target" title="검색선택"> -->
-<!-- 						<option value="1">10</option> -->
-<!-- 						<option value="2">20</option> -->
-<!-- 						<option value="3">30</option> -->
-<!-- 						<option value="4">40</option> -->
-<!-- 						<option value="5">50</option> -->
-<!-- 					</select>  -->
-<!-- 					<li class="page-item"> -->
-<!-- 						<a class="page-link" href="#">&laquo;</a> -->
-<!-- 					</li> -->
-<!-- 					<li class="page-item"> -->
-<!-- 						<a class="page-link" href="#">1</a> -->
-<!-- 					</li> -->
-<!-- 					<li class="page-item"> -->
-<!-- 						<a class="page-link" href="#">2</a> -->
-<!-- 					</li> -->
-<!-- 					<li class="page-item"> -->
-<!-- 						<a class="page-link" href="#">3</a> -->
-<!-- 					</li> -->
-<!-- 					<li class="page-item"> -->
-<!-- 						<a class="page-link" href="#">4</a> -->
-<!-- 					</li> -->
-<!-- 					<li class="page-item"> -->
-<!-- 						<a class="page-link" href="#">5</a> -->
-<!-- 					</li> -->
-<!-- 					<li class="page-item"> -->
-<!-- 						<a class="page-link" href="#">...</a> -->
-<!-- 					</li> -->
-<!-- 					<li class="page-item"> -->
-<!-- 						<a class="page-link" href="#">10</a> -->
-<!-- 					</li> -->
-<!-- 					<li class="page-item"> -->
-<!-- 						<a class="page-link" href="#">&raquo;</a> -->
-<!-- 					</li> -->
-<!-- <!-- 					<li class="page">현재 1 page 10 page entries </li> --> 
-<!-- 				</ul> -->
-<!-- 			</nav> -->
-<!-- 		</div> -->
-<!-- 	</div> -->
+
 	</div>
 	</div>
 

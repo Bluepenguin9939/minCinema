@@ -13,8 +13,5 @@ public interface Heo_PointMapper {
 	
 	public int getPointListCount(String mid);
 	
-	// 관리자 매출 카운트 
-	public List<Heo_PointVO> pointCount();
 	
-	public List<Heo_PointVO> selectPoint();
 }

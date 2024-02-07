@@ -15,10 +15,13 @@ public interface Heo_MemberMapper {
 	public Heo_MemberVO login(Heo_LoginDTO heo_LoginDTO);
 	
 	public int updatePoint(Heo_PointVO heo_PointVO);
-
+	
+	//관리자
 	public List<Heo_MemberVO> memberList(Heo_MemberVO vo);
-
+	
 	public int memberDelete(String mid);
 	
 	public String selectActive(String mid);
+	
+	public int selectPassword(Heo_MemberVO heo_MemberVO);
 }

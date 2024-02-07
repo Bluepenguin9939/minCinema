@@ -36,7 +36,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 
 <link href="/resources/css/include/top.css?after" rel="stylesheet">
-<link href="/resources/css/include/bottom.css" rel="stylesheet">
+<link href="/resources/css/include/bottom.css?after" rel="stylesheet">
 
 <!-- 부트스트랩4 -->
 <%@ include file="/WEB-INF/views/include/bs.jsp" %>
@@ -90,7 +90,7 @@ $(function() {
 				<!-- Topbar -->
 				
 				<nav class="navbar navbar-expand-sm navbar-dark d-flex justify-content-between"
-					style="padding: 20px;">
+					style="padding: 20px; border-bottom: 2px solid #00000021;">
 					<!-- 로고 -->
 					<div class="d-flex justify-content-center" style="width: 20%;">
 						<a href="/main/jo_main" class="header__logo" id="logo">

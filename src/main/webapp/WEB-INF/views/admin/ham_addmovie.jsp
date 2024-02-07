@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<link rel="stylesheet" href="/resources/css/admin/addmovie.css" type="text/css">
+<link rel="stylesheet" href="/resources/css/admin/addmovie.css?after" type="text/css">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Image Upload Example</title>
 <script>
@@ -245,61 +245,73 @@ $(function(){
 		</div>
 	</div>
 	<!-- 칸나누기 -->
- 	<form id="frmAddMovie" action="/admin/addMovie" method="post">
- 		<input type="hidden" id="upload_path" name="uploadPath">
- 		<input type="hidden" id="file_name" name="fileName">
-		<div class="col-md-12" style="margin-left: 10%;" >
-			<div class="fileMove-card">
-				<div class="profile-images" >
-					<img alt="" src="/resources/img/moviedefault.jpg" id="upload-img">
-				</div>
-				<div class="custom-file">
-					<label class="main_image_text" id="te" for="poster-upload">영화 사진 추가</label>
-	  				<input type="file" id="poster-upload" name="image" accept="image/*">
-  				</div>
-				<div class="col-md-10 si">
-					<input type="text" id="movieTitle" name="mov_title" placeholder="영화 제목" size="100px;">
-					<button type="button" id="btnGetTrailer"
-						class="btn btn-sm btn-secondary">
-						영화 트레일러 찾으러 가기
-					</button>
-					<div>
-						<textarea id="moviePlot" name="mov_plot" rows="3" cols="100" placeholder="상세 내용"></textarea>
-					</div>
-					<div class="quarter">
-						<input class="" id="movieReleaseDate" name="mov_releaseDate" type="text" placeholder="개봉일" >
-						<input class="movieText" id="movieRating" name="mov_rating" type="text" placeholder="연령" >
-						<input class="movieText" id="movieRuntime" name="mov_runtime" type="text" placeholder="시간" >
-						<input class="movieText" id="movieGenre" name="mov_genre" type="text" placeholder="장르" >
-						<input class="movieText" id="movieCd" name="mov_code" type="text" placeholder="영화 코드" > 
-						<input class="movieText" id="movieDirector" name="mov_director" type="text" placeholder="영화 감독" > 
-						<input class="movieText" id="movieActor" name="mov_actor" type="text" placeholder="영화 배우" > 
-					</div>
-					<!-- 드래그 & 드롭 -->
-					<div>
-						<div id="dropDiv">등록할 스틸컷을 드래그 &amp 드롭해주세요</div>
-					</div>
-					<!-- 드롭된 스틸컷 목록 -->
-					<div id="stillCutDiv" class="d-flex">
-						<div class="stillCutImage" style="display: none; margin-right: 5px;">
-							<img src="/resources/img/default.png" width="100" height="100" alt="스틸컷">
+	<div class="d-flex justify-content-center" style="height: 40%;">
+	 	<form id="frmAddMovie" action="/admin/addMovie" method="post">
+	 		<input type="hidden" id="upload_path" name="uploadPath">
+	 		<input type="hidden" id="file_name" name="fileName">
+			<div style="height: 100%;">
+				<div class="fileMove-card d-flex" style="height: 100%;">
+					<div class="d-flex flex-column">
+						<div class="profile-images">
+							<img alt="" src="/resources/img/moviedefault.jpg" id="upload-img">
+						</div>
+						<div class="custom-file">
+							<label class="main_image_text" id="te" for="poster-upload">영화 사진 추가</label>
+			  				<input type="file" id="poster-upload" name="image" accept="image/*"
+			  					style="display: none;">
+		  				</div>
+	  				</div>
+					<div class="d-flex flex-column justify-content-between" style="margin-left: 10px; width: 60%;">
+						<div id="mov_title_div">
+							<input type="text" id="movieTitle" name="mov_title" placeholder="영화 제목" size="40px;">
+							<button type="button" id="btnGetTrailer"
+								class="btn btn-sm btn-secondary" style="margin-left: 10px;">
+								영화 트레일러 찾으러 가기
+							</button>
+						</div>
+						<div>
+							<textarea id="moviePlot" name="mov_plot" rows="3" placeholder="상세 내용"
+								style="width: 100%;"></textarea>
+						</div>
+						<div class="d-flex justify-content-around">
+							<input class="" id="movieReleaseDate" name="mov_releaseDate" type="text" placeholder="개봉일" >
+							<input class="movieText" id="movieRating" name="mov_rating" type="text" placeholder="연령" >
+							<input class="movieText" id="movieRuntime" name="mov_runtime" type="text" placeholder="시간" >
+						</div>
+						<div class="d-flex justify-content-between">
+							<input class="movieText" id="movieGenre" name="mov_genre" type="text" placeholder="장르" >
+							<input class="movieText" id="movieCd" name="mov_code" type="text" placeholder="영화 코드" > 
+							<input class="movieText" id="movieDirector" name="mov_director" type="text" placeholder="영화 감독" > 
+							<input class="movieText" id="movieActor" name="mov_actor" type="text" placeholder="영화 배우" > 
+						</div>
+						<!-- 드래그 & 드롭 -->
+						<div>
+							<div id="dropDiv">등록할 스틸컷을 드래그 &amp 드롭해주세요</div>
+						</div>
+						<!-- 드롭된 스틸컷 목록 -->
+						<div id="stillCutDiv" class="d-flex">
+							<div class="stillCutImage" style="display: none; margin-right: 5px;">
+								<img src="/resources/img/default.png" width="100" height="100" alt="스틸컷">
+							</div>
+						</div>
+	<!-- 					<div> -->
+	<!-- 						<i class="fa fa-video"></i><label for="chooseVideo" style="cursor: pointer;">동영상 업로드</label> -->
+	<!-- 					</div> -->
+	<!-- 					<input type="file" id="chooseVideo" name="chooseVideo" accept="video/*" onchange="loadFile(this)" style="visibility: hidden;"> -->
+						<div>
+							<i class="fa fa-link"></i>
+							<input type="text" id="mov_trailer" 
+								name="mov_trailer" placeholder="동영상 URL 등록"
+								style="width: 350px;">
+						</div>
+						<div>
+							<button type="submit" id="btnAddMovie" class="btn btn-secondary">
+								영화 등록하기
+							</button>
 						</div>
 					</div>
-<!-- 					<div> -->
-<!-- 						<i class="fa fa-video"></i><label for="chooseVideo" style="cursor: pointer;">동영상 업로드</label> -->
-<!-- 					</div> -->
-<!-- 					<input type="file" id="chooseVideo" name="chooseVideo" accept="video/*" onchange="loadFile(this)" style="visibility: hidden;"> -->
 				</div>
-				<div>
-					<i class="fa fa-link"></i>
-					<input type="text" id="mov_trailer" 
-						name="mov_trailer" placeholder="동영상 URL 등록"
-						style="width: 350px;">
-				</div>
-				<button type="submit" id="btnAddMovie" class="btn btn-secondary">
-					영화 등록하기
-				</button>
 			</div>
-		</div>
-	</form>
+		</form>
+	</div>
 </body>
