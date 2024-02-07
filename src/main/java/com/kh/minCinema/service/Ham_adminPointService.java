@@ -2,6 +2,7 @@ package com.kh.minCinema.service;
 
 import java.util.List;
 
+import com.kh.minCinema.domain.Ham_TotalPointDTO;
 import com.kh.minCinema.domain.Heo_PointVO;
 
 public interface Ham_adminPointService {
@@ -11,5 +12,7 @@ public interface Ham_adminPointService {
 	
 	public List<Heo_PointVO> selectPoint();
 
-	public List<Heo_PointVO> AllPointList(Heo_PointVO heo_PointVO);
+	public List<Heo_PointVO> allPointList(Heo_PointVO heo_PointVO);
+	
+	public Ham_TotalPointDTO allTotalSales();
 }

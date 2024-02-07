@@ -36,11 +36,11 @@
         <ul class="navbar-nav bg-gradient sidebar sidebar-dark accordion"  id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" title="ak"  href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" title="ak"  href="/main/jo_main">
                 <div class="sidebar-brand-icon rotate-n">
                     <i class="fa fa-film"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3" style="background-color: black;">Min4 Admin <sup></sup></div>
+                <div class="sidebar-brand-text mx-3" style="background-color: black;">Min4 Admin</div>
             </a>
 			</section><!-- Divider -->
 <!--             <hr class="sidebar-divider my-0"> -->

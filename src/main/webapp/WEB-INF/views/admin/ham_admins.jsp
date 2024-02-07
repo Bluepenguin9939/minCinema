@@ -3,22 +3,24 @@
 <%@ include file="/WEB-INF/views/include/ad_sidebar.jsp"%>
 <%@ include file="/WEB-INF/views/include/ad_topbar.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<link href="/resources/css/admin/adminmain.css?after" rel="stylesheet"
-	type="text/css">
+<link href="/resources/css/admin/adminmain.css?after" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <!-- Begin Page Content -->
 <div class="container-fluid">
 
 
                     <!-- Page Heading -->
-                    <div class="">
-                        <label class="h3 mb-0 text-black-800" id="mainManage">관리자 메인 페이지</label>
+                    <div>
+                        <label class="h3 mb-0 text-black-800" id="mainManage"> 관리자 메인 페이지</label>
                     </div>
                  </div>
                  
                  <!-- 관리자 메인 대시보드 -->
                  <div class="col-md-12">
 						<div class="row">
+
 							<!-- 막대차트-장르별 등록 영화수 -->
 							<div class="col-md-6">
 								<div class="chartBox">
@@ -34,8 +36,6 @@
 							</div>
 							<div id="sisi" >
 								 <c:forEach  var="vo" items="${list}"  >
-<%-- 								  <c:out escapeXml="false"  value="${item.id}"/> --%>
-<%-- 								  <c:out escapeXml="false" value="${item.name}"/> --%>
 								 	<div  class="send-date" data-send_date="${vo.send_date}"></div>
 								 	<div  class="month-Count" data-monthCount="${vo.monthCount}"></div>
 								 </c:forEach>
@@ -43,7 +43,9 @@
 							<div id="sisi2" >
 								 <c:forEach  var="vo" items="${oList}" >
 								 	<div  class="open-date" data-open_date="${vo.open_date}"></div>
+								 	<c:if test="${!empty vo.open_date}">
 								 	<div class="reply-Count" data-replyCount="${vo.replyCount}"></div>
+								 	</c:if>
 								 </c:forEach>
 							</div>
 
@@ -59,13 +61,14 @@
 								 	<div class="mov-count" data-mov_count="${vo.mov_count}"></div>
 								 </c:forEach>
 							</div>
-
+							
 						</div>
-
 				</div>
-	
+				
 
 		<!-- 선형 차트-매출액 -->
+		<div class="col-md-12">
+		<div class="row">
 		<div class="lineChart">
 			<h3 id="monthPoint">
 				<i class="fa fa-calculator"></i> 월별 매출액
@@ -74,6 +77,20 @@
 				<canvas id="myChart4"></canvas>
 			</div>
 		</div>
+		<div class="pay">
+				<div class="coa">
+					<i class="fa fa-coins" id="icon"></i>
+					<label class="text">총 매출액</label>
+					<label class="totalPoint" data-total="${totalPointDTO.total}"></label>
+				</div>
+<!-- 				<div class="coa"> -->
+<!-- 					<span class="num" data-val="400">000</span> -->
+<!-- 					<span class="text">The total movies</span> -->
+<!-- 				</div> -->
+		</div>
+		</div>
+	</div>
+
 
 
 <!-- 스크롤 많이 내려갈시 한번에 올리기-->
@@ -82,8 +99,27 @@
 </a>
 
 <script>
-
 $(function() {
+	var valueDisplays = document.querySelectorAll(".totalPoint");
+// 	var interval = 10;
+	console.log(valueDisplays);
+	
+		valueDisplays.forEach((valueDisplay) => {
+		var startValue = 0;
+		var endValue = valueDisplay.getAttribute("data-total");
+		console.log("endValue:",endValue);
+// 		var duration = Math.floor(interval / endValue);
+		var counter = setInterval(function(){
+			startValue += 1000;
+			valueDisplay.textContent = startValue.toLocaleString('ko-KR');
+			if(startValue == endValue){
+				clearInterval(counter);
+			}
+			
+		}, 0.1);
+	});
+	
+	//차트 데이터
 	var send_date = $(".send-date").attr("data-send_date");
 	var monthCount = $(".month-Count").attr("data-monthCount");
 	var monthCount2 = parseInt(monthCount);
@@ -125,11 +161,6 @@ $(function() {
 
 	// 	var data = {};
 	var labels = {};
-	var bb = [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11",
-			"12" ]
-	var cc = [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11",
-			"12" ]
-	var aa = [ 1, 2, 3, 4, 5, 6 ]
 
 	for (var v = 0; v < 12; v++) {//유저측
 		if (v == 11) {
@@ -143,8 +174,6 @@ $(function() {
 	}//
 	aaa = count.split(',');
 	co = asd.split(',');
-// 	console.log("co:", co);
-// 	console.log("aaa:", aaa);
 	
 	for (var v = 0; v < 12; v++) {//관리자측
 		if (v == 11) {
@@ -154,15 +183,12 @@ $(function() {
 			rOp += $(".open-date").eq(v).attr("data-open_date") + ",";
 			rCount += $(".reply-Count").eq(v).attr("data-replyCount") + ",";
 		}
-// 		console.log("rCount:", rCount);
 	}//
 	
 	
 	rOsplit = rOp.split(',');
 	rCsplit = rCount.split(',');
 
-// 	console.log("rOsplit:", rOsplit);
-// 	console.log("rCsplit:", rCsplit);
 	
 	
 	for (var v = 0; v < 12; v++) {//매출액  
@@ -195,8 +221,6 @@ $(function() {
 	console.log("mc:",mc);
 	
 	
-// 	console.log("pdSplit:",pdSplit);
-// 	console.log("ppSplit:",ppSplit);
 
 
 	var myChart = new Chart(ctx,
@@ -205,7 +229,7 @@ $(function() {
 				data : {
 					labels : mgSplit,
 					datasets : [ {
-						label : '# of Votes',
+						label : '등록된 영화 개수',
 						data : mcSplit,
 						borderColor : [ 'rgba(255,99,132,0.2)',
 								'rgba(54, 162, 235, 0.2)',
@@ -223,7 +247,7 @@ $(function() {
 			labels : co,
 			datasets : [
 					{
-						label : '고객문의',
+						label : '고객문의수',
 						data : aaa,
 						backgroundColor : [ 'rgba(255,99,132,0.2)',
 								'rgba(54, 162, 235, 0.2)',
@@ -239,7 +263,7 @@ $(function() {
 								'rgba(255, 159, 64, 0.2)' ],
 					},
 					{
-						label : '고객문의s',
+						label : '문의답변수',
 						data : rCsplit,
 						backgroundColor : [ 'rgba(255,99,132,1)',
 								'rgba(54, 162, 235, 1)',
@@ -282,7 +306,7 @@ $(function() {
 		data : {
 			labels : pdSplit,
 			datasets : [ {
-				label : '# of Votes',
+				label : '월별 매출액',
 				data : ppSplit,
 				borderColor : [ 'rgba(255,99,132,1)',
 						'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)',
@@ -299,6 +323,8 @@ $(function() {
 
 });
 </script>
+
+<!-- <script src="script.js"></script> -->
 <!-- 차트 javaScript> -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <!--   <script src="/resources/js/moviekind.js"></script> -->
