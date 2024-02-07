@@ -1,5 +1,7 @@
 package com.kh.minCinema.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,12 @@ public class Jo_ReviewServiceImpl implements Jo_ReviewService {
 	public boolean writeReview(Jo_ReviewVO reviewVO) {
 		int count = reviewMapper.insertReview(reviewVO);
 		return (count == 1) ? true : false;
+	}
+
+	@Override
+	public List<Jo_ReviewVO> getReview() {
+		List<Jo_ReviewVO> reviewList = reviewMapper.selectReview();
+		return reviewList;
 	}
 
 }

@@ -169,11 +169,13 @@ $(function() {
 									</tr>
 								</thead>
 								<tbody>
+								<c:forEach var="vo" items="${reviewList}">
 									<tr>
-										<td>JoMaMin</td>
-										<td>재밌는지는 잘 모르겠네요</td>
-										<td>2222.02.22</td>
+										<td>${vo.mid}</td>
+										<td>${vo.r_content}</td>
+										<td>${vo.r_date}</td>
 									</tr>
+								</c:forEach>
 								</tbody>
 							</table>
 						</div>

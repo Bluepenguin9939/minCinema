@@ -7,4 +7,9 @@
 		INSERT INTO MC_REVIEW(MID, R_CONTENT)
 		VALUES(#{mid}, #{r_content})
 	</insert>
+	
+	<select id="selectReview" resultType="com.kh.minCinema.domain.Jo_ReviewVO">
+		SELECT MID, R_CONTENT, TO_CHAR(R_DATE, 'yyyy-MM-dd HH24:MI') AS R_DATE 
+		FROM MC_REVIEW
+	</select>
 </mapper>

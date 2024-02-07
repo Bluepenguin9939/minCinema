@@ -45,8 +45,10 @@ public class Heo_MainController {
 		Jo_MovieVO movieVO = (Jo_MovieVO)map.get("movieVO");
 		List<Jo_AttachVO> attachList = (List<Jo_AttachVO>)map.get("attachList");
 		log.info("attachList : " + attachList);
+		List<Jo_ReviewVO> reviewList = reviewService.getReview();
 		model.addAttribute("movieDetail", movieVO);
 		model.addAttribute("movieImage", attachList);
+		model.addAttribute("reviewList", reviewList);
 	}
 	
 	@GetMapping("/heo_pointCharge")
