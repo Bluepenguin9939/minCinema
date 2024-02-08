@@ -18,8 +18,8 @@
 <script>
 
 function moreButton(acount){
-	var yt = $(".wrap>tr").length;
-	if(yt > acount && yt % 5 > 0 && yt % 5 < 5){
+	var bsl = $(".wrap>tr").length;
+	if(bsl > acount && bsl % 5 > 0 && bsl % 5 < 5){
 		$("#load-more").css("display", "block");
 	}
 }
@@ -28,14 +28,14 @@ $(function() {
 	var begin = 0;
 	var end = 5;
 	var acount = 5;
-	var aa = $(".wrap>tr");
-	var sa = aa.slice(begin,end);
-	aa.hide();
-	sa.show();
+	var bStep = $(".wrap>tr");
+	var eStep = bStep.slice(begin,end);
+	bStep.hide();
+	eStep.show();
 	
-	var yt = aa.length;
-	console.log(yt);
-	if(yt > acount && yt % 5 >= 0){
+	var bsl = bStep.length;
+	console.log(bsl);
+	if(bsl > acount && bsl % 5 >= 0){
 		$("#load-more").css("display", "block");
 	}
 	
@@ -74,7 +74,7 @@ $(function() {
 		end += 5;
 		acount += 5;
 		moreButton(acount);
-		aa.slice(begin,end).show();
+		bStep.slice(begin,end).show();
 	});
 	
 	//테스트 회원 생성 버튼
@@ -174,11 +174,7 @@ $(function() {
 					<tbody class="wrap">
 					<c:forEach var="vo" items="${list}" varStatus="step">
 						<tr>
-							<td>
-							
-							${vo.mno}
-							
-							</td>
+							<td>${vo.mno}</td>
 							<td>${vo.mid}</td>
 							<td>${vo.mnick}</td>
 							<td>${vo.mname}</td>
