@@ -14,8 +14,6 @@ body {
   user-select:none
 } /*드래그 방지*/
 
-
-
 .reserve-container {
     /*margin-top: 20px; /*마진달기*/
     display: flex; /**flex 적용**/
@@ -23,13 +21,13 @@ body {
     flex-wrap: nowrap;
     height: 850px; /*높이 800px*/
     /* border: 1px solid #dddddd; */
-    background-color: gray;
+    background-color: white;
 }
 
 .reserve-container>div {
     border: 1px solid #dddddd;
     /*외각선 굵게만들어 구분하기*/
-    background-color: white;
+    background-color: fbe1c13a;
 } 
 
 .reserve-title { /*타이틀 상단제목 css*/
@@ -60,7 +58,7 @@ body {
 .seatLoc{
 	
 	
-	background-color:#AAAAAA;
+	background-color:#fbe1c13a;
 	/*height: 675px; */
 	height: 100%; 
  	width: 70%; 
@@ -116,11 +114,6 @@ body {
 	
 }
 
-.seat:hover{
-	/*background-color:black;
-	color: white;*/
-	
-}
 
 .ENG-Row{
 	width: 8%;
@@ -159,7 +152,7 @@ body {
 .count{
 	width: 30%;
 	height: 100%; 
-	background-color:#AAAAAA;
+	background-color:#fbe1c13a;
 }
 
 .countText{
@@ -179,7 +172,7 @@ body {
 }
 
 span[data-select='noselect'] {
-  background-color: #f2e2cd;
+  background-color: red;
   color: white;
 }
 
@@ -192,10 +185,6 @@ span[data-select='noselect'] {
  date-select: unselect => 비어있는 좌석
  date-select: noselect => 이미 예약된 좌석
  */
- //console.log("info:","${loginInfo.mpoint}");
-
- 
- 
 
 var seatMap = new Map();
 
@@ -226,8 +215,7 @@ function mouseHoverOronClick(that , pCount, bgColor, color , method){
 		if(pCount >= 2){
 		
 			if(thatNT_text == "" || thatNT_attr == "select" || thatNT_attr == "noselect"){
-				//console.log("적용테스트");
-					//console.log("끝")
+				
 				thatPV.css("background-color",bgColor);
 				thatPV.css("color",color);
 				if(method=="on-click"){
@@ -488,8 +476,13 @@ $(function(){
 		var thatPV2 = that.prev().prev();
 		
 		var ticketCost = parseInt($("#ticketCost").text());
-		//console.log("ticketCost:",ticketCost);
-		$("#disCount").val("0").prop("selected",true);
+		$("#disCount").val("0").prop("selected",true); //세일 없음으로 선택
+		
+		//성인 , 청소년 비용
+		var adultCost =  parseInt( $("#adultCost").text() );		
+		var teenCost =  parseInt( $("#teenCost").text() );		
+		//console.log("adultCost:",adultCost);
+		
 		
 		if(select=="unselect"){
 			var currentSeat = parseInt( $(".currentSeat").text() );
@@ -502,12 +495,12 @@ $(function(){
 				var seatArray = mouseHoverOronClick(that,pCount,"black","white","on-click");
 				var appendId;
 				if(ageCheck=="성인"){
-					ticketCost = ticketCost + 10000*parseInt(pCount);
+					ticketCost = ticketCost + adultCost * parseInt(pCount);
 					age = "adult";
 					appendId = "#"+age;
 				}
 				else if(ageCheck="청소년"){
-					ticketCost = ticketCost + 8000*parseInt(pCount);
+					ticketCost = ticketCost + teenCost * parseInt(pCount);
 					age = "teen";
 					appendId = "#"+age;
 				}
@@ -528,12 +521,12 @@ $(function(){
 					
 					var appendId;
 					if(ageCheck=="성인"){
-						ticketCost = ticketCost + 10000*parseInt(pCount);
+						ticketCost = ticketCost + adultCost * parseInt(pCount);
 						age = "adult";
 						appendId = "#"+age;
 					}
 					else if(ageCheck="청소년"){
-						ticketCost = ticketCost + 8000*parseInt(pCount);
+						ticketCost = ticketCost + teenCost * parseInt(pCount);
 						age = "teen";
 						appendId = "#"+age;
 					}
@@ -562,12 +555,12 @@ $(function(){
 					
 						var appendId;
 						if(ageCheck=="성인"){
-							ticketCost = ticketCost + 10000*parseInt(pCount);
+							ticketCost = ticketCost + adultCost * parseInt(pCount);
 							age = "adult";
 							appendId = "#"+age;
 						}
 						else if(ageCheck="청소년"){
-							ticketCost = ticketCost + 8000*parseInt(pCount);
+							ticketCost = ticketCost + teenCost * parseInt(pCount);
 							age = "teen";
 							appendId = "#"+age;
 						}
@@ -613,8 +606,8 @@ $(function(){
 			});
 			
 			
-			if(age == "adult"){ ticketCost = ticketCost - 10000 * seatArray.length }
-			else if(age == "teen"){ ticketCost = ticketCost - 8000 * seatArray.length }
+			if(age == "adult"){ ticketCost = ticketCost - adultCost * seatArray.length }
+			else if(age == "teen"){ ticketCost = ticketCost - teenCost * seatArray.length }
 			$("#ticketCost").text(ticketCost);
 			
 			$.each(seatArray, function (index, seat) { /*map 정리*/
@@ -749,7 +742,7 @@ $(function(){
 	        	<div class="seatLoc" >
 	        		<div class="seatLoc-top bg-light rounded">
 	        			
-	        			<div style="background-color: #AAAAAA;">
+	        			<div style="background-color: #fbe1c13a;">
 	        				<div class="bg-danger text-center">이용자 선택</div>
 	        				
 	        				<div>
@@ -757,9 +750,9 @@ $(function(){
 	        					<span class="pCount rounded-circle m-2" data-select="unselect" data-pCount="2">2인</span>
 	        					<span class="pCount rounded-circle m-2" data-select="unselect" data-pCount="3">3인</span>
 	        					<input type="hidden" id="hid-pCount" value="1">
-	        					<span>성인 : 10000원</span>
+	        					성인 : <span id="adultCost">10000</span>원
 	        					<span>-</span>
-	        					<span>청소년 : 8000원</span>
+	        					청소년 : <span id="teenCost">8000</span>원
 	        				</div>
 	        				<div class="scroll">
 		        				<div class="p-1 d-flex flex-nowrap" id="adult">

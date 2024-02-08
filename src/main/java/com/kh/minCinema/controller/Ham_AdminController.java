@@ -218,6 +218,7 @@ public class Ham_AdminController {
 	}
 	
 	
+	
 	@GetMapping("/je_addmoviedate")
 	public void movieadd_date() {          
 		
@@ -226,6 +227,12 @@ public class Ham_AdminController {
 	@GetMapping("/je_movieList")
 	public void movieLists() {          
 		
+	}
+	
+	@PostMapping("/je_movieDelete") //영화 삭제
+	@ResponseBody
+	public void movieDelete(String movieCode) {          
+		jo_MovieService.movieDelete(movieCode);
 	}
 	
 }

@@ -21,5 +21,7 @@ public interface Je_AdminMoiveDateMapper {
 	
 	public int updateDate(Je_MovieDateInfoDTO je_MovieDateInfoDTO);
 	
+	public int updateRes(Je_MovieDateInfoDTO je_MovieDateInfoDTO);
+	
 	public int deleteDate(String mov_date_code);
 }
