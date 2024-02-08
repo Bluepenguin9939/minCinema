@@ -10,6 +10,7 @@
 <script>
 $(function() {
 	$("#btnDupId").click(function() {
+		var that = $(this);
 		var uid = $("#u-id");
 		if (uid.val() == "" || uid.val().length < 4) {
 			alert("아이디를 4글자 이상 입력해주세요.")
@@ -29,6 +30,8 @@ $(function() {
 			} else if (rData == "false") {
 				alert("사용 가능한 아이디입니다.")
 				$("#u-pw").focus();
+				that.prop("disabled", true);
+				$("#u-id").prop("disabled", true);
 				$("#btnRegister").prop("disabled", false);
 			}
 		});
