@@ -58,13 +58,18 @@ public class Je_AdminMovieDateServiceImpl implements Je_AdminMovieDateService {
 
 	@Override
 	public int editDate(Je_MovieDateInfoDTO je_MovieDateInfoDTO) {
-		int count = je_AdminMovieDateMapper.updateDate(je_MovieDateInfoDTO);
+		
+		int count =je_AdminMovieDateMapper.updateRes(je_MovieDateInfoDTO);
+		
+		count = je_AdminMovieDateMapper.updateDate(je_MovieDateInfoDTO);
+		
 		
 		return count;
 	}
 
 	@Override
 	public int remove(String mov_date_code) {
+		
 		int count = je_AdminMovieDateMapper.deleteDate(mov_date_code);
 		return count;
 	}

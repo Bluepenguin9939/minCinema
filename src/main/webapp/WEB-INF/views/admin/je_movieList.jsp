@@ -47,20 +47,33 @@ $(function(){
 	$.post("/admin/movieTitleLists",function(rData){
 		var movieList = rData;
 		$.each(movieList,function(i,value){
+			var str = value.mov_releaseDate;
+			var date = str.slice(0,4) + '-' + str.slice(4, 6) + '-' + str.slice(6,8);
+			
 			$(".movieList").append("<tr class='movieListRow'>"
-					+"<td style='border-right: 1px solid #999999;'>"+value.mov_code+"</td>"
+					+"<td class='font-weight-bold text-center' style='border-right: 2px solid #999999;'>"+value.mov_code+"</td>"
 					+"<td>"+value.mov_title+"</td>"
-					+"<td class='text-center'>"+value.mov_releaseDate+"</td>"
-					+"<td class='text-center'>"+value.mov_runtime+"</td>"
-					+"<td class='d-flex  justify-content-center'><button type='button' class='movieDelete'>삭제</button></td>"
+					+"<td class='text-center'>"+date+"</td>"
+					+"<td class='text-center'>"+value.mov_runtime+"분</td>"
+					+"<td class='d-flex justify-content-center'>"
+						+"<button data-movieCode='"+value.mov_code+"' type='button' class='btn btn-danger movieDelete'>"
+						+"삭제</button>"
+					+"</td>"
 				+"</tr>");
 		});
 		
 	});
 	
 	$(document).on("click",".movieDelete",function(){
-		/*삭제기능 예정*/
-		console.log("영화삭제");
+		/*삭제기능*/
+		var that = $(this);
+		var data = { movieCode : that.attr("data-movieCode") };
+		console.log( data );
+		$.post("/admin/je_movieDelete",data,function(){
+			alert("삭제완료");
+			that.parent().parent().remove();
+		});
+		
 	});
 	
 	
@@ -72,7 +85,7 @@ $(function(){
 </head>
 
 <body>
-	<div class="notice d-flex justify-content-center"> 
+	<div class="pt-5 notice d-flex justify-content-center"> 
 		<div style="width: 70%; display: flex;"
 			class="flex-column">
 			
@@ -83,16 +96,16 @@ $(function(){
 			<div class="scroll">
 				<table class="table table-borderless">
 					<thead style="border-top: 1px solid #999999;font-size: 24px;">
-						<tr>
-							<th>영화 코드</th>
+						<tr class='bg-info'>
+							<th class='text-center' style='border-right: 2px solid #999999;'>영화 코드</th>
 							<th >영화 이름</th>
 							<th class='text-center'>영화 상영일</th>
 							<th class='text-center'>영화 런타임</th>
-							<th class='text-center'>영화 삭제</th>
+							<th class='bg-danger text-light text-center'>영화 삭제</th>
 						</tr>
 					</thead>
 					<tbody class="movieList" 
-						style="font-size: 19px;border-bottom: 1px solid #999999;border-top: 1px solid #999999;">
+						style="font-size: 19px;border-bottom: 2px solid #999999;border-top: 1px solid #999999;">
 							
 					</tbody>
 				</table>
@@ -110,6 +123,6 @@ $(function(){
 	
 	<!-- 칸나누기 -->
  	
-	
+				
 	
 </body>

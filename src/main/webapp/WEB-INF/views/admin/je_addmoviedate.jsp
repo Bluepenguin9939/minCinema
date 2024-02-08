@@ -314,7 +314,7 @@ $(function(){
 </head>
 
 <body>
-	<div class="notice d-flex justify-content-center"> 
+	<div class="pt-5 notice d-flex justify-content-center"> 
 		<div style="width: 70%; display: flex;"
 			class="flex-column">
 			
@@ -375,10 +375,7 @@ $(function(){
 					</div>
 					
 				</div>
-				<!-- <input type="text" id="getMovieData" placeholder="영화제목">
-				<div class="profile-images" >
-					<img alt="" src="/resources/img/moviedefault.jpg" id="upload-img">
-				</div> -->
+				
 			</div>
 			
 			<div class="d-flex justify-content-end">

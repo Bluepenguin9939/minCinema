@@ -15,8 +15,8 @@
 	
 	<!-- 좌석 예약 -->
 	<insert id="insertReservedSeats">
-		INSERT INTO MC_MOVIE_THEATER(MOV_THEATER_CODE, MOV_THEATER, MOV_THEATER_DATE, MOV_THEATER_TIME, SEAT_NAME_RES , MID)
-            VALUES(seq_theater.nextval, #{movieTheater}, #{movieDate}, #{movieTime} , #{reservedSeat} ,#{mid})
+		INSERT INTO MC_MOVIE_THEATER(MOV_THEATER_CODE, MOV_DATE_CODE ,MOV_THEATER, MOV_THEATER_DATE, MOV_THEATER_TIME, SEAT_NAME_RES , MID)
+            VALUES(seq_theater.nextval, #{movieDateCode} ,#{movieTheater}, #{movieDate}, #{movieTime} , #{reservedSeat} ,#{mid})
 	</insert>
 	
 	<!-- 좌석 중복예약 체크 -->
@@ -28,5 +28,13 @@
 			       AND SEAT_NAME_RES = #{reservedSeat}
 	</select>
 	
+	
+	<!-- 예매내역 가져오기 by Jo -->
+	<select id="selectReservedHistory" resultType="com.kh.minCinema.domain.Jo_ReservedHistoryDTO">
+		SELECT MOV_THEATER, MOV_THEATER_DATE, MOV_THEATER_TIME, SEAT_NAME_RES FROM MC_MOVIE_THEATER
+		WHERE MID = #{mid}
+		AND MOV_THEATER_DATE >= SUBSTR(TO_CHAR(SYSDATE, 'YYYY-MM-DD'), 0, 10)
+        AND MOV_THEATER_TIME > SUBSTR(TO_CHAR(SYSDATE, 'HH24:MI'), 0, 5)
+	</select>
 	
 </mapper>

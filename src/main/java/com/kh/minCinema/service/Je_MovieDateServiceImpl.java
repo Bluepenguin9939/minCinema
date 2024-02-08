@@ -83,6 +83,8 @@ public class Je_MovieDateServiceImpl implements Je_MovieDateService {
 		String mid = je_ReservationInfoVO.getMid();
 		int count = 0;
 		
+		String mov_date_code = je_MovieDateMapper.movieDateCode(je_ReservationInfoVO);
+		
 		for(String reservedSeat : reservedSeats) {
 			
 			Je_InsertResSeatDTO je_InsertResSeatDTO = Je_InsertResSeatDTO.builder()
@@ -103,6 +105,7 @@ public class Je_MovieDateServiceImpl implements Je_MovieDateService {
 			
 			Je_InsertResSeatDTO je_InsertResSeatDTO = Je_InsertResSeatDTO.builder()
 					.movieTheater(je_ReservationInfoVO.getMovieTheater())
+					.movieDateCode(mov_date_code)
 					.movieDate(je_ReservationInfoVO.getMovieDate())
 					.movieTime(je_ReservationInfoVO.getMovieTime())
 					.mid(je_ReservationInfoVO.getMid())
