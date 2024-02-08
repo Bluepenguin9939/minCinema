@@ -12,7 +12,7 @@
     justify-content: center; /* 가운데 정렬 */
     height: 805px; /*높이 800px*/
     /* border: 1px solid #dddddd; */
-    background-color: gray;
+    background-color: white;
 }
 
 .reserve-container>div{
@@ -31,7 +31,7 @@
 
 
 .send-main{
-	background-color:#AAAAAA;
+	background-color:#fbe1c1;
 	width: 930px;
 }
 
@@ -44,7 +44,7 @@
 .reserve-container>div>div {
     border: 1px solid #dddddd;
     /*외각선 굵게만들어 구분하기*/
-    background-color: #AAAAAA;
+    background-color: #fbe1c13a;
 } 
 
 
@@ -262,7 +262,7 @@ $(function(){
 		}
 	});
 	
-	
+	/////////마우스 호버 이벤트
 	$(document).on("mouseenter","[data-select='unselect']",function(){
 		//console.log("들어감");
 		var that = $(this);
@@ -272,7 +272,7 @@ $(function(){
 	$(document).on("mouseleave","[data-select='unselect']",function(){
 		//console.log("나감");
 		var that = $(this);
-    	that.css("background-color","#AAAAAA");
+    	that.css("background-color","#fbe1c13a");
     	that.css("color","black");
 		
 	});
@@ -290,7 +290,7 @@ $(function(){
 		
 		find.attr("data-select","unselect");
 		//find.removeAttr("data-select");
-		find.css("background-color","#AAAAAA");
+		find.css("background-color","#fbe1c13a");
 		find.css("color","black");
 		
 		$("#dateText").text("");
@@ -378,7 +378,7 @@ $(function(){
 		//이전 선택사항 삭제
 		find.attr("data-select","unselect");
 		//find.removeAttr("data-select");
-		find.css("background-color","#AAAAAA");
+		find.css("background-color","#fbe1c13a");
 		find.css("color","black");
 		
 		//신규 선택사항
@@ -437,7 +437,7 @@ $(function(){
 		
 		find.attr("data-select","unselect");
 		//find.removeAttr("data-select");
-		find.css("background-color","#AAAAAA");
+		find.css("background-color","#fbe1c13a");
 		find.css("color","black");
 		
 		//신규 선택사항

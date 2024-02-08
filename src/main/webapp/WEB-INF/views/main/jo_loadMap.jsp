@@ -3,7 +3,7 @@
 
 <%@ include file="/WEB-INF/views/include/top.jsp" %>
 
-<link href="/resources/css/main/loadMap.css" rel="stylesheet">
+<link href="/resources/css/main/loadMap.css?after" rel="stylesheet">
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=dffa15c91047af591f132ab540dab1ab"></script>
 <script>
 $(function() {

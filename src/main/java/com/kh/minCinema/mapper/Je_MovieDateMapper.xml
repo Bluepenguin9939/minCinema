@@ -25,5 +25,12 @@
 			ORDER BY MOV_START_TIME
 	</select>
 	
+	<select id="movieDateCode" resultType="String">
+		SELECT MOV_DATE_CODE FROM MC_MOVIE_DATE
+			WHERE MOV_SCREEN_DATE = #{movieDate}
+				AND MOV_START_TIME = #{movieTime}
+				AND MOV_THEATER = #{movieTheater}
+	</select>
+	
 	
 </mapper>

@@ -1,10 +1,14 @@
 package com.kh.minCinema.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.minCinema.domain.Jo_InfoChangeDTO;
+import com.kh.minCinema.domain.Jo_ReservedHistoryDTO;
 import com.kh.minCinema.domain.Jo_SearchPwDTO;
+import com.kh.minCinema.mapper.Je_MovieTheaterMapper;
 import com.kh.minCinema.mapper.Jo_MemberMapper;
 
 import lombok.extern.log4j.Log4j;
@@ -15,6 +19,9 @@ public class Jo_MemberServiceImpl implements Jo_MemberService {
 
 	@Autowired
 	private Jo_MemberMapper memberMapper;
+	
+	@Autowired
+	private Je_MovieTheaterMapper theaterMapper;
 	
 	@Override
 	public boolean checkDupId(String mid) {
@@ -56,6 +63,12 @@ public class Jo_MemberServiceImpl implements Jo_MemberService {
 	public boolean equalEmail(Jo_SearchPwDTO searchPwDTO) {
 		int count = memberMapper.equalEmail(searchPwDTO);
 		return (count == 1) ? true : false;
+	}
+
+	@Override
+	public List<Jo_ReservedHistoryDTO> checkReservedHistory(String mid) {
+		List<Jo_ReservedHistoryDTO> reservedList = theaterMapper.selectReservedHistory(mid);
+		return reservedList;
 	}
 
 }

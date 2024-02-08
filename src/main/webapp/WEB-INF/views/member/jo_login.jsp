@@ -7,6 +7,8 @@
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 <script src="/resources/js/loginCheck.js?after"></script>
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<script src="/resources/js/kakaoLogin.js"></script>
 <meta charset="UTF-8">
 <title>로그인</title>
 <%@ include file="/WEB-INF/views/include/bs.jsp" %>
@@ -21,6 +23,12 @@
 					<span>Min<i><sub>cinema</sub></i></span>
 				</a>
 			</div>
+			<form action="/member/checkInfo" method="post" id="checkInfo">
+				<input type="hidden" name="memail">
+				<input type="hidden" name="mname">
+				<input type="hidden" name="mtel">
+				<input type="hidden" name="mnick">
+			</form>
 			<form class="user" action="/member/login" method="post" id="loginCheck">
 				<div class="form-group">
 					<input type="text" class="form-control form-control-user"
@@ -38,9 +46,11 @@
 			            	style="color: #999999;">아이디 저장</label>
 			        </div>
 			    </div>
-			    <button type="button" id="btnLogin" onclick="loginCheck();" class="btn btn-dark btn-block">
+			    <button type="button" id="btnLogin" onclick="loginCheck();" class="btn btn-dark btn-block" style="width: 320px; height: 48px;">
 			        로그인
 			    </button>
+			    <br>
+			    <img onclick="kakaoLogin();" src="/resources/img/kakao_login_medium_wide.png" style="width: 320px; height: 48px; cursor: pointer;">
 			    <hr style="border-bottom: 2px solid #333333;">
 			    <div class="d-flex justify-content-between">
 				    <a href="/member/jo_pwSearch" id="pwSearch">

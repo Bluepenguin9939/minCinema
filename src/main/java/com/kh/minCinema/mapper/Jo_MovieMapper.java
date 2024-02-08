@@ -22,5 +22,7 @@ public interface Jo_MovieMapper {
 	public List<Jo_MovieVO> selectSlideMovie();
 		
 	public List<Ham_MovieCountDTO> selectMovieCount();// 관리자 차트 추가용 h
+	
+	public void movieDelete(String mov_code);//영화 삭제
 
 }

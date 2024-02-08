@@ -4,3 +4,9 @@
 	width: 30%;
 	border-right: 1px solid #fafafa;
 }
+
+#reserved-history-div {
+	display: flex;
+	flex-direction: column;
+	border: 3px solid #999999;
+}

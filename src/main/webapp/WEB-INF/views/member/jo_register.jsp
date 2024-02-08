@@ -10,6 +10,7 @@
 <script>
 $(function() {
 	$("#btnDupId").click(function() {
+		var that = $(this);
 		var uid = $("#u-id");
 		if (uid.val() == "" || uid.val().length < 4) {
 			alert("아이디를 4글자 이상 입력해주세요.")
@@ -29,6 +30,8 @@ $(function() {
 			} else if (rData == "false") {
 				alert("사용 가능한 아이디입니다.")
 				$("#u-pw").focus();
+				that.prop("disabled", true);
+				$("#u-id").prop("disabled", true);
 				$("#btnRegister").prop("disabled", false);
 			}
 		});
@@ -44,6 +47,22 @@ $(function() {
 		}
 // 		return false;
 	});
+	
+	var kakaoInfo = "${kakaoInfo}";
+	if (kakaoInfo != "") {
+		console.log(kakaoInfo);
+		var memail = kakaoInfo.split("memail=")[1].split(",")[0];
+		var mname = kakaoInfo.split("mname=")[1].split(",")[0];
+		var mnick = kakaoInfo.split("mnick=")[1].split(",")[0];
+		var mtel = kakaoInfo.split("mtel=")[1].split(",")[0];
+		$("#u-email").val(memail);
+		$("#u-name").val(mname);
+		$("#u-nick-name").val(mnick);
+		$("#u-tel").val(mtel);
+		$("#u-email").prop("readonly",true);
+		$("#u-name").prop("readonly",true);
+		$("#u-tel").prop("readonly",true);
+	}
 });
 </script>
 </head>

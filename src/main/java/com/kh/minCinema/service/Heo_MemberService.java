@@ -6,6 +6,8 @@ import com.kh.minCinema.domain.Heo_LoginDTO;
 import com.kh.minCinema.domain.Heo_MemberVO;
 
 public interface Heo_MemberService {
+	
+	public int kakaoCheck(String mtel);
 
 	public int register(Heo_MemberVO heo_MemberVO);
 	
@@ -20,4 +22,6 @@ public interface Heo_MemberService {
 	public String getActive(String mid);
 	
 	public int checkPassword(Heo_MemberVO heo_MemberVO);
+	
+	public Heo_MemberVO getKakaoInfo(Heo_MemberVO heo_MemberVO);
 }

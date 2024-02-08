@@ -13,6 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class Je_InsertResSeatDTO {
+	String movieDateCode;
 	String movieDate;  //영화상영일
 	String movieTime;  //영화 시작시간
 	String movieTheater; //영화 상영관
