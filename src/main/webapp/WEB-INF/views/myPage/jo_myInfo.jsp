@@ -4,7 +4,7 @@
 <%@ include file="/WEB-INF/views/include/top.jsp" %>
 <%@ include file="/WEB-INF/views/include/heo_resignModal.jsp" %>
 <link href="/resources/css/myPage/mySide.css?after" rel="stylesheet">
-<link href="/resources/css/myPage/myInfo.css?after" rel="stylesheet">
+<link href="/resources/css/myPage/myInfo.css" rel="stylesheet">
 <script type="text/javascript" src="/resources/js/myInfo.js"></script> 
 
 <script>
@@ -140,11 +140,27 @@ $(function() {
 						<a href="${loginInfo.mid}" style="font-weight: bold; color: red;" onclick="resign(this); return false;">회원 탈퇴</a> 
 					</div>
 					<h5>내 예매내역</h5>
-					<div style="border: 3px solid #999999; height: 40px; display: flex;">
-						<div style="width: 90%; margin-left: 5%; align-self: center;">
-							<span>최근 예매내역이 존재하지 않습니다.</span>
+					<c:choose>
+						<c:when test="${reservedList eq '[]'}">
+						<div style="border: 3px solid #999999; height: 40px; display: flex;">
+							<div style="width: 90%; margin-left: 5%; align-self: center;">
+								<span>최근 예매내역이 존재하지 않습니다.</span>
+							</div>
 						</div>
-					</div>
+						</c:when>
+						<c:otherwise>
+							<div id="reserved-history-div">
+								<c:forEach var="list" items="${reservedList}">
+								<div class="d-flex justify-content-around">
+									<span>상영관 : ${list.mov_theater}</span>
+									<span>상영날짜 : ${list.mov_theater_date}</span>
+									<span>상영시간 : ${list.mov_theater_time}</span>
+									<span>좌석 : ${list.seat_name_res}</span>
+								</div>
+								</c:forEach>
+							</div>
+						</c:otherwise>
+					</c:choose>
 				</div>
 			</div>
 		</div>

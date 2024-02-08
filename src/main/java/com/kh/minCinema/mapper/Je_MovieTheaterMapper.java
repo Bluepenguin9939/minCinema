@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.kh.minCinema.domain.Je_InsertResSeatDTO;
 import com.kh.minCinema.domain.Je_MovieDateInfoDTO;
+import com.kh.minCinema.domain.Jo_ReservedHistoryDTO;
 
 
 
@@ -17,4 +18,6 @@ public interface Je_MovieTheaterMapper {
 	
 	public int dupCheck(Je_InsertResSeatDTO je_InsertResSeatDTO);
 	
+//	예매 내역 가져오기 by Jo
+	public List<Jo_ReservedHistoryDTO> selectReservedHistory(String mid);
 }

@@ -24,10 +24,6 @@
 						</div>
 				 	</div>
 			 	</a>
-				<a href="#">
-					<img src="/resources/img/event/attendance_check.png?after" alt="출석체크"
-					 	style="width: 500px; height: 400px; border: 2px solid #000000">
-			 	</a>
 		 	</div>
 		 	<br>
 			<div style="margin-top: 15px;">
