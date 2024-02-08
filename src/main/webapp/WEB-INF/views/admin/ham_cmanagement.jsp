@@ -38,6 +38,14 @@ $(function() {
 	if(bsl > acount && bsl % 5 >= 0){
 		$("#load-more").css("display", "block");
 	}
+	$("#load-more").click(function(){
+		$(this).css("display", "none");
+		var that = $(this);
+		end += 5;
+		acount += 5;
+		moreButton(acount);
+		bStep.slice(begin,end).show();
+	});
 	
 	if(result == "true"){
 		alert("테스트 회원 생성 완료");
@@ -62,20 +70,6 @@ $(function() {
 			
 		});//POST END
 	});//.deleteMember.click END
-	
-	
-// 	function mo(){
-// 		$(".wrap>tr").slice(begin,end).show();
-// 		eng +=10;
-// 	}
-	$("#load-more").click(function(){
-		$(this).css("display", "none");
-		var that = $(this);
-		end += 5;
-		acount += 5;
-		moreButton(acount);
-		bStep.slice(begin,end).show();
-	});
 	
 	//테스트 회원 생성 버튼
 	$("#createButton").click(function(){
@@ -156,7 +150,7 @@ $(function() {
 	          </div>
 	        </div>
 	    
-				<table class="table type09">
+				<table class="table cmanagementTable">
 					<thead>
 				
 						<tr class="cmanagementTr">
@@ -191,9 +185,8 @@ $(function() {
 					</tbody>
 				</table>	
 			
-				<!-- 하단 게시판 번호(Pagination) -->
 					<div class="loadMore">
-					<button id="load-more" class="btn btn-sm btn-outline-dark" style="display: none;">더보기</button>
+						<button id="load-more" class="btn btn-sm btn-outline-dark" style="display: none;">더보기</button>
 					</div>
 		</div>
 		</div>

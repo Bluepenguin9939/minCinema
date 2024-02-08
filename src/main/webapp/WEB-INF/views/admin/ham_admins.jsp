@@ -12,7 +12,7 @@
 
 
                     <!-- Page Heading -->
-                    <div>
+                    <div class="mHead">
                         <label class="h3 mb-0 text-black-800" id="mainManage"> 관리자 메인 페이지</label>
                     </div>
                  </div>
@@ -78,7 +78,7 @@
 			</div>
 		</div>
 		<div class="pay">
-				<div class="coa">
+				<div class="total-pay">
 					<i class="fa fa-coins" id="icon"></i>
 					<label class="text">총 매출액</label>
 					<label class="totalPoint" data-total="${totalPointDTO.total}"></label>

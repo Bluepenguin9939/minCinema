@@ -1,18 +1,30 @@
 @charset "UTF-8";
-/* notice-top */
-.inquiry-top{
+div.container-fluid{
+	margin-bottom: 50px;
+}
+
+.notice-top{
 width: 80%;
 height: auto;
 margin-top: 200px;
-}
-
-.nav a:hover{
-	color:red;
 }
 .nav-link {
 	color:black;
 	font-weight: bold;
 	
+}
+
+.nav a:hover{
+/* 	text-decoration:underline; */
+	color:red;
+}
+a.card-link{
+	color: black;
+	font-size: 18px;
+	font-weight: bold;
+}
+div.card-header{
+	background-color: #00f3ff;
 }
 .page-link{
 	color : black;
@@ -33,6 +45,8 @@ margin-top: 200px;
 [title="공지사항"]{
 	
 	text-align: center;
+/* 	text-decoration:line-through underline red; */
+	text-transform:uppercase;
 	font-family:Cursive;
 	font-weight: bold;
 	
@@ -49,21 +63,4 @@ margin-top: 200px;
 }
 section a{
 	color : gray;
-}
-.waitReply{
-	color : green;
-}
-.completeReply{
-	color : red;
-}
-
-/* 버튼 */
-#modal-560730{
-border-radius;	
-opacity: 0.5;
-}
-
-#table-inquiry{
-	font-size: 20px;
-	font: bold;
 }
