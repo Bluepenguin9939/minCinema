@@ -14,12 +14,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kh.minCinema.domain.Heo_MemberVO;
+import com.kh.minCinema.domain.Je_InsertResSeatDTO;
 import com.kh.minCinema.domain.Jo_AttachVO;
 import com.kh.minCinema.domain.Jo_CouponVO;
 import com.kh.minCinema.domain.Jo_MovieVO;
+import com.kh.minCinema.domain.Jo_ReservedHistoryDTO;
 import com.kh.minCinema.service.Heo_MemberService;
 import com.kh.minCinema.service.Jo_AttachService;
 import com.kh.minCinema.service.Jo_CouponService;
+import com.kh.minCinema.service.Jo_MemberService;
 import com.kh.minCinema.service.Jo_MovieService;
 
 import lombok.extern.log4j.Log4j;
@@ -41,9 +44,16 @@ public class Jo_MyPageController {
 	@Autowired
 	private Heo_MemberService heo_MemberService;
 	
+	@Autowired
+	private Jo_MemberService memberService;
+	
 	@GetMapping("/jo_myInfo")
-	public void myPage() {
-		
+	public void myPage(HttpSession session, Model model) {
+		Heo_MemberVO memberVO = (Heo_MemberVO)session.getAttribute("loginInfo");
+		String mid = memberVO.getMid();
+		List<Jo_ReservedHistoryDTO> reservedList = memberService.checkReservedHistory(mid);
+		log.info("reservedList : " + reservedList);
+		model.addAttribute("reservedList", reservedList);
 	}
 	
 	@GetMapping("/jo_myPoint")
@@ -92,5 +102,11 @@ public class Jo_MyPageController {
 		heo_MemberVO.setCoupon10(coupon10);
 		heo_MemberVO.setCoupon15(coupon15);
 		session.setAttribute("loginInfo", heo_MemberVO);
+	}
+	
+	@GetMapping("/check")
+	public List<Je_InsertResSeatDTO> check() {
+		
+		return null;
 	}
 }

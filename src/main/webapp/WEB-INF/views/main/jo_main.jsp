@@ -5,7 +5,7 @@
 
 <%@ include file="/WEB-INF/views/include/top.jsp" %>
 
-<link href="/resources/css/main/main.css?after" rel="stylesheet">
+<link href="/resources/css/main/main.css" rel="stylesheet">
 <c:set var="begin" value="10"/>
 <script>
 $(function() {
@@ -143,7 +143,6 @@ function MoreMovie(acount) {
 	}
 } 
 </script>
-
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12" style="padding: 0px;">
