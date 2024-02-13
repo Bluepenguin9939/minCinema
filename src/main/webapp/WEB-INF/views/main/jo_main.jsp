@@ -5,7 +5,7 @@
 
 <%@ include file="/WEB-INF/views/include/top.jsp" %>
 
-<link href="/resources/css/main/main.css" rel="stylesheet">
+<link href="/resources/css/main/main.css?after" rel="stylesheet">
 <c:set var="begin" value="10"/>
 <script>
 $(function() {
