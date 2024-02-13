@@ -5,7 +5,7 @@
 <%@ include file="/WEB-INF/views/include/top.jsp"%>
 
 <head>
-<link rel="stylesheet" href="/resources/css/inquiry.css?after"
+<link rel="stylesheet" href="/resources/css/inquiry.css"
 	type="text/css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
@@ -29,8 +29,8 @@ $(function(){
 <!-- list(게시판) 양식 -->
 <body>
 	
-	<div class="notice d-flex justify-content-center">
-		<div class="notice-top">
+	<div class="inquiry d-flex justify-content-center">
+		<div class="inquiry-top">
 
 			<h2 class="notice-body" title="공지사항">
 				<i class="fa fa-headset"></i>1대1문의
@@ -147,7 +147,7 @@ $(function(){
 							<tr>
 								<td>${vo.rn}</td>
 								<td><a href="${vo.msg_id}" class="inquiryTitle" data-remessage="${vo.remessage}">${vo.mtitle}</a></td>
-								<td>"${vo.send_date}"</td>
+								<td>${vo.send_date}</td>
 								<c:if test="${vo.open_date == null}"><td class="waitReply">답변대기중</td></c:if>								
 								<c:if test="${vo.open_date != null}"><td class="completeReply">답변완료</td></c:if>
 							</tr>

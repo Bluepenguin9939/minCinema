@@ -5,176 +5,11 @@
 <%@ include file="/WEB-INF/views/include/top.jsp" %>
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@40,400,0,0" />
+<link rel="stylesheet" href="/resources/css/ticketing/seat.css?after" type="text/css">
+
 <style>
 
-body {
-  -webkit-user-select:none;
-  -moz-user-select:none;
-  -ms-user-select:none;
-  user-select:none
-} /*드래그 방지*/
 
-.reserve-container {
-    /*margin-top: 20px; /*마진달기*/
-    display: flex; /**flex 적용**/
-    justify-content: center; /* 가운데 정렬 */
-    flex-wrap: nowrap;
-    height: 850px; /*높이 800px*/
-    /* border: 1px solid #dddddd; */
-    background-color: white;
-}
-
-.reserve-container>div {
-    border: 1px solid #dddddd;
-    /*외각선 굵게만들어 구분하기*/
-    background-color: fbe1c13a;
-} 
-
-.reserve-title { /*타이틀 상단제목 css*/
-	text-align: center;
-	width: 100%;
-	height: 5%;
-    border-bottom: 1px solid #dddddd;
-    background-color: #444444;
-    color: #dddddd;/*글자 색*/
-    padding: 5px;
-    font-size: 18px;
-    font-weight: bold;
-}
-
-.seat-part{
-	 width: 932px;
-}
-
-.seat-part > div{
-	display: flex;
-   	border: 1px solid #dddddd;
-}
-
-.seatSelector{
-	height: 85%
-}
-
-.seatLoc{
-	
-	
-	background-color:#fbe1c13a;
-	/*height: 675px; */
-	height: 100%; 
- 	width: 70%; 
- 	border-left: 1px solid #dddddd;
-   	border-right: 3px solid #dddddd;
-}
-
-
-.seatLoc-top{
-	width: 100%;
-	font-size: 22px;
-}
-
-.seatLoc-top >div >div{
-	border: 2px solid #dddddd;
-}
-
-.scroll{
-	overflow: scroll; 
-	overflow-y: hidden;
-}
-
-.scroll::-webkit-scrollbar{
-    width: 15px;
-}
-
-.scroll::-webkit-scrollbar-thumb{
-    background-color: #9b54ba;
-    /* 스크롤바 둥글게 설정    */
-    border-radius: 10px;
-}
-
-.scroll::-webkit-scrollbar-track{
-    background-color: #e4e4f8;
-}
-
-.seatRow{
-	width: 100%;
-	/*height: 20%;*/
-	display: flex;
-  	justify-content: center;
-  	/*align-items: center;*/
-   	flex-direction: row;
-   	flex-wrap: wrap;
-}
-
-.seat{
-	
-	height: 50px;
-	width: 50px;
-	background-color:white;
-	cursor: pointer;
-	
-}
-
-
-.ENG-Row{
-	width: 8%;
-	/*height : 5%;*/
-	font-size:28px;
-	padding:15px;
-}
-
-.fourSeat{
-	width: 30%;
-	/*height: 500px;*/
-	font-size : 28px;
-	padding:15px;
-}
-
-.sixSeat{
-	width: 45%;
-	/*height: 500px;*/
-	font-size : 28px;
-	padding:15px;
-}
-
-.twoSeat{
-	width: 17%;
-	/*height: 500px;*/
-	font-size : 28px;
-	padding:15px;
-}
-
-#first{
-	background-color:blue;
-	color: white;
-}
-
-
-.count{
-	width: 30%;
-	height: 100%; 
-	background-color:#fbe1c13a;
-}
-
-.countText{
-	text-align: center; 
-	/*background-color: red;*/
-	font-size:40px;
-}
-
-.pCount{
-	/*border: 5px solid #dddddd;*/
-	background: red;
-	cursor: pointer;
-}
-
-.seatMember{
-	white-space: nowrap;
-}
-
-span[data-select='noselect'] {
-  background-color: red;
-  color: white;
-}
 
 
 </style>
@@ -237,9 +72,9 @@ function mouseHoverOronClick(that , pCount, bgColor, color , method){
 			if(pCount == 3){
 			
 				if(thatNT2_text == "" || thatNT2_attr == "select" || thatNT2_attr == "noselect"){
-					//console.log("check1");
+					
 					if(thatNT_text == "" || thatNT_attr=="select" || thatNT_attr == "noselect"){
-							//console.log("check1-2");
+					
 						thatPV2.css("background-color",bgColor);
 						thatPV2.css("color",color);
 						if(method=="on-click"){
@@ -248,7 +83,7 @@ function mouseHoverOronClick(that , pCount, bgColor, color , method){
 						}
 					}
 					else{
-						//console.log("check1-3");
+
 						thatPV.css("background-color",bgColor);
 						thatPV.css("color",color);
 						if(method=="on-click"){
@@ -259,11 +94,10 @@ function mouseHoverOronClick(that , pCount, bgColor, color , method){
 				
 				} 
 				else if(thatNT2_text != "" && thatNT2_attr == "unselect"){
-					//console.log("check2");	
-						
+					
 						
 					if(thatNT_text=="" || thatNT_attr=="select" || thatNT_attr=="noselect"){
-						//console.log("check2-1");
+						
 						thatPV2.css("background-color",bgColor);
 						thatPV2.css("color",color);
 						if(method=="on-click"){
@@ -272,7 +106,7 @@ function mouseHoverOronClick(that , pCount, bgColor, color , method){
 						}
 					}
 					else{
-						//console.log("check2-2");
+						
 						thatNT2.css("background-color",bgColor);
 						thatNT2.css("color",color);
 						if(method=="on-click"){
@@ -287,7 +121,7 @@ function mouseHoverOronClick(that , pCount, bgColor, color , method){
 		}//(if>=2)
 	}//(if>=1)
 	
-	//console.log("array:",array);
+
 	if(method=="on-click"){
 		$.each(seatArray, function (index, seat) {
 			seatMap.set(seat,seatArray);
@@ -344,7 +178,7 @@ $(function(){
 		find.attr("data-select","unselect");
 		find.css("background-color","red");
 		find.css("color","black");
-		//
+		
 		
 		that.attr("data-select","select");
 		that.css("background-color","blue");
@@ -354,7 +188,7 @@ $(function(){
 		$("#hid-pCount").val(pCount);
 		console.log("pCount:", $("#hid-pCount").val() );
 		
-	});//
+	});///////////////////
 	
 	
 	
@@ -481,7 +315,6 @@ $(function(){
 		//성인 , 청소년 비용
 		var adultCost =  parseInt( $("#adultCost").text() );		
 		var teenCost =  parseInt( $("#teenCost").text() );		
-		//console.log("adultCost:",adultCost);
 		
 		
 		if(select=="unselect"){
@@ -595,7 +428,7 @@ $(function(){
 			currentSeat = currentSeat + parseInt(seatArray.length);
 			$(".currentSeat").text(currentSeat); //좌석개수 설정
 			
-			$.each(seatArray, function (index, seat) { /*ㅇdiv 정리*/
+			$.each(seatArray, function (index, seat) { /*div 정리*/
 				  	$("#id-"+seat).css("background-color","white");
 					$("#id-"+seat).css("color","black");
 					$("#id-"+seat).attr("data-select","unselect");
@@ -648,7 +481,6 @@ $(function(){
 				$("#resultCost").text(resultCost);
 			}
 		}
-		//console.log("that.val:",value);
 		
 		
 	});//할인적용
@@ -656,7 +488,6 @@ $(function(){
 	
 	
 	$(".payButton").click(function() {  //////계산부분
-		//console.log("빼꼼?");
 		var reservedSeat = [];
 		var ageMap = {};
 		var ticketListArray = $(".seatMember");
@@ -678,7 +509,6 @@ $(function(){
 			});
 			
 			var mid = "${loginInfo.mid}";
-			//console.log("mid:",mid);
 			
 			var data = {
 					"movieTitle" :  movieTitle,//영화제목
@@ -693,9 +523,7 @@ $(function(){
 					"discount" : discount 	// 사용한 쿠폰
 			};
 			
-			//console.log("data:",data);
 			var url = "/ticketing/cost";
-			
 			
 			$.ajax({
 		            url: url,
@@ -724,7 +552,6 @@ $(function(){
 			alert("포인트가 부족합니다!!!!");
 			
 		}
-		
 		
 		
 	});

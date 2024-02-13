@@ -18,8 +18,8 @@
 <script>
 
 function moreButton(acount){
-	var yt = $(".wrap>tr").length;
-	if(yt > acount && yt % 5 > 0 && yt % 5 < 5){
+	var bsl = $(".wrap>tr").length;
+	if(bsl > acount && bsl % 5 > 0 && bsl % 5 < 5){
 		$("#load-more").css("display", "block");
 	}
 }
@@ -28,16 +28,24 @@ $(function() {
 	var begin = 0;
 	var end = 5;
 	var acount = 5;
-	var aa = $(".wrap>tr");
-	var sa = aa.slice(begin,end);
-	aa.hide();
-	sa.show();
+	var bStep = $(".wrap>tr");
+	var eStep = bStep.slice(begin,end);
+	bStep.hide();
+	eStep.show();
 	
-	var yt = aa.length;
-	console.log(yt);
-	if(yt > acount && yt % 5 >= 0){
+	var bsl = bStep.length;
+	console.log(bsl);
+	if(bsl > acount && bsl % 5 >= 0){
 		$("#load-more").css("display", "block");
 	}
+	$("#load-more").click(function(){
+		$(this).css("display", "none");
+		var that = $(this);
+		end += 5;
+		acount += 5;
+		moreButton(acount);
+		bStep.slice(begin,end).show();
+	});
 	
 	if(result == "true"){
 		alert("테스트 회원 생성 완료");
@@ -62,20 +70,6 @@ $(function() {
 			
 		});//POST END
 	});//.deleteMember.click END
-	
-	
-// 	function mo(){
-// 		$(".wrap>tr").slice(begin,end).show();
-// 		eng +=10;
-// 	}
-	$("#load-more").click(function(){
-		$(this).css("display", "none");
-		var that = $(this);
-		end += 5;
-		acount += 5;
-		moreButton(acount);
-		aa.slice(begin,end).show();
-	});
 	
 	//테스트 회원 생성 버튼
 	$("#createButton").click(function(){
@@ -156,7 +150,7 @@ $(function() {
 	          </div>
 	        </div>
 	    
-				<table class="table type09">
+				<table class="table cmanagementTable">
 					<thead>
 				
 						<tr class="cmanagementTr">
@@ -174,11 +168,7 @@ $(function() {
 					<tbody class="wrap">
 					<c:forEach var="vo" items="${list}" varStatus="step">
 						<tr>
-							<td>
-							
-							${vo.mno}
-							
-							</td>
+							<td>${vo.mno}</td>
 							<td>${vo.mid}</td>
 							<td>${vo.mnick}</td>
 							<td>${vo.mname}</td>
@@ -195,9 +185,8 @@ $(function() {
 					</tbody>
 				</table>	
 			
-				<!-- 하단 게시판 번호(Pagination) -->
 					<div class="loadMore">
-					<button id="load-more" class="btn btn-sm btn-outline-dark" style="display: none;">더보기</button>
+						<button id="load-more" class="btn btn-sm btn-outline-dark" style="display: none;">더보기</button>
 					</div>
 		</div>
 		</div>

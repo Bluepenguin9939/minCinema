@@ -12,147 +12,45 @@
     <link rel="stylesheet" href="/resources/css/admin/addpoint.css?after" type="text/css">
     <title>Point</title>
 <script>
-$(function(){
+function moreButton(acount){
+	var bsl = $(".wrap>tr").length;
+	if(bsl > acount && bsl % 5 > 0 && bsl % 5 < 5){
+		$("#load-more").css("display", "block");
+	}
+}
+$(function() {
 	var begin = 0;
 	var end = 5;
+	var acount = 5;
 	var bStep = $(".wrap>tr");
+	console.log(bStep);
 	var eStep = bStep.slice(begin,end);
 	bStep.hide();
 	eStep.show();
 	
+	var bsl = bStep.length;
+	console.log(bsl);
+	if(bsl > acount && bsl % 5 >= 0){
+		$("#load-more").css("display", "block");
+	}
 	$("#load-more").click(function(){
+		$(this).css("display", "none");
 		var that = $(this);
-		console.log("that:",that);
-		end +=5;
+		end += 5;
+		acount += 5;
+		moreButton(acount);
 		bStep.slice(begin,end).show();
 	});
-  });	
+});
 </script>
 </head>
 <body>
-<!-- 테스트 모달-생성 -->
-<div class="d-flex justify-content-center">
-		<a id="modal-474701" href="#modal-container-474701" role="button"
-			class="btn modalPoint" data-toggle="modal">테스트 포인트 생성 </a>
-
-		<div class="modal fade" id="modal-container-474701" role="dialog"
-			aria-labelledby="myModalLabel" aria-hidden="true">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title" id="myModalLabel">테스트 포인트 생성창 입니다</h5>
-						<button type="button" class="close" data-dismiss="modal">
-							<span aria-hidden="true">×</span>
-						</button>
-					</div>
-					<div class="modal-body">
-						<input type="text" class="form-control" placeholder="테스트 아이디">
-					</div>
-					<div class="modal-body">
-						<input type="text" class="form-control" placeholder="테스트 닉네임">
-					</div>
-					<div class="modal-body">
-						<input type="text" class="form-control" placeholder="테스트 포인트">
-					</div>
-					<div class="modal-body">
-						<input type="text" class="form-control" placeholder="테스트 포인트종류">
-					</div>
-					<div class="modal-body">
-						<input type="text" class="form-control" placeholder="테스트 포인트 적립일">
-					</div>
-					<div class="modal-footer">
-
-						<button type="button" class="btn btn-primary">생성</button>
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- 테스트 모달-수정 -->
-	<div class="d-flex">
-		<a id="modal-474701" href="#modal-container-474702" role="button"
-			class="btn modalPoint" data-toggle="modal">테스트 포인트 수정 </a>
-
-		<div class="modal fade" id="modal-container-474702" role="dialog"
-			aria-labelledby="myModalLabel" aria-hidden="true">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title" id="myModalLabel">테스트 포인트 수정창 입니다</h5>
-						<button type="button" class="close" data-dismiss="modal">
-							<span aria-hidden="true">×</span>
-						</button>
-					</div>
-					<div class="modal-body">
-						<input type="text" class="form-control" placeholder="테스트 아이디">
-					</div>
-					<div class="modal-body">
-						<input type="text" class="form-control" placeholder="테스트 닉네임">
-					</div>
-					<div class="modal-body">
-						<input type="text" class="form-control" placeholder="테스트 포인트">
-					</div>
-					<div class="modal-body">
-						<input type="text" class="form-control" placeholder="테스트 포인트종류">
-					</div>
-					<div class="modal-body">
-						<input type="text" class="form-control" placeholder="테스트 포인트 적립일">
-					</div>
-					<div class="modal-footer">
-
-						<button type="button" class="btn btn-primary">생성</button>
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- 테스트 모달-삭제 -->
-	<div class="d-flex">
-		<a id="modal-474701" href="#modal-container-474703" role="button"
-			class="btn modalPoint" data-toggle="modal">테스트 포인트 삭제 </a>
-
-		<div class="modal fade" id="modal-container-474703" role="dialog"
-			aria-labelledby="myModalLabel" aria-hidden="true">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title" id="myModalLabel">테스트 포인트 삭제창 입니다</h5>
-						<button type="button" class="close" data-dismiss="modal">
-							<span aria-hidden="true">×</span>
-						</button>
-					</div>
-						<div class="modal-body">
-						<input type="text" class="form-control" placeholder="테스트 아이디">
-					</div>
-					<div class="modal-body">
-						<input type="text" class="form-control" placeholder="테스트 닉네임">
-					</div>
-					<div class="modal-body">
-						<input type="text" class="form-control" placeholder="테스트 포인트">
-					</div>
-					<div class="modal-body">
-						<input type="text" class="form-control" placeholder="테스트 포인트종류">
-					</div>
-					<div class="modal-body">
-						<input type="text" class="form-control" placeholder="테스트 포인트 적립일">
-					</div>
-					<div class="modal-footer">
-
-						<button type="button" class="btn btn-primary">생성</button>
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	</div> <!-- 수정 끝  -->
-	</div> <!-- 입력 끝 -->
-
 
 <!-- 관리자용 포인트 관리 게시판 -->
-<div class="notice d-flex justify-content-center" > 
+<div id="pointDiv" >
+<div class="point d-flex justify-content-center"> 
 		<div class="admin-top" >
-			<h2 class="admin-body" title="" >포인트 관리</h2>
+			<h2 class="admin-body" id="pointCm" >포인트 관리</h2>
 			<div class="search">
             <div class="search-field">
 					<form action="">
@@ -166,10 +64,10 @@ $(function(){
             </div>
         </div>
     
-			<table class="table table-hover">
+			<table class="table pointTable">
 				<thead>
 				<!-- 관리자용과 게시판 공용 사용하되 이름(컬럼명은 변경해야함)  -->
-					<tr>
+					<tr class="pointTr">
 						<th>#</th>
 						<th>아이디</th> <!--  -->
 						<th>포인트</th>
@@ -193,54 +91,11 @@ $(function(){
 					</c:forEach>					
 				</tbody>
 			</table>
-			<div style="display:flex ; justify-content: center; text-align: center;">	
-			<button id="load-more">+더보기</button>
-			</div>			
 			<!-- 하단 게시판 번호(Pagination) -->
-<!-- 	<div class="pageBottom" style="margin-bottom: 100px"> -->
-<!-- 		<div class="col-md-12"> -->
-<!-- 			<nav> -->
-			
-<!-- 				<ul class="pagination d-flex align-items-center justify-content-center"> -->
-<!-- 						<select name="target" title="검색선택"> -->
-<!-- 						<option value="1">10</option> -->
-<!-- 						<option value="2">20</option> -->
-<!-- 						<option value="3">30</option> -->
-<!-- 						<option value="4">40</option> -->
-<!-- 						<option value="5">50</option> -->
-<!-- 					</select>  -->
-<!-- 					<li class="page-item"> -->
-<!-- 						<a class="page-link" href="#">&laquo;</a> -->
-<!-- 					</li> -->
-<!-- 					<li class="page-item"> -->
-<!-- 						<a class="page-link" href="#">1</a> -->
-<!-- 					</li> -->
-<!-- 					<li class="page-item"> -->
-<!-- 						<a class="page-link" href="#">2</a> -->
-<!-- 					</li> -->
-<!-- 					<li class="page-item"> -->
-<!-- 						<a class="page-link" href="#">3</a> -->
-<!-- 					</li> -->
-<!-- 					<li class="page-item"> -->
-<!-- 						<a class="page-link" href="#">4</a> -->
-<!-- 					</li> -->
-<!-- 					<li class="page-item"> -->
-<!-- 						<a class="page-link" href="#">5</a> -->
-<!-- 					</li> -->
-<!-- 					<li class="page-item"> -->
-<!-- 						<a class="page-link" href="#">...</a> -->
-<!-- 					</li> -->
-<!-- 					<li class="page-item"> -->
-<!-- 						<a class="page-link" href="#">10</a> -->
-<!-- 					</li> -->
-<!-- 					<li class="page-item"> -->
-<!-- 						<a class="page-link" href="#">&raquo;</a> -->
-<!-- 					</li> -->
-<!-- 					<li class="page">현재 1 page 10 page entries </li> -->
-<!-- 				</ul> -->
-<!-- 			</nav> -->
-<!-- 		</div> -->
-<!-- 	</div> -->
+			<div class="loadMore">
+				<button id="load-more" class="btn btn-sm btn-outline-dark" style="display: none;">더보기</button>
+			</div>
+	</div>
 	</div>
 	</div>
 </body>

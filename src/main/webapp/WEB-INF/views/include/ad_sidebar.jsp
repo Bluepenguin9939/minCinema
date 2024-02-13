@@ -10,7 +10,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-
+	
+	<!-- Text Move -->
+	
     <!-- Custom fonts for this template-->
     <link href="/resources/css/admin/admin.css?after" rel="stylesheet" type="text/css">
     <link href="/resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
