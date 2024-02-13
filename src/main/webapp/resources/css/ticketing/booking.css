@@ -1,0 +1,201 @@
+@charset "UTF-8";
+
+.reserve-container {
+    justify-content: center; /* 가운데 정렬 */
+    height: 805px; /*높이 800px*/
+    background-color: white;
+}
+
+.reserve-container>div{
+	justify-content: center; /* 가운데 정렬 */
+	display: flex; /**flex 적용**/
+	
+}
+
+.select-part{
+	height: 82%;
+}
+
+.send-part{
+	height: 18%;
+}
+
+
+.send-main{
+	background-color:#fbe1c1;
+	width: 930px;
+}
+
+#send-form{
+	height: 100%; 
+	width: 100%; 
+	display: flex; 
+}
+
+.reserve-container>div>div {
+    border: 1px solid #dddddd;
+    /*외각선 굵게만들어 구분하기*/
+    background-color: #fbe1c13a;
+} 
+
+
+.movie-part {
+    width: 380px; /*영화파트 너비*/
+}
+
+.theater-part {
+    width: 150px; 극장파트
+}
+
+.day-part {
+    width: 200px; /*날짜파트*/
+}
+
+.time-part {
+    width: 350px; /*영화 시작시간*/
+}
+
+.reserve-title { /*타이틀 상단제목 css*/
+    border-bottom: 1px solid #dddddd;
+    background-color: #444444;
+    text-align: center;
+    color: #dddddd;/*글자 색*/
+    padding: 5px;
+    font-size: 22px;
+    font-weight: bold;
+    
+    height: 5%;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.movie-datas{
+	padding-top: 5px;
+    align-items: center;
+    height: 95%;
+    overflow: scroll; /*스크롤바 생성*/
+    overflow-x: hidden; /*x축 스크롤바 숨기기*/
+}
+
+.movie-datas::-webkit-scrollbar{
+    width: 15px;
+}
+
+.movie-datas::-webkit-scrollbar-thumb{
+    background-color: #9b54ba;
+    /* 스크롤바 둥글게 설정    */
+    border-radius: 10px;
+}
+
+.movie-datas::-webkit-scrollbar-track{
+    background-color: 	#e4e4f8;
+}
+
+.movie-list{
+	font-weight: bold;
+	font-size: 25px;
+	text-align: center;
+	cursor: pointer;
+}
+
+.reserve-date { /*날짜 부분*/
+    padding-top: 5px;
+    align-items: center;
+    height: 95%;
+    overflow: scroll; /*스크롤바 생성*/
+    overflow-x: hidden; /*x축 스크롤바 숨기기*/
+}
+
+.reserve-date::-webkit-scrollbar{
+    width: 15px;
+}
+
+.reserve-date::-webkit-scrollbar-thumb{
+    background-color: #9b54ba;
+    /* 스크롤바 둥글게 설정    */
+    border-radius: 10px;
+}
+
+.reserve-date::-webkit-scrollbar-track{
+    background-color: #e4e4f8;
+}
+
+.srceenDate{
+	text-align: center;
+}
+
+.year-month{
+	font-size:40px;
+	margin-top: 5px;
+}
+
+.days{
+	font-weight: bold;
+	font-size:28px;
+	cursor: pointer;
+}
+
+
+.time-data{
+	padding-top: 5px;
+    align-items: center;
+    height: 95%;
+    overflow: scroll; /*스크롤바 생성*/
+    overflow-x: hidden; /*x축 스크롤바 숨기기*/
+}
+
+.time-data::-webkit-scrollbar{
+    width: 15px;
+}
+
+.time-data::-webkit-scrollbar-thumb{
+    background-color: #9b54ba;
+    /* 스크롤바 둥글게 설정    */
+    border-radius: 10px;
+}
+
+.time-data::-webkit-scrollbar-track{
+    background-color: 	#e4e4f8;
+}
+
+.times{
+	font-size: 30px;
+	font-weight: bold;
+	text-align: center;
+	cursor: pointer;
+}
+
+.sendBtn{
+	font-size:64px; 
+	height: 100%;
+	width: 37%;
+}
+
+#prev_month,#next_month{
+	cursor: pointer;
+}
+
+.scroll_movie{
+	padding-top: 5px;
+    align-items: center;
+    height: 550px;
+    overflow: scroll; /*스크롤바 생성*/
+    overflow-x: hidden; /*x축 스크롤바 숨기기*/
+}
+
+.scroll_movie::-webkit-scrollbar{
+    width: 15px;
+}
+
+.scroll_movie::-webkit-scrollbar-thumb{
+    background-color: #9b54ba;
+    /* 스크롤바 둥글게 설정    */
+    border-radius: 10px;
+}
+
+.scroll_movie::-webkit-scrollbar-track{
+    background-color: 	#e4e4f8;
+}

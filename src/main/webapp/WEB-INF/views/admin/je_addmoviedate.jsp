@@ -12,10 +12,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>영화 일정 추가</title>
 
-<style>
-
-</style>
-
 
 <script>
 
@@ -85,7 +81,7 @@ $(function(){
 			
 			var url = rData;
 			$.each(rData,function(i,value){
-				//var upload_path = rData.upload_path;
+
 				if( value.upload_path.indexOf("/upload/poster/") != -1  ){
 					var src="/display?fileName="+value.upload_path+"/"+value.file_name;
 					$("#poster").attr("src", src);
@@ -99,7 +95,6 @@ $(function(){
 	
 	$("#addDate").on("click",function(){
 		
-		//$(".screenManagements").append("추가입니다.");
 		$(".screenManagements").append(
 			"<div class='d-flex flex-row pt-1 pb-1 border border-left-0' style='width: 100%; height: 8%'>"
 				+"<span class='titleTexts text-center text-nowrap'>날짜 : </span>"
@@ -140,7 +135,6 @@ $(function(){
 		
 		//////상영일 과 비교
         var updateDateArr = updateDate.split('-');
-        //console.log("tst:",that.find("option:selected").attr('data-releasedate'));
         var releaseDate = $("#movieList").find("option:selected").attr('data-releasedate'); //2017-12-09
         var releaseDateArr = releaseDate.split('-');
                  
@@ -156,7 +150,6 @@ $(function(){
 		
 		/////엔드타임 구하기
 		var runtime = $("#movieList").find("option:selected").attr("data-runtime");
-		//var runtime = 53; test
 		
 		var hour = parseInt(runtime / 60);
 		var min = runtime % 60;
@@ -201,7 +194,6 @@ $(function(){
 		
 		var that = $(this);
 		var that_p = that.parent();
-		//console.log("이건 삭제:",that.parent());
 		var dateCode = that_p.attr("data-dateCode");
 		var deleteData = {"mov_date_code" : dateCode}
 		
@@ -230,15 +222,11 @@ $(function(){
 		
 		var that = $(this);
 		var that_p = that.parent();
-		//console.log("이건 삭제:",that.parent());
 		
 		var insertDate = that_p.find(".movieDate").val();
 		var insertTime = that_p.find(".movieTime").val();
-		//console.log(insertDate);
-		//console.log(insertTime);
 		
 		var insertTheater = that_p.find(".movieTheatherLists option:selected").val();
-		//console.log(insertTheater);
 		var insertTitle = $("#movieList").find("option:selected").text();
 		var insertCode = $("#movieList").find("option:selected").attr("data-code");
 		
@@ -261,7 +249,6 @@ $(function(){
 		
 		var runtime = $("#movieList").find("option:selected").attr("data-runtime");
 		
-		//var runtime = 53; test
 		
 		var hour = parseInt(runtime / 60);
 		var min = runtime % 60;
@@ -386,9 +373,6 @@ $(function(){
 		
 	</div>
 	
-	
-	<!-- 칸나누기 -->
- 	
 	
 	
 </body>

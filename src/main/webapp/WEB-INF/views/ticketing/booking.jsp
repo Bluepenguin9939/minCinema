@@ -5,189 +5,7 @@
 <%@ include file="/WEB-INF/views/include/top.jsp" %>
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@40,600,0,0" />
-
-
-<style>
-.reserve-container {
-    justify-content: center; /* 가운데 정렬 */
-    height: 805px; /*높이 800px*/
-    /* border: 1px solid #dddddd; */
-    background-color: white;
-}
-
-.reserve-container>div{
-	justify-content: center; /* 가운데 정렬 */
-	display: flex; /**flex 적용**/
-	
-}
-
-.select-part{
-	height: 82%;
-}
-
-.send-part{
-	height: 18%;
-}
-
-
-.send-main{
-	background-color:#fbe1c1;
-	width: 930px;
-}
-
-#send-form{
-	height: 100%; 
-	width: 100%; 
-	display: flex; 
-}
-
-.reserve-container>div>div {
-    border: 1px solid #dddddd;
-    /*외각선 굵게만들어 구분하기*/
-    background-color: #fbe1c13a;
-} 
-
-
-.movie-part {
-    width: 380px; /*영화파트 너비*/
-}
-
-.theater-part {
-    width: 150px; 극장파트
-}
-
-.day-part {
-    width: 200px; /*날짜파트*/
-}
-
-.time-part {
-    width: 350px; /*영화 시작시간*/
-}
-
-.reserve-title { /*타이틀 상단제목 css*/
-    border-bottom: 1px solid #dddddd;
-    background-color: #444444;
-    text-align: center;
-    color: #dddddd;/*글자 색*/
-    padding: 5px;
-    font-size: 22px;
-    font-weight: bold;
-    
-    height: 5%;
-    
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-
-.movie-datas{
-	padding-top: 5px;
-    align-items: center;
-    height: 95%;
-    overflow: scroll; /*스크롤바 생성*/
-    overflow-x: hidden; /*x축 스크롤바 숨기기*/
-}
-
-.movie-datas::-webkit-scrollbar{
-    width: 15px;
-}
-
-.movie-datas::-webkit-scrollbar-thumb{
-    background-color: #9b54ba;
-    /* 스크롤바 둥글게 설정    */
-    border-radius: 10px;
-}
-
-.movie-datas::-webkit-scrollbar-track{
-    background-color: 	#e4e4f8;
-}
-
-.movie-list{
-	font-weight: bold;
-	font-size: 25px;
-	text-align: center;
-	cursor: pointer;
-}
-
-.reserve-date { /*날짜 부분*/
-    padding-top: 5px;
-    align-items: center;
-    height: 95%;
-    overflow: scroll; /*스크롤바 생성*/
-    overflow-x: hidden; /*x축 스크롤바 숨기기*/
-}
-
-.reserve-date::-webkit-scrollbar{
-    width: 15px;
-}
-
-.reserve-date::-webkit-scrollbar-thumb{
-    background-color: #9b54ba;
-    /* 스크롤바 둥글게 설정    */
-    border-radius: 10px;
-}
-
-.reserve-date::-webkit-scrollbar-track{
-    background-color: #e4e4f8;
-}
-
-.srceenDate{
-	text-align: center;
-}
-
-.year-month{
-	font-size:40px;
-	margin-top: 5px;
-}
-
-.days{
-	font-weight: bold;
-	font-size:28px;
-	cursor: pointer;
-}
-
-
-.time-data{
-	padding-top: 5px;
-    align-items: center;
-    height: 95%;
-    overflow: scroll; /*스크롤바 생성*/
-    overflow-x: hidden; /*x축 스크롤바 숨기기*/
-}
-
-.time-data::-webkit-scrollbar{
-    width: 15px;
-}
-
-.time-data::-webkit-scrollbar-thumb{
-    background-color: #9b54ba;
-    /* 스크롤바 둥글게 설정    */
-    border-radius: 10px;
-}
-
-.time-data::-webkit-scrollbar-track{
-    background-color: 	#e4e4f8;
-}
-
-.times{
-	font-size: 30px;
-	font-weight: bold;
-	text-align: center;
-	cursor: pointer;
-}
-
-.sendBtn{
-	font-size:64px; 
-	height: 100%;
-	width: 37%;
-}
-
-#prev_month,#next_month{
-	cursor: pointer;
-}
-
-</style>
+<link rel="stylesheet" href="/resources/css/ticketing/booking.css?after" type="text/css">
 
 <script>
 $(function(){
@@ -212,8 +30,6 @@ $(function(){
 	
 	function setMonth(year,month){
 		
-		//var month = startMvMonth <= 9 ? "0"+startMvMonth : startMvMonth;
-		
 		$(".reserve-date").append(
 				"<div class = 'srceenDate'>"
 					+"<div id='"+year+(month <= 9 ? "0"+month : month)+"' class='year-month'>"
@@ -235,7 +51,6 @@ $(function(){
 			
 			//해당 일의 요일 구하기
 			var wday = weekday[new Date(year,month-1,i).getDay()];//년, 기준달-1(0~11), 일
-			//monthdayMap.set(i,day);
 			var dayStr = ( i <= 9 ? "0" + i : i );
 			
 			var dataDate = year+"-"+monthStr+"-"+dayStr;
@@ -253,7 +68,6 @@ $(function(){
 		console.log("rData: ",rData);
 		if(rData != null){
 			$.each(rData , function( index, value ) {
-				//console.log( index + " : " + value.mov_code +":"+ value.mov_title );
 				$(".movie-datas").append(
 						"<div class='movie-list' data-select='unselect' data-movieCode='"+value.mov_code+"'>"+value.mov_title+"</div>"
 				);
@@ -264,13 +78,11 @@ $(function(){
 	
 	/////////마우스 호버 이벤트
 	$(document).on("mouseenter","[data-select='unselect']",function(){
-		//console.log("들어감");
 		var that = $(this);
     	that.css("background-color","#444444");
     	that.css("color","#dddddd");
 	});
 	$(document).on("mouseleave","[data-select='unselect']",function(){
-		//console.log("나감");
 		var that = $(this);
     	that.css("background-color","#fbe1c13a");
     	that.css("color","black");
@@ -289,7 +101,6 @@ $(function(){
 		var find = that.parent().find("[data-select='select']");
 		
 		find.attr("data-select","unselect");
-		//find.removeAttr("data-select");
 		find.css("background-color","#fbe1c13a");
 		find.css("color","black");
 		
@@ -298,13 +109,10 @@ $(function(){
 		$("#theaterText").text("");
 		
 		//신규 선택사항
-		//console.log("find:", find);
-		
 		that.attr("data-select","select");
 		that.css("background-color","#444444");
 		that.css("color","#dddddd");
 		
-		//var seat = that.attr("data-seat");
 		var text = that.text();
 		
 		$("#movieTitleText").text(text);
@@ -314,7 +122,6 @@ $(function(){
 		
 		mov_code = that.attr("data-movieCode");
 		
-		//
 		var movieTitleData = {"mov_code" : mov_code};
 		
 		$.post("/ticketing/date",movieTitleData,function(rdata){
@@ -336,13 +143,12 @@ $(function(){
 					setMonth(startMvYear,startMvMonth);
 					
 					setDayandWeekday(startMvYear,startMvMonth,startMvday);
-					///////
+
 					setMonth(endMvYear,endMvMonth);
 					
 					setDayandWeekday(endMvYear,endMvMonth,1);
 				}
 				else{
-					//console.log("동일");
 					
 					setMonth(startMvYear,startMvMonth);
 					
@@ -350,9 +156,6 @@ $(function(){
 					
 				}
 				
-				//var offset = $(offsetId).offset();
-				//console.log("offset:",offset);
-				//$("#date").animate({scrollTop: offset.top},0);
 				
 			}
 			
@@ -377,7 +180,6 @@ $(function(){
 		var find = $(".reserve-date").find("[data-select='select']");
 		//이전 선택사항 삭제
 		find.attr("data-select","unselect");
-		//find.removeAttr("data-select");
 		find.css("background-color","#fbe1c13a");
 		find.css("color","black");
 		
@@ -393,10 +195,9 @@ $(function(){
 		
 		var dateData = {"mov_screen_date": date,
 						"mov_code": mov_code};
-		//console.log("dateData:",date);
 		
 		$.post("/ticketing/time",dateData,function(rdata){
-			//console.log("rdata:",rdata);
+
 			$.each(rdata, function (index, je_MovieDateInfoDTO) {
 				var nightAndDay;
 				var am_pm;
@@ -436,19 +237,16 @@ $(function(){
 		var find = that.parent().find("[data-select='select']");
 		
 		find.attr("data-select","unselect");
-		//find.removeAttr("data-select");
 		find.css("background-color","#fbe1c13a");
 		find.css("color","black");
 		
 		//신규 선택사항
-		//console.log("find:", find);
 		
 		that.attr("data-select","select");
 		that.css("background-color","#444444");
 		that.css("color","#dddddd");
 		
 		//////
-		//var text = that.text();
 		var time = that.find("#time").text();
 		var loc = that.find("#loc").text();
 		
@@ -463,11 +261,8 @@ $(function(){
 	$(".sendBtn").click(function() {
 		
 		var movieTitleText = $("#movieTitleText").text();
-		//
 		var dateText = $("#dateText").text();
-		//
 		var timesText = $("#timesText").text();
-		//
 		var theaterText = $("#theaterText").text();
 		
 		if(movieTitleText=="" || dateText=="" || timesText=="" || theaterText==""){
@@ -505,40 +300,14 @@ $(function(){
 	            
 	            
 	        </div>
-	        <!--  
-	        <div class="theater-part">
-	            <div class="reserve-title">
-	            	<span class="material-symbols-outlined">
-						movie
-					</span>상영관
-				</div>
-	           	
-	           	
-	            <div id="theater" class="theater-datas">
-	            	<div class="theater-list" >상영관A</div>
-	            	<div class="theater-list" >상영관B</div>
-	            	<div class="theater-list" >상영관C</div>
-	            </div>
-	            
-	        </div>
-			-->
+	        
 	        <div class="day-part">
 	            <div class="reserve-title">
 	            	<span class="material-symbols-outlined">
 						calendar_month
 					</span>날짜
 				</div>
-				<!--  
-	            <div class="rounded date-month">
-	            	<span class="material-symbols-outlined" id="prev_month" style="font-size: 36px;">
-						chevron_left
-					</span>
-	            	<div id="date-month"></div>
-	            	<span class="material-symbols-outlined" id="next_month" style="font-size: 36px;">
-						chevron_right
-					</span>
-	            </div>
-	            -->
+				
 	            <div id="date" class="reserve-date">
 					
 					
