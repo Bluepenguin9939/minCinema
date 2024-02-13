@@ -332,11 +332,11 @@ $(function(){
     	<div class="send-part">
 	    	<div class="send-main">
 				<form id="send-form" name="send-form" action="/ticketing/seat" method="get">
-					<div style="flex-grow: 1; font-weight: bold;">
-						<div style="font-size: 24px;">영화 : <span id="movieTitleText"></span></div>
-						<div style="font-size: 24px;">날짜 : <span id="dateText"></span></div>
-						<div style="font-size: 24px;">시간 : <span id="timesText"></span> </div>
-						<div style="font-size: 24px;">상영관 : <span id="theaterText"></span> </div>
+					<div class="book-info">
+						<div class="text-nowrap" style="font-size: 24px;">영화 : <span id="movieTitleText"></span></div>
+						<div class="text-nowrap" style="font-size: 24px;">날짜 : <span id="dateText"></span></div>
+						<div class="text-nowrap" style="font-size: 24px;">시간 : <span id="timesText"></span> </div>
+						<div class="text-nowrap" style="font-size: 24px;">상영관 : <span id="theaterText"></span> </div>
 					</div>
 					<input type="hidden" name="movieTitle">
 					<input type="hidden" name="movieDate">

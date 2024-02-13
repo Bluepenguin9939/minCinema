@@ -13,16 +13,15 @@
 }
 
 .select-part{
-	height: 82%;
+	height: 80%;
 }
 
 .send-part{
-	height: 18%;
+	height: 20%;
 }
 
-
 .send-main{
-	background-color:#fbe1c1;
+	background-color: #fbe1c13a;
 	width: 930px;
 }
 
@@ -197,5 +196,30 @@
 }
 
 .scroll_movie::-webkit-scrollbar-track{
+    background-color: 	#e4e4f8;
+}
+
+.book-info{
+	/*padding-top: 5px;*/
+    /*align-items: center;*/
+    /*height: 550px;*/
+    overflow: scroll; /*스크롤바 생성*/
+    overflow-y: hidden; /*x축 스크롤바 숨기기*/
+    width: 63%;
+    /*flex-grow: 1;*/ 
+    font-weight: bold;
+}
+
+.book-info::-webkit-scrollbar{
+    width: 15px;
+}
+
+.book-info::-webkit-scrollbar-thumb{
+    background-color: #9b54ba;
+    /* 스크롤바 둥글게 설정    */
+    border-radius: 10px;
+}
+
+.book-info::-webkit-scrollbar-track{
     background-color: 	#e4e4f8;
 }

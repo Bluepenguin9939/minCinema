@@ -563,14 +563,16 @@ $(function(){
 <div>
 	<div class="reserve-container">
 		<div class="seat-part">
-			<div class="reserve-title text-center">좌석배정</div>
+			<div class="reserve-title">
+				<span>좌석배정</span>
+			</div>
 	        
 	        <div class="seatSelector">
 	        	<div class="seatLoc" >
 	        		<div class="seatLoc-top bg-light rounded">
 	        			
 	        			<div style="background-color: #fbe1c13a;">
-	        				<div class="bg-danger text-center">이용자 선택</div>
+	        				<div style="font-weight: bold;" class="bg-danger text-center">이용자 선택</div>
 	        				
 	        				<div>
 	        					<span class="pCount rounded-circle m-2" id="first" data-select="select" data-pCount="1">1인</span>
@@ -634,13 +636,15 @@ $(function(){
 		        </div>
 		        <div class="count">
 		        	<div class="rounded countText bg-primary">좌석 예매 결제</div>
+		        	<div class="revInfo">
+		        		<ul style="font-size: 24px">
+			        		<li>영화 : ${Je_ReservationInfoVO.movieTitle}</li>
+			        		<li>날짜 : ${Je_ReservationInfoVO.movieDate}</li>
+			        		<li>시간 : ${Je_ReservationInfoVO.movieTime}</li>
+			        		<li>상영관 : ${Je_ReservationInfoVO.movieTheater}</li>
+		        		</ul>
+		        	</div>
 		        	
-		        	<ul style="font-size: 24px">
-		        		<li>영화 : ${Je_ReservationInfoVO.movieTitle}</li>
-		        		<li>날짜 : ${Je_ReservationInfoVO.movieDate}</li>
-		        		<li>시간 : ${Je_ReservationInfoVO.movieTime}</li>
-		        		<li>상영관 : ${Je_ReservationInfoVO.movieTheater}</li>
-		        	</ul>
 		        	
 		        	
 		        	<div style="width: 100%">=========================</div>

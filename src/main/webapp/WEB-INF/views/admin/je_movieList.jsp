@@ -12,14 +12,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>영화 일정 추가</title>
 
-<style>
-
-
-
-
-
-</style>
-
 
 <script>
 

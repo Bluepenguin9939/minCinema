@@ -1,9 +1,9 @@
 ----------- 영화 상세정보 테이블 생성 -----------
 CREATE TABLE MC_MOVIE(
     MOV_CODE CHAR(8) CONSTRAINT PK_MOV_CODE PRIMARY KEY,               -- 영화 코드
-    MOV_TITLE VARCHAR2(100) NOT NULL,                                  -- 영화 타이틀
+    MOV_TITLE VARCHAR2(150) NOT NULL,                                  -- 영화 타이틀
     MOV_DIRECTOR VARCHAR2(50) NOT NULL,                                -- 영화 감독
-    MOV_ACTOR VARCHAR2(2000),                             		       -- 영화 배우
+    MOV_ACTOR VARCHAR2(3000),                             		       -- 영화 배우
     MOV_RELEASEDATE CHAR(10) NOT NULL,                                 -- 영화 개봉일
     MOV_PLOT VARCHAR2(3000) NOT NULL,                                  -- 영화 줄거리
     MOV_RUNTIME NUMBER(3) NOT NULL,                                    -- 영화 런타임
@@ -18,8 +18,8 @@ DROP TABLE MC_MOVIE;
 -----영화관 날짜일정 배정 테이블------
 CREATE TABLE MC_MOVIE_DATE(
 	MOV_DATE_CODE VARCHAR2(40) PRIMARY KEY, --영화날짜코드 --()
-	MOV_TITLE VARCHAR2(40) NOT NULL, -- 영화 제목
-	MOV_CODE CHAR(8) REFERENCES MC_MOVIE(MOV_CODE) NOT NULL ON DELETE CASCADE,    --영화코드
+	MOV_TITLE VARCHAR2(150) NOT NULL, -- 영화 제목
+	MOV_CODE CHAR(8) REFERENCES MC_MOVIE(MOV_CODE) ON DELETE CASCADE NOT NULL,    --영화코드
 	MOV_SCREEN_DATE varchar2(10) NOT NULL,	--상영날짜 2024-02-01 
 	MOV_START_TIME VARCHAR2(5) NOT NULL,		--상영 시작시간 
 	MOV_END_TIME VARCHAR2(5) NOT NULL,			--영화 종료시간

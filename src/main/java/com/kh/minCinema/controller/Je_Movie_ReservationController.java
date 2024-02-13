@@ -89,7 +89,6 @@ public class Je_Movie_ReservationController {
 	@PostMapping(value = "/cost", consumes = {MediaType.APPLICATION_JSON_VALUE})
 	@ResponseBody
 	public String cost(@RequestBody Je_ReservationInfoVO je_ReservationInfoVO, HttpSession session) {
-		log.info(">>>>>>>>>>>>>>>>>>"+je_ReservationInfoVO);
 		
 		Heo_MemberVO memberVO = (Heo_MemberVO)session.getAttribute("loginInfo");
 		
