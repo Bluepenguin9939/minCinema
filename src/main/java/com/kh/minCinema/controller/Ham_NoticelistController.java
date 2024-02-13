@@ -77,16 +77,9 @@ public class Ham_NoticelistController {
 		 System.out.println("와우:"+list);
 	}
 	@PostMapping("/ono")
-//	@ResponseBody
 	public String ono(Ham_OneononeVO ham_OneononeVO) {
 		System.out.println("123456"+ham_OneononeVO);
 	 ham_OneononeService.insertInquiry(ham_OneononeVO);
 	 return "redirect:/notice/ham_inquiry";
 	}
-//	@GetMapping("/memberViewReply")
-//	public void memberViewReply(Ham_OneononeVO ham_OneononeVO) {
-//		System.out.println("하와잉");
-//		ham_OneononeService.selectViewReply(ham_OneononeVO);
-//		System.out.println("무엇이 들어있나요?:"+ham_OneononeVO);
-//	}
 }

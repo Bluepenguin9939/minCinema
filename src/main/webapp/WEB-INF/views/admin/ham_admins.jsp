@@ -101,14 +101,12 @@
 <script>
 $(function() {
 	var valueDisplays = document.querySelectorAll(".totalPoint");
-// 	var interval = 10;
 	console.log(valueDisplays);
 	
 		valueDisplays.forEach((valueDisplay) => {
 		var startValue = 0;
 		var endValue = valueDisplay.getAttribute("data-total");
 		console.log("endValue:",endValue);
-// 		var duration = Math.floor(interval / endValue);
 		var counter = setInterval(function(){
 			startValue += 1000;
 			valueDisplay.textContent = startValue.toLocaleString('ko-KR');
@@ -123,23 +121,20 @@ $(function() {
 	var send_date = $(".send-date").attr("data-send_date");
 	var monthCount = $(".month-Count").attr("data-monthCount");
 	var monthCount2 = parseInt(monthCount);
-// 	console.log("send_date:", send_date);
 	var pdate = $(".point_pdate").attr("data-pdate");
 	var ppoint = $(".point_ppoint").attr("data-ppoint");
 	
 	var mov_genre = $(".mov-genre").attr("data-mov_genre");
 	console.log("mov_genre:",mov_genre);
-// 	console.log("pdate:",pdate);
-// 	console.log("ppoint:",ppoint);
 
 	//막대 차트 
 	var mg="";
 	var mc="";
 	//듀얼 막대 차트 -유저
-	var asd = "";
+	var dsd = "";
 	var count = "";
-	var co = "";
-	var aaa = "";
+	var dSplit = "";
+	var cSplit = "";
 	//듀얼 막대 차트 - 관리자
 	var rOp = "";
 	var rCount = "";
@@ -155,7 +150,6 @@ $(function() {
 
 	var ctx = document.getElementById("myChart");
 	var ctx1 = document.getElementById("myChart2").getContext('2d');
-// 	var ctx2 = document.getElementById("myChart3");
 	var ctx3 = document.getElementById("myChart4");
 	var arr = [];
 
@@ -164,16 +158,16 @@ $(function() {
 
 	for (var v = 0; v < 12; v++) {//유저측
 		if (v == 11) {
-			asd += $(".send-date").eq(v).attr("data-send_date");
+			dsd += $(".send-date").eq(v).attr("data-send_date");
 			count += $(".month-Count").eq(v).attr("data-monthCount");
 		} else {
-			asd += $(".send-date").eq(v).attr("data-send_date") + ",";
+			dsd += $(".send-date").eq(v).attr("data-send_date") + ",";
 			count += $(".month-Count").eq(v).attr("data-monthCount") + ",";
 		}
 
 	}//
-	aaa = count.split(',');
-	co = asd.split(',');
+	cSplit = count.split(',');
+	dSplit = dsd.split(',');
 	
 	for (var v = 0; v < 12; v++) {//관리자측
 		if (v == 11) {
@@ -231,7 +225,7 @@ $(function() {
 					datasets : [ {
 						label : '등록된 영화 개수',
 						data : mcSplit,
-						borderColor : [ 'rgba(255,99,132,0.2)',
+						backgroundColor : [ 'rgba(255,99,132,0.2)',
 								'rgba(54, 162, 235, 0.2)',
 								'rgba(255, 206, 86, 0.2)',
 								'rgba(75, 192, 192, 0.2)',
@@ -244,63 +238,45 @@ $(function() {
 	myChart = new Chart(ctx1, {//듀얼막대
 		type : 'bar',
 		data : {
-			labels : co,
+			labels : dSplit,
 			datasets : [
 					{
 						label : '고객문의수',
-						data : aaa,
-						backgroundColor : [ 'rgba(255,99,132,0.2)',
-								'rgba(54, 162, 235, 0.2)',
-								'rgba(255, 206, 86, 0.2)',
-								'rgba(75, 192, 192, 0.2)',
-								'rgba(153, 102, 255, 0.2)',
-								'rgba(255, 159, 64, 0.2)',
-								'rgba(255,99,132,0.2)',
-								'rgba(54, 162, 235, 0.2)',
-								'rgba(255, 206, 86, 0.2)',
-								'rgba(75, 192, 192, 0.2)',
-								'rgba(153, 102, 255, 0.2)',
-								'rgba(255, 159, 64, 0.2)' ],
+						data : cSplit,
+						backgroundColor : [ 
+								'rgba(255, 99, 132, 0.4)',
+								'rgba(255, 206, 86, 0.4)',
+								'rgba(255, 99, 132, 0.4)',
+								'rgba(255, 206, 86, 0.4)',
+								'rgba(255, 99, 132, 0.4)',
+								'rgba(255, 206, 86, 0.4)',
+								'rgba(255, 99, 132, 0.4)',
+								'rgba(255, 206, 86, 0.4)',
+								'rgba(255, 99, 132, 0.4)',
+								'rgba(255, 206, 86, 0.4)',
+								'rgba(255, 99, 132, 0.4)',
+								'rgba(255, 206, 86, 0.4)' ],
 					},
 					{
 						label : '문의답변수',
 						data : rCsplit,
-						backgroundColor : [ 'rgba(255,99,132,1)',
-								'rgba(54, 162, 235, 1)',
-								'rgba(255, 206, 86, 1)',
-								'rgba(75, 192, 192, 1)',
-								'rgba(153, 102, 255, 1)',
-								'rgba(255, 159, 64, 1)',
-								'rgba(255,99,132,1)',
-								'rgba(54, 162, 235, 1)',
-								'rgba(255, 206, 86, 1)',
-								'rgba(75, 192, 192, 1)',
-								'rgba(153, 102, 255, 1)',
-								'rgba(255, 159, 64, 1)' ],
+						backgroundColor : [ 
+								'rgba(54, 162, 235, 0.4)',
+								'rgba(54, 162, 235, 0.4)',
+								'rgba(54, 162, 235, 0.4)',
+								'rgba(54, 162, 235, 0.4)',
+								'rgba(54, 162, 235, 0.4)',
+								'rgba(54, 162, 235, 0.4)',
+								'rgba(54, 162, 235, 0.4)',
+								'rgba(54, 162, 235, 0.4)',
+								'rgba(54, 162, 235, 0.4)',
+								'rgba(54, 162, 235, 0.4)',
+								'rgba(54, 162, 235, 0.4)',
+								'rgba(54, 162, 235, 0.4)' ],
 						borderWidth : 1
 					} ]
 		}
 	});//
-// 	myChart = new Chart(ctx2,
-// 			{//파이차트
-// 				type : 'pie',
-// 				data : {
-// 					labels : [ "Red", "Blue", "Yellow", "Green", "Purple",
-// 							"Orange" ],
-// 					datasets : [ {
-// 						label : '# of Votes',
-// 						data : aa,
-// 						borderColor : [ 'rgba(255,99,132,1)',
-// 								'rgba(54, 162, 235, 1)',
-// 								'rgba(255, 206, 86, 1)',
-// 								'rgba(75, 192, 192, 1)',
-// 								'rgba(153, 102, 255, 1)',
-// 								'rgba(255, 159, 64, 1)' ],
-// 						borderWidth : 1
-// 					} ]
-// 				},
-// 			});//
-
 	myChart = new Chart(ctx3, {//월매출 
 		type : 'line',
 		data : {
@@ -309,13 +285,11 @@ $(function() {
 				label : '월별 매출액',
 				data : ppSplit,
 				borderColor : [ 'rgba(255,99,132,1)',
-						'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)',
-						'rgba(75, 192, 192, 1)', 'rgba(153, 102, 255, 1)',
-						'rgba(255, 159, 64, 1)', 'rgba(54, 162, 235, 0.2)',
-						'rgba(255, 206, 86, 0.2)',
-						'rgba(75, 192, 192, 0.2)',
-						'rgba(153, 102, 255, 0.2)',
-						'rgba(255, 159, 64, 0.2)' ],
+					'rgba(255,99,132,1)', 'rgba(255,99,132,1)',
+					'rgba(255,99,132,1)', 'rgba(255,99,132,1)',
+					'rgba(255,99,132,1)', 'rgba(255,99,132,1)',
+					'rgba(255,99,132,1)','rgba(255,99,132,1)',
+					'rgba(255,99,132,1)','rgba(255,99,132,1)'],
 				borderWidth : 1
 			} ]
 		},
@@ -324,13 +298,9 @@ $(function() {
 });
 </script>
 
-<!-- <script src="script.js"></script> -->
+
 <!-- 차트 javaScript> -->
-<!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
-<!--   <script src="/resources/js/moviekind.js"></script> -->
-<!--   <script src="/resources/js/oneonone.js"></script> -->
-<!--   <script src="/resources/js/cmanagement.js"></script> -->
-<!--   <script src="/resources/js/sumpoint.js"></script> -->
+
 
 <!-- Bootstrap core JavaScript-->
 <script src="/resources/vendor/jquery/jquery.min.js"></script>
