@@ -178,6 +178,42 @@ $(function(){
 		});
 	});
 	
+// 	div 클릭 시 업로드
+	$("#dropDiv").click(function() {
+		$("#stillcut-upload").click();
+	});
+	
+	$("#stillcut-upload").change(function(e) {
+		var upload_image = e.originalEvent.target.files;
+		
+		var formData = new FormData();
+		for (var v = 0; v < upload_image.length; v++) {
+			formData.append("uploadFile", upload_image[v]);
+		}
+		
+		$.ajax({
+			"url" : "/uploadStillCutImage",
+			"type" : "post",
+			"processData" : false,
+			"contentType" : false,
+			"data" : formData,
+			"success" : function(rData) {
+				$(rData).each(function(i, obj) {
+					var cloneStillCutDiv = $("#stillCutDiv > div:eq(0)").clone();
+					
+					var url = "/display?fileName=" + obj.upload_path + "/" + obj.file_name;
+					cloneStillCutDiv.find("img").attr("src", url);
+					
+					$("#stillCutDiv").append(cloneStillCutDiv);
+					cloneStillCutDiv.fadeIn(1000);
+					
+					cloneStillCutDiv.attr("data-upload_path", obj.upload_path);
+					cloneStillCutDiv.attr("data-file_name", obj.file_name);
+				});
+			}
+		});
+	});
+	
 // 	폼 전송 시
 	$("#frmAddMovie").submit(function() {
 		var that = $(this);
@@ -264,10 +300,7 @@ $(function(){
 					<div class="d-flex flex-column justify-content-between" style="margin-left: 10px; width: 60%;">
 						<div id="mov_title_div">
 							<input type="text" id="movieTitle" name="mov_title" placeholder="영화 제목" size="40px;">
-							<button type="button" id="btnGetTrailer"
-								class="btn btn-sm btn-secondary" style="margin-left: 10px;">
-								영화 트레일러 찾으러 가기
-							</button>
+							
 						</div>
 						<div>
 							<textarea id="moviePlot" name="mov_plot" rows="3" placeholder="상세 내용"
@@ -286,7 +319,9 @@ $(function(){
 						</div>
 						<!-- 드래그 & 드롭 -->
 						<div>
-							<div id="dropDiv">등록할 스틸컷을 드래그 &amp 드롭해주세요</div>
+							<div id="dropDiv">등록할 스틸컷을 드래그 &amp; 드롭해주세요</div>
+							<input type="file" id="stillcut-upload" name="image" accept="image/*"
+			  					multiple style="display: none;">
 						</div>
 						<!-- 드롭된 스틸컷 목록 -->
 						<div id="stillCutDiv" class="d-flex">
@@ -303,6 +338,10 @@ $(function(){
 							<input type="text" id="mov_trailer" 
 								name="mov_trailer" placeholder="동영상 URL 등록"
 								style="width: 350px;">
+							<button type="button" id="btnGetTrailer"
+								class="btn btn-sm btn-secondary" style="margin-left: 10px;">
+								영화 트레일러 찾으러 가기
+							</button>
 						</div>
 						<div>
 							<button type="submit" id="btnAddMovie" class="btn btn-secondary">

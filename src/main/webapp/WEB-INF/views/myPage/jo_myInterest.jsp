@@ -6,13 +6,13 @@
 
 <script>
 $(function() {
-	$("#btnDetail").click(function() {
+	$(".btnDetail").click(function() {
 		var mov_code = $(this).attr("data-mov_code");
 		$("#detail_mov_code").val(mov_code);
 		$("#frmDetails").submit();
 	});
 	
-	$("#btnReservation").click(function() {
+	$(".btnReservation").click(function() {
 		self.location = "/ticketing/booking";
 	});
 });
@@ -51,13 +51,13 @@ $(function() {
 										<span>${vo.mov_runtime}분</span>
 									</div>
 									<div class="d-flex flex-column justify-content-end" style="object-fit: cover;">
-										<button type="button" class="btn btn-secondary" 
-											id="btnDetail" data-mov_code="${vo.mov_code}">
+										<button type="button" class="btn btn-secondary btnDetail" 
+											data-mov_code="${vo.mov_code}">
 											상세보기
 										</button>
 										<br>
-										<button type="button" class="btn btn-secondary"
-											id="btnReservation" data-mov_code="${vo.mov_code}">
+										<button type="button" class="btn btn-secondary btnReservation" 
+											data-mov_code="${vo.mov_code}">
 											예매하기
 										</button>
 									</div>
