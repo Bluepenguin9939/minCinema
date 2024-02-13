@@ -21,5 +21,7 @@ public interface Jo_MovieService {
 	public List<Jo_MovieVO> getSlideMovie();
 	
 	public List<Ham_MovieCountDTO> getMovieCount(); // 관리자 차트 추가용 h
+	
+	public void movieDelete(String movieCode);//영화 삭제
 
 }

@@ -53,7 +53,6 @@ public class Je_Movie_ReservationController {
 		
 		List<String> dateList = je_MovieDateService.movieScreenDates(mov_code);
 		
-		//log.info(">>>>>>>>> "+dateList);
 		return dateList;
 	}
 	
@@ -91,8 +90,6 @@ public class Je_Movie_ReservationController {
 	@ResponseBody
 	public String cost(@RequestBody Je_ReservationInfoVO je_ReservationInfoVO, HttpSession session) {
 		log.info(">>>>>>>>>>>>>>>>>>"+je_ReservationInfoVO);
-		//log.info(">>>>>>>>>>>>>>>>>>"+je_ReservationInfoVO.getAge());
-		//log.info(">>>>>>>>>>>>>>>>>>"+je_ReservationInfoVO.getReservedSeat());
 		
 		Heo_MemberVO memberVO = (Heo_MemberVO)session.getAttribute("loginInfo");
 		

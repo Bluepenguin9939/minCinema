@@ -89,8 +89,8 @@ public class Je_AdminMovieDateController {
 	@PostMapping(value = "/editMovieDate") //수정
 	@ResponseBody
 	public String editMovieDate(Je_MovieDateInfoDTO je_MovieDateInfoDTO) {
-		//log.info("@@"+je_MovieDateInfoDTO);
 		int count1 = je_AdminMovieDateService.dupCheck(je_MovieDateInfoDTO);
+		log.info("@@"+je_MovieDateInfoDTO);
 		
 		if(count1 == 0) {
 			int count = je_AdminMovieDateService.editDate(je_MovieDateInfoDTO);

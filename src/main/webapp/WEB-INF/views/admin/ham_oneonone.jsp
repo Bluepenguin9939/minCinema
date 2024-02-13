@@ -12,19 +12,35 @@
 <!-- <meta name="viewport" content="width=device-width,initial-scale=1.0"> -->
 <script>
 $(function(){
-	var begin = 0;
-	var end = 5;
-	var bStep = $(".wrap>tr");
-	var eStep = bStep.slice(begin,end);
-	bStep.hide();
-	eStep.show();
-	
-	$("#load-more").click(function(){
-		var that = $(this);
-		console.log("that:",that);
-		end +=5;
-		bStep.slice(begin,end).show();
-	});
+	function moreButton(acount){
+		var bsl = $(".wrap>tr").length;
+		if(bsl > acount && bsl % 5 > 0 && bsl % 5 < 5){
+			$("#load-more").css("display", "block");
+		}
+	}
+	$(function() {
+		var result = '${result}';
+		var begin = 0;
+		var end = 5;
+		var acount = 5;
+		var bStep = $(".wrap>tr");
+		var eStep = bStep.slice(begin,end);
+		bStep.hide();
+		eStep.show();
+		
+		var bsl = bStep.length;
+		console.log(bsl);
+		if(bsl > acount && bsl % 5 >= 0){
+			$("#load-more").css("display", "block");
+		}
+		$("#load-more").click(function(){
+			$(this).css("display", "none");
+			var that = $(this);
+			end += 5;
+			acount += 5;
+			moreButton(acount);
+			bStep.slice(begin,end).show();
+		});
 	
 	var that="";
 	$(".mtitle").click(function(e){
@@ -66,7 +82,6 @@ $(function(){
 		
 	});
 	$("#sendReply").click(function(e){
-// 		e.preventDefault();
 		var rn = $("#sendReply").attr("data-rn");
 		console.log("rn:",rn);
 		$("#replyRn").val(rn);
@@ -79,7 +94,8 @@ $(function(){
 </head>
 <!-- list(게시판) 양식 -->
 <body>
-	<div class="notice d-flex justify-content-center" > 
+<div id="oneonone-d">
+	<div class="oneonone d-flex justify-content-center" > 
 		<div class="admin-top" >
 			<h2 class="admin-body" title="" >고객센터 관리</h2>
 			<div class="search">
@@ -88,15 +104,15 @@ $(function(){
 					<select name="type" title="검색선택">
 						<option value="S" ${param.type == 'S' ? 'selected' : ''}>보낸 유저</option>
 						<option value="M" ${param.type == 'M' ? 'selected' : ''}>문의 제목</option>
-						<option value="D" ${param.type == 'D' ? 'selected' : ''}>받은 날짜</option>
-						<option value="O" ${param.type == 'O' ? 'selected' : ''}>답변 날짜</option>
+<%-- 						<option value="D" ${param.type == 'D' ? 'selected' : ''}>받은 날짜</option> --%>
+<%-- 						<option value="O" ${param.type == 'O' ? 'selected' : ''}>답변 날짜</option> --%>
 					</select> 
 					<input type="text" value="${param.keyword}" name="keyword" class="keyword" title="검색어 입력" id="search_id" placeholder="검색 ..." />
 					<button value="검색" type="submit" class="btn btn-sm btn-outline-dark">검색</button>
                 </form>
             </div>
         </div>
-			<!-- 모다르 -->
+			<!-- 모달 -->
 						<div class="" style="display: flex; justify-content: center">
 				<form role="form" action="#" method="post">
 					<input type="hidden" name="msg_id" value="">
@@ -141,8 +157,8 @@ $(function(){
 					</div>
 				</form>
 			</div>
-			<!-- 모다르 끝 -->
-			<!-- 답장 모다르 -->
+			<!-- 모달 끝 -->
+			<!-- 답장 모달 -->
 			
 						<div class="" style="display: flex; justify-content: center">
 				<form role="form" action="/admin/sendReply" method="post" id="frmresend">
@@ -184,13 +200,13 @@ $(function(){
 			
 			
 			
-			<!-- 답장 모다르 끝 -->
+			<!-- 답장 모달 끝 -->
 			
     
-			<table class="table table-hover">
+			<table class="table oneononeTable">
 				<thead>
 				<!-- 관리자용과 게시판 공용 사용하되 이름(컬럼명은 변경해야함)  -->
-					<tr>
+					<tr class="oneononeTr">
 						<th>#</th>
 						<th>보낸 유저</th> <!--  -->
 						<th>문의 제목</th>
@@ -212,55 +228,11 @@ $(function(){
 				</c:forEach>					
 				</tbody>
 			</table>	
-			<button id="load-more">더보기</button>
-			
-		
-			<!-- 하단 게시판 번호(Pagination) -->
-<!-- 	<div class="pageBottom" style="margin-bottom: 100px"> -->
-<!-- 		<div class="col-md-12"> -->
-<!-- 			<nav> -->
-			
-<!-- 				<ul class="pagination d-flex align-items-center justify-content-center"> -->
-<!-- 						<select name="target" title="검색선택"> -->
-<!-- 						<option value="1">10</option> -->
-<!-- 						<option value="2">20</option> -->
-<!-- 						<option value="3">30</option> -->
-<!-- 						<option value="4">40</option> -->
-<!-- 						<option value="5">50</option> -->
-<!-- 					</select>  -->
-<!-- 					<li class="page-item"> -->
-<!-- 						<a class="page-link" href="#">&laquo;</a> -->
-<!-- 					</li> -->
-<!-- 					<li class="page-item"> -->
-<!-- 						<a class="page-link" href="#">1</a> -->
-<!-- 					</li> -->
-<!-- 					<li class="page-item"> -->
-<!-- 						<a class="page-link" href="#">2</a> -->
-<!-- 					</li> -->
-<!-- 					<li class="page-item"> -->
-<!-- 						<a class="page-link" href="#">3</a> -->
-<!-- 					</li> -->
-<!-- 					<li class="page-item"> -->
-<!-- 						<a class="page-link" href="#">4</a> -->
-<!-- 					</li> -->
-<!-- 					<li class="page-item"> -->
-<!-- 						<a class="page-link" href="#">5</a> -->
-<!-- 					</li> -->
-<!-- 					<li class="page-item"> -->
-<!-- 						<a class="page-link" href="#">...</a> -->
-<!-- 					</li> -->
-<!-- 					<li class="page-item"> -->
-<!-- 						<a class="page-link" href="#">10</a> -->
-<!-- 					</li> -->
-<!-- 					<li class="page-item"> -->
-<!-- 						<a class="page-link" href="#">&raquo;</a> -->
-<!-- 					</li> -->
-<!-- 					<li class="page">현재 1 page 10 page entries </li> -->
-<!-- 				</ul> -->
-<!-- 			</nav> -->
-<!-- 		</div> -->
-<!-- 	</div>페이징 -->
-	</div>
-	</div>
+					<div class="loadMore">
+						<button id="load-more" class="btn btn-sm btn-outline-dark" style="display: none;">더보기</button>
+					</div>
+				</div>
+			</div>
+		</div>
 
 </body>

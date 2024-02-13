@@ -40,6 +40,16 @@ public class Heo_MemberServiceImpl implements Heo_MemberService {
 		return heo_MemberMapper.selectPassword(heo_MemberVO);
 	}
 	
+	@Override
+	public int kakaoCheck(String mtel) {
+		return heo_MemberMapper.kakaoCheckInfo(mtel);
+	}
+	
+	@Override
+	public Heo_MemberVO getKakaoInfo(Heo_MemberVO heo_MemberVO) {
+		return heo_MemberMapper.getKakaoLoginInfo(heo_MemberVO);
+	}
+	
 	//-------------------------- 관리자 ----------------------------------
 	@Override
 	public List<Heo_MemberVO> memberList(Heo_MemberVO vo) {

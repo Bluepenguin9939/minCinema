@@ -58,4 +58,10 @@
 		SELECT MOV_GENRE, COUNT(MOV_GENRE) MOV_COUNT FROM MC_MOVIE GROUP BY MOV_GENRE
 	</select>
 	
+	<!-- 영화 삭제 -->
+	<delete id="movieDelete">
+		DELETE FROM MC_MOVIE
+			WHERE MOV_CODE = #{mov_code}
+	</delete>
+	
 </mapper>

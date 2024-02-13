@@ -5,7 +5,7 @@
 <%@ include file="/WEB-INF/views/include/top.jsp" %>
 
 <head>
-<link rel="stylesheet" href="/resources/css/notice.css?after" type="text/css">
+<link rel="stylesheet" href="/resources/css/often.css?after" type="text/css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
 <!-- <meta name="viewport" content="width=device-width,initial-scale=1.0"> -->

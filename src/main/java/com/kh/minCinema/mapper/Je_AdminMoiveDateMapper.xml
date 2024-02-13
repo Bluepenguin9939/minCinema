@@ -54,6 +54,14 @@
 		 WHERE MOV_DATE_CODE = #{mov_date_code}
 	</update>
 	
+	<update id="updateRes">
+		UPDATE MC_MOVIE_THEATER SET
+			MOV_THEATER_DATE = #{mov_screen_date},
+			MOV_THEATER_TIME = #{mov_start_time},
+			MOV_THEATER = #{mov_theater}
+		 WHERE MOV_DATE_CODE = #{mov_date_code}
+	</update>
+	
 	<delete id="deleteDate">
 		DELETE FROM MC_MOVIE_DATE
 			WHERE MOV_DATE_CODE = #{mov_date_code}

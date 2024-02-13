@@ -1,5 +1,7 @@
 package com.kh.minCinema.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -44,6 +46,22 @@ public class Heo_MemberController {
 	public String getActive(String mid) {
 		String active = heo_MemberService.getActive(mid);
 		return active;
+	}
+	
+	@PostMapping("/checkInfo")
+	public String checkInfo(Heo_MemberVO heo_MemberVO,Model model,HttpSession session) {
+		String mtel = heo_MemberVO.getMtel();
+		int result = heo_MemberService.kakaoCheck(mtel);
+		if (result == 0) {
+			System.out.println(heo_MemberVO);
+			session.setAttribute("kakaoInfo", heo_MemberVO);
+			return "redirect:/member/jo_register";
+		} else {
+			Heo_MemberVO vo = heo_MemberService.getKakaoInfo(heo_MemberVO);
+//			session.invalidate();
+			session.setAttribute("loginInfo", vo);
+			return "redirect:/";
+		}
 	}
 	
 	@PostMapping(value = "/updateBen", produces = MediaType.APPLICATION_JSON_VALUE)

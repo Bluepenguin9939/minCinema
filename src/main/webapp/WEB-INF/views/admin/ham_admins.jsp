@@ -6,13 +6,13 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <link href="/resources/css/admin/adminmain.css?after" rel="stylesheet" type="text/css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"> -->
 <!-- Begin Page Content -->
 <div class="container-fluid">
 
 
                     <!-- Page Heading -->
-                    <div>
+                    <div class="mHead">
                         <label class="h3 mb-0 text-black-800" id="mainManage"> 관리자 메인 페이지</label>
                     </div>
                  </div>
@@ -78,7 +78,7 @@
 			</div>
 		</div>
 		<div class="pay">
-				<div class="coa">
+				<div class="total-pay">
 					<i class="fa fa-coins" id="icon"></i>
 					<label class="text">총 매출액</label>
 					<label class="totalPoint" data-total="${totalPointDTO.total}"></label>
@@ -326,7 +326,7 @@ $(function() {
 
 <!-- <script src="script.js"></script> -->
 <!-- 차트 javaScript> -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
 <!--   <script src="/resources/js/moviekind.js"></script> -->
 <!--   <script src="/resources/js/oneonone.js"></script> -->
 <!--   <script src="/resources/js/cmanagement.js"></script> -->
@@ -334,7 +334,7 @@ $(function() {
 
 <!-- Bootstrap core JavaScript-->
 <script src="/resources/vendor/jquery/jquery.min.js"></script>
-<script src="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- <script src="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script> -->
 
 <!-- Core plugin JavaScript-->
 <script src="/resources/vendor/jquery-easing/jquery.easing.min.js"></script>

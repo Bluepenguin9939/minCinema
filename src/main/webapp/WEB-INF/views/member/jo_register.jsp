@@ -47,6 +47,22 @@ $(function() {
 		}
 // 		return false;
 	});
+	
+	var kakaoInfo = "${kakaoInfo}";
+	if (kakaoInfo != "") {
+		console.log(kakaoInfo);
+		var memail = kakaoInfo.split("memail=")[1].split(",")[0];
+		var mname = kakaoInfo.split("mname=")[1].split(",")[0];
+		var mnick = kakaoInfo.split("mnick=")[1].split(",")[0];
+		var mtel = kakaoInfo.split("mtel=")[1].split(",")[0];
+		$("#u-email").val(memail);
+		$("#u-name").val(mname);
+		$("#u-nick-name").val(mnick);
+		$("#u-tel").val(mtel);
+		$("#u-email").prop("readonly",true);
+		$("#u-name").prop("readonly",true);
+		$("#u-tel").prop("readonly",true);
+	}
 });
 </script>
 </head>
