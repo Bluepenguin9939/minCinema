@@ -36,7 +36,6 @@ public class Heo_MemberController {
 	
 	@PostMapping("/register")
 	public String register(Heo_MemberVO heo_MemberVO) {
-		System.out.println("컨트롤러" + heo_MemberVO);
 		heo_MemberService.register(heo_MemberVO);
 		return "redirect:/member/jo_login";
 	}
@@ -53,7 +52,6 @@ public class Heo_MemberController {
 		String mtel = heo_MemberVO.getMtel();
 		int result = heo_MemberService.kakaoCheck(mtel);
 		if (result == 0) {
-			System.out.println(heo_MemberVO);
 			session.setAttribute("kakaoInfo", heo_MemberVO);
 			return "redirect:/member/jo_register";
 		} else {

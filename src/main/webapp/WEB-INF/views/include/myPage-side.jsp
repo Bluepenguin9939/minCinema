@@ -18,11 +18,9 @@ $(function() {
 // 	프로필 사진 띄우기
 	$("#profile-upload").change(function(e) {
 		var upload_image = e.target.files;
-		console.log("asd :", upload_image);
 		
 		var formData = new FormData();
 		formData.append("uploadFile", upload_image[0]);
-		console.log(formData);
 		
 		$.ajax({
 			"url" : "/uploadProfileImage",
@@ -31,7 +29,6 @@ $(function() {
 			"contentType" : false,
 			"data" : formData,
 			"success" : function(rData) {
-				console.log(rData);
 				var attachVO = rData.attachVO;
 				var upload_path = attachVO.upload_path;
 				var uuid = attachVO.uuid;
@@ -39,7 +36,7 @@ $(function() {
 				
 				var file_path = upload_path + "/" + uuid + "_" + file_name;
 				var url = "/display?fileName=" + file_path
-				console.log(url);
+
 				$("#profile-image").attr("src", url);
 				if (rData.result) {
 					$("#btnChange").attr("data-file_path", file_path);
@@ -53,7 +50,6 @@ $(function() {
 // 	모달 이미지 변경버튼
 	$("#btnChange").click(function() {
 		var file_path = $(this).attr("data-file_path");
-		console.log(file_path);
 		var upload_path = file_path.substring(0, 28);
 		var uuid = file_path.substring(29, 65);
 		var file_name = file_path.substring(66);
@@ -66,7 +62,6 @@ $(function() {
 		}
 		
 		$.post(url, sData, function(rData) {
-			console.log(rData);
 			if (rData) {
 				self.location = window.location.href;
 			}
@@ -85,7 +80,7 @@ $(function() {
 		}
 		
 		$.post(url, sData, function(rData) {
-			console.log(rData);
+
 		});
 	});
 });

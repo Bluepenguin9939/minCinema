@@ -7,7 +7,6 @@
 $(function() {
 	$("#btnWriteReview").click(function() {
 		var mid = "${loginInfo.mid}";
-		console.log("asd :", mid);
 		if (mid == "") {
 			alert("로그인 후 이용 가능합니다.");
 			self.location = "/member/jo_login";
@@ -28,7 +27,6 @@ $(function() {
 		}
 		
 		$.post(url, sData, function(rData) {
-			console.log(rData)
 			if (rData) {
 				alert("등록이 완료되었습니다.");
 			} else {

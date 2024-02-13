@@ -22,12 +22,10 @@ public class Jo_AdminController {
 	
 	@PostMapping("/addMovie")
 	public String addMovie(Jo_MovieVO movieVO, Jo_MoviePosterDTO posterDTO, RedirectAttributes rttr) {
-		System.out.println("movieVO : " + movieVO);
-		System.out.println("posterDTO : " + posterDTO);
 		movieVO.setPosterDTO(posterDTO);
 		String trailer = movieVO.getMov_trailer();
 		String mov_trailer = trailer.replace("/v/", "/embed/") + "?autoPlay=true";
-		log.info(mov_trailer);
+		
 		movieVO.setMov_trailer(mov_trailer);
 		boolean addResult = movieService.addMovie(movieVO);
 		rttr.addFlashAttribute("addResult", addResult);

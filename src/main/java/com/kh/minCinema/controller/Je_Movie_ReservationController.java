@@ -80,7 +80,6 @@ public class Je_Movie_ReservationController {
 	@ResponseBody
 	public List<String> reservedSeats(Je_MovieDateInfoDTO je_MovieDateInfoDTO) {
 		
-		log.info("@>>>>>:"+je_MovieDateInfoDTO);
 		List<String> list = je_MovieDateService.movieReservedSeats(je_MovieDateInfoDTO);
 		
 		return list;

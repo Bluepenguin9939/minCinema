@@ -13,7 +13,6 @@ function loginCheck() {
 	var url = "/member/getActive";
 	var sData = {mid:id};
 	$.post(url, sData, function(rData){
-		console.log(rData);
 		if (rData == "Y") {
 			$("#loginCheck").submit();
 		} else if (rData == "N") {

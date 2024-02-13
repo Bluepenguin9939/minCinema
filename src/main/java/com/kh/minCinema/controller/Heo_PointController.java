@@ -32,7 +32,6 @@ public class Heo_PointController {
 	@ResponseBody
 	public String pointCharge(Heo_PointVO heo_PointVO, HttpSession session) {
 		Heo_MemberVO loginInfo = (Heo_MemberVO)session.getAttribute("loginInfo");
-		System.out.println("컨트롤 포차 : " + heo_PointVO);
 		boolean result = heo_PointService.pointCharge(heo_PointVO);
 		if (result) {
 			int bPoint = loginInfo.getMpoint();

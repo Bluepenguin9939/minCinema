@@ -44,7 +44,6 @@ public class Heo_MainController {
 		Map<String, Object> map = movieService.getMovieByCode(detail_mov_code);
 		Jo_MovieVO movieVO = (Jo_MovieVO)map.get("movieVO");
 		List<Jo_AttachVO> attachList = (List<Jo_AttachVO>)map.get("attachList");
-		log.info("attachList : " + attachList);
 		List<Jo_ReviewVO> reviewList = reviewService.getReview(detail_mov_code);
 		model.addAttribute("movieDetail", movieVO);
 		model.addAttribute("movieImage", attachList);
@@ -60,7 +59,6 @@ public class Heo_MainController {
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public boolean writeReview(Jo_ReviewVO reviewVO) {
-		log.info(reviewVO);
 		if (reviewVO.getMid().equals("") || reviewVO.getMid().equals(null)) {
 			return false;
 		}

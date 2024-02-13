@@ -34,7 +34,7 @@ $(function() {
 	eStep.show();
 	
 	var bsl = bStep.length;
-	console.log(bsl);
+	
 	if(bsl > acount && bsl % 5 >= 0){
 		$("#load-more").css("display", "block");
 	}
@@ -54,15 +54,12 @@ $(function() {
 		e.preventDefault();
 		var that = $(this);
 		var testDelete = that.attr("data-tmid");
-		console.log("테스트딜리트:",testDelete);
 		var url = "/admin/testDel";
 		var sData ={
 				"mid" : testDelete
 		};
-		console.log("sData:",sData);
 		
 		$.post(url,sData,function(rData){
-		console.log("rData:",rData);
 			if(rData == "true"){
 				alert("테스트 회원 삭제 완료");
 				location.href="/admin/ham_cmanagement";

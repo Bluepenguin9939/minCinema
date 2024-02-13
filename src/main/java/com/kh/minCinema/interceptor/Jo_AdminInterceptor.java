@@ -15,9 +15,7 @@ public class Jo_AdminInterceptor extends HandlerInterceptorAdapter {
 			throws Exception {
 		HttpSession session = request.getSession();
 		if (session != null) {
-			System.out.println("session : " + session);
 			Heo_MemberVO heo_MemberVO = (Heo_MemberVO)session.getAttribute("loginInfo");
-			System.out.println("vo : " + heo_MemberVO);
 			if (heo_MemberVO == null) {
 				response.sendRedirect("/");
 				return false;

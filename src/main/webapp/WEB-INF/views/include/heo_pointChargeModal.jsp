@@ -82,11 +82,8 @@ $(function() {
 		var buyerTel = "${loginInfo.mtel}";
 		var buyerId = "${loginInfo.mid}";
 		var point = $("#chargePoint").val();
-		console.log(buyerTel);
-		console.log(buyerId);
-		console.log(point);
-//		let pg = "";
-//    	let payMethod = "";
+		
+
     	let pg = "kakaopay";
     	let payMethod = "card";
 		const orderNumber = createOrderNum();
@@ -101,8 +98,7 @@ $(function() {
             buyer_tel : buyerTel
         }, function(rsp) {
 			if (rsp.success) {
-				console.log(rsp.buyer_name);
-				console.log(rsp.paid_amount);
+				
 				$.ajax({    
 					url : '/point/charge', // 요청 할 주소   
 					method : 'post', // GET, PUT    

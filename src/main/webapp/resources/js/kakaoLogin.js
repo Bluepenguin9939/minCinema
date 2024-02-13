@@ -15,11 +15,6 @@ Kakao.isInitialized();
           	var mname = response.kakao_account.name;
           	var mtel = "0"+phone[1];
           	var mnick = response.kakao_account.profile.nickname;
- 			console.log("정보:",response.kakao_account);
- 			console.log("이메일:",memail);
- 			console.log("이름:",mname);		
- 			console.log("휴대폰:",mtel);
- 			console.log("닉네임:",mnick);
  			$("#checkInfo").find("input[name=memail]").val(memail);
  			$("#checkInfo").find("input[name=mname]").val(mname);
  			$("#checkInfo").find("input[name=mtel]").val(mtel);
@@ -27,12 +22,10 @@ Kakao.isInitialized();
  			$("#checkInfo").submit();
           },
           fail: function (error) {
-            console.log(error);
           },
         })
       },
       fail: function (error) {
-        console.log(error);
       },
     })
  }

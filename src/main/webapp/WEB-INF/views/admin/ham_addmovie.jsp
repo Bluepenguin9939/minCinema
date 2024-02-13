@@ -23,9 +23,7 @@ $(function(){
 	
 	$("#btnGetWeekMovie").click(function() {
 		var today = new Date();
-		console.log(today);
 		var day = today.getDay();
-		console.log("day :", day);
 		
 		var year = today.getFullYear();
 		var month = today.getMonth() + 1;
@@ -44,7 +42,6 @@ $(function(){
 					month = 12;
 				}
 				var lmDate = new Date(year, month, 0).getDate();
-				console.log("lmDate :", lmDate);
 				date = lmDate + parseInt(date) - day;
 			} else {
 				date = date - day;
@@ -64,14 +61,13 @@ $(function(){
 		}
 		
 		$.get(movieListURL, movieListData, function(rData) {
-			console.log(rData.boxOfficeResult.weeklyBoxOfficeList);
+		
 		});
 	});
 
 // 	영화 코드로 값 가져오기
 	$("#btnGetMovie").click(function() {
 		var getMovieData = $("#getMovieData").val();
-		console.log("movieCd :",getMovieData);
 		
 		var movieDetailURL = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieInfo.json";
 		var movieDetailData = {
@@ -80,7 +76,6 @@ $(function(){
 		}
 		$.get(movieDetailURL, movieDetailData, function(detailrData) {
 			var movieInfo = detailrData.movieInfoResult.movieInfo;
-			console.log("movieInfo :", movieInfo);
 			var movieGenre = "";
 			var movieDirector = "";
 			var movieActor = "";
