@@ -5,7 +5,7 @@
 <%@ include file="/WEB-INF/views/include/top.jsp"%>
 
 <head>
-<link rel="stylesheet" href="/resources/css/inquiry.css?after"
+<link rel="stylesheet" href="/resources/css/inquiry.css"
 	type="text/css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">

@@ -37,6 +37,7 @@ public class Jo_AttachController {
 	private static final String POSTER_UPLOAD_PATH = "E:/upload/poster";
 //	private static final String STILL_CUT_UPLOAD_PATH = "G:/upload/still_cut";
 	private static final String STILL_CUT_UPLOAD_PATH = "E:/upload/still_cut";
+
 	
 	@Autowired
 	private Jo_AttachService attachService;

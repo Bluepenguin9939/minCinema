@@ -12,34 +12,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>영화 일정 추가</title>
 
-<style>
-
-.scroll{
-	padding-top: 5px;
-    align-items: center;
-    height: 550px;
-    overflow: scroll; /*스크롤바 생성*/
-    overflow-x: hidden; /*x축 스크롤바 숨기기*/
-}
-
-.scroll::-webkit-scrollbar{
-    width: 15px;
-}
-
-.scroll::-webkit-scrollbar-thumb{
-    background-color: #9b54ba;
-    /* 스크롤바 둥글게 설정    */
-    border-radius: 10px;
-}
-
-.scroll::-webkit-scrollbar-track{
-    background-color: 	#e4e4f8;
-}
-
-
-
-</style>
-
 
 <script>
 
@@ -93,7 +65,7 @@ $(function(){
 				<h2 class="admin-body">영화 목록</h2>
 			</div>
 			
-			<div class="scroll">
+			<div class="scroll_movie">
 				<table class="table table-borderless">
 					<thead style="border-top: 1px solid #999999;font-size: 24px;">
 						<tr class='bg-info'>
