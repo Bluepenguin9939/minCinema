@@ -19,7 +19,7 @@ $(function() {
 	});
 	
 // 	패스워드 변경 모달 버튼
-	$("#btnChangeInfo").click(function() {
+	$("#btnChangePw").click(function() {
 		var curPw = $("#curPw").val();
 		var url = "/member/checkPw"
 		var sData = {

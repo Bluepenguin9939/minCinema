@@ -36,6 +36,7 @@ public class Heo_MemberController {
 	
 	@PostMapping("/register")
 	public String register(Heo_MemberVO heo_MemberVO) {
+		System.out.println(heo_MemberVO);
 		heo_MemberService.register(heo_MemberVO);
 		return "redirect:/member/jo_login";
 	}
