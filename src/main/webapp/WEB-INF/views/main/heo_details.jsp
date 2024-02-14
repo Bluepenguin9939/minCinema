@@ -7,21 +7,25 @@
 $(function() {
 	$("#btnWriteReview").click(function() {
 		var mid = "${loginInfo.mid}";
+		var mnick = "${loginInfo.mnick}";
 		if (mid == "") {
 			alert("로그인 후 이용 가능합니다.");
 			self.location = "/member/jo_login";
 		}
 		$("#btnInput").attr("data-mid", mid);
+		$("#btnInput").attr("data-mnick", mnick);
 		$("#review-modal").modal("show");
 	});
 	
 	$("#btnInput").click(function() {
 		var mid = $(this).attr("data-mid");
+		var mnick = $(this).attr("data-mnick");
 		var mov_code = "${param.detail_mov_code}";
 		var review_content = $("#review-content").val();
 		var url = "/main/writeReview"
 		var sData = {
 				"mid" : mid,
+				"mnick" : mnick,
 				"mov_code" : mov_code,
 				"r_content" : review_content
 		}
@@ -143,9 +147,9 @@ $(function() {
 							</div>
 							<!-- Left and right controls -->
 							<a class="carousel-control-prev" href="#slide-movie"
-								data-slide="prev"> <span class="carousel-control-prev-icon"></span>
+								data-slide="prev"> <img width="50" height="50" src="https://img.icons8.com/carbon-copy/100/double-left.png" alt="double-left"/>
 							</a> <a class="carousel-control-next" href="#slide-movie"
-								data-slide="next"> <span class="carousel-control-next-icon"></span>
+								data-slide="next"> <img width="50" height="50" src="https://img.icons8.com/carbon-copy/100/double-right.png" alt="double-right"/>
 							</a>
 						</div>
 
@@ -164,7 +168,7 @@ $(function() {
 							<table class="table">
 								<thead class="thead-dark">
 									<tr>
-										<th>아이디</th>
+										<th>닉네임</th>
 										<th>리뷰 내용</th>
 										<th>작성날짜</th>
 									</tr>
@@ -172,7 +176,7 @@ $(function() {
 								<tbody>
 								<c:forEach var="vo" items="${reviewList}">
 									<tr>
-										<td>${vo.mid}</td>
+										<td>${vo.mnick}</td>
 										<td>${vo.r_content}</td>
 										<td>${vo.r_date}</td>
 									</tr>
