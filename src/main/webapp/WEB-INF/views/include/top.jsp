@@ -7,6 +7,7 @@
 
 <head>
 
+<link rel="icon" type="image/jpg" href="/resources/img/minfavicon.jpg"/>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport"
@@ -14,7 +15,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Board Test</title>
+<title>Min Cinema</title>
 
 <!-- Custom fonts for this template-->
 <link href="/resources/vendor/fontawesome-free/css/all.min.css"
