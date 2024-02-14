@@ -19,7 +19,7 @@ $(function() {
 	});
 	
 // 	패스워드 변경 모달 버튼
-	$("#btnChangeInfo").click(function() {
+	$("#btnChangePw").click(function() {
 		var curPw = $("#curPw").val();
 		var url = "/member/checkPw"
 		var sData = {
@@ -125,8 +125,6 @@ $(function() {
 								<th class="table-header" style="vertical-align: middle;">전화번호</th>
 								<td>
 									${loginInfo.mtel}
-									<button class="btn btn-secondary btn-sm"type="button"
-										id="btnTelMod">변경</button>
 								</td>
 							</tr>
 						</tbody>
