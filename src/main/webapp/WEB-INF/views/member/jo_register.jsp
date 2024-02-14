@@ -30,7 +30,7 @@ $(function() {
 				alert("사용 가능한 아이디입니다.")
 				$("#u-pw").focus();
 				that.prop("disabled", true);
-				$("#u-id").prop("disabled", true);
+				$("#u-id").prop("readonly", true);
 				$("#btnRegister").prop("disabled", false);
 			}
 		});
