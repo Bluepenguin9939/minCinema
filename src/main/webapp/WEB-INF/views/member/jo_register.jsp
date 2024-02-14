@@ -39,6 +39,11 @@ $(function() {
 	
 	$("#btnRegister").click(function() {
 		var memail = $("#u-email").val();
+		if (memail == "") {
+			alert("이메일을 입력해주세요.");
+			$("#u-email").focus();
+			return;
+		}
 		var url = "/member/isDupEmail";
 		var sData = {
 				"memail" : memail
@@ -57,6 +62,26 @@ $(function() {
 	$("#frmRegister").submit(function() {
 		var upw = $("#u-pw").val();
 		var upw2 = $("#u-pw2").val();
+		if (upw == "" || upw2 == "") {
+			alert("비밀번호를 입력해주세요.");
+			$("#u-pw").focus();
+			return false;
+		}
+		if ($("#u-name").val() == "") {
+			alert("이름을 입력해주세요.");
+			$("#u-name").focus();
+			return false;
+		}
+		if ($("#u-nick-name").val() == "") {
+			alert("별명을 입력해주세요.");
+			$("#u-nick-name").focus();
+			return false;
+		}
+		if ($("#u-tel").val() == "") {
+			alert("전화번호를 입력해주세요.");
+			$("#u-tel").focus();
+			return false;
+		}
 		if (upw != upw2) {
 			alert("비밀번호가 일치하지 않습니다.");
 			$("#u-pw").focus();
