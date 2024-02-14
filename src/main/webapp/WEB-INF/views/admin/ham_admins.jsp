@@ -213,7 +213,7 @@ $(function() {
 	
 	mgSplit = mg.split('|');
 	mcSplit = mc.split('|');
-<<<<<<< HEAD
+
 
 	
 	
