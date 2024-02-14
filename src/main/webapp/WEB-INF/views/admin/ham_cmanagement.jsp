@@ -48,7 +48,7 @@ $(function() {
 	});
 	
 	if(result == "true"){
-		alert("테스트 회원 생성 완료");
+		alert("회원 생성 완료");
 	}
 	$(".deleteMember").click(function(e) {
 		e.preventDefault();
@@ -64,7 +64,7 @@ $(function() {
 		$.post(url,sData,function(rData){
 		console.log("rData:",rData);
 			if(rData == "true"){
-				alert("테스트 회원 삭제 완료");
+				alert("회원 삭제 완료");
 				location.href="/admin/ham_cmanagement";
 			}
 			
