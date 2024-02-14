@@ -8,7 +8,7 @@ create table MC_MEMBER(
     mnick varchar2(30) not null,								-- 닉네임
     mtel varchar2(13) constraint UK_MTEL unique,									-- 전화번호
     mpoint number default 0,									-- 포인트
-    mactive char(1) default 'Y' check(mactive in ('Y', 'N')), 	--밴유무
+    mactive char(1) default 'Y' check(mactive in ('Y', 'N', 'F')), 	--밴유무
     mregdate date default sysdate								-- 가입날짜
 );
 
