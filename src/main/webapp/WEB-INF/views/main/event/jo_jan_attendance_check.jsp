@@ -28,7 +28,6 @@ $(function() {
 	}
 	
 	var curDate = today_year + "/" + today_month + "/" + today_date; 
-	console.log(curDate);
 	
 	var url = "/main/event/attendance_status";
 	var sData = {
@@ -37,12 +36,9 @@ $(function() {
 	}
 	
 	$.post(url, sData, function(rData) {
-		console.log("attendance : ", rData);
 		
 		var checkAttendance = rData.checkAttendance;
-		console.log("checkAttendance : ", checkAttendance);
 		var attendanceList = rData.attendanceList;
-		console.log("attendanceList : ", attendanceList);
 		
 		var cal_date = $(".attendance_td");
 		var allCount = 0;
@@ -91,7 +87,6 @@ $(function() {
 			url : checkUrl,
 			data : checkSData,
 			success : function(rData) {
-				console.log(rData);
 				if (rData) {
 					alert("출석 완료");
 					self.location = "/main/event/jo_jan_attendance_check";

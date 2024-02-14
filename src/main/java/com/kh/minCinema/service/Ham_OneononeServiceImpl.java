@@ -69,7 +69,6 @@ public class Ham_OneononeServiceImpl implements Ham_OneononeService {
 
 	@Override
 	public List<Ham_OneononeVO> listOneonone(Ham_OneononeVO vo) {
-		log.info("테스트브이오:"+vo);
 		List<Ham_OneononeVO> list = ham_OneononeMapper.listOneonone(vo);
 		return list;
 	}

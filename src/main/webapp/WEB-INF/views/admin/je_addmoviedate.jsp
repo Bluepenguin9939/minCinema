@@ -330,29 +330,7 @@ $(function(){
 					
 					<div class="scroll_dateList" style="height:93%; ">
 						<div class="screenManagements">
-							<!--  
-							<div class="d-flex flex-row 
-											pt-1 pb-1 border border-left-0 " 
-												style="width: 100%; height: 8%">
-								<span class="titleTexts text-center text-nowrap">날짜 : </span>
-								<input type="date" class="movieDate">
-								<span class="titleTexts text-center text-nowrap">시간 : </span>
-								<input type="time" class="movieTime" >
-								<span class="titleTexts text-center text-nowrap">영화관 : </span>
-								<select id="movieTheatherList" class="movieTheatherLists">
-									<option value="1관">1관</option>
-									<option value="2관">2관</option>
-									<option value="3관">3관</option>
-									<option value="4관">4관</option>
-									<option value="5관">5관</option>
-									<option value="6관">6관</option>
-									<option value="7관">7관</option>
-								</select>
-								
-								<button class="btn btn-warning editBtn text-nowrap" type="button">수정</button>
-								<button class="btn btn-danger deleteBtn text-nowrap" type="button">삭제</button>
-							</div>
-							-->
+							
 						</div>
 						
 						<div  class="d-flex justify-content-center pt-3">

@@ -22,7 +22,6 @@ public class Heo_PointServiceImpl implements Heo_PointService {
 	@Override
 	@Transactional
 	public boolean pointCharge(Heo_PointVO heo_PointVO) {
-		System.out.println("서비스 포차1 : " + heo_PointVO);
 		int count1 = heo_PointMapper.insertPoint(heo_PointVO);
 		int count2 = heo_MemberMapper.updatePoint(heo_PointVO);
 		return (count1 + count2 == 2) ? true : false;

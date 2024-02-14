@@ -23,9 +23,7 @@ $(function(){
 	
 	$("#btnGetWeekMovie").click(function() {
 		var today = new Date();
-		console.log(today);
 		var day = today.getDay();
-		console.log("day :", day);
 		
 		var year = today.getFullYear();
 		var month = today.getMonth() + 1;
@@ -44,7 +42,6 @@ $(function(){
 					month = 12;
 				}
 				var lmDate = new Date(year, month, 0).getDate();
-				console.log("lmDate :", lmDate);
 				date = lmDate + parseInt(date) - day;
 			} else {
 				date = date - day;
@@ -64,13 +61,17 @@ $(function(){
 		}
 		
 		$.get(movieListURL, movieListData, function(rData) {
-			console.log(rData.boxOfficeResult.weeklyBoxOfficeList);
+		
 		});
 	});
 
 // 	영화 코드로 값 가져오기
 	$("#btnGetMovie").click(function() {
 		var getMovieData = $("#getMovieData").val();
+		if (getMovieData == "") {
+			alert("영화코드를 입력해주세요.");
+			return;
+		}
 		console.log("movieCd :",getMovieData);
 		
 		var movieDetailURL = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieInfo.json";
@@ -80,7 +81,6 @@ $(function(){
 		}
 		$.get(movieDetailURL, movieDetailData, function(detailrData) {
 			var movieInfo = detailrData.movieInfoResult.movieInfo;
-			console.log("movieInfo :", movieInfo);
 			var movieGenre = "";
 			var movieDirector = "";
 			var movieActor = "";
@@ -217,15 +217,67 @@ $(function(){
 // 	폼 전송 시
 	$("#frmAddMovie").submit(function() {
 		var that = $(this);
+		
+		if ($("#movieTitle").val() == "") {
+			alert("영화 제목을 입력해주세요.");
+			return false;
+		}
+		if ($("#moviePlot").val() == "") {
+			alert("시놉시스를 입력해주세요.");
+			return false;
+		}
+		if ($("#movieReleaseDate").val() == "") {
+			alert("영화 개봉일을 입력해주세요.");
+			return false;
+		}
+		if ($("#movieRating").val() == "") {
+			alert("영화 관람등급을 입력해주세요.");
+			return false;
+		}
+		if ($("#movieRuntime").val() == "") {
+			alert("영화 러닝타임을 입력해주세요.");
+			return false;
+		}
+		if ($("#movieGenre").val() == "") {
+			alert("영화 장르를 입력해주세요.");
+			return false;
+		}
+		if ($("#movieCd").val() == "") {
+			alert("영화 코드를 입력해주세요.");
+			return false;
+		}
+		if ($("#movieDirector").val() == "") {
+			alert("영화 감독을 입력해주세요.");
+			return false;
+		}
+		if ($("#movieActor").val() == "") {
+			alert("영화 배우를 입력해주세요.");
+			return false;
+		}
+		if ($("#mov_trailer").val() == "") {
+			alert("영화 트레일러를 입력해주세요.");
+			return false;
+		}
 // 		포스터 이미지
 		var upload_path = $("#upload-img").attr("data-upload_path");
 		var file_name = $("#upload-img").attr("data-file_name");
+		
+		if (upload_path == null || file_name == null) {
+			alert("포스터 이미지를 확인해 주세요.")
+			return false;
+		}
 		
 		$("#upload_path").val(upload_path);
 		$("#file_name").val(file_name);
 		
 // 		스틸컷 이미지
 		var stillCut = $(".stillCutImage:gt(0)");
+		
+		if (stillCut.length == 0) {
+			alert("스틸컷 이미지를 확인해 주세요.")
+			return false;
+		}
+		
 		stillCut.each(function(i) {
 			var mov_code = $("#movieCd").val();
 			var still_upload_path = $(this).attr("data-upload_path");

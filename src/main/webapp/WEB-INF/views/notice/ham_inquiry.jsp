@@ -15,7 +15,6 @@ $(function(){
 	$(".inquiryTitle").click(function(e){
 		e.preventDefault();
 		var that = $(this).attr("data-remessage");
-		console.log("sadasd:",that);
 		$("#modal-container-000000").modal("show");
 		$("#remessage").val(that);
 	});

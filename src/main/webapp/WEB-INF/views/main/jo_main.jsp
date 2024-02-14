@@ -52,7 +52,7 @@ $(function() {
 		}
 	});
 	
-	$(".card-movie-image").click(function() {
+	$(document).on("click", ".card-movie-image", function() {
 		var mov_code = $(this).attr("data-mov_code");
 		$("#detail_mov_code").val(mov_code);
 		$("#frmDetails").submit();
@@ -82,12 +82,11 @@ $(function() {
 		$(".all-movie-list").append(list_clone);
 		
 		var all_list = "${movieList}";
-		
 		end = all_list.split("Jo_MovieVO").length;
 		if (end - begin > 5) {
 			end = begin + 5;
-			console.log("t :", end);
 			for (var i = begin; i < end; i++) {
+				var mov_code = all_list.split("Jo_MovieVO")[i].split("mov_code=")[1].split(",")[0];
 				var mov_title = all_list.split("Jo_MovieVO")[i].split("mov_title=")[1].split(",")[0];
 				var mov_releaseDate = all_list.split("Jo_MovieVO")[11].split("mov_releaseDate=")[1].split(",")[0].substring(0, 4);
 				var mov_genre = all_list.split("Jo_MovieVO")[i].split("mov_genre=")[1].split(", ")[0];
@@ -104,13 +103,14 @@ $(function() {
 				
 				var movie_clone = $(".all-movie-list > div:eq(0) > div:eq(0)").clone();
 				movie_clone.find(".main-movie-img").attr("src", "/display?fileName=" + upload_path + "/" + file_name);
+				movie_clone.find(".card-movie-image").attr("data-mov_code", mov_code);
 				movie_clone.find(".movie-name").text(mov_title);
 				movie_clone.find(".info").text(info);
 				moreDiv.append(movie_clone);
 			}
 		} else {
-			console.log("f :", end);
 			for (var i = begin; i < end; i++) {
+				var mov_code = all_list.split("Jo_MovieVO")[i].split("mov_code=")[1].split(",")[0];
 				var mov_title = all_list.split("Jo_MovieVO")[i].split("mov_title=")[1].split(",")[0];
 				var mov_releaseDate = all_list.split("Jo_MovieVO")[11].split("mov_releaseDate=")[1].split(",")[0].substring(0, 4);
 				var mov_genre = all_list.split("Jo_MovieVO")[i].split("mov_genre=")[1].split(", ")[0];
@@ -127,6 +127,7 @@ $(function() {
 				
 				var movie_clone = $(".all-movie-list > div:eq(0) > div:eq(0)").clone();
 				movie_clone.find(".main-movie-img").attr("src", "/display?fileName=" + upload_path + "/" + file_name);
+				movie_clone.find(".card-movie-image").attr("data-mov_code", mov_code);
 				movie_clone.find(".movie-name").text(mov_title);
 				movie_clone.find(".info").text(info);
 				moreDiv.append(movie_clone);

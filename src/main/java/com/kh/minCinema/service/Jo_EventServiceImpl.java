@@ -20,8 +20,6 @@ public class Jo_EventServiceImpl implements Jo_EventService {
 	public Map<String, Object> checkAttendance(Jo_EventDTO eventDTO) {
 		String checkAttendance = eventMapper.selectByMid(eventDTO);
 		List<String> attendanceList = eventMapper.changeImg(eventDTO.getMid());
-		System.out.println("checkAttendance : " + checkAttendance);
-		System.out.println("attendanceList : " + attendanceList);
 		Map<String, Object> map = new HashMap<>();
 		map.put("checkAttendance", checkAttendance);
 		map.put("attendanceList", attendanceList);

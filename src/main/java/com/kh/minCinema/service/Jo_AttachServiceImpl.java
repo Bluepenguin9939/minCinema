@@ -59,9 +59,7 @@ public class Jo_AttachServiceImpl implements Jo_AttachService {
 		boolean result = false;
 		if (jo_AttachVO != null) {
 			int count1 = attachMapper.deleteFile(jo_AttachVO.getUuid());
-			log.info("count1 : " + count1);
 			int count2 = attachMapper.insertFile(attachVO);
-			log.info("count2 : " + count2);
 			if (count1 + count2 == 2) {
 				result = true;
 			}

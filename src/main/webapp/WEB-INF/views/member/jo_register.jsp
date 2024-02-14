@@ -22,7 +22,6 @@ $(function() {
 		var sData = {
 				"mid" : uid.val()
 		}
-		console.log("click");
 		$.post(url, sData, function(rData) {
 			if (rData == "true") {
 				alert("이미 사용중인 아이디입니다.")
@@ -50,7 +49,6 @@ $(function() {
 	
 	var kakaoInfo = "${kakaoInfo}";
 	if (kakaoInfo != "") {
-		console.log(kakaoInfo);
 		var memail = kakaoInfo.split("memail=")[1].split(",")[0];
 		var mname = kakaoInfo.split("mname=")[1].split(",")[0];
 		var mnick = kakaoInfo.split("mnick=")[1].split(",")[0];

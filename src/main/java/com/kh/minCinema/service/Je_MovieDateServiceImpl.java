@@ -61,7 +61,6 @@ public class Je_MovieDateServiceImpl implements Je_MovieDateService {
 	public List<Je_MovieDateInfoDTO> movieStartTimes(Je_MovieDateInfoDTO je_MovieDateInfoDTO) {
 
 		List<Je_MovieDateInfoDTO> list = je_MovieDateMapper.movieStartTimes(je_MovieDateInfoDTO);
-		log.info("@>>"+list);
 		return list;
 	}
 
