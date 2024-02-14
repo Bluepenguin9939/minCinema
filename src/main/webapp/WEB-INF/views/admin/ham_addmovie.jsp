@@ -289,7 +289,7 @@ $(function(){
 			that.prepend(inputFile);
 			that.prepend(inputCode);
 		});
-		return false;
+// 		return false;
 	});
 	
 // 	영화 DB 검색 창
