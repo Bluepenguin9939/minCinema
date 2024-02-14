@@ -142,6 +142,11 @@ a:hover {
 	color: red;
 }
 
+.speech-bubble-answer > a:hover {
+	text-decoration: underline;
+	color: white;
+}
+
 .question-item {
 	text-decoration: none;
 	color: white;
