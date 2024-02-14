@@ -24,7 +24,7 @@ a.card-link{
 	font-weight: bold;
 }
 div.card-header{
-	background-color: #00f3ff;
+	background-color: #00ffff57;
 }
 .page-link{
 	color : black;
@@ -63,4 +63,7 @@ div.card-header{
 }
 section a{
 	color : gray;
+}
+div.container-fluid{
+	margin-bottom: 250px;
 }

@@ -28,7 +28,6 @@ $(function() {
 	}
 	
 	var curDate = today_year + "/" + today_month + "/" + today_date; 
-	console.log(curDate);
 	
 	var url = "/main/event/attendance_status";
 	var sData = {
@@ -37,12 +36,9 @@ $(function() {
 	}
 	
 	$.post(url, sData, function(rData) {
-		console.log("attendance : ", rData);
 		
 		var checkAttendance = rData.checkAttendance;
-		console.log("checkAttendance : ", checkAttendance);
 		var attendanceList = rData.attendanceList;
-		console.log("attendanceList : ", attendanceList);
 		
 		var cal_date = $(".attendance_td");
 		var allCount = 0;
@@ -80,9 +76,7 @@ $(function() {
 			}
 			
 			$.post(reward_url, reward_sData, function(rData) {
-				console.log(rData);
 				$(rData).each(function(i) {
-					console.log("i :", i);
 					var isReceive = rData[i];
 					if (isReceive == 1) {
 						$("#gift-table > tbody > tr:eq(" + i + ")").css("text-decoration", "line-through")

@@ -23,13 +23,11 @@ $(function() {
 	var end = 5;
 	var acount = 5;
 	var bStep = $(".wrap>tr");
-	console.log(bStep);
 	var eStep = bStep.slice(begin,end);
 	bStep.hide();
 	eStep.show();
 	
 	var bsl = bStep.length;
-	console.log(bsl);
 	if(bsl > acount && bsl % 5 >= 0){
 		$("#load-more").css("display", "block");
 	}

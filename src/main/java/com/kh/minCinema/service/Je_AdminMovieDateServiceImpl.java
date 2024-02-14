@@ -22,7 +22,6 @@ public class Je_AdminMovieDateServiceImpl implements Je_AdminMovieDateService {
 	@Override
 	public List<Jo_MovieVO> movieDataLists() {
 		List<Jo_MovieVO> list = je_AdminMovieDateMapper.movieLists();
-		//log.info(">>>>>>>>>>>>>>>@list:"+list);
 		
 		return list;
 	}
@@ -73,8 +72,6 @@ public class Je_AdminMovieDateServiceImpl implements Je_AdminMovieDateService {
 		int count = je_AdminMovieDateMapper.deleteDate(mov_date_code);
 		return count;
 	}
-
-	
 	
 
 }

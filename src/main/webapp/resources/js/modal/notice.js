@@ -3,7 +3,6 @@
  */
  
  $.get("/admin/heo_noticeList",function(rData){
- 	console.log(rData);
  	$(".tblDiv").append(rData);
  });
  

@@ -62,7 +62,6 @@ public class Jo_MainController {
 		}
 		List<Jo_MovieVO> movieList = movieService.getAll(searchDTO);
 		List<Jo_AttachVO> slideList = attachService.getSlideMoviePoster();
-		log.info("slide : " + slideList);
 		List<Jo_AttachVO> attachList = attachService.getMoviePoster();
 		for (int i = 0; i < movieList.size(); i++) {
 			Jo_MovieVO movieVO = movieList.get(i);
@@ -124,7 +123,6 @@ public class Jo_MainController {
 				 produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public List<Integer> attendance_reward(Jo_EventRewardVO eventRewardVO, HttpSession session) {
-		log.info("REWARDeventRewardVO : " + eventRewardVO);
 		Heo_MemberVO heo_MemberVO = (Heo_MemberVO)session.getAttribute("loginInfo");
 		String mid = heo_MemberVO.getMid();
 		eventRewardVO.setMid(mid);
@@ -135,7 +133,6 @@ public class Jo_MainController {
 	@PostMapping("/event/attendance_receive")
 	@ResponseBody
 	public boolean attendance_receive(Jo_EventRewardVO eventRewardVO, HttpSession session) {
-		log.info("RECEIVEeventRewardVO : " + eventRewardVO);		
 		Heo_MemberVO heo_MemberVO = (Heo_MemberVO)session.getAttribute("loginInfo");
 		String mid = heo_MemberVO.getMid();
 		eventRewardVO.setMid(mid);

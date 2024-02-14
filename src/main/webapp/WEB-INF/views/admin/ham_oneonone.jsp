@@ -11,7 +11,6 @@
       rel="stylesheet">
 <!-- <meta name="viewport" content="width=device-width,initial-scale=1.0"> -->
 <script>
-$(function(){
 	function moreButton(acount){
 		var bsl = $(".wrap>tr").length;
 		if(bsl > acount && bsl % 5 > 0 && bsl % 5 < 5){
@@ -29,7 +28,6 @@ $(function(){
 		eStep.show();
 		
 		var bsl = bStep.length;
-		console.log(bsl);
 		if(bsl > acount && bsl % 5 >= 0){
 			$("#load-more").css("display", "block");
 		}
@@ -54,36 +52,26 @@ $(function(){
 					"sender":sender,
 					"rn":rn
 			}
-// 			var rn = tr.children();
-			
-// 			var sender = tr.find(".sender").text();
-			console.log("알앤:",rn);
-			console.log("샌더:",sender);
 		$.post(url,sData,function(rData){
-			console.log("아르데이터:",rData);
 			that = rData.rn;
 			var mtitle = rData.mtitle;
 			var message = rData.message;
-			$("#modal-container-560730").modal();
+			$("#adminModal").modal();
 			$("#mtitle").val(mtitle);
 			$("#message").val(message);
 			var frmMsg_id = $("#frmresend").find("input[name=msg_id]");
 			frmMsg_id.val(sender);
-			console.log("check1:",mtitle);
-			console.log("check2:",message);
-			console.log("check3:",that);
 		});
 	});//
 	$("#reply").click(function(e){
 		e.preventDefault();
 		var rn = $("#sendReply").attr("data-rn", that);
-		$("#modal-container-560730").modal("hide");
-		$("#modal-container-000000").modal("show");
+		$("#adminModal").modal("hide");
+		$("#adminReply").modal("show");
 		
 	});
 	$("#sendReply").click(function(e){
 		var rn = $("#sendReply").attr("data-rn");
-		console.log("rn:",rn);
 		$("#replyRn").val(rn);
 		
 	});
@@ -104,8 +92,6 @@ $(function(){
 					<select name="type" title="검색선택">
 						<option value="S" ${param.type == 'S' ? 'selected' : ''}>보낸 유저</option>
 						<option value="M" ${param.type == 'M' ? 'selected' : ''}>문의 제목</option>
-<%-- 						<option value="D" ${param.type == 'D' ? 'selected' : ''}>받은 날짜</option> --%>
-<%-- 						<option value="O" ${param.type == 'O' ? 'selected' : ''}>답변 날짜</option> --%>
 					</select> 
 					<input type="text" value="${param.keyword}" name="keyword" class="keyword" title="검색어 입력" id="search_id" placeholder="검색 ..." />
 					<button value="검색" type="submit" class="btn btn-sm btn-outline-dark">검색</button>
@@ -113,17 +99,17 @@ $(function(){
             </div>
         </div>
 			<!-- 모달 -->
-						<div class="" style="display: flex; justify-content: center">
+			<div class="adminOne">
 				<form role="form" action="#" method="post">
 					<input type="hidden" name="msg_id" value="">
 					<input type="hidden" name="sender" value="">
 					<input type="hidden" name="rn" value="">
 					<a
-						id="modal-560730" href="#modal-container-560730" role="button"
+						id="modal-560730" href="#adminModal" role="button"
 						class="btn btn-warning" data-toggle="modal"
 						style="font-size: 35px; display: none;">1대1 문의 하기</a>
 
-					<div class="modal fade" id="modal-container-560730" role="dialog"
+					<div class="modal fade" id="adminModal" role="dialog"
 						aria-labelledby="myModalLabel" aria-hidden="true">
 						<div class="modal-dialog modal-lg" role="document">
 							<div class="modal-content">
@@ -139,10 +125,8 @@ $(function(){
 										class="form-control" id="mtitle" />
 								</div>
 								<div>
-									<label style="margin-left: 15px;" for="message">
-										문의 내용 </label><br>
-									<textarea class="form-control" name="message" id="message"
-										style="height: 6.25em; margin-left: 15px; width: 766px;"></textarea>
+									<label id="adminOneLabel" for="message">문의 내용 </label><br>
+									<textarea class="form-control" name="message" id="message"></textarea>
 								</div>
 								<div class="modal-footer">
 
@@ -164,11 +148,10 @@ $(function(){
 				<form role="form" action="/admin/sendReply" method="post" id="frmresend">
 					<input type="hidden" name="msg_id">
 					<input type="hidden" name="rn" id="replyRn">
-					<a id="modal-000000" href="#modal-container-000000" role="button"
-						class="btn btn-warning" data-toggle="modal"
-						style="font-size: 35px; display: none;">1대1 문의 하기</a>
+					<a id="adminAtag" href="#adminReply" role="button"
+						class="btn btn-warning" data-toggle="modal">1대1 문의 하기</a>
 
-					<div class="modal fade" id="modal-container-000000" role="dialog"
+					<div class="modal fade" id="adminReply" role="dialog"
 						aria-labelledby="myModalLabel" aria-hidden="true">
 						<div class="modal-dialog modal-lg" role="document">
 							<div class="modal-content">
@@ -229,7 +212,7 @@ $(function(){
 				</tbody>
 			</table>	
 					<div class="loadMore">
-						<button id="load-more" class="btn btn-sm btn-outline-dark" style="display: none;">더보기</button>
+						<button id="load-more" class="btn btn-sm btn-outline-dark">더보기</button>
 					</div>
 				</div>
 			</div>

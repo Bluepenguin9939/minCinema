@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/* notice-top */
+
 .inquiry-top{
 width: 80%;
 height: auto;
@@ -12,18 +12,32 @@ margin-top: 200px;
 .nav-link {
 	color:black;
 	font-weight: bold;
-	
 }
-.page-link{
-	color : black;
-}
-.page-link:hover{
-	color : red;
-}
+
 [title="검색선택"]{
 	margin-right: 20px;
 }
-/* 부트스트랩 전용 class 바꾸면 안됨 기존 li로 적용됨 */
+/* 1대1 문의하기 버튼 div */
+div.inquiryOne{
+	display: flex;
+	justify-content: center;
+	margin-bottom: 20px;
+}
+/* 1대1 문의하기 버튼 */
+a#inquiryModal{
+	font-size: 25px;
+	opacity: 0.5;
+}
+#inquiryTitle{
+	margin-left: 15px;
+}
+#inquiryMean{
+	height: 6.25em; 
+	margin-left: 15px; 
+	width: 766px;
+}
+
+
 .nav{
 	margin-top: 100px;
 	direction: flex;
@@ -58,9 +72,16 @@ section a{
 }
 
 /* 버튼 */
-#modal-560730{
-border-radius;	
-opacity: 0.5;
+a#modal-560730{
+	border-radius;	
+	opacity: 0.5;
+	font-size: 25px;
+}
+.tb_space{
+	margin-bottom:280px;
+}
+.inquiryModal{
+	margin-bottom: 50px;
 }
 
 #table-inquiry{

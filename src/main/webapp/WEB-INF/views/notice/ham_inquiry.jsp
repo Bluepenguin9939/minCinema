@@ -15,7 +15,6 @@ $(function(){
 	$(".inquiryTitle").click(function(e){
 		e.preventDefault();
 		var that = $(this).attr("data-remessage");
-		console.log("sadasd:",that);
 		$("#modal-container-000000").modal("show");
 		$("#remessage").val(that);
 	});
@@ -47,14 +46,13 @@ $(function(){
 			</section>
 			<!-- 1대1 문의틀 -->
 
-			<div class="" style="display: flex; justify-content: center">
+			<div class="inquiryOne">
 				<form role="form" action="/notice/ono" method="post">
 					<input type="hidden" name="msg_id" value="${loginInfo.mid}">
 					<input type="hidden" name="sender" value="${loginInfo.mid}">
 					<input type="hidden" name="receiver" value="admin"> <a
-						id="modal-560730" href="#modal-container-560730" role="button"
-						class="btn btn-danger pulse" data-toggle="modal"
-						style="font-size: 35px;">1대1 문의 하기</a>
+						id="inquiryModal" href="#modal-container-560730" role="button"
+						class="btn btn-danger pulse" data-toggle="modal">1대1 문의 하기</a>
 
 					<div class="modal fade" id="modal-container-560730" role="dialog"
 						aria-labelledby="myModalLabel" aria-hidden="true">
@@ -72,11 +70,10 @@ $(function(){
 										class="form-control" id="exampleInputPassword1" />
 								</div>
 								<div>
-									<label style="margin-left: 15px;" for="exampleInputPassword1">
+									<label id="inquiryTitle" for="exampleInputPassword1">
 										문의 내용 </label><br>
-									<textarea class="form-control" name="message"
-										placeholder="요청하실 내용을 상세하게 작성해주세요."
-										style="height: 6.25em; margin-left: 15px; width: 766px;"></textarea>
+									<textarea id="inquiryMean" class="form-control" name="message"
+										placeholder="요청하실 내용을 상세하게 작성해주세요."></textarea>
 								</div>
 								<div class="modal-footer">
 

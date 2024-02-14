@@ -5,7 +5,6 @@ function updateBen(mid) {
 		if(rData == "Y") {
 			result = confirm(mid+"유저의 활동을 정지시키겠습니까?");
 			if(result) {
-				console.log("true");
 				$.post("/member/updateBen",{mid:mid,mactive:'N'},function(rData){
 					if(rData) {
 						alert(mid+"유저의 활동이 정지되었습니다.");

@@ -65,22 +65,18 @@ public class Ham_AdminController {
 	public void admins(Model model,Jo_SearchDTO searchDTO) {
 		// 유저측 문의
 		List<Ham_CountDateVO> list = ham_OneononeService.inquirySendCount();
-		System.out.println("대시보드리수투:"+list);
 		// 관리자 답장
 		List<Ham_CountDateVO> oList = ham_OneononeService.inquiryReplyCount();
-		System.out.println("오픈데이트리수투:"+oList);
 		// 월 매출액 
 		List<Heo_PointVO> pList = ham_adminPointService.pointCount();
 		// 총 매출액
 		Ham_TotalPointDTO totalPointDTO = ham_adminPointService.allTotalSales();
-		System.out.println("totalPointDTO:"+totalPointDTO);
 		
 		//관리자 영화 장르 및 카운트 
 		if (searchDTO.getMov_genre() == null) {
 			searchDTO.setMov_genre("");
 		}
 		List<Ham_MovieCountDTO> mList = jo_MovieService.getMovieCount();
-		System.out.println("무비리스트:"+mList);
 		
 		
 		model.addAttribute("totalPointDTO", totalPointDTO);
@@ -96,7 +92,6 @@ public class Ham_AdminController {
 	@GetMapping("/ham_cmanagement")
 	public void management(Model model, Heo_MemberVO memberVO) {
 		 List<Heo_MemberVO> list = heo_MemberService.memberList(memberVO);
-		 System.out.println("회원관리리스트:"+list);
 		 model.addAttribute("list",list);
 		 
 	}
@@ -128,24 +123,17 @@ public class Ham_AdminController {
 	public void movieadd() {          
 		
 	}
-//	@PostMapping("/addMovie")
-//	public void addMovie(MultipartFile[] uploadFile) {
-//		
-//		log.info("업로드 파일:"+uploadFile);
-//	}
 	
 	// HAM제작
 	@GetMapping("/ham_addpoint")
 	public void addpoint(Model model,Heo_PointVO heo_PointVO) {
 		List<Heo_PointVO> list = ham_adminPointService.allPointList(heo_PointVO);
 		model.addAttribute("list", list);
-		System.out.println("list:"+list);
 	}
 	
 	@GetMapping("/ham_oneonone")//고객센터 리스트 <-유저 문의에서 받은 리스트
 	public void oneonone(Ham_OneononeVO oneononeVO, Model model) {
 		List<Ham_OneononeVO> list = ham_OneononeService.listOneonone(oneononeVO);
-		System.out.println("리쓰뜨:"+list);
 		model.addAttribute("list", list);
 		
 	}
@@ -168,7 +156,6 @@ public class Ham_AdminController {
 		Heo_NoticePageDTO heo_NoticePageDTO = new Heo_NoticePageDTO(heo_NoticeCriteria, total);
 		model.addAttribute("pageMaker", heo_NoticePageDTO);
 		model.addAttribute("list", list);
-		System.out.println("list" + model);
 	}
 	
 	//HEO제작
@@ -198,16 +185,12 @@ public class Ham_AdminController {
 	@PostMapping(value = "/reply",produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public Ham_OneononeVO reply(Ham_OneononeVO ham_OneononeVO,Model model) {			
-		System.out.println("브이오:"+ham_OneononeVO);
 		Ham_OneononeVO vo = ham_OneononeService.selectGetOne(ham_OneononeVO);
-		System.out.println("브이오:"+vo);
 		return vo;
 	}
 	
 	@PostMapping("/sendReply")
 	public String sendReply(Ham_OneononeVO ham_OneononeVO) {
-		System.out.println("하이");
-		System.out.println("왔니:" + ham_OneononeVO);
 		ham_OneononeService.updateInquiry(ham_OneononeVO);
 		return "redirect:/admin/ham_oneonone";
 	}

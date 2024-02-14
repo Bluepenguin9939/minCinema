@@ -89,7 +89,6 @@ public class Jo_MemberController {
 	@PostMapping("/changeNick")
 	@ResponseBody
 	public String changeNick(Jo_InfoChangeDTO changeDTO, HttpSession session) {
-		log.info("changeDTO : " + changeDTO);
 		boolean changeNickResult = memberService.changeNick(changeDTO);
 		if (changeNickResult) {
 			Heo_MemberVO memberVO = (Heo_MemberVO)session.getAttribute("loginInfo");
@@ -133,7 +132,6 @@ public class Jo_MemberController {
 				 produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public Boolean equalEmail(Jo_SearchPwDTO searchPwDTO) {
-		log.info("searchPwDTO : " + searchPwDTO);
 		boolean result = memberService.equalEmail(searchPwDTO);
 		return result;
 	}

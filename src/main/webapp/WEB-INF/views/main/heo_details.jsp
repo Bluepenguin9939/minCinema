@@ -7,31 +7,26 @@
 $(function() {
 	$("#btnWriteReview").click(function() {
 		var mid = "${loginInfo.mid}";
-		var mnick = "${loginInfo.mnick}";
 		if (mid == "") {
 			alert("로그인 후 이용 가능합니다.");
 			self.location = "/member/jo_login";
 		}
 		$("#btnInput").attr("data-mid", mid);
-		$("#btnInput").attr("data-mnick", mnick);
 		$("#review-modal").modal("show");
 	});
 	
 	$("#btnInput").click(function() {
 		var mid = $(this).attr("data-mid");
-		var mnick = $(this).attr("data-mnick");
 		var mov_code = "${param.detail_mov_code}";
 		var review_content = $("#review-content").val();
 		var url = "/main/writeReview"
 		var sData = {
 				"mid" : mid,
-				"mnick" : mnick,
 				"mov_code" : mov_code,
 				"r_content" : review_content
 		}
 		
 		$.post(url, sData, function(rData) {
-			console.log(rData)
 			if (rData) {
 				alert("등록이 완료되었습니다.");
 			} else {
@@ -44,7 +39,7 @@ $(function() {
 </script>
 <!-- 결과창모달 -->
 <%@ include file="/WEB-INF/views/include/heo_payLoginModal.jsp"%>
-<link href="/resources/css/details/heo_details.css?after"
+<link href="/resources/css/details/heo_details.css"
 	rel="stylesheet">
 <div class="container-fluid">
 	<div class="row">
@@ -58,7 +53,7 @@ $(function() {
 				</c:if>
 			</c:forEach>
 				<div class="details-logo">
-					<div class="mov-details-name">${movieDetail.mov_title}</div>
+					<div class="mov-details-name">${movieDetail.mov_title}</div><hr>
 					<ul class="mov-details-ul">
 						<li class="mov-details-info-openDate">개봉일: ${fn:substring(movieDetail.mov_releaseDate, 0, 4)}년 ${fn:substring(movieDetail.mov_releaseDate, 4, 6)}월 ${fn:substring(movieDetail.mov_releaseDate, 6, 8)}일</li>
 						<li class="mov-details-info-time"><i class="fa fa-clock">${movieDetail.mov_runtime}분</i></li>
@@ -66,16 +61,17 @@ $(function() {
 					</ul>
 					<div class="mov-details-info-div">
 						<textarea class="form-control mov-details-info"
-							style="font-size: 20px; width: 350px; height: 200px; background-color: #fff;"
+							style="font-size: 20px; height: 200px; background-color: #fff;"
 							readonly>${movieDetail.mov_plot}</textarea>
 					</div>
 					<br>
-					<div class="mov-details-btn-div">
+					
+				</div>
+			</div>
+			<div class="mov-details-btn-div"> 
 						<button class="btn btn-danger mov-details-btn-payment"
 							type="button">예매하기</button>
 					</div>
-				</div>
-			</div>
 		</div>
 		<div class="col-md-3"></div>
 		<div class="col-md-2"></div>
@@ -147,9 +143,9 @@ $(function() {
 							</div>
 							<!-- Left and right controls -->
 							<a class="carousel-control-prev" href="#slide-movie"
-								data-slide="prev"> <img width="50" height="50" src="https://img.icons8.com/carbon-copy/100/double-left.png" alt="double-left"/>
+								data-slide="prev"> <span class="carousel-control-prev-icon"></span>
 							</a> <a class="carousel-control-next" href="#slide-movie"
-								data-slide="next"> <img width="50" height="50" src="https://img.icons8.com/carbon-copy/100/double-right.png" alt="double-right"/>
+								data-slide="next"> <span class="carousel-control-next-icon"></span>
 							</a>
 						</div>
 
@@ -168,7 +164,7 @@ $(function() {
 							<table class="table">
 								<thead class="thead-dark">
 									<tr>
-										<th>닉네임</th>
+										<th>아이디</th>
 										<th>리뷰 내용</th>
 										<th>작성날짜</th>
 									</tr>
@@ -176,7 +172,7 @@ $(function() {
 								<tbody>
 								<c:forEach var="vo" items="${reviewList}">
 									<tr>
-										<td>${vo.mnick}</td>
+										<td>${vo.mid}</td>
 										<td>${vo.r_content}</td>
 										<td>${vo.r_date}</td>
 									</tr>

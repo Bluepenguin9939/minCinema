@@ -80,7 +80,6 @@ public class Je_Movie_ReservationController {
 	@ResponseBody
 	public List<String> reservedSeats(Je_MovieDateInfoDTO je_MovieDateInfoDTO) {
 		
-		log.info("@>>>>>:"+je_MovieDateInfoDTO);
 		List<String> list = je_MovieDateService.movieReservedSeats(je_MovieDateInfoDTO);
 		
 		return list;
@@ -89,13 +88,13 @@ public class Je_Movie_ReservationController {
 	@PostMapping(value = "/cost", consumes = {MediaType.APPLICATION_JSON_VALUE})
 	@ResponseBody
 	public String cost(@RequestBody Je_ReservationInfoVO je_ReservationInfoVO, HttpSession session) {
-		log.info(">>>>>>>>>>>>>>>>>>"+je_ReservationInfoVO);
 		
 		Heo_MemberVO memberVO = (Heo_MemberVO)session.getAttribute("loginInfo");
 		
 		int count = je_MovieDateService.insertReservedSeats(je_ReservationInfoVO);
 		
 		if(count==1) {
+			
 			int discount = je_ReservationInfoVO.getDiscount();
 			if (discount == 5) {
 				int coupon5 = memberVO.getCoupon5();

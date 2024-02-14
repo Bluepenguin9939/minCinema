@@ -1,4 +1,27 @@
 @charset "UTF-8";
+/* 모달 */
+.adminOne{
+	display: flex; 
+	justify-content: center
+}
+a#adminAtag{
+	font-size: 35px; 
+	display: none;
+}
+/* 모달 label */
+#adminOneLabel{
+	margin-left: 15px;
+}
+/* 모달 mean */
+#message{
+	height: 6.25em; 
+	margin-left: 15px; 
+	width: 766px;" 
+}
+/* 버튼 */
+#load-more{
+	display: none;
+}
 
 #oneonone-d{
 	height: 100%;

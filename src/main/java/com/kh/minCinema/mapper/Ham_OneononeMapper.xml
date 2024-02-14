@@ -61,8 +61,12 @@
 	</select>
 	<!-- 유저 문의내용 들고오기 -->
 	<select id="selectGetReply" resultType="com.kh.minCinema.domain.Ham_OneononeVO"> 
-		select * from MC_ONEONONE 
+		select rn,msg_id,sender,mtitle,message,remessage,TO_CHAR(open_date,
+		'yyyy-MM-dd HH24:MI') open_date,TO_CHAR(send_date, 'yyyy-MM-dd
+		HH24:MI') send_date 
+		from MC_ONEONONE 
 		where sender = #{sender}
+		ORDER BY send_date DESC
 	</select>
 	<!-- 차트를 위한 유저문의 카운트 -->
 	<select id="inquirySendCount" resultType="com.kh.minCinema.domain.Ham_CountDateVO"> 

@@ -52,7 +52,6 @@ public class Jo_MyPageController {
 		Heo_MemberVO memberVO = (Heo_MemberVO)session.getAttribute("loginInfo");
 		String mid = memberVO.getMid();
 		List<Jo_ReservedHistoryDTO> reservedList = memberService.checkReservedHistory(mid);
-		log.info("reservedList : " + reservedList);
 		model.addAttribute("reservedList", reservedList);
 	}
 	

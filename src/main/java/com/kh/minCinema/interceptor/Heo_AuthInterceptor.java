@@ -15,7 +15,6 @@ public class Heo_AuthInterceptor extends HandlerInterceptorAdapter{
 			throws Exception {
 		HttpSession session = request.getSession();
 		Heo_MemberVO heo_MemberVO = (Heo_MemberVO)session.getAttribute("loginInfo");
-		System.out.println("auth membervo : " + heo_MemberVO);
 		if (heo_MemberVO == null) {
 			saveTargetLocation(request);
 			response.sendRedirect("/member/jo_login");

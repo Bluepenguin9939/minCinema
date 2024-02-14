@@ -18,18 +18,19 @@ body {
 .reserve-container>div {
     border: 1px solid #dddddd;
     /*외각선 굵게만들어 구분하기*/
-    background-color: fbe1c13a;
+    background-color: #F6E3CE;
 } 
 
 .reserve-title { /*타이틀 상단제목 css*/
-	text-align: center;
+ 	display: flex;
+	justify-content: center;
 	width: 100%;
 	height: 5%;
     border-bottom: 1px solid #dddddd;
     background-color: #444444;
     color: #dddddd;/*글자 색*/
     padding: 5px;
-    font-size: 18px;
+    font-size: 20px;
     font-weight: bold;
 }
 
@@ -49,7 +50,7 @@ body {
 .seatLoc{
 	
 	
-	background-color:#fbe1c13a;
+	background-color:#F6E3CE;
 	height: 100%; 
  	width: 70%; 
  	border-left: 1px solid #dddddd;
@@ -136,7 +137,7 @@ body {
 .count{
 	width: 30%;
 	height: 100%; 
-	background-color:#fbe1c13a;
+	background-color:#F6E3CE;
 }
 
 .countText{
@@ -156,4 +157,25 @@ body {
 span[data-select='noselect'] {
   background-color: red;
   color: white;
+}
+
+.revInfo{
+	padding-top : 10px;
+	height : 25%;
+	overflow: scroll; 
+	overflow-x: hidden;
+}
+
+.revInfo::-webkit-scrollbar{
+    width: 15px;
+}
+
+.revInfo::-webkit-scrollbar-thumb{
+    background-color: #9b54ba;
+    /* 스크롤바 둥글게 설정    */
+    border-radius: 10px;
+}
+
+.revInfo::-webkit-scrollbar-track{
+    background-color: #e4e4f8;
 }

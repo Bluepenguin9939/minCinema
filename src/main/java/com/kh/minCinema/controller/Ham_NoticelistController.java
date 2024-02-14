@@ -33,12 +33,9 @@ public class Ham_NoticelistController {
 	//HEO제작
 	@GetMapping("/ham_notice")//공지사항
 	public void notice(Model model, Heo_NoticeCriteria heo_NoticeCriteria) {
-		System.out.println("확인"+heo_NoticeCriteria);
 		List<Heo_NoticeVO> list = heo_NoticeService.getNotice(heo_NoticeCriteria);
-		System.out.println("확인"+list);
 		int total = heo_NoticeService.getNoticeCount();
 		Heo_NoticePageDTO heo_NoticePageDTO = new Heo_NoticePageDTO(heo_NoticeCriteria, total);
-		System.out.println("확인"+heo_NoticePageDTO);
 		model.addAttribute("pageMaker", heo_NoticePageDTO);
 		model.addAttribute("list", list);
 	}
@@ -59,7 +56,6 @@ public class Ham_NoticelistController {
 	public String selectNotice(int nno) {
 		String content = heo_NoticeService.getContent(nno);
 		heo_NoticeService.plusCount(nno);
-		System.out.println(content);
 		return content;
 	}
 	
@@ -69,24 +65,14 @@ public class Ham_NoticelistController {
 	}
 	@GetMapping("/ham_inquiry")// 1대1문의
 	public void inquiry(Model model,HttpSession session) {
-		System.out.println("1대1문의");
 		Heo_MemberVO loginInfo = (Heo_MemberVO)session.getAttribute("loginInfo");
 		String sender = loginInfo.getMid();
 		 List<Ham_OneononeVO> list = ham_OneononeService.selectGetReply(sender);
 		 model.addAttribute("list", list);
-		 System.out.println("와우:"+list);
 	}
 	@PostMapping("/ono")
-//	@ResponseBody
 	public String ono(Ham_OneononeVO ham_OneononeVO) {
-		System.out.println("123456"+ham_OneononeVO);
-	 ham_OneononeService.insertInquiry(ham_OneononeVO);
-	 return "redirect:/notice/ham_inquiry";
+		ham_OneononeService.insertInquiry(ham_OneononeVO);
+		return "redirect:/notice/ham_inquiry";
 	}
-//	@GetMapping("/memberViewReply")
-//	public void memberViewReply(Ham_OneononeVO ham_OneononeVO) {
-//		System.out.println("하와잉");
-//		ham_OneononeService.selectViewReply(ham_OneononeVO);
-//		System.out.println("무엇이 들어있나요?:"+ham_OneononeVO);
-//	}
 }

@@ -1,19 +1,18 @@
 @charset "UTF-8";
 /* notice-top */
 .notice-top{
-width: 60%;
+width: 80%;
 height: auto;
 margin-top: 200px;
 }
-/* .nav a:link { */
-/* 	color:blue; */
-/* } */
-/* .nav a:visited{ */
-/* 	color:red; */
-/* } */
+
 .nav a:hover{
-/* 	text-decoration:underline; */
 	color:red;
+}
+
+.nav-link {
+	color:black;
+	font-weight: bold;
 }
 
 .page-link{
@@ -35,7 +34,6 @@ margin-top: 200px;
 [title="공지사항"]{
 	
 	text-align: center;
-/* 	text-decoration:line-through underline red; */
 	text-transform:uppercase;
 	font-family:Cursive;
 	font-weight: bold;

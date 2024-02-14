@@ -86,7 +86,6 @@ $(function() {
 		end = all_list.split("Jo_MovieVO").length;
 		if (end - begin > 5) {
 			end = begin + 5;
-			console.log("t :", end);
 			for (var i = begin; i < end; i++) {
 				var mov_title = all_list.split("Jo_MovieVO")[i].split("mov_title=")[1].split(",")[0];
 				var mov_releaseDate = all_list.split("Jo_MovieVO")[11].split("mov_releaseDate=")[1].split(",")[0].substring(0, 4);
@@ -109,7 +108,6 @@ $(function() {
 				moreDiv.append(movie_clone);
 			}
 		} else {
-			console.log("f :", end);
 			for (var i = begin; i < end; i++) {
 				var mov_title = all_list.split("Jo_MovieVO")[i].split("mov_title=")[1].split(",")[0];
 				var mov_releaseDate = all_list.split("Jo_MovieVO")[11].split("mov_releaseDate=")[1].split(",")[0].substring(0, 4);

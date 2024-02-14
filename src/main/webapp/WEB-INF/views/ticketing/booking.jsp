@@ -84,7 +84,7 @@ $(function(){
 	});
 	$(document).on("mouseleave","[data-select='unselect']",function(){
 		var that = $(this);
-    	that.css("background-color","#fbe1c13a");
+    	that.css("background-color","#F6E3CE");
     	that.css("color","black");
 		
 	});
@@ -101,7 +101,7 @@ $(function(){
 		var find = that.parent().find("[data-select='select']");
 		
 		find.attr("data-select","unselect");
-		find.css("background-color","#fbe1c13a");
+		find.css("background-color","#F6E3CE");
 		find.css("color","black");
 		
 		$("#dateText").text("");
@@ -180,7 +180,7 @@ $(function(){
 		var find = $(".reserve-date").find("[data-select='select']");
 		//이전 선택사항 삭제
 		find.attr("data-select","unselect");
-		find.css("background-color","#fbe1c13a");
+		find.css("background-color","#F6E3CE");
 		find.css("color","black");
 		
 		//신규 선택사항
@@ -237,7 +237,7 @@ $(function(){
 		var find = that.parent().find("[data-select='select']");
 		
 		find.attr("data-select","unselect");
-		find.css("background-color","#fbe1c13a");
+		find.css("background-color","#F6E3CE");
 		find.css("color","black");
 		
 		//신규 선택사항
@@ -332,11 +332,11 @@ $(function(){
     	<div class="send-part">
 	    	<div class="send-main">
 				<form id="send-form" name="send-form" action="/ticketing/seat" method="get">
-					<div style="flex-grow: 1; font-weight: bold;">
-						<div style="font-size: 24px;">영화 : <span id="movieTitleText"></span></div>
-						<div style="font-size: 24px;">날짜 : <span id="dateText"></span></div>
-						<div style="font-size: 24px;">시간 : <span id="timesText"></span> </div>
-						<div style="font-size: 24px;">상영관 : <span id="theaterText"></span> </div>
+					<div class="book-info">
+						<div class="text-nowrap" style="font-size: 24px;">영화 : <span id="movieTitleText"></span></div>
+						<div class="text-nowrap" style="font-size: 24px;">날짜 : <span id="dateText"></span></div>
+						<div class="text-nowrap" style="font-size: 24px;">시간 : <span id="timesText"></span> </div>
+						<div class="text-nowrap" style="font-size: 24px;">상영관 : <span id="theaterText"></span> </div>
 					</div>
 					<input type="hidden" name="movieTitle">
 					<input type="hidden" name="movieDate">
