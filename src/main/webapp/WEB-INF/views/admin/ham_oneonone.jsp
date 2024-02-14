@@ -28,7 +28,6 @@
 		eStep.show();
 		
 		var bsl = bStep.length;
-		console.log(bsl);
 		if(bsl > acount && bsl % 5 >= 0){
 			$("#load-more").css("display", "block");
 		}
@@ -54,14 +53,12 @@
 					"rn":rn
 			}
 		$.post(url,sData,function(rData){
-			console.log("아르데이터:",rData);
 			that = rData.rn;
 			var mtitle = rData.mtitle;
 			var message = rData.message;
 			$("#adminModal").modal();
 			$("#mtitle").val(mtitle);
 			$("#message").val(message);
-			console.log("message:",message);
 			var frmMsg_id = $("#frmresend").find("input[name=msg_id]");
 			frmMsg_id.val(sender);
 		});

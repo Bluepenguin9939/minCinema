@@ -21,7 +21,7 @@
 }
 
 .send-main{
-	background-color: #fbe1c13a;
+	background-color: #F6E3CE;
 	width: 930px;
 }
 
@@ -34,7 +34,7 @@
 .reserve-container>div>div {
     border: 1px solid #dddddd;
     /*외각선 굵게만들어 구분하기*/
-    background-color: #fbe1c13a;
+    background-color: #F6E3CE;
 } 
 
 
@@ -177,27 +177,6 @@
 	cursor: pointer;
 }
 
-.scroll_movie{
-	padding-top: 5px;
-    align-items: center;
-    height: 550px;
-    overflow: scroll; /*스크롤바 생성*/
-    overflow-x: hidden; /*x축 스크롤바 숨기기*/
-}
-
-.scroll_movie::-webkit-scrollbar{
-    width: 15px;
-}
-
-.scroll_movie::-webkit-scrollbar-thumb{
-    background-color: #9b54ba;
-    /* 스크롤바 둥글게 설정    */
-    border-radius: 10px;
-}
-
-.scroll_movie::-webkit-scrollbar-track{
-    background-color: 	#e4e4f8;
-}
 
 .book-info{
 	/*padding-top: 5px;*/

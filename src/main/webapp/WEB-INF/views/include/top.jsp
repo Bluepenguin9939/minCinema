@@ -36,7 +36,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 
 <link href="/resources/css/include/top.css" rel="stylesheet">
-<link href="/resources/css/include/bottom.css?after" rel="stylesheet">
+<link href="/resources/css/include/bottom.css" rel="stylesheet">
 
 <!-- 부트스트랩4 -->
 <%@ include file="/WEB-INF/views/include/bs.jsp" %>
@@ -72,7 +72,44 @@ $(function() {
 		$(this).find($(".fa-door-open")).css("display", "none");
 		$(this).find($(".fa-door-closed")).css("display", "");
 	});
+	
 });
+function callFaqBox() {
+	if($(".faqBox").css('display')=='none') {
+		$(".faqBox").show();
+	} else {
+		$(".faqBox").hide();
+	}
+}
+
+function callFaq(items) {
+	var item = $(items).attr("href");
+	var questionBox = $(".questionBox");
+	var faqItem = "";
+	var faqAnswer = "";
+	switch(item){
+	case 'event':
+		faqItem = "이벤트 문의";
+		faqAnswer = "현재 진행중인 이벤트<br>2월 출석이벤트<br><a href='/main/event/jo_feb_attendance_check'>2월 출석이벤트</a>";
+		break;
+	case 'register':
+		faqItem = "회원가입 문의";
+		faqAnswer = "본인인증 또는 카카오로그인 그리고 필수항목 입력 후 가입완료.<br><a href='/member/jo_login'>로그인&회원가입</a>";
+		break;
+	case 'pay':
+		faqItem = "결제 문의";
+		faqAnswer = "결제는 카카오페이, 신용카드로 결제가 가능하고 포인트로 충전이됩니다. <br><a href='/myPage/jo_myPoint'>포인트 충전</a>";
+		break;
+	}
+	var eventFaq = "<div class='speech-bubble'>" + faqItem + "</div>";
+	var answerDiv = "<div class='speech-bubble-answer'>" + faqAnswer + "</div>";
+	questionBox.append(eventFaq);
+	questionBox.scrollTop(questionBox.prop('scrollHeight'));
+	setTimeout(function(){
+		questionBox.append(answerDiv);
+		questionBox.scrollTop(questionBox.prop('scrollHeight'));
+	}, 500);
+}
 </script>
 </head>
 

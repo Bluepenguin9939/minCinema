@@ -26,8 +26,8 @@
 		<load-on-startup>1</load-on-startup>
 		
 		<multipart-config>
-			<!-- 임시 <location>D:\\upload\\temp</location> -->
-			<!-- 원래꺼 --><location>E:\\upload\\temp</location> 
+			<!-- 임시 --><location>D:\\upload\\temp</location> 
+			<!-- 원래꺼 <location>E:\\upload\\temp</location> -->
 			<max-file-size>5242880</max-file-size>
 			<max-request-size>52428800</max-request-size>
 			<file-size-threshold>5242880</file-size-threshold>
@@ -52,4 +52,6 @@
 		<filter-name>encoding</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+	
+	
 </web-app>

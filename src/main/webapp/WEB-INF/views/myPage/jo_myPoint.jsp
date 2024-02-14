@@ -30,7 +30,6 @@ ${pointInfoList}
 				mid : "${loginInfo.mid}"
 			};
 			$.get(url,sData,function(rData){
-// 				console.log(rData);
 				$("#point-history-tab").empty();
 				$("#point-history-tab").append(rData);
 			});

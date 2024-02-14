@@ -18,7 +18,7 @@ body {
 .reserve-container>div {
     border: 1px solid #dddddd;
     /*외각선 굵게만들어 구분하기*/
-    background-color: fbe1c13a;
+    background-color: #F6E3CE;
 } 
 
 .reserve-title { /*타이틀 상단제목 css*/
@@ -50,7 +50,7 @@ body {
 .seatLoc{
 	
 	
-	background-color:#fbe1c13a;
+	background-color:#F6E3CE;
 	height: 100%; 
  	width: 70%; 
  	border-left: 1px solid #dddddd;
@@ -137,7 +137,7 @@ body {
 .count{
 	width: 30%;
 	height: 100%; 
-	background-color:#fbe1c13a;
+	background-color:#F6E3CE;
 }
 
 .countText{

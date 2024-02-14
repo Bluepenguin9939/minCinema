@@ -34,7 +34,7 @@ $(function() {
 	eStep.show();
 	
 	var bsl = bStep.length;
-	console.log(bsl);
+	
 	if(bsl > acount && bsl % 5 >= 0){
 		$("#load-more").css("display", "block");
 	}
@@ -54,15 +54,12 @@ $(function() {
 		e.preventDefault();
 		var that = $(this);
 		var testDelete = that.attr("data-tmid");
-		console.log("테스트딜리트:",testDelete);
 		var url = "/admin/testDel";
 		var sData ={
 				"mid" : testDelete
 		};
-		console.log("sData:",sData);
 		
 		$.post(url,sData,function(rData){
-		console.log("rData:",rData);
 			if(rData == "true"){
 				alert("회원 삭제 완료");
 				location.href="/admin/ham_cmanagement";
@@ -174,10 +171,15 @@ $(function() {
 							<td>${vo.mname}</td>
 							<td>${vo.memail}</td>
 							<td>${vo.mtel}</td>
-							<td><c:if test="${vo.mactive eq 'Y'}">정상</c:if><c:if test="${vo.mactive eq 'N'}">정지</c:if></td>
+							<td><c:if test="${vo.mactive eq 'Y'}">정상</c:if><c:if test="${vo.mactive eq 'N'}">정지</c:if><c:if test="${vo.mactive eq 'F'}">탈퇴</c:if></td>
 							<td><c:if test="${vo.mid ne 'admin'}">
-								<a href="${vo.mid}" onclick="updateBen(this); return false;" class="venMember" ><i class="fa fa-user-alt-slash" title="ven" ></i></a> 
-								<a href="#" class="deleteMember" data-tmid="${vo.mid}"><i class="fa fa-trash" title="del"></i></a>
+								<c:if test="${vo.mactive eq 'F' }">
+									<a href="#" class="deleteMember" data-tmid="${vo.mid}"><i class="fa fa-trash" title="del"></i></a>
+								</c:if>
+								<c:if test="${vo.mactive ne 'F' }">
+									<a href="${vo.mid}" onclick="updateBen(this); return false;"><i class="fa fa-user-alt-slash" title="ben" ></i></a> 
+									<a href="#" class="deleteMember" data-tmid="${vo.mid}"><i class="fa fa-trash" title="del"></i></a>
+								</c:if>
 							</c:if>
 							</td>
 						</tr>

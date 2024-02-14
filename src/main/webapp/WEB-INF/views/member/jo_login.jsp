@@ -32,11 +32,11 @@
 			<form class="user" action="/member/login" method="post" id="loginCheck">
 				<div class="form-group">
 					<input type="text" class="form-control form-control-user"
-						id="uid" name="mid" placeholder="아이디" onkeyup="loginEnter(event);" value="admin">
+						id="uid" name="mid" placeholder="아이디" onkeyup="loginEnter(event);">
 			    </div>
 			    <div class="form-group">
 			        <input type="password" class="form-control form-control-user"
-			            id="upw" name="mpw" onkeyup="loginEnter(event);" placeholder="패스워드" value="admin">
+			            id="upw" name="mpw" onkeyup="loginEnter(event);" placeholder="패스워드">
 			    </div>
 			    <div class="form-group">
 			        <div class="custom-control custom-checkbox small">

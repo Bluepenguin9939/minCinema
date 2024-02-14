@@ -19,7 +19,7 @@ $(function() {
 	});
 	
 // 	패스워드 변경 모달 버튼
-	$("#btnChangeInfo").click(function() {
+	$("#btnChangePw").click(function() {
 		var curPw = $("#curPw").val();
 		var url = "/member/checkPw"
 		var sData = {
@@ -27,19 +27,15 @@ $(function() {
 		}
 		
 		$.post(url, sData, function(rData) {
-			console.log(rData);
 			if (rData == "true") {
 				var futurePw = $("#futurePw").val();
-				console.log("pw1 :", futurePw);
 				var futurePw2 = $("#futurePw2").val();
-				console.log("pw2 :", futurePw2);
 				if (futurePw == futurePw2) {
 					var url2 = "/member/changePw"
 					var changeData = {
 							"futurePw" : futurePw
 					}
 					$.post(url2, changeData, function(rData2) {
-						console.log("change :", rData2);
 						if (rData2 == "true") {
 							alert("변경이 완료되었습니다.");
 							window.location = "/myPage/jo_myInfo";
@@ -78,7 +74,6 @@ $(function() {
 		}
 		
 		$.post(url, sData, function(rData) {
-			console.log("닉네임 변경 :",rData);
 			if (rData == "true") {
 				alert("닉네임 변경이 완료되었습니다.");
 				window.location = "/myPage/jo_myInfo";
@@ -130,8 +125,6 @@ $(function() {
 								<th class="table-header" style="vertical-align: middle;">전화번호</th>
 								<td>
 									${loginInfo.mtel}
-									<button class="btn btn-secondary btn-sm"type="button"
-										id="btnTelMod">변경</button>
 								</td>
 							</tr>
 						</tbody>

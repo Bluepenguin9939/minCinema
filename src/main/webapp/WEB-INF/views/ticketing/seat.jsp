@@ -134,6 +134,28 @@ function mouseHoverOronClick(that , pCount, bgColor, color , method){
 	
 $(function(){
 	
+	//쿠폰 유무
+	var coupon5 = "${loginInfo.coupon5}";
+	var coupon10 = "${loginInfo.coupon10}";
+	var coupon15 = "${loginInfo.coupon15}";
+	if(coupon5 == "" || coupon5 == null || coupon5 == "0"){
+		$("select option[value='5']").prop('disabled',true);
+		$("select option[value='5']").text(' 5% 할인쿠폰 (0)');
+		$("select option[value='5']").css("color","red");
+	}
+	
+	if(coupon10 == "" || coupon10 == null || coupon10 == "0"){
+		$("select option[value='10']").prop('disabled',true);
+		$("select option[value='10']").text('10% 할인쿠폰 (0)');
+		$("select option[value='10']").css("color","red");
+	}
+	
+	if(coupon15 == "" || coupon15 == null || coupon15 == "0"){
+		$("select option[value='15']").prop('disabled',true);
+		$("select option[value='15']").text('15% 할인쿠폰 (0)');
+		$("select option[value='15']").css("color","red");
+	}
+	///////////////////////////////////////////////////////
 	
 	var movieTitle = "${Je_ReservationInfoVO.movieTitle}";
 	var movieDate =  "${Je_ReservationInfoVO.movieDate}";
@@ -497,7 +519,6 @@ $(function(){
 		payCost = (payCost * (-1));
 		
 		var discount = $("#disCount").val();
-		console.log(discount);
 		
 		
 		if(resultCost>=0){
@@ -524,6 +545,8 @@ $(function(){
 			};
 			
 			var url = "/ticketing/cost";
+			
+			
 			
 			$.ajax({
 		            url: url,
@@ -571,7 +594,7 @@ $(function(){
 	        	<div class="seatLoc" >
 	        		<div class="seatLoc-top bg-light rounded">
 	        			
-	        			<div style="background-color: #fbe1c13a;">
+	        			<div style="background-color: #F6E3CE;">
 	        				<div style="font-weight: bold;" class="bg-danger text-center">이용자 선택</div>
 	        				
 	        				<div>

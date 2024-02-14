@@ -34,7 +34,6 @@ public class Jo_MovieServiceImpl implements Jo_MovieService {
 	@Override
 	@Transactional
 	public boolean addMovie(Jo_MovieVO movieVO) {
-		log.info("@movieVO:"+ movieVO);
 		int count = movieMapper.insertMovie(movieVO);
 		int count2 = attachMapper.insertMoviePoster(movieVO.getPosterDTO());
 		List<Jo_AttachVO> attachList = movieVO.getList();
@@ -42,9 +41,6 @@ public class Jo_MovieServiceImpl implements Jo_MovieService {
 		for (Jo_AttachVO attachVO : attachList) {
 			count3 = attachMapper.insertMovieStillCut(attachVO);
 		}
-		log.info("count : " + count);
-		log.info("count2 : " + count2);
-		log.info("count3 : " + count3);
 		if (count + count2 + count3 == 3) {
 			return true;
 		}
@@ -93,27 +89,19 @@ public class Jo_MovieServiceImpl implements Jo_MovieService {
 
 	@Override //영화 삭제
 	public void movieDelete(String movieCode) {
-		// TODO Auto-generated method stub
 		List<Jo_AttachVO> list = attachMapper.selectMovieImageToCode(movieCode);
 		
 		for(Jo_AttachVO jo_AttachVO:list) {
 			String directoryPath = jo_AttachVO.getUpload_path();
 			String filePath = directoryPath+"/"+jo_AttachVO.getFile_name();
 			
-			//log.info("@@"+directoryPath);
-			//log.info("@@filePath:"+filePath);
-			
 			 File file = new File(filePath);        
 			 File directory = new File(directoryPath);         // 파일 삭제        
 			 boolean fileDeleted = file.delete();         // 디렉토리 삭제        
 			 boolean directoryDeleted = directory.delete();         // 삭제 결과 출력        
-			 //System.out.println(fileDeleted);        
-			// System.out.println(directoryDeleted);
 			
 		}
-		
 		movieMapper.movieDelete(movieCode);
-		
 	}
 
 }

@@ -101,12 +101,10 @@
 <script>
 $(function() {
 	var valueDisplays = document.querySelectorAll(".totalPoint");
-	console.log(valueDisplays);
 	
 		valueDisplays.forEach((valueDisplay) => {
 		var startValue = 0;
 		var endValue = valueDisplay.getAttribute("data-total");
-		console.log("endValue:",endValue);
 		var counter = setInterval(function(){
 			startValue += 3000;
 			valueDisplay.textContent = startValue.toLocaleString('ko-KR');
@@ -215,6 +213,7 @@ $(function() {
 	
 	mgSplit = mg.split('|');
 	mcSplit = mc.split('|');
+<<<<<<< HEAD
 
 	
 	
