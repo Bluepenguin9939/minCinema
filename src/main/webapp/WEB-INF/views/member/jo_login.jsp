@@ -66,7 +66,13 @@
 	</div>
 </body>
 <script>
-$(function(){	
+$(function(){
+	var registerResult = "${registerResult}";
+	console.log(registerResult);
+	if (registerResult) {
+		alert("회원가입 성공!");
+	}
+	
 	var cookie = document.cookie;
 	var cookies = cookie.split(";");
 	for (var v = 0; v < cookies.length; v++) {
