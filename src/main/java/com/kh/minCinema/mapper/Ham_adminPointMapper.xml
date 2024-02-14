@@ -12,6 +12,7 @@
 	<select id="pointCount" resultType="com.kh.minCinema.domain.Heo_PointVO"> 
 		SELECT sum(ppoint) ppoint,TO_CHAR(pdate, 'MM') pdate
 		FROM MC_POINT
+		WHERE PCODE = 'PC'
 		GROUP BY TO_CHAR(pdate,'MM') 
 		ORDER BY pdate
 		 </select>
@@ -43,6 +44,7 @@
 	<!-- 관리자 페이지 - 포인트 관리  -->
 	<select id="totalSales" resultType="com.kh.minCinema.domain.Ham_TotalPointDTO">
 		select sum(ppoint) total from mc_point
+		WHERE PCODE = 'PC'
 	</select>
 	
 </mapper>
