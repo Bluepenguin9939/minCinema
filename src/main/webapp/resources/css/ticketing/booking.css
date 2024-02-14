@@ -21,7 +21,7 @@
 }
 
 .send-main{
-	background-color: #fbe1c13a;
+	background-color: #F6E3CE;
 	width: 930px;
 }
 
@@ -34,7 +34,7 @@
 .reserve-container>div>div {
     border: 1px solid #dddddd;
     /*외각선 굵게만들어 구분하기*/
-    background-color: #fbe1c13a;
+    background-color: #F6E3CE;
 } 
 
 
