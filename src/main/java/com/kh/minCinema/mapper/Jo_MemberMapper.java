@@ -14,4 +14,6 @@ public interface Jo_MemberMapper {
 	public int updateNick(Jo_InfoChangeDTO changeDTO);
 	
 	public int equalEmail(Jo_SearchPwDTO searchPwDTO);
+	
+	public int isDupEmail(String memail);
 }

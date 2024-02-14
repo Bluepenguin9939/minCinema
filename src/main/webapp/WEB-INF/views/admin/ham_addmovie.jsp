@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<link rel="stylesheet" href="/resources/css/admin/addmovie.css?after" type="text/css">
+<link rel="stylesheet" href="/resources/css/admin/addmovie.css" type="text/css">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Image Upload Example</title>
 <script>
@@ -61,7 +61,30 @@ $(function(){
 		}
 		
 		$.get(movieListURL, movieListData, function(rData) {
-		
+			console.log(rData.boxOfficeResult.weeklyBoxOfficeList);
+			var weeklyTop10 = rData.boxOfficeResult.weeklyBoxOfficeList;
+			var index0_4_tr = "";
+			var index5_9_tr = "";
+			$(weeklyTop10).each(function(i) {
+				var movieNm = weeklyTop10[i].movieNm;
+				var movieCd = weeklyTop10[i].movieCd;
+				if (i <= 4) {
+					index0_4_tr += "<tr>\n";
+					index0_4_tr += "	<td>" + movieNm + "</td>\n";
+					index0_4_tr += "	<td>" + movieCd + "</td>\n";
+					index0_4_tr += "</tr>\n";
+				} else {
+					index5_9_tr += "<tr>\n";
+					index5_9_tr += "	<td>" + movieNm + "</td>\n";
+					index5_9_tr += "	<td>" + movieCd + "</td>\n";
+					index5_9_tr += "</tr>\n";
+				}
+			});
+			$("#index0-4").append(index0_4_tr);
+			$("#index5-9").append(index5_9_tr);
+			$(".weeklyTop10").css("display", "block");
+			$("#gapDiv").css("display", "block");
+			$("#getMovieDataDiv").css("width", "30%");
 		});
 	});
 
@@ -310,8 +333,7 @@ $(function(){
 
 <body>
 	<div class="notice d-flex justify-content-center" style="height: 280px;"> 
-		<div style="width: 80%; display: flex; justify-content: space-between;"
-			class="flex-column">
+		<div id="getMovieDataDiv">
 			<div class="align-self-start">
 				<button type="button" id="btnGetWeekMovie"class="btn btn-sm btn-secondary">
 					지난주 박스오피스 TOP10 가져오기
@@ -320,6 +342,9 @@ $(function(){
 					id="btnSearchMovieDB">
 					영화DB 검색하러 가기
 				</button>
+			</div>
+			<div>
+				
 			</div>
 			<div class="align-self-start">
 				<input type="text" id="getMovieData" placeholder="영화코드">
@@ -331,6 +356,31 @@ $(function(){
 				<h2 class="admin-body" title="" >영화 추가</h2>
 			</div>
 		</div>
+		<div class="weeklyTop10">
+			<table class="table-borderless table-hover">
+				<thead>
+					<tr>
+						<th></th>
+						<th>영화 코드</th>
+					</tr>
+				</thead>
+				<tbody id="index0-4">
+				</tbody>
+			</table>
+		</div>
+		<div class="weeklyTop10">
+			<table class="table-borderless table-hover">
+				<thead>
+					<tr>
+						<th></th>
+						<th>영화 코드</th>
+					</tr>
+				</thead>
+				<tbody id="index5-9">
+				</tbody>
+			</table>
+		</div>
+		<div id="gapDiv"></div>
 	</div>
 	<!-- 칸나누기 -->
 	<div class="d-flex justify-content-center" style="height: 40%;">

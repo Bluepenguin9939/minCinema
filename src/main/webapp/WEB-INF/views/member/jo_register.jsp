@@ -37,9 +37,51 @@ $(function() {
 		});
 	});
 	
+	$("#btnRegister").click(function() {
+		var memail = $("#u-email").val();
+		if (memail == "") {
+			alert("이메일을 입력해주세요.");
+			$("#u-email").focus();
+			return;
+		}
+		var url = "/member/isDupEmail";
+		var sData = {
+				"memail" : memail
+		}
+		
+		$.post(url, sData, function(rData) {
+			if (rData) {
+				alert("이미 사용중인 이메일입니다.");
+			} else {
+				$("#frmRegister").submit();
+			}
+		});
+		
+	});
+	
 	$("#frmRegister").submit(function() {
 		var upw = $("#u-pw").val();
 		var upw2 = $("#u-pw2").val();
+		if (upw == "" || upw2 == "") {
+			alert("비밀번호를 입력해주세요.");
+			$("#u-pw").focus();
+			return false;
+		}
+		if ($("#u-name").val() == "") {
+			alert("이름을 입력해주세요.");
+			$("#u-name").focus();
+			return false;
+		}
+		if ($("#u-nick-name").val() == "") {
+			alert("별명을 입력해주세요.");
+			$("#u-nick-name").focus();
+			return false;
+		}
+		if ($("#u-tel").val() == "") {
+			alert("전화번호를 입력해주세요.");
+			$("#u-tel").focus();
+			return false;
+		}
 		if (upw != upw2) {
 			alert("비밀번호가 일치하지 않습니다.");
 			$("#u-pw").focus();
@@ -109,13 +151,13 @@ $(function() {
 			            pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}">
 
 			    </div>
-			    <button type="submit" id="btnRegister" class="btn btn-dark btn-block" disabled>
+			    <button type="button" id="btnRegister" class="btn btn-dark btn-block" disabled>
 			        회원가입
 			    </button>
 			    <hr style="border-bottom: 2px solid #333333;">
 			    <div class="d-flex justify-content-center">
 				    <a href="/member/jo_login" id="goLogin">
-				    	계정이 이미 있습니다.
+				    	계정이 이미 있습니까?
 				    </a>
 			    </div>
 			</form>

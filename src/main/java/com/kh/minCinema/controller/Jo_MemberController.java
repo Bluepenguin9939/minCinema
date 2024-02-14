@@ -135,4 +135,12 @@ public class Jo_MemberController {
 		boolean result = memberService.equalEmail(searchPwDTO);
 		return result;
 	}
+	
+	@PostMapping(value = "/isDupEmail",
+				 produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public Boolean isDupEmail(String memail) {
+		boolean result = memberService.isDupEmail(memail);
+		return result;
+	}
 }
