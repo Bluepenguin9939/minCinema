@@ -55,6 +55,24 @@
 
 <script>
 $(function() {
+	var cookie = document.cookie;
+	if (cookie == "") {
+		$(".ads").show();
+	}
+	var cookies = cookie.split(";");
+	for (var v = 0; v < cookies.length; v++) {
+		var aCookie = cookies[v].split("=");
+		if (aCookie[0].trim() == "ads") {
+			var check = aCookie[1].trim();
+			if (check == ""){
+				$(".ads").show();
+			} else {
+				$(".ads").hide();
+			}
+			break;
+		}
+	}
+	
 	$(window).on("scroll", function() {
 		var scroll = $(window).scrollTop();
 		if (scroll > 0) {
@@ -111,11 +129,25 @@ function callFaq(items) {
 		questionBox.scrollTop(questionBox.prop('scrollHeight'));
 	}, 500);
 }
+
+function closeAds() {
+	var check = $(".adsCheck").prop("checked");
+	if (check == true) {
+		document.cookie = "ads=true; max-age=86400";
+	}
+	$(".ads").hide();
+}
 </script>
 </head>
 
 <body id="page-top">
-
+	
+	<div class="ads rounded">
+		<img class="rounded" onclick="location.href='/main/event/jo_feb_attendance_check'" src="/resources/img/sads.png">
+		<input class="adsCheck" type="checkbox">오늘 하루 보지 않기
+		<a href="#" onclick="closeAds(); return false;">닫기</a>
+	</div>
+	
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
