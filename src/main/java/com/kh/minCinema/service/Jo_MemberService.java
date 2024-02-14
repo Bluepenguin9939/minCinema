@@ -18,5 +18,7 @@ public interface Jo_MemberService {
 	
 	public boolean equalEmail(Jo_SearchPwDTO searchPwDTO);
 	
+	public boolean isDupEmail(String memail);
+	
 	public List<Jo_ReservedHistoryDTO> checkReservedHistory(String mid);
 }

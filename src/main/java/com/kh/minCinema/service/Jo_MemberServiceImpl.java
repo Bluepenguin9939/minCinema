@@ -71,4 +71,10 @@ public class Jo_MemberServiceImpl implements Jo_MemberService {
 		return reservedList;
 	}
 
+	@Override
+	public boolean isDupEmail(String memail) {
+		int count = memberMapper.isDupEmail(memail);
+		return (count == 1) ? true : false;
+	}
+
 }

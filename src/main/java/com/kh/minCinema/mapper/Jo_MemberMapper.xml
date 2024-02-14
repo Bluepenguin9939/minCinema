@@ -25,9 +25,16 @@
 		WHERE MID = #{mid}
 	</update>
 	
+	<!-- 비밀번호 찾기 -->
 	<select id="equalEmail" resultType="int">
 		SELECT COUNT(*) FROM MC_MEMBER
 		WHERE MEMAIL = #{memail}
 		AND MID = #{mid}
+	</select>
+	
+	<!-- 회원가입 이메일 중복확인 -->
+	<select id="isDupEmail" resultType="int">
+		SELECT COUNT(*) FROM MC_MEMBER
+		WHERE MEMAIL = #{memail}
 	</select>
 </mapper>

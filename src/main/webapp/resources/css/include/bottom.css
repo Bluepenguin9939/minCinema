@@ -135,6 +135,7 @@ a:hover {
   color: #fff;
   background: rgba(90, 92, 105, 0.5);
   line-height: 46px;
+  z-index: 4;
 }
 
 .speech-bubble-answer > a {
@@ -155,4 +156,31 @@ a:hover {
 .question-item:hover {
 	text-decoration: none;
 	color: white;
+}
+
+.ads > img {
+	display: block;
+	cursor: pointer;
+}
+
+.ads > a {
+	margin-left: 60%;
+}
+
+.ads > a:hover {
+	color: red;
+}
+
+.ads {
+  position: fixed;
+  left: 7rem;
+  top: 3rem;
+  text-align: center;
+  line-height: 46px;
+  color: black;
+  background-color: #ffffffb7;
+  font-weight: bold;
+  font-size: 17px;
+  z-index: 5;
+  display: none;
 }

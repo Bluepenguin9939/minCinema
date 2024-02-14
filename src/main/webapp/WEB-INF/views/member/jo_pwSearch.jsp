@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="icon" type="image/jpg" href="/resources/img/minfavicon.jpg"/>
 <meta charset="UTF-8">
 <title>패스워드 찾기</title>
 <%@ include file="/WEB-INF/views/include/bs.jsp" %>
