@@ -48,7 +48,7 @@ $(function() {
 	});
 	
 	if(result == "true"){
-		alert("테스트 회원 생성 완료");
+		alert("회원 생성 완료");
 	}
 	$(".deleteMember").click(function(e) {
 		e.preventDefault();
@@ -61,7 +61,7 @@ $(function() {
 		
 		$.post(url,sData,function(rData){
 			if(rData == "true"){
-				alert("테스트 회원 삭제 완료");
+				alert("회원 삭제 완료");
 				location.href="/admin/ham_cmanagement";
 			}
 			
@@ -173,8 +173,13 @@ $(function() {
 							<td>${vo.mtel}</td>
 							<td><c:if test="${vo.mactive eq 'Y'}">정상</c:if><c:if test="${vo.mactive eq 'N'}">정지</c:if><c:if test="${vo.mactive eq 'F'}">탈퇴</c:if></td>
 							<td><c:if test="${vo.mid ne 'admin'}">
-								<a href="${vo.mid}" onclick="updateBen(this); return false;" class="venMember" ><i class="fa fa-user-alt-slash" title="ven" ></i></a> 
-								<a href="#" class="deleteMember" data-tmid="${vo.mid}"><i class="fa fa-trash" title="del"></i></a>
+								<c:if test="${vo.mactive eq 'F' }">
+									<a href="#" class="deleteMember" data-tmid="${vo.mid}"><i class="fa fa-trash" title="del"></i></a>
+								</c:if>
+								<c:if test="${vo.mactive ne 'F' }">
+									<a href="${vo.mid}" onclick="updateBen(this); return false;"><i class="fa fa-user-alt-slash" title="ben" ></i></a> 
+									<a href="#" class="deleteMember" data-tmid="${vo.mid}"><i class="fa fa-trash" title="del"></i></a>
+								</c:if>
 							</c:if>
 							</td>
 						</tr>
