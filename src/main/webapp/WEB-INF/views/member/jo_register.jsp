@@ -36,6 +36,23 @@ $(function() {
 		});
 	});
 	
+	$("#btnRegister").click(function() {
+		var memail = $("#u-email").val();
+		var url = "/member/isDupEmail";
+		var sData = {
+				"memail" : memail
+		}
+		
+		$.post(url, sData, function(rData) {
+			if (rData) {
+				alert("이미 사용중인 이메일입니다.");
+			} else {
+				$("#frmRegister").submit();
+			}
+		});
+		
+	});
+	
 	$("#frmRegister").submit(function() {
 		var upw = $("#u-pw").val();
 		var upw2 = $("#u-pw2").val();
@@ -108,13 +125,13 @@ $(function() {
 			            pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}">
 
 			    </div>
-			    <button type="submit" id="btnRegister" class="btn btn-dark btn-block" disabled>
+			    <button type="button" id="btnRegister" class="btn btn-dark btn-block" disabled>
 			        회원가입
 			    </button>
 			    <hr style="border-bottom: 2px solid #333333;">
 			    <div class="d-flex justify-content-center">
 				    <a href="/member/jo_login" id="goLogin">
-				    	계정이 이미 있습니다.
+				    	계정이 이미 있습니까?
 				    </a>
 			    </div>
 			</form>
