@@ -49,6 +49,9 @@ public class Heo_LoginInterceptor extends HandlerInterceptorAdapter {
 				Cookie cookie = new Cookie("savedId", heo_MemberVO.getMid());
 				cookie.setMaxAge(60 * 60 * 24 * 7);
 				response.addCookie(cookie);
+			} else {
+				Cookie cookie = new Cookie("savedId", "");
+				response.addCookie(cookie);
 			}
 		}
 	}

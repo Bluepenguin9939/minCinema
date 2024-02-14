@@ -125,8 +125,6 @@ $(function() {
 								<th class="table-header" style="vertical-align: middle;">전화번호</th>
 								<td>
 									${loginInfo.mtel}
-									<button class="btn btn-secondary btn-sm"type="button"
-										id="btnTelMod">변경</button>
 								</td>
 							</tr>
 						</tbody>

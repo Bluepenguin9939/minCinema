@@ -107,7 +107,7 @@ $(function() {
 		<hr style="border-bottom: 1px solid #666666;">
 		<div class="card-body" style="padding-top: 0px;">
 			<h5 class="card-title">${loginInfo.mnick}</h5>
-			<a href="#">
+			<a href="/myPage/jo_myPoint">
 				<div class="d-flex align-items-baseline profile-pc">
 					<i class="fab fa-product-hunt align-self-center" id="point-i"></i>
 					<span class="align-self-center"><fmt:formatNumber value="${loginInfo.mpoint}" pattern="#,###"/> P</span>

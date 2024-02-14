@@ -74,7 +74,7 @@
 				<i class="fa fa-calculator"></i> 월별 매출액
 			</h3>
 			<div>
-				<canvas id="myChart4"></canvas>
+				<canvas id="myChart3"></canvas>
 			</div>
 		</div>
 		<div class="pay">
@@ -106,7 +106,7 @@ $(function() {
 		var startValue = 0;
 		var endValue = valueDisplay.getAttribute("data-total");
 		var counter = setInterval(function(){
-			startValue += 1000;
+			startValue += 3000;
 			valueDisplay.textContent = startValue.toLocaleString('ko-KR');
 			if(startValue == endValue){
 				clearInterval(counter);
@@ -147,8 +147,8 @@ $(function() {
 	
 
 	var ctx = document.getElementById("myChart");
-	var ctx1 = document.getElementById("myChart2").getContext('2d');
-	var ctx3 = document.getElementById("myChart4");
+	var ctx2 = document.getElementById("myChart2").getContext('2d');
+	var ctx3 = document.getElementById("myChart3");
 	var arr = [];
 
 	// 	var data = {};
@@ -197,17 +197,32 @@ $(function() {
 	pdSplit = pd.split(',');
 	ppSplit = pp.split(',');
 	
-	for (var v =0; v < 6; v++){
-		if (v == 5) {
+	
+	
+	
+	for (var v =0; v < 5; v++){
+		if (v == 4) {
 			mg += $(".mov-genre").eq(v).attr("data-mov_genre");
 			mc += $(".mov-count").eq(v).attr("data-mov_count");
 		} else {
 			mg += $(".mov-genre").eq(v).attr("data-mov_genre") + "|";
 			mc += $(".mov-count").eq(v).attr("data-mov_count") + "|";
 		}
+		
 	}
+	
 	mgSplit = mg.split('|');
 	mcSplit = mc.split('|');
+<<<<<<< HEAD
+
+	
+	
+	console.log("mgSplit:",mgSplit);
+	console.log("mcSplit:",mcSplit);
+	console.log("mc:",mc);
+	
+	
+
 
 	var myChart = new Chart(ctx,
 			{
@@ -227,7 +242,7 @@ $(function() {
 					} ]
 				},
 			});//
-	myChart = new Chart(ctx1, {//듀얼막대
+	myChart = new Chart(ctx2, {//듀얼막대
 		type : 'bar',
 		data : {
 			labels : dSplit,
