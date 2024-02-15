@@ -31,16 +31,12 @@ public class Heo_MainController {
 	private Jo_MovieService movieService;
 	
 	@Autowired
-	private Jo_AttachService attachService;
-	
-	@Autowired
 	private Jo_ReviewService reviewService;
 	
 	@SuppressWarnings("unchecked")
 	@GetMapping("/heo_details")
 	public void details(@Param("detail_mov_code") String detail_mov_code,
 						Model model) {
-		attachService.getMoviePoster();
 		Map<String, Object> map = movieService.getMovieByCode(detail_mov_code);
 		Jo_MovieVO movieVO = (Jo_MovieVO)map.get("movieVO");
 		List<Jo_AttachVO> attachList = (List<Jo_AttachVO>)map.get("attachList");
@@ -63,6 +59,20 @@ public class Heo_MainController {
 			return false;
 		}
 		boolean result = reviewService.writeReview(reviewVO);
+		return result;
+	}
+	
+	@PostMapping("/modifyReview")
+	@ResponseBody
+	public boolean modifyReview(Jo_ReviewVO reviewVO) {
+		boolean result = reviewService.modifyReview(reviewVO);
+		return result;
+	}
+	
+	@PostMapping("/removeReview")
+	@ResponseBody
+	public boolean removeReview(int rno) {
+		boolean result = reviewService.removeReview(rno);
 		return result;
 	}
 }

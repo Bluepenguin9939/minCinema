@@ -4,13 +4,25 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kh.minCinema.mapper.Jo_ReviewMapper">
 	<insert id="insertReview">
-		INSERT INTO MC_REVIEW(MID, MNICK, MOV_CODE, R_CONTENT)
-		VALUES(#{mid}, #{mnick}, #{mov_code}, #{r_content})
+		INSERT INTO MC_REVIEW(RNO, MID, MNICK, MOV_CODE, R_CONTENT)
+		VALUES(SEQ_RNO.NEXTVAL, #{mid}, #{mnick}, #{mov_code}, #{r_content})
 	</insert>
 	
 	<select id="selectReview" resultType="com.kh.minCinema.domain.Jo_ReviewVO">
-		SELECT MID, MNICK, R_CONTENT, TO_CHAR(R_DATE, 'yyyy-MM-dd HH24:MI') AS R_DATE 
+		SELECT RNO, MID, MNICK, R_CONTENT, TO_CHAR(R_DATE, 'yyyy-MM-dd HH24:MI') AS R_DATE 
 		FROM MC_REVIEW
 		WHERE MOV_CODE = #{mov_code}
+		ORDER BY RNO DESC
 	</select>
+	
+	<delete id="deleteReview">
+		DELETE FROM MC_REVIEW
+		WHERE RNO = #{rno}
+	</delete>
+	
+	<update id="updateReview">
+		UPDATE MC_REVIEW SET
+			R_CONTENT = #{r_content}
+		WHERE RNO = #{rno}
+	</update>
 </mapper>
