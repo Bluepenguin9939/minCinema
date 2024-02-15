@@ -7,6 +7,9 @@
 
 <head>
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
+
 <link rel="icon" type="image/jpg" href="/resources/img/minfavicon.jpg"/>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -55,6 +58,23 @@
 
 <script>
 $(function() {
+	var active = "${loginInfo.mactive}";
+	if (active == 'N') {
+		Swal.fire({
+		      icon: 'warning',
+		      title: '활동이 정지된 회원입니다.',
+		    }).then(result =>{
+		    	location.href="/member/jo_login";
+		    });
+	} else if (active == 'F') {
+		Swal.fire({
+		      icon: 'error',
+		      title: '탈퇴된 회원입니다.',
+		    }).then(result =>{
+		    	location.href="/member/jo_login";
+		    });
+	}
+	
 	var cookie = document.cookie;
 	if (cookie == "") {
 		$(".ads").show();
