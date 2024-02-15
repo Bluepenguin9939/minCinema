@@ -106,10 +106,12 @@ $(function() {
 		var startValue = 0;
 		var endValue = valueDisplay.getAttribute("data-total");
 		var counter = setInterval(function(){
-			startValue += 3000;
+			startValue += 10000;
 			valueDisplay.textContent = startValue.toLocaleString('ko-KR');
-			if(startValue == endValue){
+			if(startValue >= endValue){
+				var endVal = Number(endValue);
 				clearInterval(counter);
+				valueDisplay.textContent = endVal.toLocaleString('ko-KR');
 			}
 			
 		}, 0.1);
@@ -149,7 +151,7 @@ $(function() {
 	var ctx = document.getElementById("myChart");
 	var ctx2 = document.getElementById("myChart2").getContext('2d');
 	var ctx3 = document.getElementById("myChart3");
-	var arr = [];
+	var arr = ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'];
 
 	// 	var data = {};
 	var labels = {};
@@ -245,7 +247,7 @@ $(function() {
 	myChart = new Chart(ctx2, {//듀얼막대
 		type : 'bar',
 		data : {
-			labels : dSplit,
+			labels : arr,
 			datasets : [
 					{
 						label : '고객문의수',
