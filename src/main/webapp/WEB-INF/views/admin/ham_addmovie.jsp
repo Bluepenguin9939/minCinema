@@ -22,6 +22,11 @@ $(function(){
 	var key = "93e13fb8a551cb3daf41b1d892d75166" // 공용 키
 	
 	$("#btnGetWeekMovie").click(function() {
+		$(".weeklyTop10").css("display", "none");
+		$("#gapDiv").css("display", "none");
+		$("#getMovieDataDiv").css("width", "80%");
+		$("#index0-4").empty();
+		$("#index5-9").empty();
 		var today = new Date();
 		var day = today.getDay();
 		

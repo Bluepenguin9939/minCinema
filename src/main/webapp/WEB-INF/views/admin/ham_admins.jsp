@@ -80,7 +80,7 @@
 		<div class="pay">
 				<div class="total-pay">
 					<i class="fa fa-coins" id="icon"></i>
-					<label class="text">총 매출액</label>
+					<label class="text">연간 총 매출액</label>
 					<label class="totalPoint" data-total="${totalPointDTO.total}"></label>
 				</div>
 <!-- 				<div class="coa"> -->
@@ -108,8 +108,10 @@ $(function() {
 		var counter = setInterval(function(){
 			startValue += 1000;
 			valueDisplay.textContent = startValue.toLocaleString('ko-KR');
-			if(startValue == endValue){
+			if(startValue >= endValue){
+				var endVal = Number(endValue);
 				clearInterval(counter);
+				valueDisplay.textContent = endVal.toLocaleString('ko-KR');
 			}
 			
 		}, 0.1);

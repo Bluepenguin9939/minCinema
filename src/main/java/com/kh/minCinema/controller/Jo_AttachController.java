@@ -31,12 +31,12 @@ import lombok.extern.log4j.Log4j;
 @Controller
 @Log4j
 public class Jo_AttachController {
-//	private static final String PROFILE_UPLOAD_PATH = "G:/upload/user_profile_image";
-	private static final String PROFILE_UPLOAD_PATH = "D:/upload/user_profile_image";
-//	private static final String POSTER_UPLOAD_PATH = "G:/upload/poster";
-	private static final String POSTER_UPLOAD_PATH = "D:/upload/poster";
-//	private static final String STILL_CUT_UPLOAD_PATH = "G:/upload/still_cut";
-	private static final String STILL_CUT_UPLOAD_PATH = "D:/upload/still_cut";
+	private static final String PROFILE_UPLOAD_PATH = "E:/upload/user_profile_image";
+//	private static final String PROFILE_UPLOAD_PATH = "D:/upload/user_profile_image";
+	private static final String POSTER_UPLOAD_PATH = "E:/upload/poster";
+//	private static final String POSTER_UPLOAD_PATH = "D:/upload/poster";
+	private static final String STILL_CUT_UPLOAD_PATH = "E:/upload/still_cut";
+//	private static final String STILL_CUT_UPLOAD_PATH = "D:/upload/still_cut";
 
 	
 	@Autowired

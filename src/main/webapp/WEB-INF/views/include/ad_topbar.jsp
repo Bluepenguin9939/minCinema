@@ -21,7 +21,7 @@
 
 			<!-- 글자 이동 -->
 			<div class="moveText">
-				<p id="neonText"> 여기는 Min4 Cinema 관리자 페이지 입니다.</p>
+				<p id="neonText"> 여기는 Min Cinema 관리자 페이지 입니다.</p>
 			</div>
 <!-- 			<div class="cover"> -->
 <!-- 				<p class="second-parallel"></p> -->
