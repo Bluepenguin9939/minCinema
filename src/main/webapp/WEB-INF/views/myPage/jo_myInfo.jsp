@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
     
 <%@ include file="/WEB-INF/views/include/top.jsp" %>
 <%@ include file="/WEB-INF/views/include/heo_resignModal.jsp" %>
@@ -97,18 +98,20 @@ $(function() {
 					<h5>내 정보</h5>
 					<table class="table">
 						<tbody style="border-bottom: 0.5px solid black;">
-							<tr class="text-dark">
-								<th class="table-header">아이디</th>
-								<td>${loginInfo.mid}</td>
-							</tr>
-							<tr class="text-dark">
-								<th class="table-header" style="vertical-align: middle;">비밀번호</th>
-								<td>
-									●●●●●●●●●●
-									<button class="btn btn-secondary btn-sm"type="button"
-										id="btnPwMod">변경</button>
-								</td>
-							</tr>
+							<c:if test="${!fn:contains(loginInfo.mid, '@kakao.com')}">
+								<tr class="text-dark">
+									<th class="table-header">아이디</th>
+									<td>${loginInfo.mid}</td>
+								</tr>
+								<tr class="text-dark">
+									<th class="table-header" style="vertical-align: middle;">비밀번호</th>
+									<td>
+										●●●●●●●●●●
+										<button class="btn btn-secondary btn-sm"type="button"
+											id="btnPwMod">변경</button>
+									</td>
+								</tr>
+							</c:if>		
 							<tr class="text-dark">
 								<th class="table-header">이름</th>
 								<td>${loginInfo.mname}</td>

@@ -1,5 +1,7 @@
 package com.kh.minCinema.controller;
 
+import java.util.UUID;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,6 +55,11 @@ public class Heo_MemberController {
 		String mtel = heo_MemberVO.getMtel();
 		int result = heo_MemberService.kakaoCheck(mtel);
 		if (result == 0) {
+			UUID uuid = UUID.randomUUID();
+			String mid = String.valueOf(uuid).split("-")[0] + "@kakao.com";
+			String mpw = String.valueOf(uuid).split("-")[0];
+			heo_MemberVO.setMid(mid);
+			heo_MemberVO.setMpw(mpw);			
 			session.setAttribute("kakaoInfo", heo_MemberVO);
 			return "redirect:/member/jo_register";
 		} else {
