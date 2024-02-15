@@ -14,6 +14,9 @@ $(function() {
 		}
 		$("#btnInput").attr("data-mid", mid);
 		$("#btnInput").attr("data-mnick", mnick);
+		$("#btnInput").css("display", "block");
+		$("#btnReviewModify").css("display", "none");
+		$("#review-content").text("");
 		$("#review-modal").modal("show");
 	});
 	
@@ -38,6 +41,53 @@ $(function() {
 			}
 			self.location = window.location.href;
 		});
+	});
+	
+// 	리뷰 수정
+	$("#btnModify").click(function() {
+		var rno = $(this).attr("data-rno");
+		var r_content = $(this).prev().text();
+		$("#review-content").text(r_content);
+		$("#btnInput").css("display", "none");
+		$("#btnReviewModify").css("display", "block");
+		$("#btnReviewModify").attr("data-rno", rno);
+		$("#review-modal").modal("show");
+	});
+	
+	$("#btnReviewModify").click(function() {
+		var rno = $(this).attr("data-rno");
+		var r_content = $("#review-content").val();
+		var url = "/main/modifyReview";
+		var sData = {
+				"rno" : rno,
+				"r_content" : r_content
+		}
+		
+		$.post(url, sData, function(rData) {
+			if (rData) {
+				alert("수정이 완료되었습니다.");
+				self.location = window.location.href;
+			}
+		});
+	});
+	
+// 	리뷰 삭제
+	$("#btnRemove").click(function() {
+		var result = confirm("삭제하시겠습니까?");
+		if (result) {
+			var rno = $(this).attr("data-rno");
+			var url = "/main/removeReview"
+			var sData = {
+					"rno" : rno
+			}
+			
+			$.post(url, sData, function(rData) {
+				if (rData) {
+					alert("삭제가 완료되었습니다.");
+					self.location = window.location.href;
+				}
+			});
+		}
 	});
 });
 </script>
@@ -177,7 +227,18 @@ $(function() {
 								<c:forEach var="vo" items="${reviewList}">
 									<tr>
 										<td>${vo.mnick}</td>
-										<td>${vo.r_content}</td>
+										<c:if test="${vo.mid eq loginInfo.mid}">
+											<td>
+												<span>${vo.r_content}</span>
+												<button type="button" class="btn btn-sm btn-warning" id="btnModify" data-rno="${vo.rno}">수정</button>
+												<button type="button" class="btn btn-sm btn-danger" id="btnRemove" data-rno="${vo.rno}">삭제</button>
+											</td>
+										</c:if>
+										<c:if test="${vo.mid ne loginInfo.mid}">
+											<td>
+												<span>${vo.r_content}</span>
+											</td>
+										</c:if>
 										<td>${vo.r_date}</td>
 									</tr>
 								</c:forEach>
@@ -206,6 +267,9 @@ $(function() {
 							 
 							<button type="button" class="btn btn-primary" id="btnInput">
 								리뷰 작성
+							</button> 
+							<button type="button" class="btn btn-primary" id="btnReviewModify">
+								리뷰 수정
 							</button> 
 							<button type="button" class="btn btn-secondary" data-dismiss="modal">
 								취소

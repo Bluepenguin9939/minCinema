@@ -26,4 +26,16 @@ public class Jo_ReviewServiceImpl implements Jo_ReviewService {
 		return reviewList;
 	}
 
+	@Override
+	public boolean modifyReview(Jo_ReviewVO reviewVO) {
+		int count = reviewMapper.updateReview(reviewVO);
+		return (count == 1) ? true : false;
+	}
+
+	@Override
+	public boolean removeReview(int rno) {
+		int count = reviewMapper.deleteReview(rno);
+		return (count == 1) ? true : false;
+	}
+
 }

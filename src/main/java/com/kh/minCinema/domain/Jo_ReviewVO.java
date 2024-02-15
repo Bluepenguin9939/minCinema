@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Jo_ReviewVO {
 	
+	private Integer rno;
 	private String mid;
 	private String mnick;
 	private String mov_code;

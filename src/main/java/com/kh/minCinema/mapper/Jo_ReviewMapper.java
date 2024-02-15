@@ -9,4 +9,8 @@ public interface Jo_ReviewMapper {
 	public int insertReview(Jo_ReviewVO reviewVO);
 	
 	public List<Jo_ReviewVO> selectReview(String mov_code);
+	
+	public int updateReview(Jo_ReviewVO reviewVO);
+	
+	public int deleteReview(int rno);
 }
