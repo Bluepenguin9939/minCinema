@@ -108,8 +108,10 @@ $(function() {
 		var counter = setInterval(function(){
 			startValue += 3000;
 			valueDisplay.textContent = startValue.toLocaleString('ko-KR');
-			if(startValue == endValue){
+			if(startValue >= endValue){
+				var endVal = Number(endValue);
 				clearInterval(counter);
+				valueDisplay.textContent = endVal.toLocaleString('ko-KR');
 			}
 			
 		}, 0.1);
