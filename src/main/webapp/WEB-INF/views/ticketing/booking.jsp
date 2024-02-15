@@ -65,7 +65,7 @@ $(function(){
 	
 	//페이지 시작시 영화 리스트와 코드 받아와서 열 생성
 	$.post("/ticketing/movieList",function(rData){
-		console.log("rData: ",rData);
+
 		if(rData != null){
 			$.each(rData , function( index, value ) {
 				$(".movie-datas").append(
@@ -73,6 +73,14 @@ $(function(){
 				);
 				
 			});
+			
+			var url = new URL(window.location.href);
+			var moviecode = url.searchParams.get("mov_code");
+			
+			if(moviecode != null){
+				$(".movie-datas").find("[data-moviecode='"+moviecode+"']").trigger("click");
+			}
+			
 		}
 	});
 	
