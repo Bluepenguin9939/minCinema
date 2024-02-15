@@ -134,7 +134,7 @@ $(function() {
 	});
 });
 function MoreMovie(acount) {
-	if (${fn:length(movieList)} > acount && ${fn:length(movieList) % 5 > 0 && fn:length(movieList) % 5 < 5}) {
+	if (${fn:length(movieList)} > acount && ${fn:length(movieList) % 5 >= 0 && fn:length(movieList) % 5 < 5}) {
 		$("#btnMoreMovie").css("display", "block");
 	}
 } 

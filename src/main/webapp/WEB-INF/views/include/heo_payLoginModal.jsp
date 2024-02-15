@@ -3,11 +3,13 @@
 <script>
  $(function(){
 	$(".mov-details-btn-payment").click(function(){
+		///console.log("aaa", );
+		
 		var loginInfo = "${loginInfo}";
 		if (loginInfo == "") {
 			$("#payLoginModal").modal("show");
 		} else {
-			location.href="/ticketing/booking";
+			location.href="/ticketing/booking?mov_code="+${movieDetail.mov_code};
 		}
 	});
 	$("#btnLogin").click(function(){

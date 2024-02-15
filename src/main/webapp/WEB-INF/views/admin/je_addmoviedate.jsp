@@ -306,7 +306,7 @@ $(function(){
 			class="flex-column">
 			
 			<div class="admin-top">
-				<h2 class="admin-body">영화 날짜관리</h2>
+				<h2 class="admin-body">영화 상영일정</h2>
 			</div>
 			
 			<div class="d-flex">
@@ -325,7 +325,7 @@ $(function(){
 					
 					<div class="bg-secondary text-center" 
 						style="font-size: 30px; height:7%;">
-						영화 상영일정
+						영화 날짜관리
 					</div>
 					
 					<div class="scroll_dateList" style="height:93%; ">
