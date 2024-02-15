@@ -106,7 +106,7 @@ $(function() {
 		var startValue = 0;
 		var endValue = valueDisplay.getAttribute("data-total");
 		var counter = setInterval(function(){
-			startValue += 3000;
+			startValue += 8000;
 			valueDisplay.textContent = startValue.toLocaleString('ko-KR');
 			if(startValue >= endValue){
 				var endVal = Number(endValue);
@@ -160,7 +160,7 @@ $(function() {
 		if (v == 11) {
 			dsd += $(".send-date").eq(v).attr("data-send_date");
 			count += $(".month-Count").eq(v).attr("data-monthCount");
-		} else {
+		} else { 
 			dsd += $(".send-date").eq(v).attr("data-send_date") + ",";
 			count += $(".month-Count").eq(v).attr("data-monthCount") + ",";
 		}
