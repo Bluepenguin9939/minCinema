@@ -160,7 +160,7 @@ $(function() {
 		if (v == 11) {
 			dsd += $(".send-date").eq(v).attr("data-send_date");
 			count += $(".month-Count").eq(v).attr("data-monthCount");
-		} else {
+		} else { 
 			dsd += $(".send-date").eq(v).attr("data-send_date") + ",";
 			count += $(".month-Count").eq(v).attr("data-monthCount") + ",";
 		}
