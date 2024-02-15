@@ -25,11 +25,6 @@ $(function() {
 			}
 		}
 	}
-	var mactive = "${loginInfo.mactive}";
-	if (mactive == "N") {
-		alert("활동이 정지된 회원입니다.");
-		location.href="/member/jo_login";
-	}
 	
 // 	하트 추가 및 제거
 	$(".heart").click(function() {

@@ -27,7 +27,7 @@
 		
 		<multipart-config>
 <!-- 			<location>D:\\upload\\temp</location>  -->
-			 <location>E:\\upload\\temp</location>
+			 <location>G:\\upload\\temp</location>
 			<max-file-size>5242880</max-file-size>
 			<max-request-size>52428800</max-request-size>
 			<file-size-threshold>5242880</file-size-threshold>

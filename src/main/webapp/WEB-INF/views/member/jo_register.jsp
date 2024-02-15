@@ -97,13 +97,23 @@ $(function() {
 		var mname = kakaoInfo.split("mname=")[1].split(",")[0];
 		var mnick = kakaoInfo.split("mnick=")[1].split(",")[0];
 		var mtel = kakaoInfo.split("mtel=")[1].split(",")[0];
+		var mid = kakaoInfo.split("mid=")[1].split(",")[0];
+		var mpw = kakaoInfo.split("mpw=")[1].split(",")[0];
+		$("#u-id").val(mid);
+		$("#u-pw").val(mpw);
+		$("#u-pw2").val(mpw);
 		$("#u-email").val(memail);
 		$("#u-name").val(mname);
 		$("#u-nick-name").val(mnick);
 		$("#u-tel").val(mtel);
+		$("#u-id").prop("readonly",true);
+		$("#u-pw").prop("readonly",true);
+		$("#u-pw2").prop("readonly",true);
 		$("#u-email").prop("readonly",true);
 		$("#u-name").prop("readonly",true);
 		$("#u-tel").prop("readonly",true);
+		$("#btnDupId").prop("disabled",true);
+		$("#btnRegister").prop("disabled",false);
 	}
 });
 </script>

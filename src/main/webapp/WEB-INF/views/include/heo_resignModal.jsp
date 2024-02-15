@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <style>
 .modal {
         text-align: center;
@@ -35,6 +37,9 @@
 						</div>
 						<div class="modal-body" style="text-align: center;">
 							<h5>비밀번호 확인</h5>
+							<c:if test="${fn:contains(loginInfo.mid, '@kakao.com')}">
+								<label>당신의 임의 비밀번호는 <br><span style="color: red;">${loginInfo.mpw}</span> 입니다.</label>
+							</c:if>
 							<div style="display: flex; justify-content: center;">
 								<input type="password" class="form-control" id="inPassword"
 									style="width: 45%; margin-right: 10px;" onkeyup="return inputEvent(event);">
