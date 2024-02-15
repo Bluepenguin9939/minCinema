@@ -52,6 +52,7 @@ $(function() {
 		$.post(url, sData, function(rData) {
 			if (rData) {
 				alert("이미 사용중인 이메일입니다.");
+				$("#u-email").focus();
 			} else {
 				$("#frmRegister").submit();
 			}

@@ -37,9 +37,11 @@ public class Heo_MemberController {
 	private Jo_CouponService couponService;
 	
 	@PostMapping("/register")
-	public String register(Heo_MemberVO heo_MemberVO) {
-		System.out.println(heo_MemberVO);
-		heo_MemberService.register(heo_MemberVO);
+	public String register(Heo_MemberVO heo_MemberVO, RedirectAttributes rttr) {
+		int count = heo_MemberService.register(heo_MemberVO);
+		if (count == 1) {
+			rttr.addFlashAttribute("registerResult", true);
+		}
 		return "redirect:/member/jo_login";
 	}
 	
