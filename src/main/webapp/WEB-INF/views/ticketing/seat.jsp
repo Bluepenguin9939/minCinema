@@ -572,8 +572,10 @@ $(function(){
 			
 		}
 		else{
-			alert("포인트가 부족합니다!!!!");
-			
+			var pointCharge = confirm("포인트가 부족합니다!!!!\n포인트를 충전하시겠습니까?");
+			if (pointCharge) {
+				$("#modal-payment").modal("show");
+			}
 		}
 		
 		
@@ -583,6 +585,7 @@ $(function(){
 });
 	
 </script>
+<%@ include file="/WEB-INF/views/include/heo_pointChargeModal.jsp" %>
 <div>
 	<div class="reserve-container">
 		<div class="seat-part">

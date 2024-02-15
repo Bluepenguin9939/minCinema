@@ -15,6 +15,7 @@ $(function() {
 		$("#btnInput").attr("data-mid", mid);
 		$("#btnInput").attr("data-mnick", mnick);
 		$("#btnInput").css("display", "block");
+		$(".review-title").text("리뷰 작성");
 		$("#btnReviewModify").css("display", "none");
 		$("#review-content").text("");
 		$("#review-modal").modal("show");
@@ -44,13 +45,14 @@ $(function() {
 	});
 	
 // 	리뷰 수정
-	$("#btnModify").click(function() {
+	$(".btnModify").click(function() {
 		var rno = $(this).attr("data-rno");
 		var r_content = $(this).prev().text();
 		$("#review-content").text(r_content);
 		$("#btnInput").css("display", "none");
 		$("#btnReviewModify").css("display", "block");
 		$("#btnReviewModify").attr("data-rno", rno);
+		$(".review-title").text("리뷰 수정");
 		$("#review-modal").modal("show");
 	});
 	
@@ -72,7 +74,7 @@ $(function() {
 	});
 	
 // 	리뷰 삭제
-	$("#btnRemove").click(function() {
+	$(".btnRemove").click(function() {
 		var result = confirm("삭제하시겠습니까?");
 		if (result) {
 			var rno = $(this).attr("data-rno");
@@ -230,8 +232,8 @@ $(function() {
 										<c:if test="${vo.mid eq loginInfo.mid}">
 											<td>
 												<span>${vo.r_content}</span>
-												<button type="button" class="btn btn-sm btn-warning" id="btnModify" data-rno="${vo.rno}">수정</button>
-												<button type="button" class="btn btn-sm btn-danger" id="btnRemove" data-rno="${vo.rno}">삭제</button>
+												<button type="button" class="btn btn-sm btn-warning btnModify" data-rno="${vo.rno}">수정</button>
+												<button type="button" class="btn btn-sm btn-danger btnRemove" data-rno="${vo.rno}">삭제</button>
 											</td>
 										</c:if>
 										<c:if test="${vo.mid ne loginInfo.mid}">
@@ -252,7 +254,7 @@ $(function() {
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
 						<div class="modal-header">
-							<h5 class="modal-title" id="myModalLabel">
+							<h5 class="modal-title review-title" id="myModalLabel">
 								리뷰 작성
 							</h5> 
 							<button type="button" class="close" data-dismiss="modal">
