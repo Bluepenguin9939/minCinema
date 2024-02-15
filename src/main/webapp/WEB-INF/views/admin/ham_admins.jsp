@@ -106,7 +106,7 @@ $(function() {
 		var startValue = 0;
 		var endValue = valueDisplay.getAttribute("data-total");
 		var counter = setInterval(function(){
-			startValue += 3000;
+			startValue += 1000;
 			valueDisplay.textContent = startValue.toLocaleString('ko-KR');
 			if(startValue == endValue){
 				clearInterval(counter);
