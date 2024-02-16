@@ -73,9 +73,6 @@ public class Ham_AdminController {
 		Ham_TotalPointDTO totalPointDTO = ham_adminPointService.allTotalSales();
 		
 		//관리자 영화 장르 및 카운트 
-		if (searchDTO.getMov_genre() == null) {
-			searchDTO.setMov_genre("");
-		}
 		List<Ham_MovieCountDTO> mList = jo_MovieService.getMovieCount();
 		
 		

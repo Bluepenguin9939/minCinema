@@ -70,18 +70,34 @@
 	</select>
 	<!-- 차트를 위한 유저문의 카운트 -->
 	<select id="inquirySendCount" resultType="com.kh.minCinema.domain.Ham_CountDateVO"> 
-		SELECT TO_CHAR(send_date, 'MM') send_date, count(*) monthCount 
-		FROM MC_ONEONONE 
-		GROUP BY TO_CHAR(send_date, 'MM') 
-		ORDER BY send_date
+	<![CDATA[SELECT TO_CHAR(b.dt, 'MM') AS send_date , 
+	NVL(SUM(a.monthCount), 0) monthCount 
+	FROM ( SELECT TO_CHAR(send_date, 'YYYY-MM-DD') AS send_date , COUNT(*) monthCount 
+	FROM MC_ONEONONE 
+	WHERE send_date BETWEEN TO_DATE('2024-01-01', 'YYYY-MM-DD') 
+	AND TO_DATE('2024-12-31', 'YYYY-MM-DD') 
+	GROUP BY send_date, 
+	TO_CHAR(send_date, 'YYYY-MM-DD') ) a , 
+	( SELECT TO_DATE('2024-01-01','YYYY-MM-DD') + LEVEL - 1 AS dt 
+	FROM dual CONNECT BY LEVEL <= (TO_DATE('2024-12-31','YYYY-MM-DD') - TO_DATE('2024-01-01','YYYY-MM-DD') + 1) ) b 
+	WHERE b.dt = a.send_date(+) 
+	GROUP BY TO_CHAR(b.dt, 'MM') 
+	ORDER BY TO_CHAR(b.dt, 'MM')]]>
 		 </select>
 	<!-- 차트를 위한 관리자 카운트 -->
 	<select id="inquiryReplyCount" resultType="com.kh.minCinema.domain.Ham_CountDateVO"> 
-		SELECT TO_CHAR(open_date, 'MM') open_date, count(*) replyCount 
-		FROM MC_ONEONONE 
-		GROUP BY TO_CHAR(open_date, 'MM') 
-		ORDER BY open_date
-		 </select>
+	<![CDATA[SELECT TO_CHAR(b.dt, 'MM') AS open_date , 
+	NVL(SUM(a.replyCount), 0) replyCount 
+	FROM ( SELECT TO_CHAR(open_date, 'YYYY-MM-DD') AS open_date , COUNT(*) replyCount 
+	FROM MC_ONEONONE 
+	WHERE open_date BETWEEN TO_DATE('2024-01-01', 'YYYY-MM-DD') 
+	AND TO_DATE('2024-12-31', 'YYYY-MM-DD') GROUP BY open_date, TO_CHAR(open_date, 'YYYY-MM-DD') ) a ,
+	( SELECT TO_DATE('2024-01-01','YYYY-MM-DD') + LEVEL - 1 AS dt 
+	FROM dual CONNECT BY LEVEL <= (TO_DATE('2024-12-31','YYYY-MM-DD') - TO_DATE('2024-01-01','YYYY-MM-DD') + 1) ) b 
+	WHERE b.dt = a.open_date(+) 
+	GROUP BY TO_CHAR(b.dt, 'MM') 
+	ORDER BY TO_CHAR(b.dt, 'MM')]]>
+ 	</select>
 		 
 		 
 </mapper>
