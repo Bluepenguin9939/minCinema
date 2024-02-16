@@ -148,6 +148,7 @@ $(function() {
 							<div id="reserved-history-div">
 								<c:forEach var="list" items="${reservedList}">
 								<div class="d-flex justify-content-around">
+									<span>상영영화 : ${list.mov_title}</span>
 									<span>상영관 : ${list.mov_theater}</span>
 									<span>상영날짜 : ${list.mov_theater_date}</span>
 									<span>상영시간 : ${list.mov_theater_time}</span>

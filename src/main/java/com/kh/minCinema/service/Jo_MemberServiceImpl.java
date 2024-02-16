@@ -1,9 +1,13 @@
 package com.kh.minCinema.service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.kh.minCinema.domain.Jo_InfoChangeDTO;
 import com.kh.minCinema.domain.Jo_ReservedHistoryDTO;
@@ -66,8 +70,16 @@ public class Jo_MemberServiceImpl implements Jo_MemberService {
 	}
 
 	@Override
+	@Transactional
 	public List<Jo_ReservedHistoryDTO> checkReservedHistory(String mid) {
 		List<Jo_ReservedHistoryDTO> reservedList = theaterMapper.selectReservedHistory(mid);
+		for (int i = 0; i < reservedList.size(); i++) {
+			Jo_ReservedHistoryDTO dto = reservedList.get(i);
+			String mov_date_code = dto.getMov_date_code();
+			String mov_title = theaterMapper.selectMovieTitle(mov_date_code);
+			dto.setMov_title(mov_title);
+			reservedList.set(i, dto);
+		}
 		return reservedList;
 	}
 
