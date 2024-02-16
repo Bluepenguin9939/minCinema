@@ -1,6 +1,7 @@
 package com.kh.minCinema.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 

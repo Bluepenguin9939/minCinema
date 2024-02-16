@@ -20,4 +20,7 @@ public interface Je_MovieTheaterMapper {
 	
 //	예매 내역 가져오기 by Jo
 	public List<Jo_ReservedHistoryDTO> selectReservedHistory(String mid);
+	
+//	예매 영화 이름 가져오가 by Jo
+	public String selectMovieTitle(String mov_date_code);
 }
