@@ -34,13 +34,13 @@
 							<h3><i class="fa fa-headset"></i>고객 문의사항 답변</h3>
 									<div><canvas id="myChart2"></canvas></div>
 							</div>
-							<div id="sisi" >
+							<div>
 								 <c:forEach  var="vo" items="${list}"  >
 								 	<div  class="send-date" data-send_date="${vo.send_date}"></div>
 								 	<div  class="month-Count" data-monthCount="${vo.monthCount}"></div>
 								 </c:forEach>
 							</div>
-							<div id="sisi2" >
+							<div>
 								 <c:forEach  var="vo" items="${oList}" >
 								 	<div  class="open-date" data-open_date="${vo.open_date}"></div>
 								 	<c:if test="${!empty vo.open_date}">
@@ -49,13 +49,13 @@
 								 </c:forEach>
 							</div>
 
-							<div id="sisi3" >
+							<div>
 								 <c:forEach var="vo" items="${pList}" >
 								 	<div class="point_pdate" data-pdate="${vo.pdate}"></div>
 								 	<div class="point_ppoint" data-ppoint="${vo.ppoint}"></div>
 								 </c:forEach>
 							</div>
-							<div id="sisi4" >
+							<div>
 								 <c:forEach var="vo" items="${mList}" >
 								 	<div class="mov-genre" data-mov_genre="${vo.mov_genre}"></div>
 								 	<div class="mov-count" data-mov_count="${vo.mov_count}"></div>
@@ -102,18 +102,20 @@
 $(function() {
 	var valueDisplays = document.querySelectorAll(".totalPoint");
 	
-		valueDisplays.forEach((valueDisplay) => {
-		var startValue = 0;
-		var endValue = valueDisplay.getAttribute("data-total");
-		var counter = setInterval(function(){
-			startValue += 3000;
-			valueDisplay.textContent = startValue.toLocaleString('ko-KR');
-			if(startValue == endValue){
-				clearInterval(counter);
-			}
-			
-		}, 0.1);
-	});
+	valueDisplays.forEach((valueDisplay) => {
+	var startValue = 0;
+	var endValue = valueDisplay.getAttribute("data-total");
+	var counter = setInterval(function(){
+		startValue += 10000;
+		valueDisplay.textContent = startValue.toLocaleString('ko-KR');
+		if(startValue >= endValue){
+			var endVal = Number(endValue);
+			clearInterval(counter);
+			valueDisplay.textContent = endVal.toLocaleString('ko-KR');
+		}
+		
+	}, 0.1);
+});
 	
 	//차트 데이터
 	var send_date = $(".send-date").attr("data-send_date");
