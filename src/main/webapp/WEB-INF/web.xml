@@ -26,7 +26,7 @@
 		<load-on-startup>1</load-on-startup>
 		
 		<multipart-config>
-		<!-- 	--><location>D:\\upload\\temp</location>  
+		<!-- 	--><location>G:\\upload\\temp</location>  
 		<!-- 	<location>G:\\upload\\temp</location> -->
 			<max-file-size>5242880</max-file-size>
 			<max-request-size>52428800</max-request-size>
