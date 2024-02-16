@@ -112,7 +112,7 @@ $(function(){
 									<label style="margin-left: 15px;" for="remessage">
 										답변 내용 </label><br>
 									<textarea class="form-control" name="remessage" id="remessage"
-										style="height: 6.25em; margin-left: 15px; width: 766px;"></textarea>
+										style="height: 6.25em; margin-left: 15px; width: 766px;" readonly></textarea>
 								</div>
 								<div class="modal-footer">
 									
