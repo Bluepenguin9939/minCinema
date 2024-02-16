@@ -510,70 +510,75 @@ $(function(){
 	
 	
 	$(".payButton").click(function() {  //////계산부분
-		var reservedSeat = [];
-		var ageMap = {};
-		var ticketListArray = $(".seatMember");
-		
-		var resultCost = parseInt( $("#resultCost").text() );
-		var payCost = parseInt( $("#subCost").text() );
-		payCost = (payCost * (-1));
-		
-		var discount = $("#disCount").val();
-		
-		
-		if(resultCost>=0){
+		var check = confirm("예매하시겠습니까?");
+		if (check) {
+			var reservedSeat = [];
+			var ageMap = {};
+			var ticketListArray = $(".seatMember");
 			
-			$.each(ticketListArray, function (index, seat) { 
-				reservedSeat.push(seat.id);
-				ageMap[seat.id] = seat.getAttribute("data-age"); // 연관 배열
+			var resultCost = parseInt( $("#resultCost").text() );
+			var payCost = parseInt( $("#subCost").text() );
+			payCost = (payCost * (-1));
+			
+			var discount = $("#disCount").val();
+			
+			
+			if(resultCost>=0){
 				
-			});
-			
-			var mid = "${loginInfo.mid}";
-			
-			var data = {
-					"movieTitle" :  movieTitle,//영화제목
-					"movieDate" : movieDate ,//영화상영일
-					"movieTime" :  movieTime,//영화 시작시간,
-					"movieTheater" : movieTheater,	//영화 상영관,
-					"reservedSeat" : reservedSeat,   //예약한좌석번호들
-					"age" : ageMap,//연령
-					"mid" : mid,		//아이디
-					"payCost" : payCost,	//지불금액
-					"resultCost" : resultCost,	//현재 금액
-					"discount" : discount 	// 사용한 쿠폰
-			};
-			
-			var url = "/ticketing/cost";
-			
-			
-			
-			$.ajax({
-		            url: url,
-		            type: "POST",
-		            data: JSON.stringify(data),
-		            dataType: "json",
-		            contentType: "application/json; charset=utf-8",
-		            success: function(rdata){
-
-		            	if(rdata == true){
-		            		alert("예약완료");
-			            	window.location.replace("http://localhost/main/jo_main");
-		            	}
-		            	else if(rdata == false){
-		            		alert("예약실패");
-		            	}
-		            	
-		            },
-		            error: function(){
-		                
-		            }
-		     });
-			
-		}
-		else{
-			alert("포인트가 부족합니다!!!!");
-			
+				$.each(ticketListArray, function (index, seat) { 
+					reservedSeat.push(seat.id);
+					ageMap[seat.id] = seat.getAttribute("data-age"); // 연관 배열
+					
+				});
+				
+				var mid = "${loginInfo.mid}";
+				
+				var data = {
+						"movieTitle" :  movieTitle,//영화제목
+						"movieDate" : movieDate ,//영화상영일
+						"movieTime" :  movieTime,//영화 시작시간,
+						"movieTheater" : movieTheater,	//영화 상영관,
+						"reservedSeat" : reservedSeat,   //예약한좌석번호들
+						"age" : ageMap,//연령
+						"mid" : mid,		//아이디
+						"payCost" : payCost,	//지불금액
+						"resultCost" : resultCost,	//현재 금액
+						"discount" : discount 	// 사용한 쿠폰
+				};
+				
+				var url = "/ticketing/cost";
+				
+				
+				
+				$.ajax({
+			            url: url,
+			            type: "POST",
+			            data: JSON.stringify(data),
+			            dataType: "json",
+			            contentType: "application/json; charset=utf-8",
+			            success: function(rdata){
+	
+			            	if(rdata == true){
+			            		alert("예약완료");
+				            	window.location.replace("http://localhost/main/jo_main");
+			            	}
+			            	else if(rdata == false){
+			            		alert("예약실패");
+			            	}
+			            	
+			            },
+			            error: function(){
+			                
+			            }
+			     });
+				
+			}
+			else{
+				var pointCharge = confirm("포인트가 부족합니다!!!!\n포인트를 충전하시겠습니까?");
+				if (pointCharge) {
+					$("#modal-payment").modal("show");
+				}
+			}
 		}
 		
 		
@@ -583,6 +588,7 @@ $(function(){
 });
 	
 </script>
+<%@ include file="/WEB-INF/views/include/heo_pointChargeModal.jsp" %>
 <div>
 	<div class="reserve-container">
 		<div class="seat-part">

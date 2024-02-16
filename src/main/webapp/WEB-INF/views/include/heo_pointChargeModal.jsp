@@ -81,6 +81,7 @@ $(function() {
 		e.preventDefault();
 		var buyerTel = "${loginInfo.mtel}";
 		var buyerId = "${loginInfo.mid}";
+		
 		var point = $("#chargePoint").val();
 		
 
@@ -98,12 +99,12 @@ $(function() {
             buyer_tel : buyerTel
         }, function(rsp) {
 			if (rsp.success) {
-				
+				console.log("asd:",rsp.buyer_name);
 				$.ajax({    
 					url : '/point/charge', // 요청 할 주소   
 					method : 'post', // GET, PUT    
 					data: {        
-						mid : rsp.buyer_name,        
+						mid : buyerId,
 						ppoint : rsp.paid_amount,
 						pcode : 'PC'}, // 전송할 데이터    
 // 					dataType: 'text', // xml, json, script, html    
@@ -111,7 +112,7 @@ $(function() {
 					success: function(rData) {
 						if (rData == "true") {
 							alert("충전 성공");
-							location.href="/myPage/jo_myPoint";
+							location.href= window.location.href;
 						} else if (rData == "false"){
 							alert("다시 시도해주세요.");
 						}

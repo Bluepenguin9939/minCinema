@@ -153,7 +153,7 @@ function callFaq(items) {
 function closeAds() {
 	var check = $(".adsCheck").prop("checked");
 	if (check == true) {
-		document.cookie = "ads=true; max-age=86400";
+		document.cookie = "ads=true; path=/; max-age=86400";
 	}
 	$(".ads").hide();
 }

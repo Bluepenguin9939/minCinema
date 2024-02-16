@@ -6,6 +6,7 @@
 
 <script>
 $(function() {
+	
 	$(".btnDetail").click(function() {
 		var mov_code = $(this).attr("data-mov_code");
 		$("#detail_mov_code").val(mov_code);
@@ -13,7 +14,8 @@ $(function() {
 	});
 	
 	$(".btnReservation").click(function() {
-		self.location = "/ticketing/booking";
+		var mov_code = $(this).attr("data-mov_code");
+		self.location = "/ticketing/booking?mov_code="+mov_code;
 	});
 });
 </script>
