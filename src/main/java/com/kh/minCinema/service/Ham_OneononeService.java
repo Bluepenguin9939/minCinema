@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.kh.minCinema.domain.Ham_CountDateVO;
 import com.kh.minCinema.domain.Ham_OneononeVO;
-import com.kh.minCinema.mapper.Ham_OneononeMapper;
 
 public interface Ham_OneononeService {
 	
