@@ -106,12 +106,10 @@ $(function() {
 		var startValue = 0;
 		var endValue = valueDisplay.getAttribute("data-total");
 		var counter = setInterval(function(){
-			startValue += 10000;
+			startValue += 3000;
 			valueDisplay.textContent = startValue.toLocaleString('ko-KR');
-			if(startValue >= endValue){
-				var endVal = Number(endValue);
+			if(startValue == endValue){
 				clearInterval(counter);
-				valueDisplay.textContent = endVal.toLocaleString('ko-KR');
 			}
 			
 		}, 0.1);
@@ -289,7 +287,7 @@ $(function() {
 	myChart = new Chart(ctx3, {//월매출 
 		type : 'line',
 		data : {
-			labels : pdSplit,
+			labels : arr,
 			datasets : [ {
 				label : '월별 매출액',
 				data : ppSplit,

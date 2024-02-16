@@ -14,7 +14,7 @@
 <script>
 function moreButton(acount){
 	var bsl = $(".wrap>tr").length;
-	if(bsl > acount && bsl % 5 > 0 && bsl % 5 < 5){
+	if(bsl > acount && bsl % 5 >= 0 && bsl % 5 < 5){
 		$("#load-more").css("display", "block");
 	}
 }
