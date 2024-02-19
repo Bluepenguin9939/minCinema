@@ -70,7 +70,7 @@
 			<!-- Q4 -->
 				<div class="card">
 					<div class="card-header">
-						 <a class="card-link" data-toggle="collapse" data-parent="#card-443862" href="#card-element-000001">Q 보유 포인트는 어디서 하나요?</a>
+						 <a class="card-link" data-toggle="collapse" data-parent="#card-443862" href="#card-element-000001">Q 보유 포인트 확인은 어디서 하나요?</a>
 					</div>
 					<div id="card-element-000001" class="collapse">
 						<div class="card-body">
@@ -81,7 +81,7 @@
 			<!-- Q5 -->
 				<div class="card">
 					<div class="card-header">
-						 <a class="card-link" data-toggle="collapse" data-parent="#card-443862" href="#card-element-000002">Q 결제내역은 어디서 하나요?</a>
+						 <a class="card-link" data-toggle="collapse" data-parent="#card-443862" href="#card-element-000002">Q 결제내역 확인은 어디서 하나요?</a>
 					</div>
 					<div id="card-element-000002" class="collapse">
 						<div class="card-body">
